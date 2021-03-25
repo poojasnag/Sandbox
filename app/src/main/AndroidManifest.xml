@@ -69,6 +69,18 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".ClosedOrderActivity"></activity>>
+        <activity android:name=".PlaceOrderActivity" />
+        <activity android:name=".ChooseDelivererActivity" />
+        <activity android:name=".UserRatingActivity" />
+        <activity android:name=".OrderStatusActivity" />
+        <activity android:name=".PendingOrdersActivity" />
+        <activity android:name=".CreateDeliveryActivity" />
+        <activity android:name=".FoodOpSelectionActivity" />
+        <activity android:name=".BnDActivity" />
+
+
     </application>
 
 </manifest>

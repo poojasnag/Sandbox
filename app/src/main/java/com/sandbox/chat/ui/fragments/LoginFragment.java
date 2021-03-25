@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.sandbox.chat.BnDActivity;
 import com.sandbox.chat.R;
 import com.sandbox.chat.core.login.LoginContract;
 import com.sandbox.chat.core.login.LoginPresenter;
@@ -105,7 +106,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Log
     public void onLoginSuccess(String message) {
         mProgressDialog.dismiss();
         Toast.makeText(getActivity(), "Logged in successfully", Toast.LENGTH_SHORT).show();
-        UserListingActivity.startActivity(getActivity(),
+        BnDActivity.startActivity(getActivity(),
                 Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
     }
 
