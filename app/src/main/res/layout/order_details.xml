@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/order_details_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp"
+    android:visibility="visible">
+
+    <Button
+        android:id="@+id/order_details_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:backgroundTint="@color/colorAccent2"
+        android:clickable="false"
+        android:editable="true"
+        android:fadingEdge="horizontal|vertical"
+        android:fadingEdgeLength="20dp"
+        android:filterTouchesWhenObscured="false"
+        android:text="Button"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+</RelativeLayout>
