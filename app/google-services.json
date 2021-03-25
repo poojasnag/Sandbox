@@ -31,6 +31,14 @@
           }
         },
         {
+          "client_id": "902810412712-onvb9vrspibhc9dsv2t05dcnq5ad3hab.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.sample.fchat",
+            "certificate_hash": "b8249555277c97b23836ee2869239ecebe755109"
+          }
+        },
+        {
           "client_id": "902810412712-otd8rgjnpnme2gp0k0huqjst58v43ip7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
