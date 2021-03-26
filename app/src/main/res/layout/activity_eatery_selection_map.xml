@@ -7,7 +7,7 @@
     tools:context=".EaterySelectionMapActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
+        android:id="@+id/eatery_selection_botnav"
         style="@style/bottom_navigation_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -19,11 +19,11 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/eatery_selection_tempButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="select_a_location"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintBottom_toTopOf="@+id/eatery_selection_botnav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

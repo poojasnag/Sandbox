@@ -18,7 +18,7 @@ public class PendingOrdersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pending_orders);
 
-        final BottomNavigationView bot_bar = findViewById(R.id.choose_deliverer_bottomNavigationView);
+        final BottomNavigationView bot_bar = findViewById(R.id.pending_orders_bottomNavigationView);
         bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
 
 

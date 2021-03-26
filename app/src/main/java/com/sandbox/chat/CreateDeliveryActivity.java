@@ -13,7 +13,7 @@ public class CreateDeliveryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_delivery);
         //TODO: Replace order cutoff time with same structure as ETA
-        final BottomNavigationView bot_bar = findViewById(R.id.choose_deliverer_bottomNavigationView);
+        final BottomNavigationView bot_bar = findViewById(R.id.create_delivery_bottomNavigationView);
         bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
         //TODO: Pass selected location to header
         //TODO: Populate the lists of selectable timestamps

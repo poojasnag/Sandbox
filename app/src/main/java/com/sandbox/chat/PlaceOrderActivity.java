@@ -16,7 +16,7 @@ public class PlaceOrderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_order);
-        final BottomNavigationView bot_bar = findViewById(R.id.choose_deliverer_bottomNavigationView);
+        final BottomNavigationView bot_bar = findViewById(R.id.place_order_bottomNavigationView);
         bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
 
         Button submitButton = findViewById(R.id.place_order_submit);

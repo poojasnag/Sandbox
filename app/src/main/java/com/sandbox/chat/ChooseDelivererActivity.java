@@ -26,7 +26,7 @@ public class ChooseDelivererActivity extends AppCompatActivity {
     protected void onStart()
     {
         super.onStart();
-        RecyclerView ordersList = findViewById(R.id.order_list);
+        RecyclerView ordersList = findViewById(R.id.choose_deliverer_list);
 
         LinkedList<String> demo  = new LinkedList<String>();
         demo.add("Name: xxabcxx \nRate:$0.5\nLocation 1: Hall 7 bus stop");
