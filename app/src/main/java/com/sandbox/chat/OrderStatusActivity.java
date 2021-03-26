@@ -21,10 +21,6 @@ public class OrderStatusActivity extends AppCompatActivity {
         final BottomNavigationView bot_bar = findViewById(R.id.choose_deliverer_bottomNavigationView);
         bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
 
-        RecyclerView ordersList = findViewById(R.id.order_list);
-        OrderDetailsAdapter adapter = new OrderDetailsAdapter(new LinkedList<String>());
-        //TODO: pass the list of orders to this adapter
-        ordersList.setAdapter(adapter);
-        ordersList.setLayoutManager(new LinearLayoutManager(this));
+
     }
 }

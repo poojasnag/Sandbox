@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.sandbox.chat.ui.activities.ChatActivity;
+import com.sandbox.chat.ui.activities.UserListingActivity;
 
 public class BottomBarOnClickListener implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -24,7 +25,7 @@ public class BottomBarOnClickListener implements BottomNavigationView.OnNavigati
         {
 
             case R.id.botnav_chat:
-                intent = new Intent(context, ChatActivity.class);
+                intent = new Intent(context, UserListingActivity.class);
                 context.startActivity(intent);
             case R.id.botnav_pending:
                 intent = new Intent(context, PendingOrdersActivity.class);
@@ -36,7 +37,8 @@ public class BottomBarOnClickListener implements BottomNavigationView.OnNavigati
                 intent = new Intent(context, SettingsActivity.class);
                 context.startActivity(intent);
             case R.id.botnav_home:
-                //TODO: pass the mapsActivity to this one;
+                intent = new Intent(context, EaterySelectionMapActivity.class);
+                context.startActivity(intent);
 
             default:
                 throw new IllegalStateException("Unexpected value: " + item.getTitle());
