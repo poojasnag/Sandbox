@@ -13,7 +13,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        final BottomNavigationView bot_bar = findViewById(R.id.choose_deliverer_bottomNavigationView);
+        final BottomNavigationView bot_bar = findViewById(R.id.settings_bottomNavigationView);
         bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
     }
 }

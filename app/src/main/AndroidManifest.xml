@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sandbox.chat">
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -16,6 +15,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".EaterySelectionMapActivity"></activity>
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -31,7 +31,7 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
         <activity
             android:name=".ui.activities.SplashActivity"
             android:label="@string/app_name"
@@ -69,8 +69,9 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-        <activity android:name=".SettingsActivity"></activity>
-        <activity android:name=".ClosedOrderActivity"></activity>>
+
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".ClosedOrderActivity" />
         <activity android:name=".PlaceOrderActivity" />
         <activity android:name=".ChooseDelivererActivity" />
         <activity android:name=".UserRatingActivity" />
@@ -79,8 +80,6 @@
         <activity android:name=".CreateDeliveryActivity" />
         <activity android:name=".FoodOpSelectionActivity" />
         <activity android:name=".BnDActivity" />
-
-
     </application>
 
 </manifest>

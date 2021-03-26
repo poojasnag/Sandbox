@@ -75,10 +75,17 @@
         <item>AM</item>
         <item>PM</item>
     </string-array>
+    <string-array name="delivery_fee">
+        <item>1.00</item>
+        <item>1.50</item>
+        <item>2.00</item>
+        <item>2.50</item>
+    </string-array>
     <string name="title_activity_maps">Map</string>
     <string-array name="deliver_to">
         <item>Hall 1</item>
         <item>North Spine</item>
         <item>Hall 10</item>
     </string-array>
+    <string name="submit">Submit</string>
 </resources>

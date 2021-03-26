@@ -1,6 +1,5 @@
 package com.sandbox.chat;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.fragment.app.FragmentActivity;
@@ -13,12 +12,8 @@ import com.google.android.libraries.maps.model.LatLng;
 import com.google.android.libraries.maps.model.MarkerOptions;
 import com.google.maps.android.data.geojson.GeoJsonLayer;
 import com.google.maps.android.data.geojson.GeoJsonPolygonStyle;
-import org.json.JSONObject;
-
-import androidx.fragment.app.FragmentActivity;
 
 import android.graphics.Color;
-import android.os.Bundle;
 
 //import com.google.maps.*;
 //import com.google.android.libraries.maps.GoogleMap;
@@ -35,7 +30,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
+        setContentView(R.layout.fragment_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);

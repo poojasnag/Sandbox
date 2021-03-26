@@ -15,6 +15,7 @@ import java.util.LinkedList;
 
 public class OrderDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    private LinkedList<String> orders;
 
     public class OrderDetailsHolder extends RecyclerView.ViewHolder{
         public RelativeLayout parent;
@@ -27,7 +28,7 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             button = itemView.findViewById(R.id.order_details_button);
         }
     }
-    private LinkedList<String> orders;
+
 
     public OrderDetailsAdapter(LinkedList<String> orders) {
         this.orders = orders;
@@ -37,6 +38,7 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public OrderDetailsHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         // Create a new view, which defines the UI of the list item
+        //TODO: Retrieve all orders.
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.order_details, viewGroup, false);
 
@@ -44,7 +46,7 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if(holder instanceof OrderDetailsHolder)
         {
 
