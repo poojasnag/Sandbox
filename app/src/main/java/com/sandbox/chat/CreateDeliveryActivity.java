@@ -3,8 +3,6 @@ package com.sandbox.chat;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -21,8 +19,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.sandbox.chat.models.User;
-
 
 import java.time.Instant;
 import java.util.HashMap;
@@ -40,17 +36,6 @@ public class CreateDeliveryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_delivery);
         fStore = FirebaseFirestore.getInstance();
-
-        // Show spinner choice
-//        deliveryLocSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-//                chosenLoc = parent.getItemAtPosition(pos).toString();
-//                Toast.makeText(CreateDeliveryActivity.this, "Chosen Loc:" + chosenLoc, Toast.LENGTH_SHORT).show();
-//            }
-//            public void onNothingSelected(AdapterView<?> parent) {
-//            }
-//        });
-
         createDeliveryButton = findViewById(R.id.create_delivery_send);
         createDeliveryButton.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -97,7 +82,7 @@ public class CreateDeliveryActivity extends AppCompatActivity {
 
         if (user != null) {
             String uid = user.getUid();
-            String offerID = curTime + "-" + uid;
+            String offerID = curTime + "-" + uid;  //KEY: OfferID which is current time + uid (unique in every scenario)
             Map<String, Object> offer = new HashMap<>();
             offer.put("uid", uid);
             offer.put("location", chosenLoc);
@@ -108,6 +93,7 @@ public class CreateDeliveryActivity extends AppCompatActivity {
             offer.put("cutoffMin", Integer.parseInt(cutoffMin));
             offer.put("cutoffAMPM", cutoffAMPM);
             offer.put("deliveryFee", Double.parseDouble(deliveryFee));
+            offer.put("timestamp", curTime);
 
             DocumentReference documentReference = fStore.collection("deliveryOffers").document(offerID);
             documentReference.set(offer).addOnSuccessListener(new OnSuccessListener<Void>(){
