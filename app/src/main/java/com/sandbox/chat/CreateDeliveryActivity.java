@@ -1,5 +1,6 @@
 package com.sandbox.chat;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,6 +11,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -20,8 +22,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.sandbox.chat.models.User;
-import java.util.Calendar;
-import java.util.Date;
+
+
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,6 +53,7 @@ public class CreateDeliveryActivity extends AppCompatActivity {
 
         createDeliveryButton = findViewById(R.id.create_delivery_send);
         createDeliveryButton.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
                 Toast.makeText(CreateDeliveryActivity.this, "create button clicked", Toast.LENGTH_SHORT).show();
@@ -65,46 +69,47 @@ public class CreateDeliveryActivity extends AppCompatActivity {
         //TODO: Populate the lists of selectable timestamps
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     protected void sendData(){
-//        Date currentTime = Calendar.getInstance().getTime();
+        long unixTime = Instant.now().getEpochSecond();
+        String curTime = Long.toString(unixTime);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        Toast.makeText(CreateDeliveryActivity.this,"Current Time: " + curTime , Toast.LENGTH_SHORT).show();
 
         Spinner deliveryLocSpinner = findViewById(R.id.create_delivery_select_location);
-//        Spinner etaHourSpinner = findViewById(R.id.create_delivery_ETA_hour);
-//        Spinner etaMinSpinner = findViewById(R.id.create_delivery_ETA_min);
-//        Spinner etaAMPMSpinner = findViewById(R.id.am_or_pm);
-//        Spinner cutoffHourSpinner = findViewById(R.id.cutoff_time_hour);
-//        Spinner cutoffMinSpinner = findViewById(R.id.cutoff_time_min);
-//        Spinner cutoffAMPMSpinner = findViewById(R.id.cutoff_time_am_or_pm);
-//        EditText deliveryFeeText = findViewById(R.id.create_delivery_fee);
+        Spinner etaHourSpinner = findViewById(R.id.create_delivery_ETA_hour);
+        Spinner etaMinSpinner = findViewById(R.id.create_delivery_ETA_min);
+        Spinner etaAMPMSpinner = findViewById(R.id.am_or_pm);
+        Spinner cutoffHourSpinner = findViewById(R.id.cutoff_time_hour);
+        Spinner cutoffMinSpinner = findViewById(R.id.cutoff_time_min);
+        Spinner cutoffAMPMSpinner = findViewById(R.id.cutoff_time_am_or_pm);
+        EditText deliveryFeeText = findViewById(R.id.create_delivery_fee);
 
         String chosenLoc = deliveryLocSpinner.getSelectedItem().toString();
-        Toast.makeText(CreateDeliveryActivity.this,"Chosen Loc: " + chosenLoc, Toast.LENGTH_SHORT).show();
-
-//        Integer etaHour = (Integer) etaHourSpinner.getSelectedItem();
-//        Integer etaMin = (Integer) etaMinSpinner.getSelectedItem();
-//        String etaAMPM = etaAMPMSpinner.getSelectedItem().toString();
-//        Integer cutoffHour = (Integer) cutoffHourSpinner.getSelectedItem();
-//        Integer cutoffMin = (Integer) cutoffMinSpinner.getSelectedItem();
-//        String cutoffAMPM = cutoffAMPMSpinner.getSelectedItem().toString();
-//        float deliveryFee = Float.valueOf(deliveryFeeText.getText().toString());
-
+        String etaHour = etaHourSpinner.getSelectedItem().toString();
+        String etaMin = etaMinSpinner.getSelectedItem().toString();
+        String etaAMPM = etaAMPMSpinner.getSelectedItem().toString();
+        String cutoffHour =  cutoffHourSpinner.getSelectedItem().toString();
+        String cutoffMin =  cutoffMinSpinner.getSelectedItem().toString();
+        String cutoffAMPM = cutoffAMPMSpinner.getSelectedItem().toString();
+        String deliveryFee = deliveryFeeText.getText().toString();
+        Toast.makeText(CreateDeliveryActivity.this,"ETA hour: " + etaHour, Toast.LENGTH_SHORT).show();
 
         if (user != null) {
             String uid = user.getUid();
-//            String offerID = currentTime + "_" + uid;
+            String offerID = curTime + "-" + uid;
             Map<String, Object> offer = new HashMap<>();
-//            offer.put("uid", uid);
+            offer.put("uid", uid);
             offer.put("location", chosenLoc);
-//            offer.put("etaHour", etaHour);
-//            offer.put("etaMin", etaMin);
-//            offer.put("etaAMPM", etaAMPM);
-//            offer.put("cutoffHour", cutoffHour);
-//            offer.put("cutoffMin", cutoffMin);
-//            offer.put("cutoffAMPM", cutoffAMPM);
-//            offer.put("deliveryFee", deliveryFee);
+            offer.put("etaHour", Integer.parseInt(etaHour));
+            offer.put("etaMin", Integer.parseInt(etaMin));
+            offer.put("etaAMPM", etaAMPM);
+            offer.put("cutoffHour", Integer.parseInt(cutoffHour));
+            offer.put("cutoffMin", Integer.parseInt(cutoffMin));
+            offer.put("cutoffAMPM", cutoffAMPM);
+            offer.put("deliveryFee", Double.parseDouble(deliveryFee));
 
-            DocumentReference documentReference = fStore.collection("deliveryOffers").document(uid);
+            DocumentReference documentReference = fStore.collection("deliveryOffers").document(offerID);
             documentReference.set(offer).addOnSuccessListener(new OnSuccessListener<Void>(){
                 @Override
                 public void onSuccess(Void aVoid){
