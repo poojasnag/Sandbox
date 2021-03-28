@@ -4,6 +4,7 @@ public class User {
     private String uid;
     private String email;
     private String firebaseToken;
+    private int rating;
 
     public User(){
 
@@ -37,6 +38,14 @@ public class User {
 
     public void setFirebaseToken(String firebaseToken) {
         this.firebaseToken = firebaseToken;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 }
 

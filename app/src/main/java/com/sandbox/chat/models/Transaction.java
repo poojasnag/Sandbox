@@ -1,29 +1,23 @@
 package com.sandbox.chat.models;
 
+
 public class Transaction {
     private String buyerID;
-    private int delivererOfferID;
+    private String delivererOfferID;  // change from int to string
     private String delivererID;
     private String buyerLocation;
     private String orderDetails;
-    private String getBuyerID;
-    private int getDelivererOfferID ;
-    private String getDelivererID;
-    private String getBuyerLocation;
-    private String getOrderDetails;
+    private Status buyerStatus;
+    private Status delivererStatus;
+    private Status orderStatus;
 
 
-    public Transaction(String buyerID, int delivererOfferID, String delivererID, String buyerLocation, String orderDetails, String getBuyerID, int getDelivererOfferID, String getDelivererID, String getBuyerLocation, String getOrderDetails) {
+    public Transaction(String buyerID, String delivererOfferID, String delivererID, String buyerLocation, String orderDetails) {
         this.buyerID = buyerID;
         this.delivererOfferID = delivererOfferID;
         this.delivererID = delivererID;
         this.buyerLocation = buyerLocation;
         this.orderDetails = orderDetails;
-        this.getBuyerID = getBuyerID;
-        this.getDelivererOfferID = getDelivererOfferID;
-        this.getDelivererID = getDelivererID;
-        this.getBuyerLocation = getBuyerLocation;
-        this.getOrderDetails = getOrderDetails;
     }
 
     public String getBuyerID() {
@@ -34,11 +28,11 @@ public class Transaction {
         this.buyerID = buyerID;
     }
 
-    public int getDelivererOfferID() {
+    public String getDelivererOfferID() {
         return delivererOfferID;
     }
 
-    public void setDelivererOfferID(int delivererOfferID) {
+    public void setDelivererOfferID(String delivererOfferID) {
         this.delivererOfferID = delivererOfferID;
     }
 
@@ -66,44 +60,28 @@ public class Transaction {
         this.orderDetails = orderDetails;
     }
 
-    public String getGetBuyerID() {
-        return getBuyerID;
+    public Status isBuyerStatus() {
+        return buyerStatus;
     }
 
-    public void setGetBuyerID(String getBuyerID) {
-        this.getBuyerID = getBuyerID;
+    public void setBuyerStatus(Status buyerStatus) {
+        this.buyerStatus = buyerStatus;
     }
 
-    public int getGetDelivererOfferID() {
-        return getDelivererOfferID;
+    public Status isDelivererStatus() {
+        return delivererStatus;
     }
 
-    public void setGetDelivererOfferID(int getDelivererOfferID) {
-        this.getDelivererOfferID = getDelivererOfferID;
+    public void setDelivererStatus(Status delivererStatus) {
+        this.delivererStatus = delivererStatus;
     }
 
-    public String getGetDelivererID() {
-        return getDelivererID;
+    public Status isOrderStatus() {
+        return orderStatus;
     }
 
-    public void setGetDelivererID(String getDelivererID) {
-        this.getDelivererID = getDelivererID;
-    }
-
-    public String getGetBuyerLocation() {
-        return getBuyerLocation;
-    }
-
-    public void setGetBuyerLocation(String getBuyerLocation) {
-        this.getBuyerLocation = getBuyerLocation;
-    }
-
-    public String getGetOrderDetails() {
-        return getOrderDetails;
-    }
-
-    public void setGetOrderDetails(String getOrderDetails) {
-        this.getOrderDetails = getOrderDetails;
+    public void setOrderStatus(Status orderStatus) {
+        this.orderStatus = orderStatus;
     }
 }
 
