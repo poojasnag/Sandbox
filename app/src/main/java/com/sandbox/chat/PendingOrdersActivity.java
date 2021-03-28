@@ -9,7 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.LinkedList;
-
+/**
+ * This is a View class allows buyers and deliverers to see the pending orders unique to them
+ *
+ * @author chua zi heng
+ */
 public class PendingOrdersActivity extends AppCompatActivity {
 
     private LinkedList<String> orders;
@@ -37,3 +41,5 @@ public class PendingOrdersActivity extends AppCompatActivity {
     }
 
 }
+
+//TODO: Buyers and deliverers both will see pending orders, but the orders they see will be unique to them, need a Mgr

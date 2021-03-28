@@ -9,6 +9,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+/**
+ * This is a View class that implements the BuyerOrderDetailsUI, which allows buyers to place their
+ * orders by providing order details
+ *
+ *
+ * @author chua zi heng
+ */
 public class PlaceOrderActivity extends AppCompatActivity {
 
     @Override
@@ -30,3 +37,5 @@ public class PlaceOrderActivity extends AppCompatActivity {
     }
 
 }
+
+//TODO: PlaceOrderMgr to
