@@ -4,9 +4,9 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.view.View;
 
-import com.sandbox.chat.ChooseDelivererActivity;
-import com.sandbox.chat.CreateDeliveryActivity;
-import com.sandbox.chat.EaterySelectionMapActivity;
+import com.sandbox.chat.ui.activities.ChooseDelivererActivity;
+import com.sandbox.chat.ui.activities.CreateDeliveryActivity;
+import com.sandbox.chat.ui.activities.EaterySelectionMapActivity;
 
 /**
  * Manager class for EaterySelectionMapActivity

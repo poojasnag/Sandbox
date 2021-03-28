@@ -1,23 +1,21 @@
-package com.sandbox.chat;
+package com.sandbox.chat.ui.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.sandbox.chat.models.Transaction;
+import com.sandbox.chat.ui.BottomBarOnClickListener;
+import com.sandbox.chat.R;
 
 /**
- * Displays the details of a selected order
+ * This is a View class that implements the SettingsUI, which allows users to customise their App,
+ * for example to change the app font
  *
  * @author chua zi heng
  */
-public class OrderStatusActivity extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity {
 
-    Transaction order;
-
-    Intent prevIntent;
 
     /**
      * Initialize the interface.
@@ -27,16 +25,12 @@ public class OrderStatusActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order_status);
+        setContentView(R.layout.activity_settings);
 
-        final BottomNavigationView bot_bar = findViewById(R.id.order_status_bottomNavigationView);
+        final BottomNavigationView bot_bar = findViewById(R.id.settings_bottomNavigationView);
         bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
-
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        prevIntent = getIntent();
-    }
 }
+
+//TODO: SettingsMgr

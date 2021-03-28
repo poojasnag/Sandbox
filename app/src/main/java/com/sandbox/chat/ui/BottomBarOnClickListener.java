@@ -1,4 +1,4 @@
-package com.sandbox.chat;
+package com.sandbox.chat.ui;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,7 +7,11 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.sandbox.chat.ui.activities.ChatActivity;
+import com.sandbox.chat.R;
+import com.sandbox.chat.ui.activities.ClosedOrderActivity;
+import com.sandbox.chat.ui.activities.EaterySelectionMapActivity;
+import com.sandbox.chat.ui.activities.PendingOrdersActivity;
+import com.sandbox.chat.ui.activities.SettingsActivity;
 import com.sandbox.chat.ui.activities.UserListingActivity;
 
 /**

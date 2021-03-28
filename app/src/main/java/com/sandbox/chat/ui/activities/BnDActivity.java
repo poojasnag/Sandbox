@@ -1,4 +1,4 @@
-package com.sandbox.chat;
+package com.sandbox.chat.ui.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,10 +7,9 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
 
+import com.sandbox.chat.R;
 import com.sandbox.chat.mgr.BnDMgr;
-import com.sandbox.chat.ui.activities.UserListingActivity;
 
 /**
  * Displays the Buyer and Deliverer selection interface

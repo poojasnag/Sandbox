@@ -1,7 +1,7 @@
 package com.sandbox.chat.models;
 
 public enum Status {
-    ONGOING,
+    NO_ORDERS,
     PENDING,
     COMPLETE,
     INCOMPLETE
