@@ -6,6 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+/**
+ * This is a View class that implements the SettingsUI, which allows users to customise their App,
+ * for example to change the app font
+ *
+ * @author chua zi heng
+ */
 public class SettingsActivity extends AppCompatActivity {
 
     @Override
@@ -17,3 +23,5 @@ public class SettingsActivity extends AppCompatActivity {
         bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
     }
 }
+
+//TODO: SettingsMgr
