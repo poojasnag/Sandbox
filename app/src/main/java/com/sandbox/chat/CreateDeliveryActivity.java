@@ -28,6 +28,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -98,7 +99,7 @@ public class CreateDeliveryActivity extends AppCompatActivity {
                         calendar.set(Calendar.HOUR_OF_DAY,hourOfDay);
                         calendar.set(Calendar.MINUTE,minute);
 
-                        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yy-MM-dd HH:mm");
+                        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
                         date_time_in.setText(simpleDateFormat.format(calendar.getTime()));
                     }
@@ -124,15 +125,22 @@ public class CreateDeliveryActivity extends AppCompatActivity {
 
         String chosenLoc = deliveryLocSpinner.getSelectedItem().toString();
         String deliveryFee = deliveryFeeText.getText().toString();
-//        Toast.makeText(CreateDeliveryActivity.this,"ETA hour: " + etaHour, Toast.LENGTH_SHORT).show();
+        String cutoffDateTime = cutoff_picker. getText().toString();
+        String etaDateTime = eta_picker. getText().toString();
+
+
+        Toast.makeText(CreateDeliveryActivity.this,"ETA hour: " + cutoffDateTime, Toast.LENGTH_SHORT).show();
+        Toast.makeText(CreateDeliveryActivity.this,"ETA hour: " + etaDateTime, Toast.LENGTH_SHORT).show();
 
         if (user != null) {
-            String uid = user.getUid();
-            String offerID = curTime + "-" + uid;  //KEY: OfferID which is current time + uid (unique in every scenario)
+            String email = user.getEmail();
+            String offerID = curTime + "-" + email;  //KEY: OfferID which is current time + uid (unique in every scenario)
             Map<String, Object> offer = new HashMap<>();
-            offer.put("uid", uid);
+            offer.put("email", email);
             offer.put("location", chosenLoc);
             offer.put("deliveryFee", Double.parseDouble(deliveryFee));
+            offer.put("cutoffDateTime", cutoffDateTime);
+            offer.put("etaDateTime", etaDateTime);
             offer.put("timestamp", curTime);
 
             DocumentReference documentReference = fStore.collection("deliveryOffers").document(offerID);
