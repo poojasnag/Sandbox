@@ -14,7 +14,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-
+/**
+ * Fetching all user data to the Firebase real-time database
+ *
+ * @author chua zi heng
+ */
 
 public class GetUsersInteractor implements GetUsersContract.Interactor {
     private static final String TAG = "GetUsersInteractor";

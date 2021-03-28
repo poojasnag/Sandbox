@@ -11,8 +11,7 @@ import com.sandbox.chat.R;
 
 // TODO: ThankYouUI
 /**
- * This is a View class that implements the ThankYouUI, which allows users to give rating to other users
- * and provide comments if they wish
+ * Allows users to give rating to other users and provide comments if they wish
  *
  * @author chua zi heng
  */
@@ -33,4 +32,3 @@ public class UserRatingActivity extends AppCompatActivity {
     }
 }
 
-// TODO: Need to add a controller (ThankYOuMgr) to push the new user rating to database

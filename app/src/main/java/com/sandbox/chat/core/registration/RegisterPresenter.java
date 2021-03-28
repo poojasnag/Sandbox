@@ -5,7 +5,11 @@ import android.app.Activity;
 import com.google.firebase.auth.FirebaseUser;
 
 
-
+/**
+ * Presentation logic for user registration
+ *
+ * @author chua zi heng
+ */
 public class RegisterPresenter implements RegisterContract.Presenter, RegisterContract.OnRegistrationListener {
     private RegisterContract.View mRegisterView;
     private RegisterInteractor mRegisterInteractor;

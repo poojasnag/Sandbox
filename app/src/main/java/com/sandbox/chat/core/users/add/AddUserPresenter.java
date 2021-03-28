@@ -5,7 +5,11 @@ import android.content.Context;
 import com.google.firebase.auth.FirebaseUser;
 
 
-
+/**
+ * Presentation logic for adding of users
+ *
+ * @author chua zi heng
+ */
 public class AddUserPresenter implements AddUserContract.Presenter, AddUserContract.OnUserDatabaseListener {
     private AddUserContract.View mView;
     private AddUserInteractor mAddUserInteractor;

@@ -1,7 +1,11 @@
 package com.sandbox.chat.core.logout;
 
 
-
+/**
+ * Presentation logic for user logout
+ *
+ * @author chua zi heng
+ */
 public class LogoutPresenter implements LogoutContract.Presenter, LogoutContract.OnLogoutListener {
     private LogoutContract.View mLogoutView;
     private LogoutInteractor mLogoutInteractor;

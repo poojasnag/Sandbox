@@ -1,5 +1,9 @@
 package com.sandbox.chat.core.logout;
-
+/**
+ * An interface for user logout that specifies the contract between view, presenter, interactor and listener
+ *
+ * @author chua zi heng
+ */
 public interface LogoutContract {
     interface View {
         void onLogoutSuccess(String message);

@@ -11,7 +11,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.R;
 import com.sandbox.chat.mgr.FoodOpSelectionMgr;
-
+/**
+ * Alternative method for users to pick an eatery through a spinner
+ *
+ * @author chua zi heng
+ */
 public class FoodOpSelectionActivity extends AppCompatActivity {
 
     private final FoodOpSelectionMgr foodOpSelectionMgr = new FoodOpSelectionMgr();

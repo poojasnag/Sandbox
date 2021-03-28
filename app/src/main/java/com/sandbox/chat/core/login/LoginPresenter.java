@@ -1,7 +1,11 @@
 package com.sandbox.chat.core.login;
 
 import android.app.Activity;
-
+/**
+ * Presentation logic for user login
+ *
+ * @author chua zi heng
+ */
 public class LoginPresenter implements LoginContract.Presenter, LoginContract.OnLoginListener {
     private LoginContract.View mLoginView;
     private LoginInteractor mLoginInteractor;

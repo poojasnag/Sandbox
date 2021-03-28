@@ -9,7 +9,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-
+/**
+ * Sending registration data to the Firebase authenticator
+ *
+ * @author chua zi heng
+ */
 public class RegisterInteractor implements RegisterContract.Interactor {
     private static final String TAG = RegisterInteractor.class.getSimpleName();
 

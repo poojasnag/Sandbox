@@ -5,7 +5,11 @@ import com.sandbox.chat.models.User;
 import java.util.List;
 
 
-
+/**
+ * Presentation logic for getting all users
+ *
+ * @author chua zi heng
+ */
 public class GetUsersPresenter implements GetUsersContract.Presenter, GetUsersContract.OnGetAllUsersListener {
     private GetUsersContract.View mView;
     private GetUsersInteractor mGetUsersInteractor;

@@ -13,7 +13,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-
+/**
+ * Sending new user data to the Firebase real-time database
+ *
+ * @author chua zi heng
+ */
 
 public class AddUserInteractor implements AddUserContract.Interactor {
     private AddUserContract.OnUserDatabaseListener mOnUserDatabaseListener;
