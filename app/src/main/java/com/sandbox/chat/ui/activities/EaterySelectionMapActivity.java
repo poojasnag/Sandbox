@@ -1,4 +1,4 @@
-package com.sandbox.chat;
+package com.sandbox.chat.ui.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.sandbox.chat.ui.BottomBarOnClickListener;
+import com.sandbox.chat.R;
 import com.sandbox.chat.mgr.EaterySelectionMapMgr;
 
 /**

@@ -1,10 +1,12 @@
-package com.sandbox.chat;
+package com.sandbox.chat.ui.activities;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.sandbox.chat.ui.BottomBarOnClickListener;
+import com.sandbox.chat.R;
 
 /**
  * This is a View class that implements the SettingsUI, which allows users to customise their App,

@@ -19,8 +19,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.sandbox.chat.CreateDeliveryActivity;
-import com.sandbox.chat.R;
 
 import java.text.SimpleDateFormat;
 import java.time.Instant;

@@ -1,4 +1,4 @@
-package com.sandbox.chat;
+package com.sandbox.chat.ui.activities;
 
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +8,8 @@ import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.sandbox.chat.ui.BottomBarOnClickListener;
+import com.sandbox.chat.R;
 import com.sandbox.chat.mgr.FoodOpSelectionMgr;
 
 public class FoodOpSelectionActivity extends AppCompatActivity {

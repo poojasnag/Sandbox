@@ -3,7 +3,7 @@ package com.sandbox.chat.mgr;
 import android.content.Context;
 import android.content.Intent;
 
-import com.sandbox.chat.EaterySelectionMapActivity;
+import com.sandbox.chat.ui.activities.EaterySelectionMapActivity;
 
 public class BnDMgr {
     public static void onBuyerSelect(Context context){

@@ -1,7 +1,6 @@
-package com.sandbox.chat;
+package com.sandbox.chat.ui.activities;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,6 +14,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.sandbox.chat.ui.BottomBarOnClickListener;
+import com.sandbox.chat.ui.adapters.DelivererProfileAdapter;
+import com.sandbox.chat.R;
 
 import java.util.LinkedList;
 

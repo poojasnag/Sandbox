@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.sandbox.chat.BnDActivity;
 import com.sandbox.chat.R;
 import com.google.firebase.auth.FirebaseAuth;
 

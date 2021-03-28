@@ -1,4 +1,4 @@
-package com.sandbox.chat;
+package com.sandbox.chat.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.sandbox.chat.ui.BottomBarOnClickListener;
+import com.sandbox.chat.R;
 
 /**
  * This is a View class that implements the BuyerOrderDetailsUI, which allows buyers to place their

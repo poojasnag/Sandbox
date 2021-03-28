@@ -1,14 +1,13 @@
-package com.sandbox.chat;
+package com.sandbox.chat.ui.activities;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.sandbox.chat.ui.BottomBarOnClickListener;
+import com.sandbox.chat.R;
 
-import java.util.LinkedList;
 /**
  * This is a View class that implements the ThankYouUI, which allows users to give rating to other users
  * and provide comments if they wish
