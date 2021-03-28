@@ -18,6 +18,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.LinkedList;
 
+/**
+ * For the buyers, displays the list of active deliverers in a location
+ */
 public class ChooseDelivererActivity extends AppCompatActivity {
     private static final String TAG = "ImportDB";
     private static final String KEY_LOCATION = "location";
@@ -25,8 +28,16 @@ public class ChooseDelivererActivity extends AppCompatActivity {
     private static final String KEY_NAME = "email";
     LinkedList<String> demo  = new LinkedList<String>();
 
+    /**
+     *
+     */
     FirebaseFirestore fStore;
 
+    /**
+     * Initialize the interface.
+     * Consisting of loading the corresponding layout file and binding the on-click listener to the navigation bar.
+     * @param savedInstanceState If the activity is being re-initialized after previously being shut down then this Bundle contains the data it most recently supplied in onSaveInstanceState(Bundle)
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +48,10 @@ public class ChooseDelivererActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Populates the list with deliverers' information
+     * Called directly after onCreate(), and whenever the user navigates to this activity from another activity
+     */
     @Override
     protected void onStart()
     {

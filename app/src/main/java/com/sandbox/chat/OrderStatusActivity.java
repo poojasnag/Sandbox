@@ -3,12 +3,8 @@ package com.sandbox.chat;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.LinkedList;
 
 public class OrderStatusActivity extends AppCompatActivity {
 
