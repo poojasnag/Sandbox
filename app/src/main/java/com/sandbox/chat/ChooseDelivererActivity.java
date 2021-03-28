@@ -28,9 +28,6 @@ public class ChooseDelivererActivity extends AppCompatActivity {
     private static final String KEY_NAME = "email";
     LinkedList<String> demo  = new LinkedList<String>();
 
-    /**
-     *
-     */
     FirebaseFirestore fStore;
 
     /**

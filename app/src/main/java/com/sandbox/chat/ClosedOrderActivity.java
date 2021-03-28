@@ -40,7 +40,7 @@ public class ClosedOrderActivity extends AppCompatActivity {
     {
         super.onStart();
         RecyclerView ordersList = findViewById(R.id.closed_order_list);
-        OrderDetailsAdapter adapter = new OrderDetailsAdapter(ClosedOrderMgr.getOrders());
+        OrderDetailsAdapter adapter = new OrderDetailsAdapter(ClosedOrderMgr.getOrders(true));
         //TODO: pass the list of orders to this adapter
         ordersList.setAdapter(adapter);
         ordersList.setLayoutManager(new LinearLayoutManager(this));

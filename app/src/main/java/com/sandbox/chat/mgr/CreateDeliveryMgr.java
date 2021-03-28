@@ -28,36 +28,27 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Manager class for CreateDeliveryActivity
+ */
 public class CreateDeliveryMgr {
     private static FirebaseFirestore fStore = FirebaseFirestore.getInstance();;
-    public static void showDateTimeDialog(final EditText date_time_in, Context context) {
-        final Calendar calendar=Calendar.getInstance();
-        DatePickerDialog.OnDateSetListener dateSetListener=new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                calendar.set(Calendar.YEAR,year);
-                calendar.set(Calendar.MONTH,month);
-                calendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
 
-                TimePickerDialog.OnTimeSetListener timeSetListener=new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        calendar.set(Calendar.HOUR_OF_DAY,hourOfDay);
-                        calendar.set(Calendar.MINUTE,minute);
+    /**
+     *
+     * @param date_time_in
+     * @param context
+     */
 
-                        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
-                        date_time_in.setText(simpleDateFormat.format(calendar.getTime()));
-                    }
-                };
-
-                new TimePickerDialog(context,timeSetListener,calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE),false).show();
-            }
-        };
-
-        new DatePickerDialog(context,dateSetListener,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
-
-    }
+    /**
+     * Records the delivery offer to the database
+     * @param deliveryLocSpinner The drop-down list for delivery location
+     * @param deliveryFeeText The text box for the delivery fee
+     * @param cutoff_picker The text box for cutoff time
+     * @param eta_picker The textbox for estimated time of arrival
+     * @param context The activity that called this method
+     */
     @RequiresApi(api = Build.VERSION_CODES.O)
 
     public static void sendData(Spinner deliveryLocSpinner, EditText deliveryFeeText, EditText cutoff_picker, EditText eta_picker, Context context){

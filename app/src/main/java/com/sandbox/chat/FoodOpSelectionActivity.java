@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.sandbox.chat.mgr.FoodOpSelectionMgr;
+import com.sandbox.chat.models.Eatery;
 
 public class FoodOpSelectionActivity extends AppCompatActivity {
 
@@ -26,7 +27,8 @@ public class FoodOpSelectionActivity extends AppCompatActivity {
         optionList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                foodOpSelectionMgr.selectItem();
+                foodOpSelectionMgr.selectItem(new Eatery("TODO",0,0));
+                //TODO: REplace with actual eatery
             }
         });
     }
