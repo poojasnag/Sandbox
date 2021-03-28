@@ -22,7 +22,7 @@ public class ChooseDelivererActivity extends AppCompatActivity {
     private static final String TAG = "ImportDB";
     private static final String KEY_LOCATION = "location";
     private static final String KEY_DELIVERYFEE = "deliveryFee";
-    private static final String KEY_NAME = "uid";
+    private static final String KEY_NAME = "email";
     LinkedList<String> demo  = new LinkedList<String>();
 
     FirebaseFirestore fStore;

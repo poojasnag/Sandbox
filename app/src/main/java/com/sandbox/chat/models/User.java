@@ -1,9 +1,9 @@
 package com.sandbox.chat.models;
 
 public class User {
-    public String uid;
-    public String email;
-    public String firebaseToken;
+    private String uid;
+    private String email;
+    private String firebaseToken;
 
     public User(){
 
@@ -17,6 +17,26 @@ public class User {
 
     public String getEmail(){
         return this.email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getFirebaseToken() {
+        return firebaseToken;
+    }
+
+    public void setFirebaseToken(String firebaseToken) {
+        this.firebaseToken = firebaseToken;
     }
 }
 
