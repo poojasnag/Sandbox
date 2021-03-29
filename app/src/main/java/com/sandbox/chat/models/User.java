@@ -20,7 +20,7 @@ public class User implements Serializable {
      */
 
     private String firebaseToken;
-    private int rating;
+    private float rating;
 
     public User(){
 
@@ -31,10 +31,11 @@ public class User implements Serializable {
      * @param uid User ID
      * @param email Email
      */
-    public User(String uid, String email, String firebaseToken){
+    public User(String uid, String email, String firebaseToken, float rating){
         this.firebaseToken = firebaseToken;
         this.uid = uid;
         this.email = email;
+        this.rating = rating;
     }
 
     public String getEmail(){
@@ -53,11 +54,11 @@ public class User implements Serializable {
         this.uid = uid;
     }
 
-    public int getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
 

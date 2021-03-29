@@ -27,12 +27,12 @@ public class BnDMgr {
      public Buyer createBuyer(User user)
      {
          //TODO: Call TransactionMgr to get all the transactions
-         return new Buyer(user.getUid(), user.getEmail(), user.getFirebaseToken(), new LinkedList<Transaction>());
+         return new Buyer(user.getUid(), user.getEmail(), user.getFirebaseToken(), user.getRating() , new LinkedList<Transaction>());
      }
 
     public Deliverer createDeliverer(User user)
     {
         //TODO: Call TransactionMgr to get all the transactions
-        return new Deliverer(user.getUid(), user.getEmail(), user.getFirebaseToken(), new LinkedList<Transaction>());
+        return new Deliverer(user.getUid(), user.getEmail(), user.getFirebaseToken(), user.getRating(), new LinkedList<Transaction>());
     }
 }

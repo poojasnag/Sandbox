@@ -1,8 +1,14 @@
 package com.sandbox.chat.core.login;
 
 import android.app.Activity;
+import android.content.Context;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.sandbox.chat.mgr.UserMgr;
 import com.sandbox.chat.models.User;
+import com.sandbox.chat.utils.Constants;
+import com.sandbox.chat.utils.SharedPrefUtil;
 
 /**
  * Presentation logic for user login
@@ -33,11 +39,14 @@ public class LoginPresenter implements LoginContract.Presenter, LoginContract.On
         mLoginView.onLoginFailure(message);
     }
 
-    public User findUser(String userID)
+    public static User findUser(Context context)
     {
         //TODO:Get the user
+        FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        return new User("ID", "Email", "0");
+        User curUser =  new User(fUser.getUid() ,fUser.getEmail(), new SharedPrefUtil(context).getString(Constants.ARG_FIREBASE_TOKEN), 0);
+        UserMgr.setData(curUser, context);
+        return curUser;
 
     }
 

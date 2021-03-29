@@ -104,13 +104,17 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Log
     public void onLoginSuccess(String message) {
         mProgressDialog.dismiss();
         Toast.makeText(getActivity(), "Logged in successfully", Toast.LENGTH_SHORT).show();
-        BnDActivity.startActivity(getActivity(), mLoginPresenter.findUser("TODO: Implement the findUser method"),
-                Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        BnDActivity.startActivity(getActivity(), mLoginPresenter.findUser(getActivity().getApplicationContext()),
+                Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK); // pass in
     }
 
     @Override
     public void onLoginFailure(String message) {
         mProgressDialog.dismiss();
         Toast.makeText(getActivity(), "Error: " + message, Toast.LENGTH_SHORT).show();
+    }
+
+    public void showToast(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 }
