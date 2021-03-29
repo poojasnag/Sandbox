@@ -1,15 +1,36 @@
 package com.sandbox.chat.models;
 
+/**
+ * Stores the information of the users
+ */
 public class User {
+    /**
+     * The users' ID
+     */
     private String uid;
+    /**
+     * The users' email
+     */
     private String email;
+    /**
+     * Token necessary for Firebase API
+     */
     private String firebaseToken;
+    /**
+     * The users' rating
+     */
     private int rating;
 
     public User(){
 
     }
 
+    /**
+     * Returns a new user
+     * @param uid User ID
+     * @param email Email
+     * @param firebaseToken Firebase token
+     */
     public User(String uid, String email, String firebaseToken){
         this.uid = uid;
         this.email = email;

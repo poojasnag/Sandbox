@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.sandbox.chat.R;
 
 import com.sandbox.chat.mgr.UserRatingMgr;
+import com.sandbox.chat.ui.activities.EaterySelectionMapActivity;
 
 // TODO: ThankYouUI
 /**
@@ -20,6 +21,7 @@ import com.sandbox.chat.mgr.UserRatingMgr;
  */
 public class UserRatingActivity extends AppCompatActivity {
 
+    Intent prevIntent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,10 @@ public class UserRatingActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public Intent getPrevIntent() {
+        return prevIntent;
     }
 }
 

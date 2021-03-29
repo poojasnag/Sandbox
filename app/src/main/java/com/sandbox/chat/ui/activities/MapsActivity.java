@@ -23,6 +23,7 @@ import org.json.JSONException;
 
 import java.io.IOException;
 
+@Deprecated
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;

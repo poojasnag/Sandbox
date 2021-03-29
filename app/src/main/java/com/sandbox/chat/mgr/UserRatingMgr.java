@@ -4,8 +4,8 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.view.View;
 
-import com.sandbox.chat.EaterySelectionMapActivity;
 import com.sandbox.chat.UserRatingActivity;
+import com.sandbox.chat.ui.activities.EaterySelectionMapActivity;
 
 /**
  * Manager class for UserRatingActivity

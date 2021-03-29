@@ -2,17 +2,56 @@ package com.sandbox.chat.models;
 
 import java.util.ArrayList;
 
+/**
+ * Contains information about a delivery offer
+ */
 public class DelivererOffer {
+    /**
+     * The ID of the offer
+     */
     private String delivererOfferID;
+    /**
+     * The cut-off time of the offer. Outside this time range, the order will not be available
+     */
     private String cutOffTime;
+    /**
+     * The estimated time of arrival
+     */
     private String etaTime;
+    /**
+     * The delivery fee set by the deliverer
+     */
     private double deliveryFee;
+    /**
+     * The locations that the deliverer is able to deliver to
+     */
     private ArrayList<String> deliveryLocations;
+    /**
+     * The eatery that the deliverer is currently in
+     */
     private Eatery eatery;
+    /**
+     * The information of the deliverer
+     */
     private Deliverer deliverer;
+    /**
+     * The status of the order
+     * @deprecated
+     */
     private Status status;
 
-    public DelivererOffer(String delivererOfferID, String cutOffTime, String etaTime, double deliveryFee, ArrayList<String> deliveryLocations, Eatery eatery, Deliverer deliverer, Status status) {
+    /**
+     * Constructor for the offer
+     * @param delivererOfferID The offer's ID
+     * @param cutOffTime The cutoff time
+     * @param etaTime The ETA
+     * @param deliveryFee Delivery fee
+     * @param deliveryLocations List of delivery locations
+     * @param eatery The current eatery
+     * @param deliverer The deliverer's information
+
+     */
+    public DelivererOffer(String delivererOfferID, String cutOffTime, String etaTime, double deliveryFee, ArrayList<String> deliveryLocations, Eatery eatery, Deliverer deliverer) {
         this.delivererOfferID = delivererOfferID;
         this.cutOffTime = cutOffTime;
         this.etaTime = etaTime;
@@ -20,7 +59,7 @@ public class DelivererOffer {
         this.deliveryLocations = deliveryLocations;
         this.eatery = eatery;
         this.deliverer = deliverer;
-        this.status = status;
+        this.status = Status.NO_ORDERS;
     }
 
     public String getDelivererOfferID() {
