@@ -1,7 +1,11 @@
 package com.sandbox.chat.core.login;
 
 import android.app.Activity;
-
+/**
+ * An interface for user login that specifies the contract between view, presenter, interactor and listener
+ *
+ * @author chua zi heng
+ */
 public interface LoginContract {
     interface View {
         void onLoginSuccess(String message);

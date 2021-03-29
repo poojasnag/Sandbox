@@ -1,4 +1,4 @@
-package com.sandbox.chat;
+package com.sandbox.chat.ui.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +11,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.sandbox.chat.R;
+import com.sandbox.chat.ui.activities.PlaceOrderActivity;
 
 import java.util.LinkedList;
 
@@ -44,7 +47,7 @@ public class DelivererProfileAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     /**
      * Loads the data to the adapter
-     * @param strings
+     * @param strings the list of deliverers
      */
     public DelivererProfileAdapter(LinkedList<String> strings) {this.deliverers = strings;}
     //TODO: Replace this with the list of deliverers

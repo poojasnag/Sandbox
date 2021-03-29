@@ -1,4 +1,4 @@
-package com.sandbox.chat;
+package com.sandbox.chat.ui.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,17 +7,16 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
 
+import com.sandbox.chat.R;
 import com.sandbox.chat.mgr.BnDMgr;
-import com.sandbox.chat.ui.activities.UserListingActivity;
 
 /**
  * Displays the Buyer and Deliverer selection interface
  */
 
 public class BnDActivity extends AppCompatActivity {
-
+    BnDMgr bndController ;
     /**
      * Displays the interface from another activity class
      * @param context the Context of the activity that called this method
@@ -33,6 +32,7 @@ public class BnDActivity extends AppCompatActivity {
      * @param flags flags to pass to the Intent before starting the activity
      */
     public static void startActivity(Context context, int flags) {
+
         Intent intent = new Intent(context, BnDActivity.class);
         intent.setFlags(flags);
         context.startActivity(intent);
@@ -46,6 +46,7 @@ public class BnDActivity extends AppCompatActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        bndController = new BnDMgr();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bn_d);
 
@@ -56,13 +57,13 @@ public class BnDActivity extends AppCompatActivity {
         buyer_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BnDMgr.onBuyerSelect(view.getContext());
+                bndController.onBuyerSelect(view.getContext());
             }
         });
         deliverer_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BnDMgr.onDelivererSelect(view.getContext());
+                bndController.onDelivererSelect(view.getContext());
             }
         });
 

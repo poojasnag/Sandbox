@@ -1,4 +1,4 @@
-package com.sandbox.chat;
+package com.sandbox.chat.ui.activities;
 
 import android.os.Bundle;
 
@@ -7,21 +7,26 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.sandbox.chat.mgr.PendingOrdersMgr;
+import com.sandbox.chat.ui.BottomBarOnClickListener;
+import com.sandbox.chat.ui.adapters.OrderDetailsAdapter;
+import com.sandbox.chat.R;
 
 import java.util.LinkedList;
 /**
- * This is a View class allows buyers and deliverers to see the pending orders unique to them
+ * Allows buyers and deliverers to see the pending orders that are unique to them
  *
  * @author chua zi heng
  */
 public class PendingOrdersActivity extends AppCompatActivity {
-
+    PendingOrdersMgr pendingOrdersController;
     private LinkedList<String> orders;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pending_orders);
-
+        pendingOrdersController = new PendingOrdersMgr();
         final BottomNavigationView bot_bar = findViewById(R.id.pending_orders_bottomNavigationView);
         bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
 

@@ -4,7 +4,11 @@ import android.app.Activity;
 
 import com.google.firebase.auth.FirebaseUser;
 
-
+/**
+ * An interface for user registration that specifies the contract between view, presenter, interactor and listener
+ *
+ * @author chua zi heng
+ */
 public interface RegisterContract {
     interface View {
         void onRegistrationSuccess(FirebaseUser firebaseUser);

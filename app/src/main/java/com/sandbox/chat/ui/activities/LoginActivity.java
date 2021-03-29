@@ -9,7 +9,11 @@ import 	androidx.appcompat.widget.Toolbar;
 
 import com.sandbox.chat.R;
 import com.sandbox.chat.ui.fragments.LoginFragment;
-
+/**
+ * Users to log in to the application
+ *
+ * @author chua zi heng
+ */
 public class LoginActivity extends AppCompatActivity {
     private Toolbar mToolbar;
 

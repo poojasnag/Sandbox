@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="@color/colorTitle"
-    tools:context=".PendingOrdersActivity">
+    tools:context=".ui.activities.PendingOrdersActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/pending_orders_bottomNavigationView"

@@ -4,10 +4,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.sandbox.chat.BnDActivity;
 import com.sandbox.chat.R;
 import com.google.firebase.auth.FirebaseAuth;
-
+/**
+ * First screen when app is initialised, implements the splash UI
+ *
+ * @author chua zi heng
+ */
 public class SplashActivity extends AppCompatActivity {
     private static final int SPLASH_TIME_MS = 2000;
     private Handler mHandler;

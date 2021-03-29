@@ -12,13 +12,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.sandbox.chat.BnDActivity;
+import com.sandbox.chat.ui.activities.BnDActivity;
 import com.sandbox.chat.R;
 import com.sandbox.chat.core.login.LoginContract;
 import com.sandbox.chat.core.login.LoginPresenter;
 import com.sandbox.chat.ui.activities.RegisterActivity;
-import com.sandbox.chat.ui.activities.UserListingActivity;
-
 
 
 public class LoginFragment extends Fragment implements View.OnClickListener, LoginContract.View {

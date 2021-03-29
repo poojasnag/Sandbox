@@ -2,7 +2,11 @@ package com.sandbox.chat.core.logout;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-
+/**
+ * Sending logout message to the Firebase authentication
+ *
+ * @author chua zi heng
+ */
 
 public class LogoutInteractor implements LogoutContract.Interactor {
     private LogoutContract.OnLogoutListener mOnLogoutListener;

@@ -1,14 +1,41 @@
 package com.sandbox.chat.models;
 
-
+/**
+ * Contains information about an order between  2 users
+ *
+ */
 public class Transaction {
+    /**
+     * The buyer's user ID
+     */
     private String buyerID;
+    /**
+     * The delivery offer's ID
+     */
     private String delivererOfferID;  // change from int to string
+    /**
+     * The deliverer's user ID
+     */
     private String delivererID;
+    /**
+     * The location to deliver to
+     */
     private String buyerLocation;
+    /**
+     * The content of the order
+     */
     private String orderDetails;
+    /**
+     * The completion status set by the buyer
+     */
     private Status buyerStatus;
+    /**
+     * The completion status set by the deliverer
+     */
     private Status delivererStatus;
+    /**
+     * Overall status of the order
+     */
     private Status orderStatus;
 
 

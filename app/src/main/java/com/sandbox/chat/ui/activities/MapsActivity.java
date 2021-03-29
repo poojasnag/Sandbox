@@ -1,4 +1,4 @@
-package com.sandbox.chat;
+package com.sandbox.chat.ui.activities;
 
 import android.os.Bundle;
 
@@ -12,6 +12,7 @@ import com.google.android.libraries.maps.model.LatLng;
 import com.google.android.libraries.maps.model.MarkerOptions;
 import com.google.maps.android.data.geojson.GeoJsonLayer;
 import com.google.maps.android.data.geojson.GeoJsonPolygonStyle;
+import com.sandbox.chat.R;
 
 import android.graphics.Color;
 
@@ -21,7 +22,13 @@ import android.graphics.Color;
 import org.json.JSONException;
 
 import java.io.IOException;
+/**
+ * Google map view with location markers of healthy eateries. Users can pick one of these eateries to order food from/ deliver food to
+ * @deprecated
+ * @author chua zi heng
+ */
 
+@Deprecated
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;

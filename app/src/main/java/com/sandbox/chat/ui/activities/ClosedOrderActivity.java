@@ -1,4 +1,4 @@
-package com.sandbox.chat;
+package com.sandbox.chat.ui.activities;
 
 import android.os.Bundle;
 
@@ -7,16 +7,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.sandbox.chat.ui.BottomBarOnClickListener;
+import com.sandbox.chat.ui.adapters.OrderDetailsAdapter;
+import com.sandbox.chat.R;
 import com.sandbox.chat.mgr.ClosedOrderMgr;
-
-import java.util.LinkedList;
 
 /**
  * Displays the interface for all finished orders
  */
 public class ClosedOrderActivity extends AppCompatActivity {
 
-    private final ClosedOrderMgr closedOrderMgr = new ClosedOrderMgr();
+    ClosedOrderMgr closedOrderController;
 
     @Override
     /**
@@ -29,6 +30,7 @@ public class ClosedOrderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_closed_order);
         final BottomNavigationView bot_bar = findViewById(R.id.closed_order_bottomNavigationView);
         bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
+        closedOrderController = new ClosedOrderMgr();
 
     }
     /**
@@ -40,7 +42,7 @@ public class ClosedOrderActivity extends AppCompatActivity {
     {
         super.onStart();
         RecyclerView ordersList = findViewById(R.id.closed_order_list);
-        OrderDetailsAdapter adapter = new OrderDetailsAdapter(ClosedOrderMgr.getOrders());
+        OrderDetailsAdapter adapter = new OrderDetailsAdapter(closedOrderController.getOrders(true));
         //TODO: pass the list of orders to this adapter
         ordersList.setAdapter(adapter);
         ordersList.setLayoutManager(new LinearLayoutManager(this));
