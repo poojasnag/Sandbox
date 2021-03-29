@@ -7,7 +7,7 @@ import com.sandbox.chat.models.Transaction;
  * Manager class for OrderStatusActivity
  */
 public class OrderStatusMgr {
-
+    public OrderStatusMgr(){}
     /**
      * Function to be bound to the "Chat with user" button
      * Redirects the user to the chat activity

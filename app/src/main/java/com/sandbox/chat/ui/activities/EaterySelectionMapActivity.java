@@ -16,7 +16,7 @@ import com.sandbox.chat.mgr.EaterySelectionMapMgr;
  * Displays the eatery selection interface
  */
 public class EaterySelectionMapActivity extends AppCompatActivity {
-    private final EaterySelectionMapMgr eaterySelectionMapMgr = new EaterySelectionMapMgr(this);
+    EaterySelectionMapMgr eaterySelectionMapController;
     public Intent i;
 
     /**
@@ -28,13 +28,14 @@ public class EaterySelectionMapActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_eatery_selection_map);
+        eaterySelectionMapController = new EaterySelectionMapMgr(this);
         final BottomNavigationView bot_bar = findViewById(R.id.eatery_selection_botnav);
         bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
         Button next = findViewById(R.id.eatery_selection_tempButton);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                eaterySelectionMapMgr.SelectLocation(view);
+                eaterySelectionMapController.SelectLocation(view);
             }
         });
     }
@@ -47,7 +48,7 @@ public class EaterySelectionMapActivity extends AppCompatActivity {
 
     protected void SelectLocation(View view)
     {
-        eaterySelectionMapMgr.SelectLocation(view);
+        eaterySelectionMapController.SelectLocation(view);
     }
 
     public Intent getI() {

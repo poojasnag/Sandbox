@@ -12,6 +12,7 @@ import com.sandbox.chat.ui.activities.EaterySelectionMapActivity;
  * Manager class for EaterySelectionMapActivity
  */
 public class EaterySelectionMapMgr {
+
     private final EaterySelectionMapActivity eaterySelectionMapActivity;
 
     /**

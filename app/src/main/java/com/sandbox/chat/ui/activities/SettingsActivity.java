@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.sandbox.chat.mgr.SettingsMgr;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.R;
 
@@ -15,7 +16,7 @@ import com.sandbox.chat.R;
  */
 public class SettingsActivity extends AppCompatActivity {
 
-
+    SettingsMgr settingsController;
     /**
      * Initialize the interface.
      * Consisting of loading the corresponding layout file and binding the on-click listener to the navigation bar.
@@ -25,10 +26,14 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        settingsController = new SettingsMgr();
 
         final BottomNavigationView bot_bar = findViewById(R.id.settings_bottomNavigationView);
         bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
+        settingsController.changeTextSize();
     }
+
+
 
 }
 

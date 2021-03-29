@@ -6,13 +6,15 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 
-import com.sandbox.chat.PendingOrdersActivity;
-import com.sandbox.chat.PlaceOrderActivity;
+import com.sandbox.chat.ui.activities.PendingOrdersActivity;
+import com.sandbox.chat.ui.activities.PlaceOrderActivity;
+
 
 /**
  * Manager class for PlaceOrderActivity
  */
 public class PlaceOrderMgr {
+
     private final PlaceOrderActivity placeOrderActivity;
 
     /**

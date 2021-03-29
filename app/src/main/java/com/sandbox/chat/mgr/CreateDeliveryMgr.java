@@ -30,6 +30,8 @@ import java.util.Map;
  * Manager class for CreateDeliveryActivity
  */
 public class CreateDeliveryMgr {
+    public CreateDeliveryMgr(){}
+
     private static FirebaseFirestore fStore = FirebaseFirestore.getInstance();;
 
     /**
@@ -37,7 +39,6 @@ public class CreateDeliveryMgr {
      * @param date_time_in
      * @param context
      */
-
 
     /**
      * Records the delivery offer to the database
@@ -49,7 +50,7 @@ public class CreateDeliveryMgr {
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
 
-    public static void sendData(Spinner deliveryLocSpinner, EditText deliveryFeeText, EditText cutoff_picker, EditText eta_picker, Context context){
+    public void sendData(Spinner deliveryLocSpinner, EditText deliveryFeeText, EditText cutoff_picker, EditText eta_picker, Context context){
         long unixTime = Instant.now().getEpochSecond();
         String curTime = Long.toString(unixTime);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();

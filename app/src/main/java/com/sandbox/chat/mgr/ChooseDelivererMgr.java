@@ -21,14 +21,15 @@ public class ChooseDelivererMgr {
     private static final String KEY_LOCATION = "location";
     private static final String KEY_DELIVERYFEE = "deliveryFee";
     private static final String KEY_NAME = "email";
+    FirebaseFirestore fStore;
 
+    public ChooseDelivererMgr(){}
     /**
      * Look up the database and get the list of deliverers
-     * @param context The context of the activity that called this method
-     * @return a list of deliver offers
      */
-    public static LinkedList<String> getDeliverers(Context context) {
+    public void getDeliverers() {
         //TODO: change to actual deliverers
+        fStore = FirebaseFirestore.getInstance();
         FirebaseFirestore fStore = FirebaseFirestore.getInstance();
 
         LinkedList<String> demo = new LinkedList<String>();
@@ -41,7 +42,7 @@ public class ChooseDelivererMgr {
                             for (QueryDocumentSnapshot document : task.getResult()) {
 //                                        demo.add("Name: xxabcxx \nRate:$0.5\nLocation 1: Hall 7 bus stop");
 //                                        demo.add("Name: test2 \nRate:$0.5\nLocation 1: Hall 7 bus stop");
-                                Toast.makeText(context, document.getString(KEY_LOCATION), Toast.LENGTH_SHORT).show();
+
                                 // document.getId() document.getData()
                                 demo.add(String.format("Name: %s \nRate:$%.2f\nLocation 1: %s", document.getString(KEY_NAME), document.getDouble(KEY_DELIVERYFEE), document.getString(KEY_LOCATION)));
 
@@ -52,6 +53,5 @@ public class ChooseDelivererMgr {
 
 
                 });
-        return demo;
     }
 }

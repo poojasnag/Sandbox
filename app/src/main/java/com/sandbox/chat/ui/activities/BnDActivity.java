@@ -16,7 +16,7 @@ import com.sandbox.chat.mgr.BnDMgr;
  */
 
 public class BnDActivity extends AppCompatActivity {
-    BnDMgr presenter ;
+    BnDMgr bndController ;
     /**
      * Displays the interface from another activity class
      * @param context the Context of the activity that called this method
@@ -46,7 +46,7 @@ public class BnDActivity extends AppCompatActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        presenter = new BnDMgr();
+        bndController = new BnDMgr();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bn_d);
 
@@ -57,13 +57,13 @@ public class BnDActivity extends AppCompatActivity {
         buyer_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                presenter.onBuyerSelect(view.getContext());
+                bndController.onBuyerSelect(view.getContext());
             }
         });
         deliverer_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                presenter.onDelivererSelect(view.getContext());
+                bndController.onDelivererSelect(view.getContext());
             }
         });
 

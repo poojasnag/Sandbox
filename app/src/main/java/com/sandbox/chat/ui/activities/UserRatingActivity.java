@@ -1,4 +1,4 @@
-package com.sandbox.chat;
+package com.sandbox.chat.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import com.sandbox.chat.R;
 
 import com.sandbox.chat.mgr.UserRatingMgr;
 
+
 // TODO: ThankYouUI
 /**
  * Allows users to give rating to other users and provide comments if they wish
@@ -18,11 +19,12 @@ import com.sandbox.chat.mgr.UserRatingMgr;
  * @author chua zi heng
  */
 public class UserRatingActivity extends AppCompatActivity {
-
+    UserRatingMgr userRatingController;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_rating);
+        userRatingController = new UserRatingMgr(this);
         Button sendRating = findViewById(R.id.user_rating_submit);
         sendRating.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,6 +33,10 @@ public class UserRatingActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public Intent getPrevIntent() {
+        return getIntent();
     }
 }
 

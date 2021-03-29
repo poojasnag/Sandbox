@@ -22,12 +22,13 @@ import com.sandbox.chat.models.Eatery;
 
 public class FoodOpSelectionActivity extends AppCompatActivity {
 
-    private final FoodOpSelectionMgr foodOpSelectionMgr = new FoodOpSelectionMgr();
+    FoodOpSelectionMgr foodOpSelectionController;
     Spinner optionList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_op_selection);
+        foodOpSelectionController = new FoodOpSelectionMgr();
         final BottomNavigationView bot_bar = findViewById(R.id.choose_deliverer_bottomNavigationView);
         bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
         //TODO: Connect the drop-down list with menu from the stores
@@ -36,7 +37,7 @@ public class FoodOpSelectionActivity extends AppCompatActivity {
         optionList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                foodOpSelectionMgr.selectItem(new Eatery("TODO",0,0));
+                foodOpSelectionController.selectItem(new Eatery("TODO",0,0));
                 //TODO: REplace with actual eatery
             }
         });
