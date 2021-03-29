@@ -9,7 +9,11 @@ import 	androidx.appcompat.widget.Toolbar;
 
 import com.sandbox.chat.R;
 import com.sandbox.chat.ui.fragments.RegisterFragment;
-
+/**
+ * Allows new users that are not in the database to register
+ *
+ * @author chua zi heng
+ */
 public class RegisterActivity extends AppCompatActivity {
     private Toolbar mToolbar;
 

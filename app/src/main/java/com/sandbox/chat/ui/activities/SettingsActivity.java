@@ -9,8 +9,7 @@ import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.R;
 
 /**
- * This is a View class that implements the SettingsUI, which allows users to customise their App,
- * for example to change the app font
+ * Allows users to customise their App, such as changing the app font
  *
  * @author chua zi heng
  */
@@ -33,4 +32,3 @@ public class SettingsActivity extends AppCompatActivity {
 
 }
 
-//TODO: SettingsMgr

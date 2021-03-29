@@ -22,6 +22,11 @@ import android.graphics.Color;
 import org.json.JSONException;
 
 import java.io.IOException;
+/**
+ * Google map view with location markers of healthy eateries. Users can pick one of these eateries to order food from/ deliver food to
+ * @deprecated
+ * @author chua zi heng
+ */
 
 @Deprecated
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {

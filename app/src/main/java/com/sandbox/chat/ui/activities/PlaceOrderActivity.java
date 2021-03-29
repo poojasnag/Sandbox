@@ -13,8 +13,7 @@ import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.R;
 
 /**
- * This is a View class that implements the BuyerOrderDetailsUI, which allows buyers to place their
- * orders by providing order details
+ * Allows buyers to place their orders by providing order details
  *
  *
  * @author chua zi heng
@@ -41,4 +40,3 @@ public class PlaceOrderActivity extends AppCompatActivity {
 
 }
 
-//TODO: PlaceOrderMgr to

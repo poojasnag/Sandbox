@@ -18,7 +18,11 @@ import com.sandbox.chat.R;
 import com.sandbox.chat.core.logout.LogoutContract;
 import com.sandbox.chat.core.logout.LogoutPresenter;
 import com.sandbox.chat.ui.adapters.UserListingPagerAdapter;
-
+/**
+ * Lists all users available
+ *
+ * @author chua zi heng
+ */
 public class UserListingActivity extends AppCompatActivity implements LogoutContract.View {
     private Toolbar mToolbar;
     private TabLayout mTabLayoutUserListing;

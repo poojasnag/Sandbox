@@ -12,7 +12,11 @@ import com.sandbox.chat.R;
 import com.sandbox.chat.FirebaseChatMainApp;
 import com.sandbox.chat.ui.fragments.ChatFragment;
 import com.sandbox.chat.utils.Constants;
-
+/**
+ * Interface for users to chat with each other in real time
+ *
+ * @author chua zi heng
+ */
 public class ChatActivity extends AppCompatActivity {
     private Toolbar mToolbar;
 

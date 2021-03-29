@@ -5,7 +5,11 @@ import android.content.Context;
 import com.google.firebase.auth.FirebaseUser;
 
 
-
+/**
+ * An interface for adding of users that specifies the contract between view, presenter, interactor and listener
+ *
+ * @author chua zi heng
+ */
 public interface AddUserContract {
     interface View {
         void onAddUserSuccess(String message);

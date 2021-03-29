@@ -13,7 +13,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 import static android.content.ContentValues.TAG;
-
+/**
+ * Fetching login data from the Firebase authenticator
+ *
+ * @author chua zi heng
+ */
 public class LoginInteractor implements LoginContract.Interactor {
     private LoginContract.OnLoginListener mOnLoginListener;
 

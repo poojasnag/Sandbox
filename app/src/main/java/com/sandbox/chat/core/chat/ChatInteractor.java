@@ -15,9 +15,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 /**
- * Author: Kartik Sharma
- * Created on: 9/2/2016 , 10:08 PM
- * Project: FirebaseChat
+ * Fetching chat data from the Firebase real-time database
+ *
+ * @author chua zi heng
  */
 
 public class ChatInteractor implements ChatContract.Interactor {

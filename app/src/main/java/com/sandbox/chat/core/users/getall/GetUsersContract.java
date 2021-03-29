@@ -5,7 +5,11 @@ import com.sandbox.chat.models.User;
 import java.util.List;
 
 
-
+/**
+ * An interface for getting all users that specifies the contract between view, presenter, interactor and listener
+ *
+ * @author chua zi heng
+ */
 public interface GetUsersContract {
     interface View {
         void onGetAllUsersSuccess(List<User> users);

@@ -13,8 +13,7 @@ import com.sandbox.chat.models.Transaction;
 
 import java.util.LinkedList;
 /**
- * This is a View class that implements the ThankYouUI, which allows users to give rating to other users
- * and provide comments if they wish
+ * Users are directed to this view after the buyer places their order, where users can view their order summary, chat with the other user, and indicate completion
  *
  * @author chua zi heng
  */

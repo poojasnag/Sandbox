@@ -4,7 +4,11 @@ import android.content.Context;
 
 import com.sandbox.chat.models.Chat;
 
-
+/**
+ * An interface for chat that specifies the contract between view, presenter, interactor and listener
+ *
+ * @author chua zi heng
+ */
 
 public interface ChatContract {
     interface View {

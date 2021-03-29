@@ -13,7 +13,7 @@ import com.sandbox.chat.R;
 
 import java.util.LinkedList;
 /**
- * This is a View class allows buyers and deliverers to see the pending orders unique to them
+ * Allows buyers and deliverers to see the pending orders that are unique to them
  *
  * @author chua zi heng
  */
