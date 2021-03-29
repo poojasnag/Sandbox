@@ -3,6 +3,7 @@ package com.sandbox.chat.ui.activities;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -11,6 +12,7 @@ import com.sandbox.chat.mgr.ChooseDelivererMgr;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
 
 import com.sandbox.chat.R;
+import com.sandbox.chat.ui.adapters.DelivererProfileAdapter;
 
 import java.util.LinkedList;
 
@@ -22,7 +24,7 @@ public class ChooseDelivererActivity extends AppCompatActivity {
     private static final String KEY_LOCATION = "location";
     private static final String KEY_DELIVERYFEE = "deliveryFee";
     private static final String KEY_NAME = "email";
-
+    LinkedList<String> demo  = new LinkedList<String>();
     ChooseDelivererMgr chooseDelivererController;
 
 
@@ -35,7 +37,7 @@ public class ChooseDelivererActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_deliverer);
-        chooseDelivererController = new ChooseDelivererMgr();
+        chooseDelivererController = new ChooseDelivererMgr(this);
         final BottomNavigationView bot_bar = findViewById(R.id.choose_deliverer_bottomNavigationView);
         bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
 
@@ -51,9 +53,14 @@ public class ChooseDelivererActivity extends AppCompatActivity {
         super.onStart();
         RecyclerView ordersList = findViewById(R.id.choose_deliverer_list);
 
-        chooseDelivererController.getDeliverers();
+        chooseDelivererController.getDeliverers(ordersList);
+
 //        demo.add("Name: xxabcxx \nRate:$0.5\nLocation 1: Hall 7 bus stop");
 //        demo.add("Name: test2 \nRate:$0.5\nLocation 1: Hall 7 bus stop");
+//        Log.d(TAG, demo.toString());  // document.getId() document.getData()
 
+    }
+    public void setDelivererList(LinkedList<String> demo){
+        this.demo = demo;
     }
 }

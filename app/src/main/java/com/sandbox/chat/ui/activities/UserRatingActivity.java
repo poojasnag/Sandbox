@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.sandbox.chat.R;
 
 import com.sandbox.chat.mgr.UserRatingMgr;
-import com.sandbox.chat.ui.activities.EaterySelectionMapActivity;
+
 
 
 // TODO: ThankYouUI
