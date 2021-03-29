@@ -2,6 +2,10 @@ package com.sandbox.chat.models;
 
 import java.util.ArrayList;
 
+/**
+ * Contains information about a deliverer
+ * @see com.sandbox.chat.models.User
+ */
 public class Deliverer extends User{
     private ArrayList<DelivererOffer> delivererOfferList;
 

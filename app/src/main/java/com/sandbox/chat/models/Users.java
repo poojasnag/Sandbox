@@ -1,5 +1,6 @@
 package com.sandbox.chat.models;
 
+@Deprecated
 public class Users {
 
     private String emailId;
