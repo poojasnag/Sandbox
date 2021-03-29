@@ -17,7 +17,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.sandbox.chat.R;
 import com.sandbox.chat.core.logout.LogoutContract;
 import com.sandbox.chat.core.logout.LogoutPresenter;
-import com.sandbox.chat.ui.adapters.UserListingPagerAdapter;
+import com.sandbox.chat.adapters.UserListingPagerAdapter;
 /**
  * Lists all users available
  *

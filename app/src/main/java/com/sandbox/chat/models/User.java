@@ -1,9 +1,12 @@
 package com.sandbox.chat.models;
 
+import java.io.Serializable;
+
 /**
  * Stores the information of the users
  */
-public class User {
+public class User implements Serializable {
+    private static final long SerialVersionUID = 4354654243546509854L;
     /**
      * The users' ID
      */
@@ -15,10 +18,7 @@ public class User {
     /**
      * Token necessary for Firebase API
      */
-    private String firebaseToken;
-    /**
-     * The users' rating
-     */
+
     private int rating;
 
     public User(){
@@ -29,12 +29,10 @@ public class User {
      * Returns a new user
      * @param uid User ID
      * @param email Email
-     * @param firebaseToken Firebase token
      */
-    public User(String uid, String email, String firebaseToken){
+    public User(String uid, String email){
         this.uid = uid;
         this.email = email;
-        this.firebaseToken = firebaseToken;
     }
 
     public String getEmail(){
@@ -51,14 +49,6 @@ public class User {
 
     public void setUid(String uid) {
         this.uid = uid;
-    }
-
-    public String getFirebaseToken() {
-        return firebaseToken;
-    }
-
-    public void setFirebaseToken(String firebaseToken) {
-        this.firebaseToken = firebaseToken;
     }
 
     public int getRating() {

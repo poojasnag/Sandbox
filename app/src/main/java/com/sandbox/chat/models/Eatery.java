@@ -1,10 +1,13 @@
 package com.sandbox.chat.models;
 
+import java.io.Serializable;
+
 /**
  * Contains information about an eatery
  */
 
-public class Eatery {
+public class Eatery implements Serializable {
+    private static final long serialVersionUID = 123325434L;
     /**
      * The eatery's name
      */

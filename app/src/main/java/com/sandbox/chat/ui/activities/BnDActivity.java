@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.sandbox.chat.R;
 import com.sandbox.chat.mgr.BnDMgr;
+import com.sandbox.chat.models.User;
 
 /**
  * Displays the Buyer and Deliverer selection interface
@@ -21,8 +22,9 @@ public class BnDActivity extends AppCompatActivity {
      * Displays the interface from another activity class
      * @param context the Context of the activity that called this method
      */
-    public static void startActivity(Context context) {
+    public static void startActivity(Context context, User user) {
         Intent intent = new Intent(context, BnDActivity.class);
+        intent.putExtra("user", user);
         context.startActivity(intent);
     }
 
@@ -31,9 +33,10 @@ public class BnDActivity extends AppCompatActivity {
      * @param context the Context of the activity that called this method
      * @param flags flags to pass to the Intent before starting the activity
      */
-    public static void startActivity(Context context, int flags) {
+    public static void startActivity(Context context, User user, int flags) {
 
         Intent intent = new Intent(context, BnDActivity.class);
+        intent.putExtra("user", user);
         intent.setFlags(flags);
         context.startActivity(intent);
     }
@@ -57,16 +60,23 @@ public class BnDActivity extends AppCompatActivity {
         buyer_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bndController.onBuyerSelect(view.getContext());
+
+                onBuyerSelect(view.getContext());
             }
         });
         deliverer_button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                bndController.onDelivererSelect(view.getContext());
+            public void onClick(View view)
+            {
+                onDelivererSelect(view.getContext());
             }
         });
 
+    }
+    public void onBuyerSelect(Context context){
+        Intent intent = new Intent(context, EaterySelectionMapActivity.class);
+        intent.putExtra("isBuyer");
+        context.startActivity(intent);
     }
 
 }

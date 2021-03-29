@@ -1,6 +1,9 @@
 package com.sandbox.chat.core.login;
 
 import android.app.Activity;
+
+import com.sandbox.chat.models.User;
+
 /**
  * Presentation logic for user login
  *
@@ -28,5 +31,12 @@ public class LoginPresenter implements LoginContract.Presenter, LoginContract.On
     @Override
     public void onFailure(String message) {
         mLoginView.onLoginFailure(message);
+    }
+
+    public User findUser(String userID)
+    {
+        //TODO:Get the
+
+
     }
 }

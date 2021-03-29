@@ -1,4 +1,4 @@
-package com.sandbox.chat.ui.adapters;
+package com.sandbox.chat.adapters;
 
 import android.content.Context;
 import android.content.Intent;

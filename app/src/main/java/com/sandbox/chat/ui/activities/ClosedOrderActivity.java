@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
-import com.sandbox.chat.ui.adapters.OrderDetailsAdapter;
+import com.sandbox.chat.adapters.OrderDetailsAdapter;
 import com.sandbox.chat.R;
 import com.sandbox.chat.mgr.ClosedOrderMgr;
 
