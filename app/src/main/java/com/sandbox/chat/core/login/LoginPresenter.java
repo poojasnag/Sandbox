@@ -35,8 +35,10 @@ public class LoginPresenter implements LoginContract.Presenter, LoginContract.On
 
     public User findUser(String userID)
     {
-        //TODO:Get the
+        //TODO:Get the user
 
+        return new User("ID", "Email", "0");
 
     }
+
 }

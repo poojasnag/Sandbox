@@ -19,6 +19,7 @@ public class User implements Serializable {
      * Token necessary for Firebase API
      */
 
+    private String firebaseToken;
     private int rating;
 
     public User(){
@@ -30,7 +31,8 @@ public class User implements Serializable {
      * @param uid User ID
      * @param email Email
      */
-    public User(String uid, String email){
+    public User(String uid, String email, String firebaseToken){
+        this.firebaseToken = firebaseToken;
         this.uid = uid;
         this.email = email;
     }
@@ -57,6 +59,14 @@ public class User implements Serializable {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public String getFirebaseToken() {
+        return firebaseToken;
+    }
+
+    public void setFirebaseToken(String firebaseToken) {
+        this.firebaseToken = firebaseToken;
     }
 }
 

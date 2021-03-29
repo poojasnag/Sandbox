@@ -2,6 +2,7 @@ package com.sandbox.chat.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * Contains information of a buyer
@@ -10,14 +11,15 @@ import java.util.ArrayList;
 
 public class Buyer extends User implements Serializable {
     private static final long serialVersionUID = 12332549786754L;
-    private ArrayList<Transaction> buyerOrderList;
+    private LinkedList<Transaction> buyerOrderList;
 
     /**
      * Constructor for a buyer
      */
-    public Buyer(String uid, String email, ArrayList<Transaction> buyerOrderList) {
-        super(uid, email);
+    public Buyer(String uid, String email, String firebaseToken, LinkedList<Transaction> buyerOrderList) {
+        super(uid, email, firebaseToken);
         this.buyerOrderList = buyerOrderList;
+
     }
 }
 

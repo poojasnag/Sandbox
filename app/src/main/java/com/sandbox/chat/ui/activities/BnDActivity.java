@@ -61,22 +61,30 @@ public class BnDActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                onBuyerSelect(view.getContext());
+                onBuyerSelect();
             }
         });
         deliverer_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
-                onDelivererSelect(view.getContext());
+                onDelivererSelect();
             }
         });
 
     }
-    public void onBuyerSelect(Context context){
-        Intent intent = new Intent(context, EaterySelectionMapActivity.class);
-        intent.putExtra("isBuyer");
-        context.startActivity(intent);
+
+    private void onDelivererSelect() {
+        Intent intent = new Intent(this.getIntent());
+        intent.putExtra("user", bndController.createDeliverer((User) getIntent().getSerializableExtra("user")));
+        startActivity(intent);
     }
+
+    public void onBuyerSelect(){
+        Intent intent = new Intent(this.getIntent());
+        intent.putExtra("user", bndController.createBuyer((User) getIntent().getSerializableExtra("user")));
+        startActivity(intent);
+    }
+
 
 }
