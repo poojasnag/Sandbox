@@ -1,4 +1,4 @@
-package com.sandbox.chat.ui.activities;
+package com.sandbox.chat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.sandbox.chat.R;
+
+import com.sandbox.chat.mgr.UserRatingMgr;
 
 // TODO: ThankYouUI
 /**

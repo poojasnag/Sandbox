@@ -1,13 +1,17 @@
-package com.sandbox.chat.ui.activities;
+package com.sandbox.chat;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.R;
+import com.sandbox.chat.models.Transaction;
 
+import java.util.LinkedList;
 /**
  * Users are directed to this view after the buyer places their order, where users can view their order summary, chat with the other user, and indicate completion
  *

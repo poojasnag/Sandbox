@@ -47,7 +47,7 @@ public class DelivererProfileAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     /**
      * Loads the data to the adapter
-     * @param strings
+     * @param strings the list of deliverers
      */
     public DelivererProfileAdapter(LinkedList<String> strings) {this.deliverers = strings;}
     //TODO: Replace this with the list of deliverers

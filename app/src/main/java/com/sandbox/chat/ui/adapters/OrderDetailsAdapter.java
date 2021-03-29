@@ -16,14 +16,23 @@ import com.sandbox.chat.ui.activities.OrderStatusActivity;
 
 import java.util.LinkedList;
 
+/**
+ * Populates lists of orders
+ */
 public class OrderDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private LinkedList<String> orders;
 
+    /**
+     * Represents each of the items inside the list of orders
+     */
     public class OrderDetailsHolder extends RecyclerView.ViewHolder{
         public RelativeLayout parent;
         public Button button;
         private final Context context;
+        /**
+         * Creates an item in the list
+         */
         public OrderDetailsHolder(@NonNull View itemView) {
             super(itemView);
             context = itemView.getContext();
@@ -32,13 +41,22 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
     }
 
-
+    /**
+     * Loads the data to the adapter
+     * @param orders the list of orders
+     */
     public OrderDetailsAdapter(LinkedList<String> orders) {
         this.orders = orders;
     }
 
     @NonNull
     @Override
+    /**
+     * Adds a list item to the user interface
+     * @param viewGroup
+     * @param viewType
+     * @return
+     */
     public OrderDetailsHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         // Create a new view, which defines the UI of the list item
         //TODO: Retrieve all orders.
@@ -47,6 +65,12 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         return new OrderDetailsHolder(view);
     }
+
+    /**
+     * Binds the data to a list item in the user interface
+     * @param holder The DelivererProfileHolder that needs to be bound with data
+     * @param position The position of the item in the list
+     */
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {

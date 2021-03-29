@@ -13,13 +13,22 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.LinkedList;
 
+/**
+ * Manager class for ChooseDelivererActivity
+ */
 public class ChooseDelivererMgr {
     private static final String TAG = "ImportDB";
     private static final String KEY_LOCATION = "location";
     private static final String KEY_DELIVERYFEE = "deliveryFee";
     private static final String KEY_NAME = "email";
 
+    /**
+     * Look up the database and get the list of deliverers
+     * @param context The context of the activity that called this method
+     * @return a list of deliver offers
+     */
     public static LinkedList<String> getDeliverers(Context context) {
+        //TODO: change to actual deliverers
         FirebaseFirestore fStore = FirebaseFirestore.getInstance();
 
         LinkedList<String> demo = new LinkedList<String>();
