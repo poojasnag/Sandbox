@@ -39,6 +39,10 @@ public class EaterySelectionMapMgr {
     public void showLocationDetails(String feature_id)
     {
 
+        String ID = feature_id;
+
+        Eatery e = eateryData.findEatery(ID);
+
         TextView txtclose;
         Button btnFollow;
         Dialog myDialog = eaterySelectionMapActivity.getLocationDetails();
@@ -47,16 +51,14 @@ public class EaterySelectionMapMgr {
         txtclose.setText("X");
         btnFollow = (Button) myDialog.findViewById(R.id.btnfollow);
 
-        String ID = feature_id;
-        System.out.println(ID);
-        Eatery e = eateryData.findEatery(ID);
+
 
         TextView eateryName = myDialog.findViewById(R.id.eatery_name);
         TextView eateryLoc = myDialog.findViewById(R.id.eatery_addresss);
         TextView eateryTime = myDialog.findViewById(R.id.eatery_op_time);
         eateryName.setText(e.getEateryName());
         eateryLoc.setText(e.getEateryAddress() + ", " + e.getEateryStreet());
-        eateryTime.setText(e.operatingTime);
+        eateryTime.setText(e.getOperatingTime());
 
 
         txtclose.setOnClickListener(new View.OnClickListener() {

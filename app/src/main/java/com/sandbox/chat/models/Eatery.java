@@ -13,11 +13,8 @@ public class Eatery implements Serializable {
      */
     private static final long serialVersionUID = -8309082032117512178L;
 
-    public String getEateryID() {
-        return eateryID;
-    }
 
-    public String operatingTime;
+    private String operatingTime;
     private String eateryID;
     /**
      * The eatery's name
@@ -71,8 +68,15 @@ public class Eatery implements Serializable {
     public void setyCoordinate(int yCoordinate) {
         this.yCoordinate = yCoordinate;
     }
+    public String getEateryID() {
+        return eateryID;
+    }
+
     public String getEateryStreet() {
         return eateryStreet;
+    }
+    public String getOperatingTime(){
+        return operatingTime;
     }
 
 }

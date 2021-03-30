@@ -86,6 +86,7 @@ public class EaterySelectionMapActivity extends AppCompatActivity implements OnM
             layer.setOnFeatureClickListener(new Layer.OnFeatureClickListener() {
                 @Override
                 public void onFeatureClick(Feature feature) {
+                    System.out.println(feature.getProperty("Name"));
                     eaterySelectionMapController.showLocationDetails(feature.getProperty("Name"));
                 }
             });

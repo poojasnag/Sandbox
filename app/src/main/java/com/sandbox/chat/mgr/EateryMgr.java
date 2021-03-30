@@ -23,13 +23,20 @@ import java.util.regex.Pattern;
 public class EateryMgr {
     private static ArrayList<Eatery> eateries;
 
-    public static Eatery findEatery(String ID)
+    public static Eatery findEatery(String id)
     {
-        for (int counter = 0; counter < eateries.size(); counter++) {
-            if(eateries.get(counter).getEateryID().equals(ID));
+
+        for (int i = 0; i < eateries.size(); i++) {
+
+            if(eateries.get(i).getEateryID().equals(id) == true);
             {
-                return eateries.get(counter);
+
+                System.out.println("Target found: " + eateries.get(i).getEateryID());
+                System.out.println("Picked: " + id);
+                System.out.println(eateries.get(i).getEateryID().equals(id));
+                return eateries.get(i);
             }
+
         }
         return new Eatery("0", "Unable to find eatery", "", "", "");
     }
@@ -78,7 +85,10 @@ public class EateryMgr {
                 if(name_m.find())
                 {
 
+
                     name = name_m.group(2);
+                    System.out.println(name);
+                    System.out.println(loc_id);
                     e = new Eatery(loc_id, name, loc_address, loc_street, "8:00-21:00");
                     eateries.add(e);
                     ID +=1;
