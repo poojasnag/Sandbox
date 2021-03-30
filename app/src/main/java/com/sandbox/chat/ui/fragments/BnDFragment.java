@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.sandbox.chat.R;
-import com.sandbox.chat.mgr.BnDContract;
+import com.sandbox.chat.ui.contract.BnDContract;
 import com.sandbox.chat.mgr.BnDMgr;
 import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.activities.BnDActivity;
@@ -79,7 +79,7 @@ public class BnDFragment extends Fragment implements View.OnClickListener, BnDCo
                 break;
         }
     }
-    private void onDelivererSelect(Context context) {
+    public void onDelivererSelect(Context context) {
         bndController = new BnDPresenter();
         mProgressDialog.dismiss();
         Intent intent = new Intent(context, EaterySelectionMapActivity.class);
