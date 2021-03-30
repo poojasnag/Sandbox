@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-//    signingConfigs {
-//        debug {
-//            storeFile file('Users/pooja/android/debug.keystore')
-//            storePassword 'Android'
-//            keyPassword 'Android'
-//        }
-//    }
+    signingConfigs {
+        debug {
+            storeFile file('C:\\Users\\cammy\\.android\\debug.keystore')
+            storePassword 'Android'
+            keyPassword 'Android'
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
