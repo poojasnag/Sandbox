@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -61,28 +62,29 @@ public class BnDActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                onBuyerSelect();
+                onBuyerSelect(view.getContext());
             }
         });
         deliverer_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
-                onDelivererSelect();
+                onDelivererSelect(view.getContext());
             }
         });
 
     }
 
-    private void onDelivererSelect() {
-        Intent intent = new Intent(this.getIntent());
+    private void onDelivererSelect(Context context) {
+        Intent intent = new Intent(context, EaterySelectionMapActivity.class);
         intent.putExtra("user", bndController.createDeliverer((User) getIntent().getSerializableExtra("user")));
         startActivity(intent);
     }
 
-    public void onBuyerSelect(){
-        Intent intent = new Intent(this.getIntent());
+    public void onBuyerSelect(Context context){
+        Intent intent = new Intent(context, EaterySelectionMapActivity.class);
         intent.putExtra("user", bndController.createBuyer((User) getIntent().getSerializableExtra("user")));
+        Toast.makeText(BnDActivity.this, "im in buyerselect", Toast.LENGTH_SHORT).show();
         startActivity(intent);
     }
 
