@@ -26,10 +26,14 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.sandbox.chat.R;
 import com.sandbox.chat.mgr.CreateDeliveryMgr;
+import com.sandbox.chat.mgr.DelivererOfferMgr;
+import com.sandbox.chat.models.Deliverer;
+import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
 
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -64,7 +68,6 @@ public class CreateDeliveryActivity extends AppCompatActivity {
         createDeliveryController = new CreateDeliveryMgr();
 
     }
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -85,13 +88,19 @@ public class CreateDeliveryActivity extends AppCompatActivity {
             }
         });
 
-
         createDeliveryButton.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
                 Toast.makeText(CreateDeliveryActivity.this, "create button clicked", Toast.LENGTH_SHORT).show();
-                createDeliveryController.recordData(deliveryLocSpinner, deliveryFeeText, cutoff_picker, eta_picker, v.getContext());
+
+                String chosenLoc = deliveryLocSpinner.getSelectedItem().toString();
+                String deliveryFee = deliveryFeeText.getText().toString();
+                String cutoffDateTime = cutoff_picker. getText().toString();
+                String etaDateTime = eta_picker. getText().toString();
+//                Toast.makeText(v.getContext(), getIntent().getSerializableExtra("user").getClass().getName(),Toast.LENGTH_SHORT).show();
+                Eatery eatery = new Eatery("Koi", 0,0); // TODO: create real eatery
+                createDeliveryController.recordData(chosenLoc, Double.parseDouble(deliveryFee), cutoffDateTime, etaDateTime, eatery, v.getContext(), (Deliverer) getIntent().getSerializableExtra("user"));
             }
         });
 //        Toast.makeText(CreateDeliveryActivity.this, "text:" + chosenLoc, Toast.LENGTH_SHORT).show();

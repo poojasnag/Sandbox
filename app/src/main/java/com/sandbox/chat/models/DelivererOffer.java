@@ -27,7 +27,7 @@ public class DelivererOffer implements Serializable {
     /**
      * The locations that the deliverer is able to deliver to
      */
-    private ArrayList<String> deliveryLocations;
+    private String deliveryLocation;
     /**
      * The eatery that the deliverer is currently in
      */
@@ -36,6 +36,8 @@ public class DelivererOffer implements Serializable {
      * The information of the deliverer
      */
     private Deliverer deliverer;
+
+    private String timestamp;
 //    /**
 //     * The status of the order
 //     * @deprecated
@@ -48,20 +50,20 @@ public class DelivererOffer implements Serializable {
      * @param cutOffTime The cutoff time
      * @param etaTime The ETA
      * @param deliveryFee Delivery fee
-     * @param deliveryLocations List of delivery locations
+     * @param deliveryLocation Delivery location
      * @param eatery The current eatery
      * @param deliverer The deliverer's information
 
      */
-    public DelivererOffer(String delivererOfferID, String cutOffTime, String etaTime, double deliveryFee, ArrayList<String> deliveryLocations, Eatery eatery, Deliverer deliverer) {
+    public DelivererOffer(String delivererOfferID, String cutOffTime, String etaTime, double deliveryFee, String deliveryLocation, Eatery eatery, Deliverer deliverer, String timestamp) {
         this.delivererOfferID = delivererOfferID;
         this.cutOffTime = cutOffTime;
         this.etaTime = etaTime;
         this.deliveryFee = deliveryFee;
-        this.deliveryLocations = deliveryLocations;
+        this.deliveryLocation = deliveryLocation;
         this.eatery = eatery;
         this.deliverer = deliverer;
-//        this.status = Status.NO_ORDERS;
+        this.timestamp = timestamp;
     }
 
     public String getDelivererOfferID() {
@@ -96,12 +98,12 @@ public class DelivererOffer implements Serializable {
         this.deliveryFee = deliveryFee;
     }
 
-    public ArrayList<String> getDeliveryLocations() {
-        return deliveryLocations;
+    public String getDeliveryLocation() {
+        return deliveryLocation;
     }
 
-    public void setDeliveryLocations(ArrayList<String> deliveryLocations) {
-        this.deliveryLocations = deliveryLocations;
+    public void setDeliveryLocations(String deliveryLocation) {
+        this.deliveryLocation = deliveryLocation;
     }
 
     public Eatery getEatery() {
@@ -120,11 +122,11 @@ public class DelivererOffer implements Serializable {
         this.deliverer = deliverer;
     }
 
-//    public Status getStatus() {
-//        return status;
-//    }
-//
-//    public void setStatus(Status status) {
-//        this.status = status;
-//    }
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+    }
 }
