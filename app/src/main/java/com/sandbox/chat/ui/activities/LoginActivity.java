@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AppCompatActivity;
-import 	androidx.appcompat.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 
 import com.sandbox.chat.R;
 import com.sandbox.chat.ui.fragments.LoginFragment;
