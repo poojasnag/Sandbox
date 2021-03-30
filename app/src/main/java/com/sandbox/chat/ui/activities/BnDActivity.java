@@ -3,19 +3,14 @@ package com.sandbox.chat.ui.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.sandbox.chat.R;
-import com.sandbox.chat.mgr.BnDMgr;
 import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.fragments.BnDFragment;
-import com.sandbox.chat.ui.fragments.LoginFragment;
 
 /**
  * Displays the Buyer and Deliverer selection interface
