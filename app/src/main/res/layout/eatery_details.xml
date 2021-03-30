@@ -30,6 +30,7 @@
             android:src="@drawable/ic_baseline_home_24" />
 
         <TextView
+            android:id="@+id/eatery_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -39,11 +40,21 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/eatery_addresss"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:text="Pioneer, Singapore"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/eatery_op_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:text="0:00-0:00"
             android:textColor="@color/white" />
     </LinearLayout>
 
@@ -65,15 +76,15 @@
                 android:id="@+id/eatery_details_num_deliverers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="19"
-                android:textColor="@color/white"
+                android:text="0"
+                android:textColor="@color/black"
                 android:textSize="18sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Deliverers available"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="18sp" />
         </LinearLayout>
     </LinearLayout>

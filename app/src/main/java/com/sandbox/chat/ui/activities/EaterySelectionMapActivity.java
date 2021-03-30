@@ -50,7 +50,13 @@ public class EaterySelectionMapActivity extends AppCompatActivity implements OnM
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_eatery_selection_map);
-        eaterySelectionMapController = new EaterySelectionMapMgr(this);
+        try {
+            eaterySelectionMapController = new EaterySelectionMapMgr(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         final BottomNavigationView bot_bar = findViewById(R.id.eatery_selection_botnav);
         bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
 
@@ -80,7 +86,7 @@ public class EaterySelectionMapActivity extends AppCompatActivity implements OnM
             layer.setOnFeatureClickListener(new Layer.OnFeatureClickListener() {
                 @Override
                 public void onFeatureClick(Feature feature) {
-                    eaterySelectionMapController.showLocationDetails();
+                    eaterySelectionMapController.showLocationDetails(feature.getProperty("Name"));
                 }
             });
         } catch (IOException e) {

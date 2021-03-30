@@ -1,10 +1,24 @@
 package com.sandbox.chat.models;
 
+import java.io.Serializable;
+
 /**
  * Contains information about an eatery
  */
 
-public class Eatery {
+public class Eatery implements Serializable {
+
+    /**
+     *
+     */
+    private static final long serialVersionUID = -8309082032117512178L;
+
+    public String getEateryID() {
+        return eateryID;
+    }
+
+    public String operatingTime;
+    private String eateryID;
     /**
      * The eatery's name
      */
@@ -18,18 +32,22 @@ public class Eatery {
      */
     private int yCoordinate;
 
-    /**
-     * Contructor for the Eatery class
-     * @param eateryName The name of the eatery
-     * @param xCoordinate The x coordinate of the eatery
-     * @param yCoordinate The y coordinate of the eatery
-     */
-    public Eatery(String eateryName, int xCoordinate, int yCoordinate) {
-        this.eateryName = eateryName;
-        this.xCoordinate = xCoordinate;
-        this.yCoordinate = yCoordinate;
+    public String getEateryAddress() {
+        return eateryAddress;
     }
 
+    private String eateryAddress;
+
+    private String eateryStreet;
+
+    public Eatery(String eateryID, String eateryName, String eateryAddress ,String eateryStreet, String operatingTime) {
+        this.eateryID = eateryID;
+        this.eateryName = eateryName;
+
+        this.eateryStreet = eateryStreet;
+        this.eateryAddress = eateryAddress;
+        this.operatingTime = operatingTime;
+    }
     public String getEateryName() {
         return eateryName;
     }
@@ -53,4 +71,9 @@ public class Eatery {
     public void setyCoordinate(int yCoordinate) {
         this.yCoordinate = yCoordinate;
     }
+    public String getEateryStreet() {
+        return eateryStreet;
+    }
+
 }
+

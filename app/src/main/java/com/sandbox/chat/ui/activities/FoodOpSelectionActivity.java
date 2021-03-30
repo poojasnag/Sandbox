@@ -37,7 +37,7 @@ public class FoodOpSelectionActivity extends AppCompatActivity {
         optionList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                foodOpSelectionController.selectItem(new Eatery("TODO",0,0));
+                foodOpSelectionController.selectItem(new Eatery("0","TODO","", "", ""));
                 //TODO: REplace with actual eatery
             }
         });
