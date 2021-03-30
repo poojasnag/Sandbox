@@ -1,9 +1,15 @@
 package com.sandbox.chat.mgr;
 
+import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
+import com.sandbox.chat.R;
 import com.sandbox.chat.ui.activities.ChooseDelivererActivity;
 import com.sandbox.chat.ui.activities.CreateDeliveryActivity;
 import com.sandbox.chat.ui.activities.EaterySelectionMapActivity;
@@ -23,11 +29,38 @@ public class EaterySelectionMapMgr {
         this.eaterySelectionMapActivity = eaterySelectionMapActivity;
     }
 
+    public void showLocationDetails(View view)
+    {
+
+        TextView txtclose;
+        Button btnFollow;
+        Dialog myDialog = eaterySelectionMapActivity.getLocationDetails();
+        myDialog.setContentView(R.layout.eatery_details);
+        txtclose =(TextView) myDialog.findViewById(R.id.txtclose);
+        txtclose.setText("M");
+        btnFollow = (Button) myDialog.findViewById(R.id.btnfollow);
+        txtclose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.dismiss();
+            }
+        });
+        btnFollow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectLocation(view);
+            }
+        });
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialog.show();
+    }
+
     /**
      * Function to be called upon selecting a location
      * @param view
      */
-    public void SelectLocation(View view) {
+
+    public void selectLocation(View view) {
         //TODO: Add the information of the location
         if (eaterySelectionMapActivity.getI().getBooleanExtra("isBuyer", true)) {
             Intent intent = new Intent(eaterySelectionMapActivity.getI());
@@ -39,6 +72,5 @@ public class EaterySelectionMapMgr {
             intent.setComponent(new ComponentName(view.getContext(), CreateDeliveryActivity.class));
             eaterySelectionMapActivity.startActivity(intent);
         }
-
     }
 }

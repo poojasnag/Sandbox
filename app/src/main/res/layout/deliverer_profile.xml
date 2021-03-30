@@ -24,15 +24,15 @@
 
         <TextView
             android:id="@+id/deliverer_profile_details"
-            android:layout_width="226dp"
+            android:layout_width="272dp"
             android:layout_height="wrap_content"
             android:padding="20dp" />
 
         <RatingBar
             android:id="@+id/deliverer_profile_rating"
-            style="@android:style/Widget.DeviceDefault.Light.RatingBar.Indicator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@android:style/Widget.DeviceDefault.RatingBar.Small"
+            android:layout_width="93dp"
+            android:layout_height="46dp"
             android:numStars="5"
             android:padding="10dp"
             android:paddingStart="0dp"

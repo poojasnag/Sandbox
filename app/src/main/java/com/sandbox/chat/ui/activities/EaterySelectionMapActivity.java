@@ -2,6 +2,7 @@ package com.sandbox.chat.ui.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +20,11 @@ public class EaterySelectionMapActivity extends AppCompatActivity {
     EaterySelectionMapMgr eaterySelectionMapController;
     public Intent i;
 
+    public Dialog getLocationDetails() {
+        return locationDetails;
+    }
+
+    Dialog locationDetails;
     /**
      * Initialize the interface
      * @param savedInstanceState If the activity is being re-initialized after previously being shut down then this Bundle contains the data it most recently supplied in onSaveInstanceState(Bundle)
@@ -32,10 +38,12 @@ public class EaterySelectionMapActivity extends AppCompatActivity {
         final BottomNavigationView bot_bar = findViewById(R.id.eatery_selection_botnav);
         bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
         Button next = findViewById(R.id.eatery_selection_tempButton);
+        locationDetails = new Dialog(this);
+
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                eaterySelectionMapController.SelectLocation(view);
+                eaterySelectionMapController.showLocationDetails(view);
             }
         });
     }
@@ -46,10 +54,7 @@ public class EaterySelectionMapActivity extends AppCompatActivity {
         i = getIntent();
     }
 
-    protected void SelectLocation(View view)
-    {
-        eaterySelectionMapController.SelectLocation(view);
-    }
+
 
     public Intent getI() {
         return i;
