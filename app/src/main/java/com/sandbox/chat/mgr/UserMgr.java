@@ -23,11 +23,11 @@ public class UserMgr {
 
     public static void setData(User user, Context context){
         Map<String, Object> curUser = new HashMap<>();
-        curUser.put("uid", user.getUid());
+//        curUser.put("uid", user.getUid());
         curUser.put("email", user.getEmail());
         curUser.put("rating", user.getRating());
         curUser.put("firebaseToken", user.getFirebaseToken());
-        DocumentReference documentReference = fStore.collection("deliveryOffers").document(USER_TABLE);
+        DocumentReference documentReference = fStore.collection(USER_TABLE).document(user.getUid());
         documentReference.set(curUser).addOnSuccessListener(new OnSuccessListener<Void>(){
             @Override
             public void onSuccess(Void aVoid){
