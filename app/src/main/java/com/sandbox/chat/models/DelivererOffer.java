@@ -1,11 +1,13 @@
 package com.sandbox.chat.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Contains information about a delivery offer
  */
-public class DelivererOffer {
+public class DelivererOffer implements Serializable {
+    private static final long SerialVersionUID = 4565702394587L;
     /**
      * The ID of the offer
      */
@@ -25,7 +27,7 @@ public class DelivererOffer {
     /**
      * The locations that the deliverer is able to deliver to
      */
-    private ArrayList<String> deliveryLocations;
+    private String deliveryLocation;
     /**
      * The eatery that the deliverer is currently in
      */
@@ -34,11 +36,13 @@ public class DelivererOffer {
      * The information of the deliverer
      */
     private Deliverer deliverer;
-    /**
-     * The status of the order
-     * @deprecated
-     */
-    private Status status;
+
+    private String timestamp;
+//    /**
+//     * The status of the order
+//     * @deprecated
+//     */
+//    private Status status;
 
     /**
      * Constructor for the offer
@@ -46,20 +50,20 @@ public class DelivererOffer {
      * @param cutOffTime The cutoff time
      * @param etaTime The ETA
      * @param deliveryFee Delivery fee
-     * @param deliveryLocations List of delivery locations
+     * @param deliveryLocation Delivery location
      * @param eatery The current eatery
      * @param deliverer The deliverer's information
 
      */
-    public DelivererOffer(String delivererOfferID, String cutOffTime, String etaTime, double deliveryFee, ArrayList<String> deliveryLocations, Eatery eatery, Deliverer deliverer) {
+    public DelivererOffer(String delivererOfferID, String cutOffTime, String etaTime, double deliveryFee, String deliveryLocation, Eatery eatery, Deliverer deliverer, String timestamp) {
         this.delivererOfferID = delivererOfferID;
         this.cutOffTime = cutOffTime;
         this.etaTime = etaTime;
         this.deliveryFee = deliveryFee;
-        this.deliveryLocations = deliveryLocations;
+        this.deliveryLocation = deliveryLocation;
         this.eatery = eatery;
         this.deliverer = deliverer;
-        this.status = Status.NO_ORDERS;
+        this.timestamp = timestamp;
     }
 
     public String getDelivererOfferID() {
@@ -94,12 +98,12 @@ public class DelivererOffer {
         this.deliveryFee = deliveryFee;
     }
 
-    public ArrayList<String> getDeliveryLocations() {
-        return deliveryLocations;
+    public String getDeliveryLocation() {
+        return deliveryLocation;
     }
 
-    public void setDeliveryLocations(ArrayList<String> deliveryLocations) {
-        this.deliveryLocations = deliveryLocations;
+    public void setDeliveryLocations(String deliveryLocation) {
+        this.deliveryLocation = deliveryLocation;
     }
 
     public Eatery getEatery() {
@@ -118,11 +122,11 @@ public class DelivererOffer {
         this.deliverer = deliverer;
     }
 
-    public Status getStatus() {
-        return status;
+    public String getTimestamp() {
+        return timestamp;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 }

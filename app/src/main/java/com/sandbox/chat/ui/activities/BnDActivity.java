@@ -3,13 +3,20 @@ package com.sandbox.chat.ui.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.sandbox.chat.R;
 import com.sandbox.chat.mgr.BnDMgr;
+import com.sandbox.chat.models.User;
+import com.sandbox.chat.ui.fragments.BnDFragment;
+import com.sandbox.chat.ui.fragments.LoginFragment;
 
 /**
  * Displays the Buyer and Deliverer selection interface
@@ -17,12 +24,14 @@ import com.sandbox.chat.mgr.BnDMgr;
 
 public class BnDActivity extends AppCompatActivity {
     BnDMgr bndController ;
+    private Toolbar mToolbar;
     /**
      * Displays the interface from another activity class
      * @param context the Context of the activity that called this method
      */
-    public static void startActivity(Context context) {
+    public static void startActivity(Context context, User user) {
         Intent intent = new Intent(context, BnDActivity.class);
+        intent.putExtra("user", user);
         context.startActivity(intent);
     }
 
@@ -31,9 +40,10 @@ public class BnDActivity extends AppCompatActivity {
      * @param context the Context of the activity that called this method
      * @param flags flags to pass to the Intent before starting the activity
      */
-    public static void startActivity(Context context, int flags) {
+    public static void startActivity(Context context, User user, int flags) {
 
         Intent intent = new Intent(context, BnDActivity.class);
+        intent.putExtra("user", user);
         intent.setFlags(flags);
         context.startActivity(intent);
     }
@@ -49,24 +59,25 @@ public class BnDActivity extends AppCompatActivity {
         bndController = new BnDMgr();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bn_d);
-
-// TODO: Link the buttons on bottom nav bar with activities
-        Button buyer_button = findViewById(R.id.bnd_button_buyer);
-        Button deliverer_button = findViewById(R.id.bnd_button_deliverer);
-
-        buyer_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                bndController.onBuyerSelect(view.getContext());
-            }
-        });
-        deliverer_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                bndController.onDelivererSelect(view.getContext());
-            }
-        });
-
+        bindViews();
+        init();
+        Log.d("ZIHENG", "we here");
     }
+    private void bindViews() {
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+    }
+
+    private void init() {
+        // set the toolbar
+        setSupportActionBar(mToolbar);
+
+        // set the screen fragment
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout_content_bnd,
+                BnDFragment.newInstance(),
+                BnDFragment.class.getSimpleName());
+        fragmentTransaction.commit();
+    }
+
 
 }

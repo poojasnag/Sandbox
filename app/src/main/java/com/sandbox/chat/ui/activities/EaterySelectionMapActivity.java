@@ -11,8 +11,10 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -25,10 +27,14 @@ import com.google.android.libraries.maps.SupportMapFragment;
 import com.google.android.libraries.maps.model.LatLng;
 import com.google.android.libraries.maps.model.MarkerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import com.google.maps.android.data.Feature;
 import com.google.maps.android.data.Layer;
 import com.google.maps.android.data.geojson.GeoJsonLayer;
 import com.google.maps.android.data.geojson.GeoJsonPolygonStyle;
+
+import com.sandbox.chat.models.Deliverer;
+
 import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.R;
 import com.sandbox.chat.mgr.EaterySelectionMapMgr;
@@ -78,6 +84,7 @@ public class EaterySelectionMapActivity extends AppCompatActivity implements OnM
         mapFragment.getMapAsync(this);
         locationDetails = new Dialog(this);
 
+
         //initialize fused location
         client = LocationServices.getFusedLocationProviderClient(this);
 
@@ -106,6 +113,15 @@ public class EaterySelectionMapActivity extends AppCompatActivity implements OnM
         }
         Task<Location> task = client.getLastLocation();
         task.addOnSuccessListener(new OnSuccessListener<Location>() {
+
+//        if (getIntent().getSerializableExtra("user") instanceof Deliverer){
+//            Toast.makeText(EaterySelectionMapActivity.this, "Is deliverer object: ", Toast.LENGTH_SHORT).show();
+//        }
+//        else{
+////            Toast.makeText(EaterySelectionMapActivity.this, "Is not deliv object: " + getIntent().getSerializableExtra("user").getClass().getName(), Toast.LENGTH_SHORT).show();
+//        }
+//         next.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onSuccess(Location location) {
                 if (location != null | supportMapFragment != null) {

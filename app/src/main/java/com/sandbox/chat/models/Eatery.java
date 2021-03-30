@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 public class Eatery implements Serializable {
 
+
     /**
      *
      */
@@ -16,6 +17,9 @@ public class Eatery implements Serializable {
 
     private String operatingTime;
     private String eateryID;
+
+//     private static final long serialVersionUID = 123325434L;
+
     /**
      * The eatery's name
      */

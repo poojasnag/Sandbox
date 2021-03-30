@@ -19,7 +19,7 @@ import com.sandbox.chat.core.chat.ChatContract;
 import com.sandbox.chat.core.chat.ChatPresenter;
 import com.sandbox.chat.events.PushNotificationEvent;
 import com.sandbox.chat.models.Chat;
-import com.sandbox.chat.ui.adapters.ChatRecyclerAdapter;
+import com.sandbox.chat.adapters.ChatRecyclerAdapter;
 import com.sandbox.chat.utils.Constants;
 import com.google.firebase.auth.FirebaseAuth;
 
