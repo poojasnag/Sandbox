@@ -28,12 +28,8 @@ public class EateryMgr {
 
         for (int i = 0; i < eateries.size(); i++) {
 
-            if(eateries.get(i).getEateryID().equals(id) == true);
+            if(eateries.get(i).getEateryID().equals(id) == true)
             {
-
-                System.out.println("Target found: " + eateries.get(i).getEateryID());
-                System.out.println("Picked: " + id);
-                System.out.println(eateries.get(i).getEateryID().equals(id));
                 return eateries.get(i);
             }
 
