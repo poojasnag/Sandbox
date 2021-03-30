@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 
 import com.sandbox.chat.ui.activities.PendingOrdersActivity;
 import com.sandbox.chat.ui.activities.PlaceOrderActivity;
+import com.sandbox.chat.ui.activities.UserRatingActivity;
 
 
 /**
@@ -32,7 +33,8 @@ public class PlaceOrderMgr {
     public void submitOrder(@NonNull View view) {
         //TODO: record new order
         Intent intent = new Intent(placeOrderActivity.getPrevIntent());
-        intent.setComponent(new ComponentName(view.getContext(), PendingOrdersActivity.class));
+//        intent.setComponent(new ComponentName(view.getContext(), PendingOrdersActivity.class));
+        intent.setComponent(new ComponentName(view.getContext(), UserRatingActivity.class));
         placeOrderActivity.startActivity(intent);
     }
 }

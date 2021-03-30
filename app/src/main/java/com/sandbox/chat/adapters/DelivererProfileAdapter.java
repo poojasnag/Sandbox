@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.sandbox.chat.R;
 import com.sandbox.chat.ui.activities.PlaceOrderActivity;
+import com.sandbox.chat.ui.activities.UserRatingActivity;
 
 import java.util.LinkedList;
 
@@ -89,6 +90,8 @@ public class DelivererProfileAdapter extends RecyclerView.Adapter<RecyclerView.V
                     Intent intent = new Intent(((DelivererProfileHolder) holder).context, PlaceOrderActivity.class);
                     //TODO: insert data about deliverer
                     ((DelivererProfileHolder) holder).context.startActivity(intent);
+//                    Intent intent = new Intent(((DelivererProfileHolder) holder).context, UserRatingActivity.class);
+//                    ((DelivererProfileHolder) holder).context.startActivity(intent);
                 }
 
             });
