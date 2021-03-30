@@ -29,7 +29,7 @@ public class EaterySelectionMapMgr {
         this.eaterySelectionMapActivity = eaterySelectionMapActivity;
     }
 
-    public void showLocationDetails(View view)
+    public void showLocationDetails()
     {
 
         TextView txtclose;
@@ -37,7 +37,7 @@ public class EaterySelectionMapMgr {
         Dialog myDialog = eaterySelectionMapActivity.getLocationDetails();
         myDialog.setContentView(R.layout.eatery_details);
         txtclose =(TextView) myDialog.findViewById(R.id.txtclose);
-        txtclose.setText("M");
+        txtclose.setText("X");
         btnFollow = (Button) myDialog.findViewById(R.id.btnfollow);
         txtclose.setOnClickListener(new View.OnClickListener() {
             @Override
