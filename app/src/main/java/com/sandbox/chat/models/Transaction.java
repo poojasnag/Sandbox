@@ -1,10 +1,13 @@
 package com.sandbox.chat.models;
 
+import java.io.Serializable;
+
 /**
  * Contains information about an order between  2 users
  *
  */
-public class Transaction {
+public class Transaction implements Serializable {
+    private static final long serialVersionUID = 123329876L;
     /**
      * The buyer's user ID
      */

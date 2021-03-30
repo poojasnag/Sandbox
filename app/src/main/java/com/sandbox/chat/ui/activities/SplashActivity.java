@@ -10,6 +10,9 @@ import com.sandbox.chat.mgr.EateryMgr;
 
 import java.io.IOException;
 
+import com.sandbox.chat.core.login.LoginPresenter;
+import com.sandbox.chat.mgr.UserMgr;
+
 /**
  * First screen when app is initialised, implements the splash UI
  *
@@ -38,7 +41,7 @@ public class SplashActivity extends AppCompatActivity {
                 // check if user is already logged in or not
                 if (FirebaseAuth.getInstance().getCurrentUser() != null) {
                     // if logged in redirect the user to user listing activity
-                    BnDActivity.startActivity(SplashActivity.this);
+                    BnDActivity.startActivity(SplashActivity.this, LoginPresenter.findUser(getApplicationContext()));
                 } else {
                     // otherwise redirect the user to login activity
                     LoginActivity.startIntent(SplashActivity.this);

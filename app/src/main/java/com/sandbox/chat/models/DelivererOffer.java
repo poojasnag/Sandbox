@@ -1,11 +1,13 @@
 package com.sandbox.chat.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Contains information about a delivery offer
  */
-public class DelivererOffer {
+public class DelivererOffer implements Serializable {
+    private static final long SerialVersionUID = 4565702394587L;
     /**
      * The ID of the offer
      */

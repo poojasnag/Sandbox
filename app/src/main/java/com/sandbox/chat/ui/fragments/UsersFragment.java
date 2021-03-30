@@ -16,7 +16,7 @@ import com.sandbox.chat.core.users.getall.GetUsersContract;
 import com.sandbox.chat.core.users.getall.GetUsersPresenter;
 import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.activities.ChatActivity;
-import com.sandbox.chat.ui.adapters.UserListingRecyclerAdapter;
+import com.sandbox.chat.adapters.UserListingRecyclerAdapter;
 import com.sandbox.chat.utils.ItemClickSupport;
 
 import java.util.List;

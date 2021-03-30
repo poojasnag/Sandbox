@@ -12,7 +12,7 @@ import com.sandbox.chat.mgr.ChooseDelivererMgr;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
 
 import com.sandbox.chat.R;
-import com.sandbox.chat.ui.adapters.DelivererProfileAdapter;
+import com.sandbox.chat.adapters.DelivererProfileAdapter;
 
 import java.util.LinkedList;
 
