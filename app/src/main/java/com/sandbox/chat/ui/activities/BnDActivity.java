@@ -3,15 +3,20 @@ package com.sandbox.chat.ui.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.sandbox.chat.R;
 import com.sandbox.chat.mgr.BnDMgr;
 import com.sandbox.chat.models.User;
+import com.sandbox.chat.ui.fragments.BnDFragment;
+import com.sandbox.chat.ui.fragments.LoginFragment;
 
 /**
  * Displays the Buyer and Deliverer selection interface
@@ -19,6 +24,7 @@ import com.sandbox.chat.models.User;
 
 public class BnDActivity extends AppCompatActivity {
     BnDMgr bndController ;
+    private Toolbar mToolbar;
     /**
      * Displays the interface from another activity class
      * @param context the Context of the activity that called this method
@@ -53,38 +59,24 @@ public class BnDActivity extends AppCompatActivity {
         bndController = new BnDMgr();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bn_d);
-
-// TODO: Link the buttons on bottom nav bar with activities
-        Button buyer_button = findViewById(R.id.bnd_button_buyer);
-        Button deliverer_button = findViewById(R.id.bnd_button_deliverer);
-
-        buyer_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                onBuyerSelect(view.getContext());
-            }
-        });
-        deliverer_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view)
-            {
-                onDelivererSelect(view.getContext());
-            }
-        });
-
+        bindViews();
+        init();
+        Log.d("ZIHENG", "we here");
+    }
+    private void bindViews() {
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
     }
 
-    private void onDelivererSelect(Context context) {
-        Intent intent = new Intent(context, EaterySelectionMapActivity.class);
-        intent.putExtra("user", bndController.createDeliverer((User) getIntent().getSerializableExtra("user")));
-        startActivity(intent);
-    }
+    private void init() {
+        // set the toolbar
+        setSupportActionBar(mToolbar);
 
-    public void onBuyerSelect(Context context){
-        Intent intent = new Intent(context, EaterySelectionMapActivity.class);
-        intent.putExtra("user", bndController.createBuyer((User) getIntent().getSerializableExtra("user")));
-        startActivity(intent);
+        // set the screen fragment
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout_content_bnd,
+                BnDFragment.newInstance(),
+                BnDFragment.class.getSimpleName());
+        fragmentTransaction.commit();
     }
 
 
