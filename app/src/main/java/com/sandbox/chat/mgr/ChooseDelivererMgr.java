@@ -13,7 +13,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.sandbox.chat.ui.activities.ChooseDelivererActivity;
-import com.sandbox.chat.ui.adapters.DelivererProfileAdapter;
+import com.sandbox.chat.adapters.DelivererProfileAdapter;
 
 import java.util.LinkedList;
 

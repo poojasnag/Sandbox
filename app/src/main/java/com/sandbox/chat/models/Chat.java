@@ -3,7 +3,7 @@ package com.sandbox.chat.models;
 /**
  * Contains information of a chat message
  */
-public class Chat  {
+public class Chat {
     /**
      * The email of the sender
      */
