@@ -91,7 +91,7 @@ public class CreateDeliveryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(CreateDeliveryActivity.this, "create button clicked", Toast.LENGTH_SHORT).show();
-                createDeliveryController.sendData(deliveryLocSpinner, deliveryFeeText, cutoff_picker, eta_picker, v.getContext());
+                createDeliveryController.recordData(deliveryLocSpinner, deliveryFeeText, cutoff_picker, eta_picker, v.getContext());
             }
         });
 //        Toast.makeText(CreateDeliveryActivity.this, "text:" + chosenLoc, Toast.LENGTH_SHORT).show();

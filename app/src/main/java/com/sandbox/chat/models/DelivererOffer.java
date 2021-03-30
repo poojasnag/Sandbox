@@ -36,11 +36,11 @@ public class DelivererOffer implements Serializable {
      * The information of the deliverer
      */
     private Deliverer deliverer;
-    /**
-     * The status of the order
-     * @deprecated
-     */
-    private Status status;
+//    /**
+//     * The status of the order
+//     * @deprecated
+//     */
+//    private Status status;
 
     /**
      * Constructor for the offer
@@ -61,7 +61,7 @@ public class DelivererOffer implements Serializable {
         this.deliveryLocations = deliveryLocations;
         this.eatery = eatery;
         this.deliverer = deliverer;
-        this.status = Status.NO_ORDERS;
+//        this.status = Status.NO_ORDERS;
     }
 
     public String getDelivererOfferID() {
@@ -120,11 +120,11 @@ public class DelivererOffer implements Serializable {
         this.deliverer = deliverer;
     }
 
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
+//    public Status getStatus() {
+//        return status;
+//    }
+//
+//    public void setStatus(Status status) {
+//        this.status = status;
+//    }
 }

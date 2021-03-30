@@ -19,9 +19,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.sandbox.chat.models.DelivererOffer;
+import com.sandbox.chat.models.Eatery;
 
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -50,18 +54,19 @@ public class CreateDeliveryMgr {
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
 
-    public void sendData(Spinner deliveryLocSpinner, EditText deliveryFeeText, EditText cutoff_picker, EditText eta_picker, Context context){
+    public void recordData(Spinner deliveryLocSpinner, EditText deliveryFeeText, EditText cutoff_picker, EditText eta_picker, Context context){
         long unixTime = Instant.now().getEpochSecond();
         String curTime = Long.toString(unixTime);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Toast.makeText(context,"Current Time: " + curTime , Toast.LENGTH_SHORT).show();
 
-
-
         String chosenLoc = deliveryLocSpinner.getSelectedItem().toString();
         String deliveryFee = deliveryFeeText.getText().toString();
         String cutoffDateTime = cutoff_picker. getText().toString();
         String etaDateTime = eta_picker. getText().toString();
+        ArrayList<String> placeholderLocations = new ArrayList<String>();
+        placeholderLocations.add(chosenLoc); //TODO: create multiple choice for location
+        Eatery eatery = new Eatery("Koi", 0,0); // TODO: create real eatery
 
 
         Toast.makeText(context,"ETA hour: " + cutoffDateTime, Toast.LENGTH_SHORT).show();
@@ -70,6 +75,9 @@ public class CreateDeliveryMgr {
         if (user != null) {
             String email = user.getEmail();
             String offerID = curTime + "-" + email;  //KEY: OfferID which is current time + uid (unique in every scenario)
+//            DelivererOffer delivererOffer = new DelivererOffer(offerID,cutoffDateTime, etaDateTime, deliveryFee,placeholderLocations , eatery,  )
+//            DelivererOfferMgr.setData();
+
             Map<String, Object> offer = new HashMap<>();
             offer.put("email", email);
             offer.put("location", chosenLoc);

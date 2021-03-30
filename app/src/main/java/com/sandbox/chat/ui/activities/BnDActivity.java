@@ -84,7 +84,6 @@ public class BnDActivity extends AppCompatActivity {
     public void onBuyerSelect(Context context){
         Intent intent = new Intent(context, EaterySelectionMapActivity.class);
         intent.putExtra("user", bndController.createBuyer((User) getIntent().getSerializableExtra("user")));
-        Toast.makeText(BnDActivity.this, "im in buyerselect", Toast.LENGTH_SHORT).show();
         startActivity(intent);
     }
 
