@@ -68,9 +68,13 @@ public class EaterySelectionMapActivity extends AppCompatActivity implements OnM
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        client = LocationServices.getFusedLocationProviderClient(this);
+
+
         setContentView(R.layout.activity_eatery_selection_map);
         try {
             eaterySelectionMapController = new EaterySelectionMapMgr(this);
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -79,18 +83,11 @@ public class EaterySelectionMapActivity extends AppCompatActivity implements OnM
         final BottomNavigationView bot_bar = findViewById(R.id.eatery_selection_botnav);
         bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
 
+        locationDetails = new Dialog(this);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.eatery_selection_map);
         mapFragment.getMapAsync(this);
-        locationDetails = new Dialog(this);
 
-//        if (getIntent().getSerializableExtra("user") instanceof Deliverer){
-//            Toast.makeText(EaterySelectionMapActivity.this, "Is deliverer object: ", Toast.LENGTH_SHORT).show();
-//        }
-//        else{
-////            Toast.makeText(EaterySelectionMapActivity.this, "Is not deliv object: " + getIntent().getSerializableExtra("user").getClass().getName(), Toast.LENGTH_SHORT).show();
-//        }
-        next.setOnClickListener(new View.OnClickListener() {
         //initialize fused location
         client = LocationServices.getFusedLocationProviderClient(this);
 
@@ -103,6 +100,16 @@ public class EaterySelectionMapActivity extends AppCompatActivity implements OnM
             //when permission denied, request permission
             ActivityCompat.requestPermissions(EaterySelectionMapActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
         }
+
+//        if (getIntent().getSerializableExtra("user") instanceof Deliverer){
+//            Toast.makeText(EaterySelectionMapActivity.this, "Is deliverer object: ", Toast.LENGTH_SHORT).show();
+//        }
+//        else{
+////            Toast.makeText(EaterySelectionMapActivity.this, "Is not deliv object: " + getIntent().getSerializableExtra("user").getClass().getName(), Toast.LENGTH_SHORT).show();
+//        }
+
+        //initialize fused location
+
     }
 
     private void getCurrentLocation() {
@@ -121,6 +128,7 @@ public class EaterySelectionMapActivity extends AppCompatActivity implements OnM
         task.addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
+
                 if (location != null | supportMapFragment != null) {
                     SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                             .findFragmentById(R.id.eatery_selection_map);
@@ -128,13 +136,13 @@ public class EaterySelectionMapActivity extends AppCompatActivity implements OnM
 
                         @Override
                         public void onMapReady(GoogleMap googleMap) {
+                            System.out.println("Found user's location");
                             LatLng latlng = new LatLng(location.getLatitude(), location.getLongitude());
                             MarkerOptions options = new MarkerOptions().position(latlng).title("Current Location");
-
-                            //googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng, 10));
                             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng, 18f));
-
                             googleMap.addMarker(options);
+
+
                         }
 
                     });
