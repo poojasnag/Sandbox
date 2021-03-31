@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UserMgr {
-    private static FirebaseFirestore fStore = FirebaseFirestore.getInstance();;
+    private static FirebaseFirestore fStore = FirebaseFirestore.getInstance();
     private static String USER_TABLE = "users";
      ;
 

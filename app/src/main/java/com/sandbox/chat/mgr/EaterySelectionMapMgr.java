@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.google.maps.android.data.Feature;
 import com.sandbox.chat.R;
 import com.sandbox.chat.models.Eatery;
+import com.sandbox.chat.models.Buyer;
+import com.sandbox.chat.models.Deliverer;
 import com.sandbox.chat.ui.activities.ChooseDelivererActivity;
 import com.sandbox.chat.ui.activities.CreateDeliveryActivity;
 import com.sandbox.chat.ui.activities.EaterySelectionMapActivity;
@@ -84,7 +86,8 @@ public class EaterySelectionMapMgr {
 
     public void selectLocation(View view) {
         //TODO: Add the information of the location
-        if (eaterySelectionMapActivity.getI().getBooleanExtra("isBuyer", true)) {
+//        if (eaterySelectionMapActivity.getI().getBooleanExtra("isBuyer", true)) {
+        if (eaterySelectionMapActivity.getI().getSerializableExtra("user") instanceof Buyer){
             Intent intent = new Intent(eaterySelectionMapActivity.getI());
             intent.setComponent(new ComponentName(view.getContext(), ChooseDelivererActivity.class));
             eaterySelectionMapActivity.startActivity(intent);
