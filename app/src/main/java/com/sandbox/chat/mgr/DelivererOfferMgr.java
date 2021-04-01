@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class DelivererOfferMgr {
     private static FirebaseFirestore fStore = FirebaseFirestore.getInstance();
-    private static String OFFER_TABLE = "delivererOffers";
+    private static String OFFER_TABLE = "deliveryOffers";
     DelivererOfferMgr(){}
 
     public static void setData(DelivererOffer delivererOffer, Context context){
@@ -30,12 +30,13 @@ public class DelivererOfferMgr {
         offer.put("cutoffDateTime", delivererOffer.getCutOffTime());
         offer.put("etaDateTime", delivererOffer.getEtaTime());
         offer.put("timestamp", delivererOffer.getTimestamp());
+        offer.put("eatery", delivererOffer.getEatery());
 
         DocumentReference documentReference = fStore.collection(OFFER_TABLE).document(delivererOffer.getDelivererOfferID());
         documentReference.set(offer).addOnSuccessListener(new OnSuccessListener<Void>(){
             @Override
             public void onSuccess(Void aVoid){
-                Toast.makeText(context,"Data sent: " + delivererOffer.getEtaTime(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"Data sent: " + delivererOffer.getEatery().getEateryName(), Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

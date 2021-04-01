@@ -111,8 +111,8 @@ public class CreateDeliveryActivity extends AppCompatActivity {
                 String cutoffDateTime = cutoff_picker. getText().toString();
                 String etaDateTime = eta_picker. getText().toString();
 //                Toast.makeText(v.getContext(), getIntent().getSerializableExtra("user").getClass().getName(),Toast.LENGTH_SHORT).show();
-                Eatery eatery = new Eatery("", "Koi","", "",  ""); // TODO: create real eatery
-                createDeliveryController.recordData(chosenLoc, Double.parseDouble(deliveryFee), cutoffDateTime, etaDateTime, eatery, v.getContext(), (Deliverer) getIntent().getSerializableExtra("user"));
+//                Eatery eatery = new Eatery("", "Koi","", "",  ""); // TODO: create real eatery
+                createDeliveryController.recordData(chosenLoc, Double.parseDouble(deliveryFee), cutoffDateTime, etaDateTime, curEatery, v.getContext(), (Deliverer) getIntent().getSerializableExtra("user"));
             }
         });
 //        Toast.makeText(CreateDeliveryActivity.this, "text:" + chosenLoc, Toast.LENGTH_SHORT).show();
