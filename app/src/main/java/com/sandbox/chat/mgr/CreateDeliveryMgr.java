@@ -21,11 +21,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.sandbox.chat.R;
 import com.sandbox.chat.models.Deliverer;
 import com.sandbox.chat.models.DelivererOffer;
 import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.ui.activities.CreateDeliveryActivity;
 import com.sandbox.chat.ui.activities.EaterySelectionMapActivity;
+import com.sandbox.chat.utils.MultiSpinner;
 
 import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
@@ -33,6 +35,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 /**
@@ -40,8 +43,10 @@ import java.util.Map;
  */
 public class CreateDeliveryMgr {
 
-
-    public CreateDeliveryMgr() {
+    private LinkedList<String> selectedLocations;
+    private CreateDeliveryActivity createDeliveryActivity;
+    public CreateDeliveryMgr(CreateDeliveryActivity createDeliveryActivity) {
+        this.createDeliveryActivity = createDeliveryActivity;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -65,5 +70,16 @@ public class CreateDeliveryMgr {
         b.setText(e.getEateryName());
 
     }
+    public void setDeliveryLocations(MultiSpinner deliveryLocSpinner)
+    {
+        selectedLocations = new LinkedList<String>();
+        deliveryLocSpinner.setItems(createDeliveryActivity.getResources().getStringArray(R.array.deliver_to) ,"Select locations" ,new MultiSpinner.MultiSpinnerListener() {
+            @Override
+            public void onItemsSelected(boolean[] selected) {
+                selectedLocations = deliveryLocSpinner.getAllSelected(selected);
+            }
+        });
+    }
+
 
 }

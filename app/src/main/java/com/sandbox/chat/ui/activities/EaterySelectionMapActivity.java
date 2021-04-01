@@ -93,9 +93,9 @@ public class EaterySelectionMapActivity extends AppCompatActivity implements OnM
         client = LocationServices.getFusedLocationProviderClient(this);
 
         //check permission
-        if (ActivityCompat.checkSelfPermission(EaterySelectionMapActivity.this,
+       if (ActivityCompat.checkSelfPermission(EaterySelectionMapActivity.this,
                 Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            getCurrentLocation();
+//            getCurrentLocation();
         }
         else {
             //when permission denied, request permission
@@ -165,11 +165,13 @@ public class EaterySelectionMapActivity extends AppCompatActivity implements OnM
     }
 
     public void onMapReady(GoogleMap googleMap) {
+
         TextView loading = findViewById(R.id.eatery_selection_loading);
         loading.setVisibility(View.INVISIBLE);
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-
+        LatLng latlng = new LatLng(1.3521, 103.8198);
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng, 18f));
 
         //import geojson file into map
         try {

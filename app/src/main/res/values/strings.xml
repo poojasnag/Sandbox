@@ -88,4 +88,10 @@
         <item>Hall 10</item>
     </string-array>
     <string name="submit">Submit</string>
+    <string name="place_order">Place order</string>
+    <string name="deliverer_name">Deliverer name</string>
+    <string name="rate">"Rate: "</string>
+    <string name="location">"Deliver to: "</string>
+    <string name="order">"Order: "</string>
+    <string name="eta">"Estimated time of arrival: "</string>
 </resources>
