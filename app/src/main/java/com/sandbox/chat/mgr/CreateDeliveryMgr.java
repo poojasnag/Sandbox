@@ -3,7 +3,9 @@ package com.sandbox.chat.mgr;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -22,6 +24,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.sandbox.chat.models.Deliverer;
 import com.sandbox.chat.models.DelivererOffer;
 import com.sandbox.chat.models.Eatery;
+import com.sandbox.chat.ui.activities.CreateDeliveryActivity;
+import com.sandbox.chat.ui.activities.EaterySelectionMapActivity;
 
 import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
@@ -35,6 +39,7 @@ import java.util.Map;
  * Manager class for CreateDeliveryActivity
  */
 public class CreateDeliveryMgr {
+
 
     public CreateDeliveryMgr() {
     }
@@ -50,7 +55,15 @@ public class CreateDeliveryMgr {
             DelivererOffer delivererOffer = new DelivererOffer(offerID, cutoffDateTime, etaDateTime, deliveryFee, chosenLoc, eatery, deliverer, curTime);
 //            Toast.makeText(context, delivererOffer.getClass().getName(), Toast.LENGTH_SHORT).show();
             DelivererOfferMgr.setData(delivererOffer, context);
-
         }
+
+
     }
+    public void setLocation(Button b, Intent i)
+    {
+        Eatery e = (Eatery) i.getSerializableExtra("Eatery");
+        b.setText(e.getEateryName());
+
+    }
+
 }

@@ -2,6 +2,7 @@ package com.sandbox.chat.ui.activities;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
@@ -50,6 +51,9 @@ public class CreateDeliveryActivity extends AppCompatActivity {
     Spinner deliveryLocSpinner;
     EditText deliveryFeeText;
     CreateDeliveryMgr createDeliveryController;
+    Button locationDisplay;
+    Intent i;
+    Eatery curEatery;
     /**
      * Initialize the interface.
      * Consisting of loading the corresponding layout file and binding the on-click listener to the navigation bar.
@@ -67,13 +71,18 @@ public class CreateDeliveryActivity extends AppCompatActivity {
         deliveryFeeText = findViewById(R.id.create_delivery_fee);
         createDeliveryController = new CreateDeliveryMgr();
 
+        locationDisplay = findViewById(R.id.create_delivery_from_location);
+
+
     }
     @Override
     protected void onStart() {
+
         super.onStart();
+        i = getIntent();
         cutoff_picker.setInputType(InputType.TYPE_NULL);
         eta_picker.setInputType(InputType.TYPE_NULL);
-
+        curEatery = ((Eatery)i.getSerializableExtra("Eatery"));
         cutoff_picker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,11 +98,14 @@ public class CreateDeliveryActivity extends AppCompatActivity {
         });
 
         createDeliveryButton.setOnClickListener(new View.OnClickListener() {
+
+            //TODO: Check for empty input
+
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
                 Toast.makeText(CreateDeliveryActivity.this, "create button clicked", Toast.LENGTH_SHORT).show();
-
+                
                 String chosenLoc = deliveryLocSpinner.getSelectedItem().toString();
                 String deliveryFee = deliveryFeeText.getText().toString();
                 String cutoffDateTime = cutoff_picker. getText().toString();
@@ -108,6 +120,7 @@ public class CreateDeliveryActivity extends AppCompatActivity {
         bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
 
         //TODO: Pass selected location to header
+        createDeliveryController.setLocation(locationDisplay, i);
 
     }
     private void showDateTimeDialog(final EditText date_time_in) {

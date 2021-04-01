@@ -1,6 +1,8 @@
 package com.sandbox.chat.ui.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.sandbox.chat.mgr.ChooseDelivererMgr;
+import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
 
 import com.sandbox.chat.R;
@@ -20,12 +23,15 @@ import java.util.LinkedList;
  * For the buyers, displays the list of active deliverers in a location
  */
 public class ChooseDelivererActivity extends AppCompatActivity {
+    private Intent i;
     private static final String TAG = "ImportDB";
     private static final String KEY_LOCATION = "location";
     private static final String KEY_DELIVERYFEE = "deliveryFee";
     private static final String KEY_NAME = "email";
+    private Button selectedLocation;
     LinkedList<String> demo  = new LinkedList<String>();
     ChooseDelivererMgr chooseDelivererController;
+    private RecyclerView ordersList;
 
 
     /**
@@ -41,6 +47,8 @@ public class ChooseDelivererActivity extends AppCompatActivity {
         final BottomNavigationView bot_bar = findViewById(R.id.choose_deliverer_bottomNavigationView);
         bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
 
+        selectedLocation = findViewById(R.id.choose_deliverer_location);
+        ordersList = findViewById(R.id.choose_deliverer_list);
     }
 
     /**
@@ -51,8 +59,9 @@ public class ChooseDelivererActivity extends AppCompatActivity {
     protected void onStart()
     {
         super.onStart();
-        RecyclerView ordersList = findViewById(R.id.choose_deliverer_list);
-
+        i = getIntent();
+        Eatery curEatery = (Eatery)(i.getSerializableExtra("Eatery"));
+        chooseDelivererController.setLocation(selectedLocation, i);
         chooseDelivererController.getDeliverers(ordersList);
 
 //        demo.add("Name: xxabcxx \nRate:$0.5\nLocation 1: Hall 7 bus stop");

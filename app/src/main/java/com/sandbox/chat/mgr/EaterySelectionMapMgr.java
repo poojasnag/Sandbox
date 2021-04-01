@@ -29,6 +29,7 @@ public class EaterySelectionMapMgr {
     private final EaterySelectionMapActivity eaterySelectionMapActivity;
 
     private EateryMgr eateryData;
+    private Eatery curEatery;
     /**
      * Create a manager for the activity
      * @param eaterySelectionMapActivity The activity that called this method
@@ -43,7 +44,7 @@ public class EaterySelectionMapMgr {
 
         String ID = feature_id;
 
-        Eatery e = eateryData.findEatery(ID);
+        curEatery = eateryData.findEatery(ID);
 
         TextView txtclose;
         Button btnFollow;
@@ -58,9 +59,9 @@ public class EaterySelectionMapMgr {
         TextView eateryName = myDialog.findViewById(R.id.eatery_name);
         TextView eateryLoc = myDialog.findViewById(R.id.eatery_addresss);
         TextView eateryTime = myDialog.findViewById(R.id.eatery_op_time);
-        eateryName.setText(e.getEateryName());
-        eateryLoc.setText(e.getEateryAddress() + ", " + e.getEateryStreet());
-        eateryTime.setText(e.getOperatingTime());
+        eateryName.setText(curEatery.getEateryName());
+        eateryLoc.setText(curEatery.getEateryAddress() + ", " + curEatery.getEateryStreet());
+        eateryTime.setText(curEatery.getOperatingTime());
 
 
         txtclose.setOnClickListener(new View.OnClickListener() {
@@ -90,11 +91,19 @@ public class EaterySelectionMapMgr {
         if (eaterySelectionMapActivity.getI().getSerializableExtra("user") instanceof Buyer){
             Intent intent = new Intent(eaterySelectionMapActivity.getI());
             intent.setComponent(new ComponentName(view.getContext(), ChooseDelivererActivity.class));
+            if(intent.hasExtra("Eatery")) {
+                intent.removeExtra("Eatery");
+            }
+            intent.putExtra("Eatery", curEatery);
             eaterySelectionMapActivity.startActivity(intent);
 
         } else {
             Intent intent = new Intent(eaterySelectionMapActivity.getI());
             intent.setComponent(new ComponentName(view.getContext(), CreateDeliveryActivity.class));
+            if(intent.hasExtra("Eatery")) {
+                intent.removeExtra("Eatery");
+            }
+            intent.putExtra("Eatery", curEatery);
             eaterySelectionMapActivity.startActivity(intent);
         }
     }

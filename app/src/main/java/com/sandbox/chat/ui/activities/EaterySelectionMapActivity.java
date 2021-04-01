@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -136,7 +137,8 @@ public class EaterySelectionMapActivity extends AppCompatActivity implements OnM
 
                         @Override
                         public void onMapReady(GoogleMap googleMap) {
-                            System.out.println("Found user's location");
+                            TextView loading = findViewById(R.id.eatery_selection_loading);
+                            loading.setVisibility(View.INVISIBLE);
                             LatLng latlng = new LatLng(location.getLatitude(), location.getLongitude());
                             MarkerOptions options = new MarkerOptions().position(latlng).title("Current Location");
                             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng, 18f));
@@ -163,6 +165,8 @@ public class EaterySelectionMapActivity extends AppCompatActivity implements OnM
     }
 
     public void onMapReady(GoogleMap googleMap) {
+        TextView loading = findViewById(R.id.eatery_selection_loading);
+        loading.setVisibility(View.INVISIBLE);
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 

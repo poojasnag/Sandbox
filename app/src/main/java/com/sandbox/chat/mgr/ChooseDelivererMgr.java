@@ -1,6 +1,8 @@
 package com.sandbox.chat.mgr;
 
 import android.content.Context;
+import android.content.Intent;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -12,6 +14,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.ui.activities.ChooseDelivererActivity;
 import com.sandbox.chat.adapters.DelivererProfileAdapter;
 
@@ -66,4 +69,9 @@ public class ChooseDelivererMgr {
 
                 });
     }
+    public void setLocation(Button b, Intent i)
+    {
+        b.setText(((Eatery)i.getSerializableExtra("Eatery")).getEateryName());
+    }
+
 }

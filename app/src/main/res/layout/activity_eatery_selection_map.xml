@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.EaterySelectionMapActivity">
 
+    <EditText
+        android:id="@+id/eatery_selection_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/please_wait"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.41000003" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/eatery_selection_botnav"
         style="@style/bottom_navigation_view"
@@ -16,7 +30,9 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0" >
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/eatery_selection_map"
@@ -29,5 +45,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        tools:context=".ui.activities.EaterySelectionMapActivity" />
+        tools:context=".ui.activities.EaterySelectionMapActivity">
+
+    </androidx.fragment.app.FragmentContainerView>
 </androidx.constraintlayout.widget.ConstraintLayout>
