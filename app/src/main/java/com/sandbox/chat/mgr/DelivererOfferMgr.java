@@ -7,10 +7,15 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.sandbox.chat.models.Deliverer;
 import com.sandbox.chat.models.DelivererOffer;
+import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.models.User;
 
 import java.util.HashMap;
@@ -18,7 +23,7 @@ import java.util.Map;
 
 public class DelivererOfferMgr {
     private static FirebaseFirestore fStore = FirebaseFirestore.getInstance();
-    private static String OFFER_TABLE = "delivererOffers";
+    private static String OFFER_TABLE = "deliveryOffers";
     DelivererOfferMgr(){}
 
     public static void setData(DelivererOffer delivererOffer, Context context){
@@ -30,12 +35,13 @@ public class DelivererOfferMgr {
         offer.put("cutoffDateTime", delivererOffer.getCutOffTime());
         offer.put("etaDateTime", delivererOffer.getEtaTime());
         offer.put("timestamp", delivererOffer.getTimestamp());
+        offer.put("eatery", delivererOffer.getEatery());
 
         DocumentReference documentReference = fStore.collection(OFFER_TABLE).document(delivererOffer.getDelivererOfferID());
         documentReference.set(offer).addOnSuccessListener(new OnSuccessListener<Void>(){
             @Override
             public void onSuccess(Void aVoid){
-                Toast.makeText(context,"Data sent: " + delivererOffer.getEtaTime(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"Data sent: " + delivererOffer.getEatery().getEateryName(), Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -43,6 +49,11 @@ public class DelivererOfferMgr {
                 Toast.makeText(context,"Sending failed", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public static Query getEateryDeliverers(Eatery eatery){
+        CollectionReference deliveryOffers_db = fStore.collection("deliveryOffers");
+        Query query = deliveryOffers_db.whereEqualTo("eatery", eatery);
+        return query;
     }
 
 

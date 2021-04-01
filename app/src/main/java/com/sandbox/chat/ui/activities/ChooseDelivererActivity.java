@@ -62,7 +62,7 @@ public class ChooseDelivererActivity extends AppCompatActivity {
         i = getIntent();
         Eatery curEatery = (Eatery)(i.getSerializableExtra("Eatery"));
         chooseDelivererController.setLocation(selectedLocation, i);
-        chooseDelivererController.getDeliverers(ordersList);
+        chooseDelivererController.getDeliverers(ordersList, curEatery);
 
 //        demo.add("Name: xxabcxx \nRate:$0.5\nLocation 1: Hall 7 bus stop");
 //        demo.add("Name: test2 \nRate:$0.5\nLocation 1: Hall 7 bus stop");

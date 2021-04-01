@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
 import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.ui.activities.ChooseDelivererActivity;
 import com.sandbox.chat.adapters.DelivererProfileAdapter;
@@ -37,13 +38,13 @@ public class ChooseDelivererMgr {
     /**
      * Look up the database and get the list of deliverers
      */
-    public void getDeliverers(RecyclerView ordersList) {
+    public void getDeliverers(RecyclerView ordersList, Eatery eatery) {
         //TODO: change to actual deliverers
-        fStore = FirebaseFirestore.getInstance();
-        FirebaseFirestore fStore = FirebaseFirestore.getInstance();
+
+
 
         LinkedList<String> demo = new LinkedList<String>();
-        fStore.collection("deliveryOffers")
+        DelivererOfferMgr.getEateryDeliverers(eatery)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

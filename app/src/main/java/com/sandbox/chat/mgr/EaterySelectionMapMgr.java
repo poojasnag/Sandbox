@@ -8,8 +8,14 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.maps.android.data.Feature;
 import com.sandbox.chat.R;
 import com.sandbox.chat.models.Eatery;
@@ -59,10 +65,25 @@ public class EaterySelectionMapMgr {
         TextView eateryName = myDialog.findViewById(R.id.eatery_name);
         TextView eateryLoc = myDialog.findViewById(R.id.eatery_addresss);
         TextView eateryTime = myDialog.findViewById(R.id.eatery_op_time);
+        TextView delivererCount = myDialog.findViewById(R.id.eatery_details_num_deliverers);
         eateryName.setText(curEatery.getEateryName());
         eateryLoc.setText(curEatery.getEateryAddress() + ", " + curEatery.getEateryStreet());
         eateryTime.setText(curEatery.getOperatingTime());
 
+        DelivererOfferMgr.getEateryDeliverers(curEatery).get()
+            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        QuerySnapshot querySnapshot = task.getResult();
+                        Integer count = querySnapshot.size();
+                        delivererCount.setText(count.toString());
+                            }
+                    else {
+                        delivererCount.setText("0");
+                        }
+                }
+            });
 
         txtclose.setOnClickListener(new View.OnClickListener() {
             @Override
