@@ -11,9 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -42,13 +40,11 @@ public class ChooseDelivererMgr {
      */
     public void getDeliverers(RecyclerView ordersList, Eatery eatery) {
         //TODO: change to actual deliverers
-        fStore = FirebaseFirestore.getInstance();
-        FirebaseFirestore fStore = FirebaseFirestore.getInstance();
+
+
 
         LinkedList<String> demo = new LinkedList<String>();
-        CollectionReference deliveryOffers_db = fStore.collection("deliveryOffers");
-        Query query = deliveryOffers_db.whereEqualTo("eatery", eatery);
-        query
+        DelivererOfferMgr.getEateryDeliverers(eatery)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

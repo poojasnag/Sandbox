@@ -7,10 +7,15 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.sandbox.chat.models.Deliverer;
 import com.sandbox.chat.models.DelivererOffer;
+import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.models.User;
 
 import java.util.HashMap;
@@ -44,6 +49,11 @@ public class DelivererOfferMgr {
                 Toast.makeText(context,"Sending failed", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public static Query getEateryDeliverers(Eatery eatery){
+        CollectionReference deliveryOffers_db = fStore.collection("deliveryOffers");
+        Query query = deliveryOffers_db.whereEqualTo("eatery", eatery);
+        return query;
     }
 
 
