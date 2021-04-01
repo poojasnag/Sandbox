@@ -2,11 +2,13 @@ package com.sandbox.chat.ui.activities;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -26,13 +28,19 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.sandbox.chat.R;
 import com.sandbox.chat.mgr.CreateDeliveryMgr;
+import com.sandbox.chat.mgr.DelivererOfferMgr;
+import com.sandbox.chat.models.Deliverer;
+import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
+import com.sandbox.chat.utils.MultiSpinner;
 
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 /**
@@ -43,9 +51,14 @@ public class CreateDeliveryActivity extends AppCompatActivity {
     Button createDeliveryButton;
     EditText cutoff_picker;
     EditText eta_picker;
-    Spinner deliveryLocSpinner;
+    MultiSpinner deliveryLocSpinner;
     EditText deliveryFeeText;
     CreateDeliveryMgr createDeliveryController;
+    Button locationDisplay;
+    Intent prevIntent;
+    Eatery curEatery;
+
+
     /**
      * Initialize the interface.
      * Consisting of loading the corresponding layout file and binding the on-click listener to the navigation bar.
@@ -61,15 +74,21 @@ public class CreateDeliveryActivity extends AppCompatActivity {
         eta_picker = findViewById(R.id.eta_datetime);
         deliveryLocSpinner = findViewById(R.id.create_delivery_select_location);
         deliveryFeeText = findViewById(R.id.create_delivery_fee);
-        createDeliveryController = new CreateDeliveryMgr();
+        createDeliveryController = new CreateDeliveryMgr(this);
+
+        locationDisplay = findViewById(R.id.create_delivery_from_location);
+
 
     }
-
     @Override
     protected void onStart() {
+
         super.onStart();
+        prevIntent = getIntent();
         cutoff_picker.setInputType(InputType.TYPE_NULL);
         eta_picker.setInputType(InputType.TYPE_NULL);
+        curEatery = ((Eatery)prevIntent.getSerializableExtra("Eatery"));
+        createDeliveryController.setDeliveryLocations(deliveryLocSpinner);
 
         cutoff_picker.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,11 +106,23 @@ public class CreateDeliveryActivity extends AppCompatActivity {
 
 
         createDeliveryButton.setOnClickListener(new View.OnClickListener() {
+
+            //TODO: Check for empty input
+
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
                 Toast.makeText(CreateDeliveryActivity.this, "create button clicked", Toast.LENGTH_SHORT).show();
-                createDeliveryController.sendData(deliveryLocSpinner, deliveryFeeText, cutoff_picker, eta_picker, v.getContext());
+                
+                String chosenLoc = deliveryLocSpinner.getSelectedItem().toString();  //TODO: Change to array
+                String deliveryFee = deliveryFeeText.getText().toString();
+                String cutoffDateTime = cutoff_picker. getText().toString();
+                String etaDateTime = eta_picker. getText().toString();
+
+//                Toast.makeText(v.getContext(), getIntent().getSerializableExtra("user").getClass().getName(),Toast.LENGTH_SHORT).show();
+//                Eatery eatery = new Eatery("", "Koi","", "",  ""); // TODO: create real eatery
+                createDeliveryController.recordData(chosenLoc, Double.parseDouble(deliveryFee), cutoffDateTime, etaDateTime, curEatery, v.getContext(), (Deliverer) getIntent().getSerializableExtra("user"));
+
             }
         });
 //        Toast.makeText(CreateDeliveryActivity.this, "text:" + chosenLoc, Toast.LENGTH_SHORT).show();
@@ -99,6 +130,7 @@ public class CreateDeliveryActivity extends AppCompatActivity {
         bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
 
         //TODO: Pass selected location to header
+        createDeliveryController.setLocation(locationDisplay, prevIntent);
 
     }
     private void showDateTimeDialog(final EditText date_time_in) {

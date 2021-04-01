@@ -3,7 +3,9 @@ package com.sandbox.chat.mgr;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -19,79 +21,65 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.sandbox.chat.R;
+import com.sandbox.chat.models.Deliverer;
+import com.sandbox.chat.models.DelivererOffer;
+import com.sandbox.chat.models.Eatery;
+import com.sandbox.chat.ui.activities.CreateDeliveryActivity;
+import com.sandbox.chat.ui.activities.EaterySelectionMapActivity;
+import com.sandbox.chat.utils.MultiSpinner;
 
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 /**
  * Manager class for CreateDeliveryActivity
  */
 public class CreateDeliveryMgr {
-    public CreateDeliveryMgr(){}
 
-    private static FirebaseFirestore fStore = FirebaseFirestore.getInstance();;
+    private LinkedList<String> selectedLocations;
+    private CreateDeliveryActivity createDeliveryActivity;
+    public CreateDeliveryMgr(CreateDeliveryActivity createDeliveryActivity) {
+        this.createDeliveryActivity = createDeliveryActivity;
+    }
 
-    /**
-     *
-     * @param date_time_in
-     * @param context
-     */
-
-    /**
-     * Records the delivery offer to the database
-     * @param deliveryLocSpinner The drop-down list for delivery location
-     * @param deliveryFeeText The text box for the delivery fee
-     * @param cutoff_picker The text box for cutoff time
-     * @param eta_picker The textbox for estimated time of arrival
-     * @param context The activity that called this method
-     */
     @RequiresApi(api = Build.VERSION_CODES.O)
-
-    public void sendData(Spinner deliveryLocSpinner, EditText deliveryFeeText, EditText cutoff_picker, EditText eta_picker, Context context){
+    public void recordData(String chosenLoc, double deliveryFee, String cutoffDateTime, String etaDateTime, Eatery eatery, Context context, Deliverer deliverer) {
         long unixTime = Instant.now().getEpochSecond();
         String curTime = Long.toString(unixTime);
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        Toast.makeText(context,"Current Time: " + curTime , Toast.LENGTH_SHORT).show();
 
-
-
-        String chosenLoc = deliveryLocSpinner.getSelectedItem().toString();
-        String deliveryFee = deliveryFeeText.getText().toString();
-        String cutoffDateTime = cutoff_picker. getText().toString();
-        String etaDateTime = eta_picker. getText().toString();
-
-
-        Toast.makeText(context,"ETA hour: " + cutoffDateTime, Toast.LENGTH_SHORT).show();
-        Toast.makeText(context,"ETA hour: " + etaDateTime, Toast.LENGTH_SHORT).show();
-
-        if (user != null) {
-            String email = user.getEmail();
+        if (deliverer != null) {
+            String email = deliverer.getEmail();
             String offerID = curTime + "-" + email;  //KEY: OfferID which is current time + uid (unique in every scenario)
-            Map<String, Object> offer = new HashMap<>();
-            offer.put("email", email);
-            offer.put("location", chosenLoc);
-            offer.put("deliveryFee", Double.parseDouble(deliveryFee));
-            offer.put("cutoffDateTime", cutoffDateTime);
-            offer.put("etaDateTime", etaDateTime);
-            offer.put("timestamp", curTime);
-
-            DocumentReference documentReference = fStore.collection("deliveryOffers").document(offerID);
-            documentReference.set(offer).addOnSuccessListener(new OnSuccessListener<Void>(){
-                @Override
-                public void onSuccess(Void aVoid){
-                    Toast.makeText(context,"Data sent: " + chosenLoc, Toast.LENGTH_SHORT).show();
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(context,"Sending failed", Toast.LENGTH_SHORT).show();
-                }
-            });
-        } else {
-            Toast.makeText(context, "No User Logged In", Toast.LENGTH_SHORT).show();
+            DelivererOffer delivererOffer = new DelivererOffer(offerID, cutoffDateTime, etaDateTime, deliveryFee, chosenLoc, eatery, deliverer, curTime);
+//            Toast.makeText(context, delivererOffer.getClass().getName(), Toast.LENGTH_SHORT).show();
+            DelivererOfferMgr.setData(delivererOffer, context);
         }
+
+
     }
+    public void setLocation(Button b, Intent i)
+    {
+        Eatery e = (Eatery) i.getSerializableExtra("Eatery");
+        b.setText(e.getEateryName());
+
+    }
+    public void setDeliveryLocations(MultiSpinner deliveryLocSpinner)
+    {
+        selectedLocations = new LinkedList<String>();
+        deliveryLocSpinner.setItems(createDeliveryActivity.getResources().getStringArray(R.array.deliver_to) ,"Select locations" ,new MultiSpinner.MultiSpinnerListener() {
+            @Override
+            public void onItemsSelected(boolean[] selected) {
+                selectedLocations = deliveryLocSpinner.getAllSelected(selected);
+            }
+        });
+    }
+
+
 }
