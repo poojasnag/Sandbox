@@ -75,7 +75,8 @@
         <activity android:name=".ui.activities.SettingsActivity" />
         <activity android:name=".ui.activities.ClosedOrderActivity" />
         <activity android:name=".ui.activities.PlaceOrderActivity" />
-        <activity android:name=".ui.activities.ChooseDelivererActivity" />
+        <activity android:name=".ui.activities.ChooseDelivererActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.activities.UserRatingActivity" />
         <activity android:name=".ui.activities.OrderStatusActivity" />
         <activity android:name=".ui.activities.PendingOrdersActivity" />
