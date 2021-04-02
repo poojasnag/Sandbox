@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import com.sandbox.chat.R;
 import com.sandbox.chat.ui.activities.PendingOrdersActivity;
 import com.sandbox.chat.ui.activities.PlaceOrderActivity;
+import com.sandbox.chat.ui.activities.UserRatingActivity;
 import com.sandbox.chat.utils.MultiRadio;
 
 
@@ -39,8 +40,10 @@ public class PlaceOrderMgr {
 
         //TODO: record new order
         Intent intent = new Intent(placeOrderActivity.getPrevIntent());
-        intent.setComponent(new ComponentName(view.getContext(), PendingOrdersActivity.class));
+        //TODO: Connect to appropriate activity
 
+//        intent.setComponent(new ComponentName(view.getContext(), PendingOrdersActivity.class));
+        intent.setComponent(new ComponentName(view.getContext(), UserRatingActivity.class));
         placeOrderActivity.startActivity(intent);
     }
 
