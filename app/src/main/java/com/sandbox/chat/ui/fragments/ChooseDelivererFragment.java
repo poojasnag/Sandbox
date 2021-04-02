@@ -48,7 +48,7 @@ public class ChooseDelivererFragment extends Fragment implements View.OnClickLis
     public void onStart()
     {
         super.onStart();
-//        i = getIntent();
+        i = getActivity().getIntent();
         Eatery curEatery = (Eatery) (i.getSerializableExtra("Eatery"));
         mChooseDelivererPresenter.setLocation(mBtnChooseDeliverer, i);
         mChooseDelivererPresenter.getDeliverers(mRecyclerViewDelivererList, curEatery);
