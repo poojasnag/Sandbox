@@ -7,12 +7,10 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.sandbox.chat.models.Deliverer;
 import com.sandbox.chat.models.DelivererOffer;
 import com.sandbox.chat.models.Eatery;
@@ -23,7 +21,7 @@ import java.util.Map;
 
 public class DelivererOfferMgr {
     private static FirebaseFirestore fStore = FirebaseFirestore.getInstance();
-    private static String OFFER_TABLE = "deliveryOffers";
+    private static String OFFER_TABLE = "delivererOffers";
     DelivererOfferMgr(){}
 
     public static void setData(DelivererOffer delivererOffer, Context context){
