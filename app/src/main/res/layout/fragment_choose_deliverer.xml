@@ -10,9 +10,9 @@
 
     <Button
         android:id="@+id/choose_deliverer_button"
-        android:layout_width="191dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="52dp"
+        android:layout_width="296dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="104dp"
         android:text="Button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,8 +20,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/choose_deliverer_list"
-        android:layout_width="339dp"
-        android:layout_height="482dp"
+        android:layout_width="370dp"
+        android:layout_height="489dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

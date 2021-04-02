@@ -24,7 +24,7 @@ import com.sandbox.chat.models.Eatery;
 
 
 public class ChooseDelivererFragment extends Fragment implements View.OnClickListener, ChooseDelivererContract.View{
-    private static final String FINAL = RegisterFragment.class.getSimpleName();
+    private static final String FINAL = ChooseDelivererFragment.class.getSimpleName();
 
     private Intent i;
     private Button mBtnChooseDeliverer;
@@ -50,12 +50,13 @@ public class ChooseDelivererFragment extends Fragment implements View.OnClickLis
         super.onStart();
         i = getActivity().getIntent();
         Eatery curEatery = (Eatery) (i.getSerializableExtra("Eatery"));
-        mChooseDelivererPresenter.setLocation(mBtnChooseDeliverer, i);
-        mChooseDelivererPresenter.getDeliverers(mRecyclerViewDelivererList, curEatery);
 
         // review where to add this
         mBtnChooseDeliverer = mBtnChooseDeliverer.findViewById(R.id.choose_deliverer_button);
         mRecyclerViewDelivererList = mRecyclerViewDelivererList.findViewById(R.id.choose_deliverer_list);
+
+        mChooseDelivererPresenter.setLocation(mBtnChooseDeliverer, i);
+        mChooseDelivererPresenter.getDeliverers(mRecyclerViewDelivererList, curEatery);
     }
 
     // done

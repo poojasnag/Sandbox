@@ -22,9 +22,9 @@ import com.sandbox.chat.ui.activities.ChooseDelivererActivity;
 
 import java.util.LinkedList;
 
-public class ChooseDelivererPresenter implements ChooseDelivererContract.Presenter, ChooseDelivererContract.OnChooseDelivererListener {
+public class ChooseDelivererPresenter implements ChooseDelivererContract.Presenter {
     private ChooseDelivererContract.View mChooseDelivererView;
-    private ChooseDelivererInteractor mChooseDelivererInteractor;
+//    private ChooseDelivererInteractor mChooseDelivererInteractor;
 
     private static final String TAG = "ImportDB";
     private static final String KEY_LOCATION = "location";
@@ -35,7 +35,7 @@ public class ChooseDelivererPresenter implements ChooseDelivererContract.Present
 
     public ChooseDelivererPresenter(ChooseDelivererContract.View chooseDelivererView){
         this.mChooseDelivererView = chooseDelivererView;
-        mChooseDelivererInteractor = new ChooseDelivererInteractor(this);
+//        mChooseDelivererInteractor = new ChooseDelivererInteractor(this);
     }
 
     // functions from contract - presenter

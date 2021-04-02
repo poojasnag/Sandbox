@@ -9,11 +9,14 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.sandbox.chat.mgr.PlaceOrderMgr;
+//import com.sandbox.chat.mgr.PlaceOrderMgr;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.R;
+import com.sandbox.chat.ui.fragments.ChooseDelivererFragment;
 import com.sandbox.chat.utils.MultiRadio;
 
 /**
@@ -23,18 +26,13 @@ import com.sandbox.chat.utils.MultiRadio;
  * @author chua zi heng
  */
 public class PlaceOrderActivity extends AppCompatActivity {
-    private PlaceOrderMgr placeOrderController;
+    private Toolbar mToolbar;
+
+//    // RELOCATE
+//    private MultiRadio locationList;
+//    private Button submitButton;
 
 
-    private MultiRadio locationList;
-    private Button submitButton;
-
-
-    public void setSelectedLocation(String selectedLocation) {
-        this.selectedLocation = selectedLocation;
-    }
-
-    private String selectedLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,47 +40,39 @@ public class PlaceOrderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_place_order);
         final BottomNavigationView bot_bar = findViewById(R.id.place_order_bottomNavigationView);
         bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
-        placeOrderController = new PlaceOrderMgr(this);
-        submitButton = findViewById(R.id.place_order_submit);
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Intent intent = new Intent(view.getContext(), EaterySelectionMapActivity.class);
-                Intent intent = new Intent(view.getContext(), UserRatingActivity.class);
-                startActivity(intent);
-            }
-        });
+        bindViews();
+        init();
 
-        locationList = findViewById(R.id.spinner2);
-        placeOrderController.setLocationList(locationList);
-        //get string array from source
-
-    }
-
-
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                placeOrderController.submitOrder(view);
-            }
-        });
+//        RELOCATE
+//        placeOrderController = new PlaceOrderMgr(this);
+//        submitButton = findViewById(R.id.place_order_submit);
+//        submitButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                Intent intent = new Intent(view.getContext(), EaterySelectionMapActivity.class);
+//                Intent intent = new Intent(view.getContext(), UserRatingActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        locationList = findViewById(R.id.spinner2);
+//        placeOrderController.setLocationList(locationList);
+//        //get string array from source
 
     }
 
-    public Intent getPrevIntent() {
-        return getIntent();
-    }
+    private void bindViews() { mToolbar = (Toolbar) findViewById(R.id.toolbar); }
 
-    public Button getSubmitButton() {
-        return submitButton;
-    }
+    private void init(){
+        // set the toolbar
+        setSupportActionBar(mToolbar);
 
-    public String getSelectedLocation() {
-        return selectedLocation;
+        // set the choose deliverer screen fragment
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout_content_place_order,
+                ChooseDelivererFragment.newInstance(),
+                ChooseDelivererFragment.class.getSimpleName());
+        fragmentTransaction.commit();
     }
 
 }

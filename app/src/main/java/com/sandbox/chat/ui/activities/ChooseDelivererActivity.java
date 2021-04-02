@@ -33,10 +33,10 @@ public class ChooseDelivererActivity extends AppCompatActivity {
     private static final String KEY_LOCATION = "location";
     private static final String KEY_DELIVERYFEE = "deliveryFee";
     private static final String KEY_NAME = "email";
-    private Button selectedLocation;
+//    private Button selectedLocation;
     LinkedList<String> demo  = new LinkedList<String>();
     ChooseDelivererPresenter chooseDelivererPresenter;
-    private RecyclerView ordersList;
+//    private RecyclerView ordersList;
 
     public static void startActivity(Context context) {
         Intent intent = new Intent(context, ChooseDelivererActivity.class);
@@ -52,9 +52,9 @@ public class ChooseDelivererActivity extends AppCompatActivity {
         bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
         bindViews();
         init();
-        // new zh code
-        selectedLocation = findViewById(R.id.choose_deliverer_button);
-        ordersList = findViewById(R.id.choose_deliverer_list);
+//        // new zh code
+//        selectedLocation = findViewById(R.id.choose_deliverer_button);
+//        ordersList = findViewById(R.id.choose_deliverer_list);
     }
 
     private void bindViews() { mToolbar = (Toolbar) findViewById(R.id.toolbar);}
@@ -92,7 +92,7 @@ public class ChooseDelivererActivity extends AppCompatActivity {
 ////        Log.d(TAG, demo.toString());  // document.getId() document.getData()
 //
 //    }
-    public void setDelivererList(LinkedList<String> demo){
-        this.demo = demo;
-    }
+//    public void setDelivererList(LinkedList<String> demo){
+//        this.demo = demo;
+//    }
 }
