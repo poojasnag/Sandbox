@@ -12,6 +12,14 @@
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <FrameLayout
+        android:id="@+id/frame_layout_content_chat"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -20,12 +28,20 @@
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:title="@string/app_name" />
 
-    </com.google.android.material.appbar.AppBarLayout>
+    </FrameLayout>
 
-    <FrameLayout
-        android:id="@+id/frame_layout_content_chat"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/chat_bottomNavigationView"
+        style="@style/bottom_navigation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        app:backgroundTint="@color/colorTitle"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_navigation" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
