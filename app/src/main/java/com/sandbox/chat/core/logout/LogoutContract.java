@@ -4,7 +4,7 @@ package com.sandbox.chat.core.logout;
  *
  * @author chua zi heng
  */
-public interface LogoutContract {
+public interface    LogoutContract {
     interface View {
         void onLogoutSuccess(String message);
 
