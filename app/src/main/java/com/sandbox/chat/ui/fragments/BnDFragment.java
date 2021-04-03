@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import com.sandbox.chat.R;
 import com.sandbox.chat.ui.contract.BnDContract;
-import com.sandbox.chat.mgr.BnDMgr;
+//import com.sandbox.chat.mgr.BnDMgr;
 import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.activities.BnDActivity;
 import com.sandbox.chat.ui.activities.EaterySelectionMapActivity;

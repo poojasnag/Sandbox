@@ -13,17 +13,18 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.sandbox.chat.R;
-import com.sandbox.chat.mgr.BnDMgr;
+//import com.sandbox.chat.mgr.BnDMgr;
 import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.fragments.BnDFragment;
 import com.sandbox.chat.ui.fragments.LoginFragment;
+import com.sandbox.chat.ui.presenter.BnDPresenter;
 
 /**
  * Displays the Buyer and Deliverer selection interface
  */
 
 public class BnDActivity extends AppCompatActivity {
-    BnDMgr bndController ;
+    BnDPresenter bndController ;
     private Toolbar mToolbar;
     /**
      * Displays the interface from another activity class
@@ -56,7 +57,7 @@ public class BnDActivity extends AppCompatActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        bndController = new BnDMgr();
+        bndController = new BnDPresenter();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bn_d);
         bindViews();
