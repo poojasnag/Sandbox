@@ -116,9 +116,10 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
 //    @NonNull View view
     public void onSubmitSelect(Context context) {
         placeOrderPresenter = new PlaceOrderPresenter(placeOrderActivity);
+        placeOrderActivity = new PlaceOrderActivity();
         mProgressDialog.dismiss();
         //TODO: record new order
-        Intent intent = new Intent(context,PendingOrdersActivity.class);
+        Intent intent = new Intent(getContext(),PendingOrdersActivity.class);
 //        Intent intent = new Intent(placeOrderActivity.getPrevIntent());
 //        intent.setComponent(new ComponentName(view.getContext(), PendingOrdersActivity.class));
         startActivity(intent);
