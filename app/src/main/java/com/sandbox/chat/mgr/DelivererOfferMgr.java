@@ -21,25 +21,25 @@ import java.util.Map;
 
 public class DelivererOfferMgr {
     private static FirebaseFirestore fStore = FirebaseFirestore.getInstance();
-    private static String OFFER_TABLE = "delivererOffers";
-    DelivererOfferMgr(){}
+    private static String OFFER_TABLE = "delivererOffer";
+    public DelivererOfferMgr(){}
 
     public static void setData(DelivererOffer delivererOffer, Context context){
-        Map<String, Object> offer = new HashMap<>();
-        Deliverer deliverer = delivererOffer.getDeliverer();
-        offer.put("email",deliverer.getEmail() );
-        offer.put("location", delivererOffer.getDeliveryLocation());
-        offer.put("deliveryFee", delivererOffer.getDeliveryFee());
-        offer.put("cutoffDateTime", delivererOffer.getCutOffTime());
-        offer.put("etaDateTime", delivererOffer.getEtaTime());
-        offer.put("timestamp", delivererOffer.getTimestamp());
-        offer.put("eatery", delivererOffer.getEatery());
-
+//        Map<String, Object> offer = new HashMap<>();
+//        Deliverer deliverer = delivererOffer.getDeliverer();
+//        offer.put("email",deliverer.getEmail() );
+//        offer.put("location", delivererOffer.getDeliveryLocation());
+//        offer.put("deliveryFee", delivererOffer.getDeliveryFee());
+//        offer.put("cutoffDateTime", delivererOffer.getCutOffTime());
+//        offer.put("etaDateTime", delivererOffer.getEtaTime());
+//        offer.put("timestamp", delivererOffer.getTimestamp());
+//        offer.put("eatery", delivererOffer.getEatery());
+//        offer.put("offer", delivererOffer);
         DocumentReference documentReference = fStore.collection(OFFER_TABLE).document(delivererOffer.getDelivererOfferID());
-        documentReference.set(offer).addOnSuccessListener(new OnSuccessListener<Void>(){
+        documentReference.set(delivererOffer).addOnSuccessListener(new OnSuccessListener<Void>(){
             @Override
             public void onSuccess(Void aVoid){
-                Toast.makeText(context,"Data sent: " + delivererOffer.getEatery().getEateryName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"Test sent: " + delivererOffer.getEatery().getEateryName(), Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -48,13 +48,20 @@ public class DelivererOfferMgr {
             }
         });
     }
+//    public static Query getEateryDeliverers(Eatery eatery){
+//        CollectionReference deliveryOffers_db = fStore.collection(OFFER_TABLE);
+//        Query query = deliveryOffers_db.whereEqualTo("eatery", eatery);
+//        return query;
+//    }
     public static Query getEateryDeliverers(Eatery eatery){
         CollectionReference deliveryOffers_db = fStore.collection(OFFER_TABLE);
         Query query = deliveryOffers_db.whereEqualTo("eatery", eatery);
         return query;
     }
 
-
 }
+
+
+
 
 

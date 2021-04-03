@@ -92,6 +92,8 @@ public class PlaceOrderActivity extends AppCompatActivity {
                 PlaceOrderFragment.class.getSimpleName());
         fragmentTransaction.commit();
     }
+
+
 }
 
 

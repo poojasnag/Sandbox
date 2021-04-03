@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sandbox.chat.R;
+import com.sandbox.chat.models.DelivererOffer;
 import com.sandbox.chat.ui.activities.PlaceOrderActivity;
 import com.sandbox.chat.ui.activities.UserRatingActivity;
 
@@ -27,6 +28,7 @@ import java.util.LinkedList;
 public class DelivererProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private LinkedList<String> deliverers;
+    private DelivererOffer delivererOffer;
     private ViewGroup parent;
     //TODO: Replace this with a list of deliver offers
 
@@ -54,7 +56,7 @@ public class DelivererProfileAdapter extends RecyclerView.Adapter<RecyclerView.V
      * Loads the data to the adapter
      * @param strings the list of deliverers
      */
-    public DelivererProfileAdapter(LinkedList<String> strings) {this.deliverers = strings;}
+    public DelivererProfileAdapter(LinkedList<String> strings, DelivererOffer delivererOffer) {this.deliverers = strings; this.delivererOffer = delivererOffer;} //passed in delivereroffer object
     //TODO: Replace this with the list of deliverers
 
 
@@ -94,6 +96,7 @@ public class DelivererProfileAdapter extends RecyclerView.Adapter<RecyclerView.V
                 public void onClick(View view) {
                     Activity cur = (Activity)view.getContext();
                     Intent intent = cur.getIntent();
+                    intent.putExtra("delivererOffer", delivererOffer);
                     intent.setComponent(new ComponentName(cur, PlaceOrderActivity.class));
                     cur.startActivity(intent);
                     //TODO: insert data about deliverer

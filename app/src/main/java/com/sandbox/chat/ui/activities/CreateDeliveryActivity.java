@@ -58,7 +58,7 @@ public class CreateDeliveryActivity extends AppCompatActivity {
     Button locationDisplay;
     Intent prevIntent;
     Eatery curEatery;
-    LinkedList<String> selectedLocations;
+    ArrayList<String> selectedLocations;
 
     /**
      * Initialize the interface.
@@ -162,7 +162,7 @@ public class CreateDeliveryActivity extends AppCompatActivity {
     }
     public void setDeliveryLocations(MultiSpinner deliveryLocSpinner)
     {
-        selectedLocations = new LinkedList<String>();
+        selectedLocations = new ArrayList<String>();
         deliveryLocSpinner.setItems(this.getResources().getStringArray(R.array.deliver_to) ,"Select locations" ,new MultiSpinner.MultiSpinnerListener() {
             @Override
             public void onItemsSelected(boolean[] selected) {

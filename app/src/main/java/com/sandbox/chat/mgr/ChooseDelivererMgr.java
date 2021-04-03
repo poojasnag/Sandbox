@@ -1,3 +1,4 @@
+
 package com.sandbox.chat.mgr;
 
 import android.content.Context;
@@ -15,6 +16,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.sandbox.chat.models.DelivererOffer;
 import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.ui.activities.ChooseDelivererActivity;
 import com.sandbox.chat.adapters.DelivererProfileAdapter;
@@ -44,37 +46,39 @@ public class ChooseDelivererMgr {
      */
 
     // goes under interpreter
-    public void getDeliverers(RecyclerView ordersList, Eatery eatery) {
-        //TODO: change to actual deliverers
-
-        LinkedList<String> demo = new LinkedList<String>();
-        DelivererOfferMgr.getEateryDeliverers(eatery)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-//                                        demo.add("Name: xxabcxx \nRate:$0.5\nLocation 1: Hall 7 bus stop");
-//                                        demo.add("Name: test2 \nRate:$0.5\nLocation 1: Hall 7 bus stop");
-//                                Toast.makeText(chooseDelivererActivity, document.getString(KEY_LOCATION), Toast.LENGTH_SHORT).show();
-                                // document.getId() document.getData()
-                                List<String> locationsList = (List <String>)document.get(KEY_LOCATION);
-                                Log.e("datatype", locationsList.getClass().toString());
-                                demo.add(String.format("Name: %s \nRate:$%.2f\nLocations: %s", document.getString(KEY_NAME), document.getDouble(KEY_DELIVERYFEE), MultiSpinner.linkedListToString(locationsList)));
-                            }
-                            DelivererProfileAdapter adapter = new DelivererProfileAdapter(demo);
-                            //TODO: pass the list of orders to this adapter
-                            ordersList.setAdapter(adapter);
-                            ordersList.setLayoutManager(new LinearLayoutManager(ordersList.getContext()));
-                        } else {
-                            Toast.makeText(chooseDelivererActivity, "Error getting documents", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-
-                });
-    }
+//    public void getDeliverers(RecyclerView ordersList, Eatery eatery) {
+//        //TODO: change to actual deliverers
+//
+//        LinkedList<String> demo = new LinkedList<String>();
+//        DelivererOfferMgr.getEateryDeliverers(eatery)
+//                .get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            for (QueryDocumentSnapshot document : task.getResult()) {
+////                                        demo.add("Name: xxabcxx \nRate:$0.5\nLocation 1: Hall 7 bus stop");
+////                                        demo.add("Name: test2 \nRate:$0.5\nLocation 1: Hall 7 bus stop");
+////                                Toast.makeText(chooseDelivererActivity, document.getString(KEY_LOCATION), Toast.LENGTH_SHORT).show();
+//                                // document.getId() document.getData()
+////                                LinkedList<String> locationsList = (LinkedList <String>)document.get(KEY_LOCATION);
+//                                DelivererOffer delivererOffer = document.toObject(DelivererOffer.class);
+//                                Log.e("DELIVEREROFFER", delivererOffer.getClass().toString());
+//                                demo.add(String.format("Name: %s \nRate:$%.2f\nLocations: %s", delivererOffer.getDeliverer().getEmail(), delivererOffer.getDeliveryFee(), MultiSpinner.linkedListToString(delivererOffer.getDeliveryLocation())));
+////                                demo.add(String.format("Name: %s \nRate:$%.2f\nLocations: %s", document.getString(KEY_NAME), document.getDouble(KEY_DELIVERYFEE), MultiSpinner.linkedListToString(locationsList)));
+//                            }
+//                            DelivererProfileAdapter adapter = new DelivererProfileAdapter(demo);
+//                            //TODO: pass the list of orders to this adapter
+//                            ordersList.setAdapter(adapter);
+//                            ordersList.setLayoutManager(new LinearLayoutManager(ordersList.getContext()));
+//                        } else {
+//                            Toast.makeText(chooseDelivererActivity, "Error getting documents", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//
+//
+//                });
+//    }
 //        old code gone
 //        fStore = FirebaseFirestore.getInstance();
 //        FirebaseFirestore fStore = FirebaseFirestore.getInstance();

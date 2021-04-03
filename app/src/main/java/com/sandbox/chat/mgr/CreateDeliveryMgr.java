@@ -50,7 +50,7 @@ public class CreateDeliveryMgr {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void recordData(LinkedList<String> locationsList, double deliveryFee, String cutoffDateTime, String etaDateTime, Eatery eatery, Context context, Deliverer deliverer) {
+    public void recordData(ArrayList<String> locationsList, double deliveryFee, String cutoffDateTime, String etaDateTime, Eatery eatery, Context context, Deliverer deliverer) {
         long unixTime = Instant.now().getEpochSecond();
         String curTime = Long.toString(unixTime);
 
