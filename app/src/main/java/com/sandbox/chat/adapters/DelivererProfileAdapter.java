@@ -1,5 +1,7 @@
 package com.sandbox.chat.adapters;
 
+import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -10,6 +12,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sandbox.chat.R;
@@ -24,6 +27,7 @@ import java.util.LinkedList;
 public class DelivererProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private LinkedList<String> deliverers;
+    private ViewGroup parent;
     //TODO: Replace this with a list of deliver offers
 
     /**
@@ -63,6 +67,7 @@ public class DelivererProfileAdapter extends RecyclerView.Adapter<RecyclerView.V
     @NonNull
     @Override
     public DelivererProfileHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+        parent = viewGroup;
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.deliverer_profile, viewGroup, false);
 
@@ -87,9 +92,12 @@ public class DelivererProfileAdapter extends RecyclerView.Adapter<RecyclerView.V
             ((DelivererProfileHolder) holder).parent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(((DelivererProfileHolder) holder).context, PlaceOrderActivity.class);
+                    Activity cur = (Activity)view.getContext();
+                    Intent intent = cur.getIntent();
+                    intent.setComponent(new ComponentName(cur, PlaceOrderActivity.class));
+                    cur.startActivity(intent);
                     //TODO: insert data about deliverer
-                    ((DelivererProfileHolder) holder).context.startActivity(intent);
+
 //                    Intent intent = new Intent(((DelivererProfileHolder) holder).context, UserRatingActivity.class);
 //                    ((DelivererProfileHolder) holder).context.startActivity(intent);
                 }

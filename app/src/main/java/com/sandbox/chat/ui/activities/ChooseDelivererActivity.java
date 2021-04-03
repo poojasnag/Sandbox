@@ -56,7 +56,6 @@ public class ChooseDelivererActivity extends AppCompatActivity {
 //        selectedLocation = findViewById(R.id.choose_deliverer_button);
 //        ordersList = findViewById(R.id.choose_deliverer_list);
     }
-
     private void bindViews() { mToolbar = (Toolbar) findViewById(R.id.toolbar);}
 
     private void init(){
