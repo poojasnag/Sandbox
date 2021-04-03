@@ -33,6 +33,7 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
     private ProgressDialog mProgressDialog;
     private String selectedLocation;
     private MultiRadio locationList;
+    private Intent i;
 
     public static PlaceOrderFragment newInstance() {
         Bundle args = new Bundle();
@@ -40,6 +41,20 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
         fragment.setArguments(args);
         return fragment;
     }
+
+    public void onStart() {
+        super.onStart();
+        i = getActivity().getIntent();
+        submitButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                placeOrderPresenter.onSubmitSuccess();
+            }
+        });
+
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -89,7 +104,7 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
 
     public void setLocationList(MultiRadio locationList) {
 
-        String[] locations = placeOrderActivity.getResources().getStringArray(R.array.deliver_to);
+        String[] locations = getActivity().getResources().getStringArray(R.array.deliver_to);
         //TODO: Replace string with selected locations by deliverer
         locationList.setItems(locations, "Select location", new MultiRadio.MultiRadioListener() {
             @Override

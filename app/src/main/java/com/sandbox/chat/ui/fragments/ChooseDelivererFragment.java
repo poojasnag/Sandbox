@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.sandbox.chat.R;
 import com.sandbox.chat.adapters.DelivererProfileAdapter;
@@ -106,6 +107,6 @@ public class ChooseDelivererFragment extends Fragment implements View.OnClickLis
 
     private void onChooseDeliverer(View view){
         // input
-
+        Toast.makeText(getContext(), "Deliverer Chosen", Toast.LENGTH_SHORT).show();
     }
 }
