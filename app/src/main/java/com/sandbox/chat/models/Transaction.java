@@ -42,19 +42,23 @@ public class Transaction implements Serializable {
     private Status orderStatus;
 
 
-    public Transaction(String buyerID, String delivererOfferID, String delivererID, String buyerLocation, String orderDetails) {
+    public Transaction(String buyerID, String delivererOfferID, String delivererID, String buyerLocation, String orderDetails, Status orderStatus, Status delivererStatus, Status buyerStatus) {
         this.buyerID = buyerID;
         this.delivererOfferID = delivererOfferID;
         this.delivererID = delivererID;
         this.buyerLocation = buyerLocation;
         this.orderDetails = orderDetails;
+        this.orderStatus = orderStatus;
+        this.buyerStatus = buyerStatus;
+        this.delivererStatus = delivererStatus;
+
     }
 
     public String getBuyerID() {
         return buyerID;
     }
 
-    public void setBuyerID(String buyerID) {
+    public void setbuyerID(String buyerID) {
         this.buyerID = buyerID;
     }
 

@@ -74,7 +74,7 @@ public class ChooseDelivererPresenter implements ChooseDelivererContract.Present
                                 demo.add(String.format("Name: %s \nRate:$%.2f\nLocations: %s", delivererMap.get("email").toString(), document.getDouble(KEY_DELIVERYFEE), document.get("deliveryLocation").toString()));
 //                                demo.add(String.format("Name: %s \nRate:$%.2f\nLocations: %s", document.getString(KEY_NAME), document.getDouble(KEY_DELIVERYFEE), MultiSpinner.linkedListToString(locationsList)));
                             }
-
+//                            Log.e("choosedelivererP", delivererOffer.getDeliverer().getEmail());
                             DelivererProfileAdapter adapter = new DelivererProfileAdapter(demo, delivererOffer);
                             //TODO: pass the list of orders to this adapter
                             ordersList.setAdapter(adapter);

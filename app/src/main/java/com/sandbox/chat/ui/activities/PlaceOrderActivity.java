@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.sandbox.chat.mgr.PlaceOrderMgr;
+import com.sandbox.chat.models.DelivererOffer;
 import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.R;
@@ -58,6 +59,7 @@ public class PlaceOrderActivity extends AppCompatActivity {
 
         Intent intent = new Intent(context, PlaceOrderActivity.class);
         intent.setFlags(flags);
+        Toast.makeText(context, ( (DelivererOffer) intent.getSerializableExtra("delivererOffer")).getClass().toString(), Toast.LENGTH_SHORT).show();
         context.startActivity(intent);
     }
 

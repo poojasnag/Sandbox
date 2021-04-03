@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -97,6 +99,7 @@ public class DelivererProfileAdapter extends RecyclerView.Adapter<RecyclerView.V
                     Activity cur = (Activity)view.getContext();
                     Intent intent = cur.getIntent();
                     intent.putExtra("delivererOffer", delivererOffer);
+                    Log.e("delivererpffer", delivererOffer.getDeliverer().getEmail());
                     intent.setComponent(new ComponentName(cur, PlaceOrderActivity.class));
                     cur.startActivity(intent);
                     //TODO: insert data about deliverer

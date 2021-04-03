@@ -124,15 +124,15 @@ public class MultiSpinner extends androidx.appcompat.widget.AppCompatSpinner imp
         return all;
     }
 
-    public static String linkedListToString(ArrayList<String> ll){
-        String s = "| ";
-        Iterator<String> iterator = ll.iterator();
-        while (iterator.hasNext()) {
-            // appending using "+" operator
-            s = s + iterator.next() + " | ";
-        }
-        return s;
-    }
+//    public static String linkedListToString(ArrayList<String> ll){
+//        String s = "| ";
+//        Iterator<String> iterator = ll.iterator();
+//        while (iterator.hasNext()) {
+//            // appending using "+" operator
+//            s = s + iterator.next() + " | ";
+//        }
+//        return s;
+//    }
 
 
 
