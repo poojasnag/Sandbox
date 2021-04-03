@@ -2,6 +2,7 @@ package com.sandbox.chat.core.chooseDeliverer;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -19,8 +20,10 @@ import com.sandbox.chat.mgr.DelivererOfferMgr;
 import com.sandbox.chat.models.Deliverer;
 import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.ui.activities.ChooseDelivererActivity;
+import com.sandbox.chat.utils.MultiSpinner;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class ChooseDelivererPresenter implements ChooseDelivererContract.Presenter {
     private ChooseDelivererContract.View mChooseDelivererView;
@@ -55,7 +58,9 @@ public class ChooseDelivererPresenter implements ChooseDelivererContract.Present
 //                                        demo.add("Name: test2 \nRate:$0.5\nLocation 1: Hall 7 bus stop");
 //                                Toast.makeText(chooseDelivererActivity, document.getString(KEY_LOCATION), Toast.LENGTH_SHORT).show();
                                 // document.getId() document.getData()
-                                demo.add(String.format("Name: %s \nRate:$%.2f\nLocation 1: %s", document.getString(KEY_NAME), document.getDouble(KEY_DELIVERYFEE), document.getString(KEY_LOCATION)));
+                                List<String> locationsList = (List <String>)document.get(KEY_LOCATION);
+                                Log.e("datatype", locationsList.getClass().toString());
+                                demo.add(String.format("Name: %s \nRate:$%.2f\nLocation 1: %s", document.getString(KEY_NAME), document.getDouble(KEY_DELIVERYFEE), MultiSpinner.linkedListToString(locationsList)));
 
                             }
                             DelivererProfileAdapter adapter = new DelivererProfileAdapter(demo);

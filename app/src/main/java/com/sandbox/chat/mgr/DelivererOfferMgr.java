@@ -49,7 +49,7 @@ public class DelivererOfferMgr {
         });
     }
     public static Query getEateryDeliverers(Eatery eatery){
-        CollectionReference deliveryOffers_db = fStore.collection("deliveryOffers");
+        CollectionReference deliveryOffers_db = fStore.collection(OFFER_TABLE);
         Query query = deliveryOffers_db.whereEqualTo("eatery", eatery);
         return query;
     }

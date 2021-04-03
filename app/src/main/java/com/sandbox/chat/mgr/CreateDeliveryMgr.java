@@ -5,6 +5,7 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -43,25 +44,23 @@ import java.util.Map;
  */
 public class CreateDeliveryMgr {
 
-    private LinkedList<String> selectedLocations;
     private CreateDeliveryActivity createDeliveryActivity;
     public CreateDeliveryMgr(CreateDeliveryActivity createDeliveryActivity) {
         this.createDeliveryActivity = createDeliveryActivity;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void recordData(String chosenLoc, double deliveryFee, String cutoffDateTime, String etaDateTime, Eatery eatery, Context context, Deliverer deliverer) {
+    public void recordData(LinkedList<String> locationsList, double deliveryFee, String cutoffDateTime, String etaDateTime, Eatery eatery, Context context, Deliverer deliverer) {
         long unixTime = Instant.now().getEpochSecond();
         String curTime = Long.toString(unixTime);
 
         if (deliverer != null) {
             String email = deliverer.getEmail();
             String offerID = curTime + "-" + email;  //KEY: OfferID which is current time + uid (unique in every scenario)
-            DelivererOffer delivererOffer = new DelivererOffer(offerID, cutoffDateTime, etaDateTime, deliveryFee, chosenLoc, eatery, deliverer, curTime);
+            DelivererOffer delivererOffer = new DelivererOffer(offerID, cutoffDateTime, etaDateTime, deliveryFee, locationsList, eatery, deliverer, curTime);
 //            Toast.makeText(context, delivererOffer.getClass().getName(), Toast.LENGTH_SHORT).show();
             DelivererOfferMgr.setData(delivererOffer, context);
         }
-
 
     }
     public void setLocation(Button b, Intent i)
@@ -69,16 +68,6 @@ public class CreateDeliveryMgr {
         Eatery e = (Eatery) i.getSerializableExtra("Eatery");
         b.setText(e.getEateryName());
 
-    }
-    public void setDeliveryLocations(MultiSpinner deliveryLocSpinner)
-    {
-        selectedLocations = new LinkedList<String>();
-        deliveryLocSpinner.setItems(createDeliveryActivity.getResources().getStringArray(R.array.deliver_to) ,"Select locations" ,new MultiSpinner.MultiSpinnerListener() {
-            @Override
-            public void onItemsSelected(boolean[] selected) {
-                selectedLocations = deliveryLocSpinner.getAllSelected(selected);
-            }
-        });
     }
 
 
