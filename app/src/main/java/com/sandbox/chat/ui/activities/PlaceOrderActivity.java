@@ -72,7 +72,7 @@ public class PlaceOrderActivity extends AppCompatActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        placeOrderController = new PlaceOrderPresenter();
+        placeOrderController = new PlaceOrderPresenter(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_order);
         bindViews();

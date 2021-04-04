@@ -6,6 +6,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,7 +62,9 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
         submitButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                placeOrderPresenter.onSubmitSuccess();
+                //TODO: I temporarily disconnected this from PlaceOrderPresenter
+                PlaceOrderFragment.this.onSubmitSelect(placeOrderActivity);
+
             }
         });
 
@@ -85,6 +88,7 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
         submitButton = view.findViewById(R.id.place_order_submit);
         locationList = view.findViewById(R.id.spinner2);
         eateryName = view.findViewById(R.id.place_order_eatery_name);
+        orderDetails = view.findViewById(R.id.place_order_order);
 
         setLocationList(locationList);
         setEateryName(eateryName);
@@ -98,8 +102,8 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
     }
 
     private void init() {
-        placeOrderPresenter = new PlaceOrderPresenter((com.sandbox.chat.ui.contract.PlaceOrderContract.View) this);
-
+        placeOrderPresenter = new PlaceOrderPresenter((PlaceOrderActivity) getActivity());
+        placeOrderActivity = (PlaceOrderActivity) getActivity();
         mProgressDialog = new ProgressDialog(getActivity());
         mProgressDialog.setTitle(getString(R.string.loading));
         mProgressDialog.setMessage(getString(R.string.please_wait));
@@ -113,7 +117,7 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
 
         switch (viewId) {
             case R.id.place_order_submit:
-                onSubmitSelect(getContext());
+                onSubmitSelect(getActivity());
                 break;
         }
     }
@@ -142,9 +146,12 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
 //    @NonNull View view
     public void onSubmitSelect(Context context) {
         placeOrderPresenter = new PlaceOrderPresenter(placeOrderActivity);
-        placeOrderActivity = new PlaceOrderActivity();
-        mProgressDialog.dismiss();
 
+        mProgressDialog.dismiss();
+        if(context == null)
+        {
+            Log.e("warning", "Empty context");
+        }
 
         String buyerID = ((User)i.getSerializableExtra("user")).getUid();
         String delivererOfferID = curDelivererOffer.getDelivererOfferID();
