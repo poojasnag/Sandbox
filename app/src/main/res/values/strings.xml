@@ -91,7 +91,7 @@
     <string name="place_order_deliverer_name">Deliverer\'s name: </string>
     <string name="place_order_rate">Rate: </string>
     <string name="place_order_deliver_location">Deliver to: </string>
-    <string name="place_order_title">Place order: </string>
+    <string name="place_order_title">Place order</string>
     <string name="place_order_eta">Estimated time of arrival: </string>
     <string name="place_order_order_header">Order: </string>
     <!-- TODO: Remove or change this placeholder text -->

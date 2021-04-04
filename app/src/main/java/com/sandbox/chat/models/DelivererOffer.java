@@ -56,7 +56,7 @@ public class DelivererOffer implements Serializable {
      * @param deliverer The deliverer's information
 
      */
-    public DelivererOffer(){}
+
     public DelivererOffer(String delivererOfferID, String cutOffTime, String etaTime, double deliveryFee, ArrayList<String> deliveryLocation, Eatery eatery, Deliverer deliverer, String timestamp) {
         this.delivererOfferID = delivererOfferID;
         this.cutOffTime = cutOffTime;

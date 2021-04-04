@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,16 +12,16 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sandbox.chat.R;
+import com.sandbox.chat.models.Deliverer;
 import com.sandbox.chat.models.DelivererOffer;
 import com.sandbox.chat.ui.activities.PlaceOrderActivity;
-import com.sandbox.chat.ui.activities.UserRatingActivity;
+import com.sandbox.chat.utils.MultiSpinner;
 
 import java.util.LinkedList;
 
@@ -29,8 +30,8 @@ import java.util.LinkedList;
  */
 public class DelivererProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private LinkedList<String> deliverers;
-    private DelivererOffer delivererOffer;
+    private LinkedList<DelivererOffer> deliverers;
+
     private ViewGroup parent;
     //TODO: Replace this with a list of deliver offers
 
@@ -58,7 +59,7 @@ public class DelivererProfileAdapter extends RecyclerView.Adapter<RecyclerView.V
      * Loads the data to the adapter
      * @param strings the list of deliverers
      */
-    public DelivererProfileAdapter(LinkedList<String> strings, DelivererOffer delivererOffer) {this.deliverers = strings; this.delivererOffer = delivererOffer;} //passed in delivereroffer object
+    public DelivererProfileAdapter(LinkedList<DelivererOffer> deliverers) {this.deliverers = deliverers;} //passed in delivereroffer object
     //TODO: Replace this with the list of deliverers
 
 
@@ -84,13 +85,14 @@ public class DelivererProfileAdapter extends RecyclerView.Adapter<RecyclerView.V
      * @param holder The DelivererProfileHolder that needs to be bound with data
      * @param position The position of the item in the list
      */
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
         if(holder instanceof DelivererProfileHolder)
         {
-            String deliverer = deliverers.get(position);
-            ((DelivererProfileHolder) holder).delivererProfile.setText(deliverer);
+            DelivererOffer deliverer = deliverers.get(position);
+            ((DelivererProfileHolder) holder).delivererProfile.setText(String.format("Name: %s \nRate:$%.2f\nLocations: %s", deliverer.getDeliverer().getEmail(), deliverer.getDeliveryFee(), String.join(", ", deliverer.getDeliveryLocation())));
             ((DelivererProfileHolder) holder).rating.setRating((float) 4.2);
             //TODO: replace rating
             ((DelivererProfileHolder) holder).parent.setOnClickListener(new View.OnClickListener() {
@@ -98,11 +100,16 @@ public class DelivererProfileAdapter extends RecyclerView.Adapter<RecyclerView.V
                 public void onClick(View view) {
                     Activity cur = (Activity)view.getContext();
                     Intent intent = cur.getIntent();
-                    intent.putExtra("delivererOffer", delivererOffer);
-                    Log.e("delivererpffer", delivererOffer.getDeliverer().getEmail());
+                    if(intent.hasExtra("delivererOffer"))
+                    {
+                        intent.removeExtra("delivererOffer");
+                    }
+                    intent.putExtra("delivererOffer", deliverer);
+
+                    Log.e("delivererpffer", deliverer.getDeliverer().getEmail());
                     intent.setComponent(new ComponentName(cur, PlaceOrderActivity.class));
                     cur.startActivity(intent);
-                    //TODO: insert data about deliverer
+
 
 //                    Intent intent = new Intent(((DelivererProfileHolder) holder).context, UserRatingActivity.class);
 //                    ((DelivererProfileHolder) holder).context.startActivity(intent);

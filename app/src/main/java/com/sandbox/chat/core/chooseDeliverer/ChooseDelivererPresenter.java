@@ -50,9 +50,7 @@ public class ChooseDelivererPresenter implements ChooseDelivererContract.Present
     public void getDeliverers(RecyclerView ordersList, Eatery eatery) {
         //TODO: change to actual deliverers
 
-        LinkedList<String> demo = new LinkedList<String>();
-
-
+        LinkedList<DelivererOffer> demo = new LinkedList<DelivererOffer>();
         DelivererOfferMgr.getEateryDeliverers(eatery)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -71,12 +69,12 @@ public class ChooseDelivererPresenter implements ChooseDelivererContract.Present
 //                                Log.e("deliverer", deliverer.getUid());
                                  delivererOffer = new DelivererOffer(document.getString("delivererOfferID"), document.getString("cutOffTime"), document.getString("etaTime"), document.getDouble("deliveryFee"), locationsList, eatery, deliverer, document.getString("timestamp"));
 //                                Log.e("delivereroffer",delivererOffer.toString());
-                                demo.add(String.format("Name: %s \nRate:$%.2f\nLocations: %s", delivererMap.get("email").toString(), document.getDouble(KEY_DELIVERYFEE), document.get("deliveryLocation").toString()));
+                                demo.add(delivererOffer);
 //                                demo.add(String.format("Name: %s \nRate:$%.2f\nLocations: %s", document.getString(KEY_NAME), document.getDouble(KEY_DELIVERYFEE), MultiSpinner.linkedListToString(locationsList)));
                             }
 //                            Log.e("choosedelivererP", delivererOffer.getDeliverer().getEmail());
-                            DelivererProfileAdapter adapter = new DelivererProfileAdapter(demo, delivererOffer);
-                            //TODO: pass the list of orders to this adapter
+                            DelivererProfileAdapter adapter = new DelivererProfileAdapter(demo);
+
                             ordersList.setAdapter(adapter);
                             ordersList.setLayoutManager(new LinearLayoutManager(ordersList.getContext()));
                         } else {
