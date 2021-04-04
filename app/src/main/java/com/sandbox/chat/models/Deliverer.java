@@ -16,4 +16,12 @@ public class Deliverer extends User implements Serializable {
         super(uid, email, firebaseToken, rating);
         this.delivererOfferList = delivererOfferList;
     }
+
+    public LinkedList<Transaction> getDelivererOfferList() {
+        return delivererOfferList;
+    }
+
+    public void setDelivererOfferList(LinkedList<Transaction> delivererOfferList) {
+        this.delivererOfferList = delivererOfferList;
+    }
 }

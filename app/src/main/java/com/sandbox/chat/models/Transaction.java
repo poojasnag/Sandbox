@@ -41,7 +41,7 @@ public class Transaction implements Serializable {
      */
     private Status orderStatus;
 
-
+    public Transaction (){}
     public Transaction(String buyerID, String delivererOfferID, String delivererID, String buyerLocation, String orderDetails, Status orderStatus, Status delivererStatus, Status buyerStatus) {
         this.buyerID = buyerID;
         this.delivererOfferID = delivererOfferID;

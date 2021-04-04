@@ -2,6 +2,8 @@ package com.sandbox.chat.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +11,11 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sandbox.chat.R;
+import com.sandbox.chat.models.Transaction;
 import com.sandbox.chat.ui.activities.OrderStatusActivity;
 
 import java.util.LinkedList;
@@ -21,7 +25,9 @@ import java.util.LinkedList;
  */
 public class OrderDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private LinkedList<String> orders;
+//    private LinkedList<String> orders;
+    private LinkedList<Transaction> orders;
+
 
     /**
      * Represents each of the items inside the list of orders
@@ -45,7 +51,7 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
      * Loads the data to the adapter
      * @param orders the list of orders
      */
-    public OrderDetailsAdapter(LinkedList<String> orders) {
+    public OrderDetailsAdapter(LinkedList<Transaction> orders) {
         this.orders = orders;
     }
 
@@ -71,13 +77,15 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
      * @param holder The DelivererProfileHolder that needs to be bound with data
      * @param position The position of the item in the list
      */
-
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if(holder instanceof OrderDetailsHolder)
         {
+            Transaction t = orders.get(position);  //TODO: Queries to retrieve ETA and eatery loc based on delivererID
+            ((OrderDetailsHolder) holder).button.setText(String.format("%s \t\t %s \nDeliver to: %s\n Eatery: %s\n%s", t.getDelivererID(), "ETA", t.getBuyerLocation(), "eatery loc", t.getOrderDetails() ));
+            Log.e("orderadapter", t.getOrderDetails());
 
-            ((OrderDetailsHolder) holder).button.setText(orders.get(position));
             ((OrderDetailsHolder) holder).parent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
