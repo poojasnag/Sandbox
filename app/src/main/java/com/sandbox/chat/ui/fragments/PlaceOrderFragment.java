@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,10 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -46,7 +49,11 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
     private MultiRadio locationList;
     private EditText orderDetails;
     private Intent i;
+
     private DelivererOffer curDelivererOffer;
+    private TextView delivererName;
+    private TextView eta;
+    private TextView deliveryRate;
 
 
     public static PlaceOrderFragment newInstance() {
@@ -60,6 +67,7 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
         super.onStart();
 
         submitButton.setOnClickListener(new View.OnClickListener(){
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
                 //TODO: I temporarily disconnected this from PlaceOrderPresenter
@@ -89,9 +97,12 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
         locationList = view.findViewById(R.id.spinner2);
         eateryName = view.findViewById(R.id.place_order_eatery_name);
         orderDetails = view.findViewById(R.id.place_order_order);
-
+        delivererName = view.findViewById(R.id.place_order_deliverer_name);
+        deliveryRate = view.findViewById(R.id.place_order_rate);
+        eta = view.findViewById(R.id.place_order_eta);
         setLocationList(locationList);
         setEateryName(eateryName);
+        setDetails(delivererName, deliveryRate, eta, curDelivererOffer);
 
 //        placeOrderPresenter = new PlaceOrderPresenter(this);
     }
@@ -111,6 +122,7 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
 
         submitButton.setOnClickListener(this);
     }
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onClick(View view) {
         int viewId = view.getId();
@@ -138,12 +150,21 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
         });
     }
 
+    public void setDetails(TextView delivererName, TextView deliveryRate, TextView eta, DelivererOffer d)
+    {
+        Log.e("email check", d.getDeliverer().getEmail());
+        delivererName.setText("Deliverer: " + d.getDeliverer().getEmail());
+        deliveryRate.setText("Rate: $" + d.getDeliveryFee());
+        eta.setText("Estimated time of arrival: "+ d.getEtaTime());
+    }
+
     public void setEateryName(Button b)
     {
         b.setText(((Eatery)(i.getSerializableExtra("Eatery"))).getEateryName());
     }
 
 //    @NonNull View view
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void onSubmitSelect(Context context) {
         placeOrderPresenter = new PlaceOrderPresenter(placeOrderActivity);
 

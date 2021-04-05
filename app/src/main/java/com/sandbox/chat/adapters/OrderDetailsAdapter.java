@@ -1,5 +1,7 @@
 package com.sandbox.chat.adapters;
 
+import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -17,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.sandbox.chat.R;
 import com.sandbox.chat.models.Transaction;
 import com.sandbox.chat.ui.activities.OrderStatusActivity;
+import com.sandbox.chat.ui.activities.PlaceOrderActivity;
 
 import java.util.LinkedList;
 
@@ -84,14 +87,21 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         {
             Transaction t = orders.get(position);  //TODO: Queries to retrieve ETA and eatery loc based on delivererID
             ((OrderDetailsHolder) holder).button.setText(String.format("%s \t\t %s \nDeliver to: %s\n Eatery: %s\n%s", t.getDelivererID(), "ETA", t.getBuyerLocation(), "eatery loc", t.getOrderDetails() ));
-            Log.e("orderadapter", t.getOrderDetails());
+            Log.e("orderadapter", "Orders: "+ t.getOrderDetails());
 
             ((OrderDetailsHolder) holder).parent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(((OrderDetailsHolder) holder).context, OrderStatusActivity.class);
-                    //TODO: Add details of order to the order status activity
-                    ((OrderDetailsHolder) holder).context.startActivity(intent);
+                    Activity cur = (Activity)view.getContext();
+                    Intent intent = cur.getIntent();
+                    if(intent.hasExtra("delivererOffer"))
+                    {
+                        intent.removeExtra("delivererOffer");
+                    }
+                    intent.putExtra("Transaction", t);
+
+                    intent.setComponent(new ComponentName(cur, OrderStatusActivity.class));
+                    cur.startActivity(intent);
                 }
 
             });

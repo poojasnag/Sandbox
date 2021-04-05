@@ -33,7 +33,6 @@ public class DelivererProfileAdapter extends RecyclerView.Adapter<RecyclerView.V
     private LinkedList<DelivererOffer> deliverers;
 
     private ViewGroup parent;
-    //TODO: Replace this with a list of deliver offers
 
     /**
      * Represents each of the items inside the list of deliverers
@@ -60,7 +59,6 @@ public class DelivererProfileAdapter extends RecyclerView.Adapter<RecyclerView.V
      * @param strings the list of deliverers
      */
     public DelivererProfileAdapter(LinkedList<DelivererOffer> deliverers) {this.deliverers = deliverers;} //passed in delivereroffer object
-    //TODO: Replace this with the list of deliverers
 
 
     /**

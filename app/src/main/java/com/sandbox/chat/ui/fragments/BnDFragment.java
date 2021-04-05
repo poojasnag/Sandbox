@@ -89,6 +89,7 @@ public class BnDFragment extends Fragment implements View.OnClickListener, BnDCo
         bndController = new BnDPresenter();
         mProgressDialog.dismiss();
         Intent intent = new Intent(context, EaterySelectionMapActivity.class);
+        assert(getActivity().getIntent().getSerializableExtra("user")!= null);
         intent.putExtra("user", bndController.createBuyer((User) getActivity().getIntent().getSerializableExtra("user")));
         Toast.makeText(getContext(), "You have selected BUYER", Toast.LENGTH_SHORT).show();
         startActivity(intent);

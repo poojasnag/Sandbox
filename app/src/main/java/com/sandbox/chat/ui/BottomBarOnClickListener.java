@@ -1,5 +1,7 @@
 package com.sandbox.chat.ui;
 
+import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.view.MenuItem;
@@ -41,25 +43,31 @@ public class BottomBarOnClickListener implements BottomNavigationView.OnNavigati
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Intent intent;
+        Intent prevIntent = ((Activity) context).getIntent();
         CharSequence title = item.getTitle();
         if ("Chats".equals(title)) {
-            intent = new Intent(context, UserListingActivity.class);
+            intent = new Intent(prevIntent);
+            intent.setComponent(new ComponentName(context, UserListingActivity.class));
             context.startActivity(intent);
             return true;
         } else if ("Pending orders".equals(title)) {
-            intent = new Intent(context, PendingOrdersActivity.class);
+            intent = new Intent(prevIntent);
+            intent.setComponent(new ComponentName(context, PendingOrdersActivity.class));
             context.startActivity(intent);
             return true;
         } else if ("Completed orders".equals(title)) {
-            intent = new Intent(context, ClosedOrderActivity.class);
+            intent = new Intent(prevIntent);
+            intent.setComponent(new ComponentName(context, ClosedOrderActivity.class));
             context.startActivity(intent);
             return true;
         } else if ("Settings".equals(title)) {
-            intent = new Intent(context, SettingsActivity.class);
+            intent = new Intent(prevIntent);
+            intent.setComponent(new ComponentName(context, SettingsActivity.class));
             context.startActivity(intent);
             return true;
         } else if ("Home".equals(title)) {
-            intent = new Intent(context, EaterySelectionMapActivity.class);
+            intent = new Intent(prevIntent);
+            intent.setComponent(new ComponentName(context, EaterySelectionMapActivity.class));
             context.startActivity(intent);
             return true;
         }
