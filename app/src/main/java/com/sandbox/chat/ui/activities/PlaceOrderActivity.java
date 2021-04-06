@@ -34,8 +34,8 @@ import com.sandbox.chat.utils.MultiRadio;
  */
 public class PlaceOrderActivity extends AppCompatActivity {
     private PlaceOrderPresenter placeOrderController;
-    private MultiRadio locationList;
-    private Button submitButton;
+//    private MultiRadio locationList;
+//    private Button submitButton;
     private Toolbar mToolbar;
 //    private String selectedLocation;
 
