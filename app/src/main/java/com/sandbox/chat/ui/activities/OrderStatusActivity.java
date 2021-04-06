@@ -1,25 +1,21 @@
 package com.sandbox.chat.ui.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Button;
-import android.widget.TextView;
+
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.sandbox.chat.mgr.DelivererOfferMgr;
 import com.sandbox.chat.mgr.OrderStatusMgr;
-import com.sandbox.chat.models.Buyer;
-import com.sandbox.chat.models.Eatery;
-import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.R;
-import com.sandbox.chat.models.Transaction;
+import com.sandbox.chat.ui.fragments.OrderStatusFragment;
+import com.sandbox.chat.ui.presenter.OrderStatusPresenter;
 
-import java.util.LinkedList;
+
+
 /**
  * Users are directed to this view after the buyer places their order, where users can view their order summary, chat with the other user, and indicate completion
  *
@@ -27,59 +23,47 @@ import java.util.LinkedList;
  */
 public class OrderStatusActivity extends AppCompatActivity {
     OrderStatusMgr orderStatusController;
-    private TextView partnerName;
-    private TextView eta;
-    private TextView rate;
-    private TextView location;
-    private TextView orderDetails;
-    private Button eatery;
+    private OrderStatusPresenter orderStatusPresenter;
+
+    private Toolbar mToolbar;
     private Intent i;
+
+    public static void startActivity(Context context) {
+        Intent intent = new Intent(context, OrderStatusActivity.class);
+        context.startActivity(intent);
+    }
+    public static void startActivity(Context context, int flags) {
+
+        Intent intent = new Intent(context, OrderStatusActivity.class);
+        intent.setFlags(flags);
+        context.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        orderStatusPresenter = new OrderStatusPresenter();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_status);
-        orderStatusController = new OrderStatusMgr();
-        final BottomNavigationView bot_bar = findViewById(R.id.order_status_bottomNavigationView);
-        bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
-
-
-    }
-
-    protected void onStart()
-    {
-        super.onStart();
-        i = getIntent();
         bindViews();
+        init();
+//        orderStatusController = new OrderStatusMgr();
     }
+
+
     protected void bindViews()
     {
-        eatery = findViewById(R.id.order_status_location_header);
-        partnerName = findViewById(R.id.order_status_buyer_name);
-        rate = findViewById(R.id.order_status_rate);
-        eta= findViewById(R.id.order_status_eta);
-        orderDetails = findViewById(R.id.order_status_orders);
-        location = findViewById(R.id.order_status_location_text);
-        Transaction cur = (Transaction) i.getSerializableExtra("Transaction");
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+    }
 
+    private void init() {
+        // set the toolbar
+        setSupportActionBar(mToolbar);
 
-        //TODO: This is potentially wrong
-        if(i.getSerializableExtra("user") instanceof Buyer)
-        {
-            partnerName.setText(cur.getDelivererID());
-        }
-        else
-        {
-            partnerName.setText(cur.getBuyerID());
-        }
-        //TODO: Zi Heng how do I access the delivererOffer from inside Transactions
-//        Log.e("orderstatusactivity", ((Eatery) getIntent().getSerializableExtra("Eatery")).getEateryName());
-        rate.setText("There is no rate in Transactions");
-        //How do I get a delivererOffer from its ID
-        eta.setText("There is also no ETA  in transactions");
-        location.setText(cur.getBuyerLocation());
-        eatery.setText("We also need a way to get the selected eatery from the transaction");
-        orderDetails.setText(cur.getOrderDetails());
-
+        // set the screen fragment
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout_content_order_status,
+                OrderStatusFragment.newInstance(),
+                OrderStatusFragment.class.getSimpleName());
+        fragmentTransaction.commit();
     }
 }
