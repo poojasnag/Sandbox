@@ -89,17 +89,17 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             ((OrderDetailsHolder) holder).button.setText(String.format("%s \t\t %s \nDeliver to: %s\n Eatery: %s\n%s", t.getDelivererID(), "ETA", t.getBuyerLocation(), "eatery loc", t.getOrderDetails() ));
             Log.e("orderadapter", "Orders: "+ t.getOrderDetails());
 
-            ((OrderDetailsHolder) holder).parent.setOnClickListener(new View.OnClickListener() {
+            ((OrderDetailsHolder) holder).button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Activity cur = (Activity)view.getContext();
                     Intent intent = cur.getIntent();
-                    if(intent.hasExtra("delivererOffer"))
+                    if(intent.hasExtra("Transaction"))
                     {
-                        intent.removeExtra("delivererOffer");
+                        intent.removeExtra("Transaction");
                     }
                     intent.putExtra("Transaction", t);
-
+                    Log.e("Intent_check"," Here");
                     intent.setComponent(new ComponentName(cur, OrderStatusActivity.class));
                     cur.startActivity(intent);
                 }
