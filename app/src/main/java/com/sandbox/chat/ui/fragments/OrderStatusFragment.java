@@ -86,7 +86,6 @@ public class OrderStatusFragment extends Fragment {
         location.setText(cur.getBuyerLocation());
         eatery.setText("We also need a way to get the selected eatery from the transaction");
         orderDetails.setText(cur.getOrderDetails());
-        Log.e("orderstatusfragment", );
     }
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
