@@ -74,16 +74,19 @@
 
         <activity android:name=".ui.activities.SettingsActivity" />
         <activity android:name=".ui.activities.ClosedOrderActivity" />
-        <activity android:name=".ui.activities.PlaceOrderActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ui.activities.PlaceOrderActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ui.activities.ChooseDelivererActivity"
             android:theme = "@style/AppTheme.NoActionBar"/>
         <activity android:name=".ui.activities.UserRatingActivity"
             android:theme = "@style/AppTheme.NoActionBar"/>
         <activity android:name=".ui.activities.OrderStatusActivity" />
         <activity android:name=".ui.activities.PendingOrdersActivity" />
-        <activity android:name=".ui.activities.CreateDeliveryActivity" />
+        <activity android:name=".ui.activities.CreateDeliveryActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ui.activities.FoodOpSelectionActivity" />
-        <activity android:name=".ui.activities.BnDActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ui.activities.BnDActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
