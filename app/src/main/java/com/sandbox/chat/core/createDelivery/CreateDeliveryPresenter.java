@@ -11,6 +11,8 @@ import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.activities.CreateDeliveryActivity;
 import com.sandbox.chat.utils.MultiSpinner;
 
+import java.util.ArrayList;
+
 public class CreateDeliveryPresenter implements CreateDeliveryContract.Presenter {
     private CreateDeliveryContract.View mCreateDeliveryView; // ok
     // private CreateDeliveryInteractor mCreateDeliveryInteractor; // add next time
@@ -32,7 +34,7 @@ public class CreateDeliveryPresenter implements CreateDeliveryContract.Presenter
     }
 
     @Override
-    public void onRecordData(String chosenLoc, double deliveryFee, String cutoffDateTime, String etaDateTime, Eatery eatery, Context context, Deliverer deliverer) {
+    public void onRecordData(ArrayList<String> chosenLoc, double deliveryFee, String cutoffDateTime, String etaDateTime, Eatery eatery, Context context, Deliverer deliverer) {
         mCreateDeliveryView.recordData(chosenLoc, deliveryFee, cutoffDateTime, etaDateTime, eatery, context, deliverer);
     }
 

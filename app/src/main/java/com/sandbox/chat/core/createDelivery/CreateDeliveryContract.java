@@ -10,12 +10,14 @@ import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.models.User;
 import com.sandbox.chat.utils.MultiSpinner;
 
+import java.util.ArrayList;
+
 public interface CreateDeliveryContract {
     interface View{
         // add functions that were called within the presenter
             Buyer createBuyer(User user);
             Deliverer createDeliverer(User user);
-            void recordData(String chosenLoc, double deliveryFee, String cutoffDateTime,
+            void recordData(ArrayList<String> chosenLoc, double deliveryFee, String cutoffDateTime,
                             String etaDateTime, Eatery eatery, Context context, Deliverer deliverer);
             void setLocation(Button b, Intent i);
             void setDeliveryLocations(MultiSpinner deliveryLocSpinner);
@@ -24,7 +26,7 @@ public interface CreateDeliveryContract {
         // add the functions where the presenter calls the interactor
         void onCreateBuyer(User user);
         void onCreateDeliverer(User user);
-        void onRecordData(String chosenLoc, double deliveryFee, String cutoffDateTime, 
+        void onRecordData(ArrayList<String> chosenLoc, double deliveryFee, String cutoffDateTime,
                         String etaDateTime, Eatery eatery, Context context, Deliverer deliverer);
         void onSetLocation(Button b, Intent i);
         void onSetDeliveryLocations(MultiSpinner deliveryLocSpinner);
