@@ -1,15 +1,21 @@
 package com.sandbox.chat.mgr;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.fragments.LoginFragment;
 
@@ -17,6 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UserMgr {
+    private static final String TAG = "getEmail";
     private static FirebaseFirestore fStore = FirebaseFirestore.getInstance();
     private static String USER_TABLE = "users";
      ;
@@ -40,6 +47,9 @@ public class UserMgr {
             }
         });
 
+    }
+    public static DocumentReference getUserDocument(String userID){
+        return fStore.collection(USER_TABLE).document(userID);
     }
 }
 

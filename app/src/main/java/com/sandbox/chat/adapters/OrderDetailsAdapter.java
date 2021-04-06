@@ -16,7 +16,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.sandbox.chat.R;
+import com.sandbox.chat.mgr.DelivererOfferMgr;
+import com.sandbox.chat.mgr.UserMgr;
+import com.sandbox.chat.models.Deliverer;
+import com.sandbox.chat.models.DelivererOffer;
+import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.models.Transaction;
 import com.sandbox.chat.ui.activities.OrderStatusActivity;
 import com.sandbox.chat.ui.activities.PlaceOrderActivity;
@@ -85,9 +95,30 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if(holder instanceof OrderDetailsHolder)
         {
-            Transaction t = orders.get(position);  //TODO: Queries to retrieve ETA and eatery loc based on delivererID
-            ((OrderDetailsHolder) holder).button.setText(String.format("%s \t\t %s \nDeliver to: %s\n Eatery: %s\n%s", t.getDelivererID(), "ETA", t.getBuyerLocation(), "eatery loc", t.getOrderDetails() ));
-            Log.e("orderadapter", "Orders: "+ t.getOrderDetails());
+            Intent i = ((Activity)((OrderDetailsHolder) holder).context).getIntent();
+            Transaction t = orders.get(position);
+            DelivererOfferMgr.getDelivererOffer(t.getDelivererOfferID()).get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot delivererOfferDoc : task.getResult()) {
+                                    UserMgr.getUserDocument(t.getDelivererID())
+                                            .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                            if (task.isSuccessful()) {
+                                                DocumentSnapshot document = task.getResult();
+                                                if (document.exists()) {
+                                                    ((OrderDetailsHolder) holder).button.setText(String.format("%s \t\t %s \nDeliver to: %s\n Eatery: %s\n%s", document.getString("email") , delivererOfferDoc.getString("etaTime"), t.getBuyerLocation(), ((Eatery)(i.getSerializableExtra("Eatery"))).getEateryName(), t.getOrderDetails() ));
+                                                }
+                                            }
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    });
 
             ((OrderDetailsHolder) holder).button.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -112,6 +143,7 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
 
     }
+
 
 
     @Override

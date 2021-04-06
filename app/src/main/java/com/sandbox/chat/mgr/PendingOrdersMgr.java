@@ -33,6 +33,8 @@ import java.util.LinkedList;
      * Retrieve the list of incomplete orders
      * @return a list of incomplete orders
      */
+
+
 //    public void getOrders(User user, Boolean isBuyer, RecyclerView ordersList) { //TODO: only PENDING orders query
 //
 //        LinkedList<Transaction> transactionList = new LinkedList<Transaction>();
@@ -74,3 +76,4 @@ import java.util.LinkedList;
 //
 //    }
 //}
+

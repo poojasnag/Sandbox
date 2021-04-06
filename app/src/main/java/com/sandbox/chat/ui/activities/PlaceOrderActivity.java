@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.sandbox.chat.mgr.PlaceOrderMgr;
 import com.sandbox.chat.models.DelivererOffer;
+import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.R;

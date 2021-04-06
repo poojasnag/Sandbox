@@ -74,9 +74,7 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
 
             }
         });
-
     }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -152,6 +150,7 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
     public void setDetails(TextView delivererName, TextView deliveryRate, TextView eta, DelivererOffer d)
     {
         Log.e("email check", d.getDeliverer().getEmail());
+        Log.e("checkeatery", ((Eatery)getActivity().getIntent().getSerializableExtra("Eatery")).getEateryName());
         delivererName.setText("Deliverer: " + d.getDeliverer().getEmail());
         deliveryRate.setText("Rate: $" + d.getDeliveryFee());
         eta.setText("Estimated time of arrival: "+ d.getEtaTime());
@@ -187,7 +186,9 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
         TransactionMgr.setData(t, context);
 
         Intent intent = new Intent(i);
+
         intent.setComponent(new ComponentName(context,PendingOrdersActivity.class));
+        Log.e("eaterycheck", ((Eatery)intent.getSerializableExtra("Eatery")).getEateryName());
 
         startActivity(intent);
     }

@@ -33,6 +33,7 @@ public class TransactionMgr {
     public static void setData(Transaction transaction, Context context){
         Map<String, Object> offer = new HashMap<>();
         offer.put("buyerID", transaction.getBuyerID() );
+        offer.put("delivererID", transaction.getBuyerID() );
         offer.put("delivererOfferID", transaction.getDelivererOfferID());
         offer.put("delivererID", transaction.getDelivererID());
         offer.put("buyerLocation", transaction.getBuyerLocation());
@@ -62,11 +63,11 @@ public class TransactionMgr {
         CollectionReference deliveryOffers_db = fStore.collection(TRANSACTION_TABLE);
         Query query;
         if (isBuyer){
-            query = deliveryOffers_db.whereEqualTo("buyerID", uid);
+            query = deliveryOffers_db.whereEqualTo("buyerID", uid).whereEqualTo("orderStatus", "PENDING");
             Log.e("transactionmgr", query.toString());
         }
         else{
-            query = deliveryOffers_db.whereEqualTo("delivererID", uid);
+            query = deliveryOffers_db.whereEqualTo("delivererID", uid).whereEqualTo("orderStatus", "PENDING");
         }
         return query;
     }
