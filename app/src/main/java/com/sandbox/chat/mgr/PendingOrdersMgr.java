@@ -1,3 +1,4 @@
+
 package com.sandbox.chat.mgr;
 
 import android.util.Log;
@@ -24,52 +25,55 @@ import java.util.LinkedList;
 /**
  * Manager class for PendingOrdersActivity
  */
-public class PendingOrdersMgr {
-    public PendingOrdersMgr() {
-    }
+//public class PendingOrdersMgr {
+//    public PendingOrdersMgr() {
+//    }
 
     /**
      * Retrieve the list of incomplete orders
      * @return a list of incomplete orders
      */
-    public void getOrders(User user, Boolean isBuyer, RecyclerView ordersList) {
-
-        LinkedList<Transaction> transactionList = new LinkedList<Transaction>();
-        TransactionMgr.getTransactionHistory(user.getUid(), isBuyer)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.e("document", document.getString("orderDetails"));
-                                Transaction t = new Transaction(document.getString("buyerID"), document.getString("delivererOfferID"),
-                                        document.getString("delivererID"), document.getString("buyerLocation"), document.getString("orderDetails"),
-                                        Status.valueOf(document.getString("orderStatus")), Status.valueOf(document.getString("delivererStatus")),Status.valueOf(document.getString("buyerStatus"))
-                                );
-                                Log.e("pendingorderMgr", t.getBuyerID() + t.getOrderDetails());
-                                transactionList.add(t);
-
-                            }
-                            Log.e("fulltransactionlist", transactionList.toString());
-                            OrderDetailsAdapter ordersAdapter = new OrderDetailsAdapter(transactionList);
-
-                            ordersList.setAdapter(ordersAdapter);
-                            ordersList.setLayoutManager(new LinearLayoutManager(ordersList.getContext()));
 
 
-                        }
-                    }
-                });
-        if (isBuyer){
-            Buyer buyer = new Buyer (user.getUid(), user.getEmail(), user.getFirebaseToken(),user.getRating(), transactionList); //TODO: mq - send to intent?
-            Log.e("buyer", buyer.getEmail());
-        }
-        else{
-            Deliverer deliverer = new Deliverer (user.getUid(), user.getEmail(), user.getFirebaseToken(),user.getRating(), transactionList); //TODO: mq - send to intent?
-            Log.e("buyer", deliverer.getEmail());
+//    public void getOrders(User user, Boolean isBuyer, RecyclerView ordersList) { //TODO: only PENDING orders query
+//
+//        LinkedList<Transaction> transactionList = new LinkedList<Transaction>();
+//        TransactionMgr.getTransactionHistory(user.getUid(), isBuyer)
+//                .get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            for (QueryDocumentSnapshot document : task.getResult()) {
+//                                Log.e("document", document.getString("orderDetails"));
+//                                Transaction t = new Transaction(document.getString("buyerID"), document.getString("delivererOfferID"),
+//                                        document.getString("delivererID"), document.getString("buyerLocation"), document.getString("orderDetails"),
+//                                        Status.valueOf(document.getString("orderStatus")), Status.valueOf(document.getString("delivererStatus")),Status.valueOf(document.getString("buyerStatus"))
+//                                );
+//                                Log.e("pendingorderMgr", t.getBuyerID() + t.getOrderDetails());
+//                                transactionList.add(t);
+//
+//                            }
+//                            Log.e("fulltransactionlist", transactionList.toString());
+//                            OrderDetailsAdapter ordersAdapter = new OrderDetailsAdapter(transactionList);
+//
+//                            ordersList.setAdapter(ordersAdapter);
+//                            ordersList.setLayoutManager(new LinearLayoutManager(ordersList.getContext()));
+//
+//
+//                        }
+//                    }
+//                });
+//        if (isBuyer){
+//            Buyer buyer = new Buyer (user.getUid(), user.getEmail(), user.getFirebaseToken(),user.getRating(), transactionList); //TODO: mq - send to intent?
+//            Log.e("buyer", buyer.getEmail());
+//        }
+//        else{
+//            Deliverer deliverer = new Deliverer (user.getUid(), user.getEmail(), user.getFirebaseToken(),user.getRating(), transactionList); //TODO: mq - send to intent?
+//            Log.e("buyer", deliverer.getEmail());
+//
+//        }
+//
+//    }
+//}
 
-        }
-
-    }
-}

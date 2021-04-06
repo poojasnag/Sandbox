@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Sandbox</string>
+    <string name="app_name">SANDBOX</string>
     <string name="action_settings">Settings</string>
-    <string name="email">Email Id</string>
+    <string name="email">Email ID</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="login_register">New user, tap here to register !</string>

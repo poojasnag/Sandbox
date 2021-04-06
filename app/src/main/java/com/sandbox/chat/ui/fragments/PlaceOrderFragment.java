@@ -65,7 +65,6 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
 
     public void onStart() {
         super.onStart();
-
         submitButton.setOnClickListener(new View.OnClickListener(){
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
