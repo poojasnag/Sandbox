@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -57,7 +58,7 @@ public class CreateDeliveryActivity extends AppCompatActivity {
     Button locationDisplay;
     Intent prevIntent;
     Eatery curEatery;
-
+    ArrayList<String> selectedLocations;
 
     /**
      * Initialize the interface.
@@ -78,7 +79,6 @@ public class CreateDeliveryActivity extends AppCompatActivity {
 
         locationDisplay = findViewById(R.id.create_delivery_from_location);
 
-
     }
     @Override
     protected void onStart() {
@@ -88,8 +88,7 @@ public class CreateDeliveryActivity extends AppCompatActivity {
         cutoff_picker.setInputType(InputType.TYPE_NULL);
         eta_picker.setInputType(InputType.TYPE_NULL);
         curEatery = ((Eatery)prevIntent.getSerializableExtra("Eatery"));
-        createDeliveryController.setDeliveryLocations(deliveryLocSpinner);
-
+        setDeliveryLocations(deliveryLocSpinner);
         cutoff_picker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,14 +113,14 @@ public class CreateDeliveryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(CreateDeliveryActivity.this, "create button clicked", Toast.LENGTH_SHORT).show();
                 
-                String chosenLoc = deliveryLocSpinner.getSelectedItem().toString();  //TODO: Change to array
+//                String chosenLoc = deliveryLocSpinner.getSelectedItem().toString();  //TODO: Change to array
                 String deliveryFee = deliveryFeeText.getText().toString();
                 String cutoffDateTime = cutoff_picker. getText().toString();
                 String etaDateTime = eta_picker. getText().toString();
-
+                Log.e("insideactivity", selectedLocations.toString());
 //                Toast.makeText(v.getContext(), getIntent().getSerializableExtra("user").getClass().getName(),Toast.LENGTH_SHORT).show();
 //                Eatery eatery = new Eatery("", "Koi","", "",  ""); // TODO: create real eatery
-                createDeliveryController.recordData(chosenLoc, Double.parseDouble(deliveryFee), cutoffDateTime, etaDateTime, curEatery, v.getContext(), (Deliverer) getIntent().getSerializableExtra("user"));
+                createDeliveryController.recordData(selectedLocations, Double.parseDouble(deliveryFee), cutoffDateTime, etaDateTime, curEatery, v.getContext(), (Deliverer) getIntent().getSerializableExtra("user"));
 
             }
         });
@@ -160,6 +159,17 @@ public class CreateDeliveryActivity extends AppCompatActivity {
 
         new DatePickerDialog(CreateDeliveryActivity.this,dateSetListener,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
 
+    }
+    public void setDeliveryLocations(MultiSpinner deliveryLocSpinner)
+    {
+        selectedLocations = new ArrayList<String>();
+        deliveryLocSpinner.setItems(this.getResources().getStringArray(R.array.deliver_to) ,"Select locations" ,new MultiSpinner.MultiSpinnerListener() {
+            @Override
+            public void onItemsSelected(boolean[] selected) {
+                selectedLocations = deliveryLocSpinner.getAllSelected(selected);
+
+            }
+        });
     }
 
 }

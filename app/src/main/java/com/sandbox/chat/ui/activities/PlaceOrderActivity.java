@@ -16,10 +16,12 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.sandbox.chat.mgr.PlaceOrderMgr;
+import com.sandbox.chat.models.DelivererOffer;
 import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.R;
 import com.sandbox.chat.ui.fragments.BnDFragment;
+import com.sandbox.chat.ui.fragments.PlaceOrderFragment;
 import com.sandbox.chat.ui.presenter.BnDPresenter;
 import com.sandbox.chat.ui.presenter.PlaceOrderPresenter;
 import com.sandbox.chat.utils.MultiRadio;
@@ -57,6 +59,7 @@ public class PlaceOrderActivity extends AppCompatActivity {
 
         Intent intent = new Intent(context, PlaceOrderActivity.class);
         intent.setFlags(flags);
+        Toast.makeText(context, ( (DelivererOffer) intent.getSerializableExtra("delivererOffer")).getClass().toString(), Toast.LENGTH_SHORT).show();
         context.startActivity(intent);
     }
 
@@ -69,7 +72,7 @@ public class PlaceOrderActivity extends AppCompatActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        placeOrderController = new PlaceOrderPresenter();
+        placeOrderController = new PlaceOrderPresenter(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_order);
         bindViews();
@@ -86,11 +89,13 @@ public class PlaceOrderActivity extends AppCompatActivity {
 
         // set the screen fragment
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.frame_layout_content_bnd,
-                BnDFragment.newInstance(),
-                BnDFragment.class.getSimpleName());
+        fragmentTransaction.replace(R.id.frame_layout_content_place_order,
+                PlaceOrderFragment.newInstance(),
+                PlaceOrderFragment.class.getSimpleName());
         fragmentTransaction.commit();
     }
+
+
 }
 
 

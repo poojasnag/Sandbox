@@ -13,13 +13,21 @@ public class Buyer extends User implements Serializable {
     private static final long serialVersionUID = 12332549786754L;
     private LinkedList<Transaction> buyerOrderList;
 
+
     /**
      * Constructor for a buyer
      */
     public Buyer(String uid, String email, String firebaseToken, float rating, LinkedList<Transaction> buyerOrderList) {
         super(uid, email, firebaseToken, rating);
         this.buyerOrderList = buyerOrderList;
+    }
 
+    public LinkedList<Transaction> getBuyerOrderList() {
+        return buyerOrderList;
+    }
+
+    public void setBuyerOrderList(LinkedList<Transaction> buyerOrderList) {
+        this.buyerOrderList = buyerOrderList;
     }
 }
 

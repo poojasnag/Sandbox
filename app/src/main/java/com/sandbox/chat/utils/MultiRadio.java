@@ -92,6 +92,10 @@ public class MultiRadio extends androidx.appcompat.widget.AppCompatSpinner imple
     }
 
     public String getItems(int index) {
+        if(index == -1)
+        {
+            return defaultText;
+        }
         return items[index];
     }
 }

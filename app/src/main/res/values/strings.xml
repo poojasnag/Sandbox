@@ -88,10 +88,12 @@
         <item>Hall 10</item>
     </string-array>
     <string name="submit">Submit</string>
-    <string name="place_order">Place order</string>
-    <string name="deliverer_name">Deliverer name</string>
-    <string name="rate">"Rate: "</string>
-    <string name="location">"Deliver to: "</string>
-    <string name="order">"Order: "</string>
-    <string name="eta">"Estimated time of arrival: "</string>
+    <string name="place_order_deliverer_name">Deliverer\'s name: </string>
+    <string name="place_order_rate">Rate: </string>
+    <string name="place_order_deliver_location">Deliver to: </string>
+    <string name="place_order_title">Place order</string>
+    <string name="place_order_eta">Estimated time of arrival: </string>
+    <string name="place_order_order_header">Order: </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

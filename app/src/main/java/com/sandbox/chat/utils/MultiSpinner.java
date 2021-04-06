@@ -6,7 +6,12 @@ import android.content.DialogInterface;
 import android.util.AttributeSet;
 import android.widget.ArrayAdapter;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
+
+import io.perfmark.Link;
 
 public class MultiSpinner extends androidx.appcompat.widget.AppCompatSpinner implements
         DialogInterface.OnMultiChoiceClickListener, DialogInterface.OnCancelListener {
@@ -106,9 +111,9 @@ public class MultiSpinner extends androidx.appcompat.widget.AppCompatSpinner imp
     public String getItems(int index) {
         return items[index];
     }
-    public LinkedList<String> getAllSelected(boolean [] selected)
+    public ArrayList<String> getAllSelected(boolean [] selected)
     {
-        LinkedList<String> all = new LinkedList<String>();
+        ArrayList<String> all = new ArrayList<String>();
         for(int i=0; i < selected.length; i++)
         {
             if(selected[i])
@@ -118,6 +123,17 @@ public class MultiSpinner extends androidx.appcompat.widget.AppCompatSpinner imp
         }
         return all;
     }
+
+//    public static String linkedListToString(ArrayList<String> ll){
+//        String s = "| ";
+//        Iterator<String> iterator = ll.iterator();
+//        while (iterator.hasNext()) {
+//            // appending using "+" operator
+//            s = s + iterator.next() + " | ";
+//        }
+//        return s;
+//    }
+
 
 
 }

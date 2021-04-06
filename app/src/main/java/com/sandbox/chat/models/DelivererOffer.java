@@ -2,6 +2,7 @@ package com.sandbox.chat.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * Contains information about a delivery offer
@@ -27,7 +28,7 @@ public class DelivererOffer implements Serializable {
     /**
      * The locations that the deliverer is able to deliver to
      */
-    private String deliveryLocation;
+    private ArrayList<String> deliveryLocation;
     /**
      * The eatery that the deliverer is currently in
      */
@@ -55,7 +56,8 @@ public class DelivererOffer implements Serializable {
      * @param deliverer The deliverer's information
 
      */
-    public DelivererOffer(String delivererOfferID, String cutOffTime, String etaTime, double deliveryFee, String deliveryLocation, Eatery eatery, Deliverer deliverer, String timestamp) {
+
+    public DelivererOffer(String delivererOfferID, String cutOffTime, String etaTime, double deliveryFee, ArrayList<String> deliveryLocation, Eatery eatery, Deliverer deliverer, String timestamp) {
         this.delivererOfferID = delivererOfferID;
         this.cutOffTime = cutOffTime;
         this.etaTime = etaTime;
@@ -98,11 +100,11 @@ public class DelivererOffer implements Serializable {
         this.deliveryFee = deliveryFee;
     }
 
-    public String getDeliveryLocation() {
+    public ArrayList<String> getDeliveryLocation() {
         return deliveryLocation;
     }
 
-    public void setDeliveryLocations(String deliveryLocation) {
+    public void setDeliveryLocations(ArrayList<String>deliveryLocation) {
         this.deliveryLocation = deliveryLocation;
     }
 

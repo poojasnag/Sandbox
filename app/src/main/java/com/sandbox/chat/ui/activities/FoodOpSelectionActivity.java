@@ -20,6 +20,9 @@ import com.sandbox.chat.mgr.FoodOpSelectionMgr;
 
 import com.sandbox.chat.models.Eatery;
 
+
+@Deprecated
+
 public class FoodOpSelectionActivity extends AppCompatActivity {
 
     FoodOpSelectionMgr foodOpSelectionController;
@@ -33,14 +36,7 @@ public class FoodOpSelectionActivity extends AppCompatActivity {
         bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
         //TODO: Connect the drop-down list with menu from the stores
 
-        optionList = findViewById(R.id.food_option_list);
-        optionList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                foodOpSelectionController.selectItem(new Eatery("0","TODO","", "", ""));
-                //TODO: REplace with actual eatery
-            }
-        });
+
     }
 
 

@@ -11,7 +11,7 @@
         style="@style/Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/place_order"
+        android:text="@string/place_order_title"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -35,25 +35,27 @@
 
     <TextView
         android:id="@+id/place_order_deliverer_name"
-        android:layout_width="68dp"
+        android:layout_width="wrap_content"
         android:layout_height="17dp"
-        android:text="@string/deliverer_name"
+        android:layout_marginStart="40dp"
+        android:text="@string/place_order_deliverer_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.183"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/place_order_eatery_name"
-        app:layout_constraintVertical_bias="0.033" />
+        app:layout_constraintVertical_bias="0.038" />
 
     <TextView
         android:id="@+id/place_order_rate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="12dp"
-        android:text="@string/rate"
+        android:text="@string/place_order_rate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.191"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/place_order_deliverer_name"
         app:layout_constraintVertical_bias="0.0" />
@@ -62,37 +64,40 @@
         android:id="@+id/place_order_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="12dp"
-        android:text="@string/location"
+        android:text="@string/place_order_deliver_location"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.166"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/place_order_rate"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.002" />
 
     <TextView
         android:id="@+id/place_order_eta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
-        android:text="@string/eta"
+        android:text="@string/place_order_eta"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.063"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner2"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/place_order_order_header"
+        android:id="@+id/place_order"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
-        android:text="@string/order"
+        android:text="@string/place_order_order_header"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.178"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/place_order_eta"
         app:layout_constraintVertical_bias="0.0" />
@@ -112,7 +117,7 @@
         app:layout_constraintBottom_toTopOf="@+id/place_order_submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/place_order_order_header" />
+        app:layout_constraintTop_toBottomOf="@+id/place_order" />
 
     <Button
         android:id="@+id/place_order_submit"
