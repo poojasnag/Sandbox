@@ -74,9 +74,9 @@ public class PendingOrdersFragment extends Fragment implements PendingOrdersCont
     }
 
     private void bindViews(View view) {
-        final BottomNavigationView bot_bar = view.findViewById(R.id.place_order_bottomNavigationView);
-        bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
         RecyclerView ordersList = view.findViewById(R.id.order_list);
+        final BottomNavigationView bot_bar = view.findViewById(R.id.pending_orders_bottomNavigationView);
+        bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
         intent = getActivity().getIntent();
         if (intent.getSerializableExtra("user") instanceof Buyer){
             getOrders((User)intent.getSerializableExtra("user"), true, ordersList);

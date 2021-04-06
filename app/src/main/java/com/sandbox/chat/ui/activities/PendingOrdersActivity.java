@@ -48,7 +48,7 @@ public class PendingOrdersActivity extends AppCompatActivity {
     }
 
     public static void startActivity(Context context, int flags) {
-        Intent intent = new Intent(context, PlaceOrderActivity.class);
+        Intent intent = new Intent(context, PendingOrdersActivity.class);
         intent.setFlags(flags);
         context.startActivity(intent);
     }
