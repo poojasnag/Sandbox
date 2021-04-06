@@ -15,6 +15,7 @@ public class Transaction implements Serializable {
     /**
      * The delivery offer's ID
      */
+
     private String delivererOfferID;  // change from int to string
     /**
      * The deliverer's user ID

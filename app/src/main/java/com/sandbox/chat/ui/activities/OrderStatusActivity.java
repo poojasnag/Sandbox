@@ -2,6 +2,7 @@ package com.sandbox.chat.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -72,6 +73,7 @@ public class OrderStatusActivity extends AppCompatActivity {
             partnerName.setText(cur.getBuyerID());
         }
         //TODO: Zi Heng how do I access the delivererOffer from inside Transactions
+//        Log.e("orderstatusactivity", ((Eatery) getIntent().getSerializableExtra("Eatery")).getEateryName());
         rate.setText("There is no rate in Transactions");
         //How do I get a delivererOffer from its ID
         eta.setText("There is also no ETA  in transactions");

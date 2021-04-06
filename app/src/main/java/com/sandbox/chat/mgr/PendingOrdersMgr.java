@@ -32,7 +32,7 @@ public class PendingOrdersMgr {
      * Retrieve the list of incomplete orders
      * @return a list of incomplete orders
      */
-    public void getOrders(User user, Boolean isBuyer, RecyclerView ordersList) { //TODO: only PENDING orders query
+    public void getOrders(User user, Boolean isBuyer, RecyclerView ordersList) {
 
         LinkedList<Transaction> transactionList = new LinkedList<Transaction>();
         TransactionMgr.getTransactionHistory(user.getUid(), isBuyer)

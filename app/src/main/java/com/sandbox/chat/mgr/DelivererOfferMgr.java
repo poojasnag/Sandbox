@@ -22,6 +22,7 @@ import java.util.Map;
 public class DelivererOfferMgr {
     private static FirebaseFirestore fStore = FirebaseFirestore.getInstance();
     private static String OFFER_TABLE = "delivererOffer";
+    private static String TRANSACTION_TABLE = "transactions";
     public DelivererOfferMgr(){}
 
     public static void setData(DelivererOffer delivererOffer, Context context){
@@ -56,6 +57,11 @@ public class DelivererOfferMgr {
     public static Query getEateryDeliverers(Eatery eatery){
         CollectionReference deliveryOffers_db = fStore.collection(OFFER_TABLE);
         Query query = deliveryOffers_db.whereEqualTo("eatery", eatery);
+        return query;
+    }
+    public static Query getDelivererOffer(String delivererOfferID){
+        CollectionReference transaction_db = fStore.collection(OFFER_TABLE);
+        Query query = transaction_db.whereEqualTo("delivererOfferID", delivererOfferID);
         return query;
     }
 
