@@ -213,7 +213,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                         @Override
                         public void onMapReady(GoogleMap googleMap) {
-                            LatLng latlng = new LatLng(location.getLatitude(), location.getLongitude());
+//                            LatLng latlng = new LatLng(location.getLatitude(), location.getLongitude());
+                            LatLng latlng = new LatLng(1.3450, 103.9832);
                             MarkerOptions options = new MarkerOptions().position(latlng).title("Current Location");
 
                             //googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng, 10));
