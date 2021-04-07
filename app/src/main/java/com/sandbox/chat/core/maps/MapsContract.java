@@ -21,7 +21,7 @@ public interface MapsContract {
     }
 
     interface Interactor{
-//        void initialize(Context context) throws IOException;
+        static void initialize(Context context) throws IOException {}
     }
 
 }

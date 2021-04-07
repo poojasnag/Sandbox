@@ -13,6 +13,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -37,7 +38,7 @@ import com.sandbox.chat.core.maps.MapsPresenter;
 import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.R;
-//import com.sandbox.chat.mgr.EaterySelectionMapMgr;
+
 //import com.sandbox.chat.ui.fragments.MapsFragment;
 
 import org.json.JSONException;
@@ -48,7 +49,6 @@ import java.io.IOException;
  * Displays the eatery selection interface
  */
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback{
-    //EaterySelectionMapMgr eaterySelectionMapController;
     private GoogleMap mMap;
     private GeoJsonLayer layer1;
     MapsPresenter c;
@@ -63,10 +63,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     Dialog locationDetails;
-    /**
-     * Initialize the interface
-     * @param savedInstanceState If the activity is being re-initialized after previously being shut down then this Bundle contains the data it most recently supplied in onSaveInstanceState(Bundle)
-     */
+
     @Override
 
     public void onMapReady(GoogleMap googleMap) {
@@ -85,6 +82,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 @Override
                 public void onFeatureClick(Feature feature) {
                     System.out.println(feature.getProperty("Name"));
+                    Log.e("getEateryNameJSON", feature.getProperty("Name"));
                     showLocationDetails(feature.getProperty("Name"));
                 }
             });
@@ -148,7 +146,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         String ID = feature_id;
 
         Eatery e = MapsInteractor.findEatery(ID);
-
+        Log.e("mapsActivity", e.getEateryName());
         TextView txtclose;
         Button btnFollow;
         Dialog myDialog = getLocationDetails();

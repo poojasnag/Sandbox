@@ -19,11 +19,13 @@ public class SplashActivity extends AppCompatActivity {
     private static final int SPLASH_TIME_MS = 2000;
     private Handler mHandler;
     private Runnable mRunnable;
+    MapsInteractor mapsInteractor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+//        mapsInteractor = new MapsInteractor();
 
         try {
             MapsInteractor.initialize(this);

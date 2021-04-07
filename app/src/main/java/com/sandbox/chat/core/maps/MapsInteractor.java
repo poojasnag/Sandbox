@@ -1,6 +1,7 @@
 package com.sandbox.chat.core.maps;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.sandbox.chat.models.Eatery;
 
@@ -19,14 +20,17 @@ public class MapsInteractor implements MapsContract.Interactor {
     public MapsInteractor(ArrayList<Eatery> eateries){
         this.eateries = eateries;
     }
-
+    public MapsInteractor(){}
     public static Eatery findEatery(String id)
     {
+        Log.e("stringID", id);
 
         for (int i = 0; i < eateries.size(); i++) {
+            Log.e("spam", eateries.get(i).getEateryID());
 
             if(eateries.get(i).getEateryID().equals(id) == true)
             {
+                Log.e("mapsInteractor", eateries.get(i).getEateryName());
                 return eateries.get(i);
             }
 
