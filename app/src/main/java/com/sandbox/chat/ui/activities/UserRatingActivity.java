@@ -15,6 +15,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.sandbox.chat.R;
 
 //import com.sandbox.chat.mgr.UserRatingMgr;
+import com.sandbox.chat.ui.contract.UserRatingContract;
+import com.sandbox.chat.ui.presenter.UserRatingPresenter;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.ui.fragments.UserRatingFragment;
 
@@ -27,11 +29,20 @@ import com.sandbox.chat.ui.fragments.UserRatingFragment;
  * @author chua zi heng
  */
 public class UserRatingActivity extends AppCompatActivity {
-    private Toolbar mToolbar; //pj
+    private Toolbar mToolbar;
+    private UserRatingPresenter userRatingController;
+    private Button send_rating;
 
-    public static void startActivity(Context context) { // pj
+    public static void startActivity(Context context) {
         Intent intent = new Intent(context, UserRatingActivity.class);
-        Toast.makeText(context,"here",Toast.LENGTH_SHORT).show();
+        Toast.makeText(context,"rating",Toast.LENGTH_SHORT).show();
+        context.startActivity(intent);
+    }
+
+    public static void startActivity(Context context, int flags) {
+        Intent intent = new Intent(context, UserRatingActivity.class);
+//        intent.putExtra("user", user);
+        intent.setFlags(flags);
         context.startActivity(intent);
     }
 
@@ -39,11 +50,10 @@ public class UserRatingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) { //pj editted
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_rating);
-         final BottomNavigationView bot_bar = findViewById(R.id.choose_deliverer_bottomNavigationView);
-         bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
-//        userRatingController = new UserRatingMgr(this);
-//        Button sendRating = findViewById(R.id.user_rating_submit);
-//        sendRating.setOnClickListener(new View.OnClickListener() {
+
+//        userRatingController = new UserRatingPresenter((UserRatingContract.View) this);
+//        send_rating = findViewById(R.id.user_rating_submit);
+//        send_rating.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
 //                Intent intent = new Intent(view.getContext(), EaterySelectionMapActivity.class);
@@ -58,17 +68,13 @@ public class UserRatingActivity extends AppCompatActivity {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
     } // pj
 
-    public Intent getPrevIntent() {
-        return getIntent();
 
-    }
-
-    private void init(){ //pj
+    private void init(){
         setSupportActionBar(mToolbar);
 
         // set the user rating screen fragment
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.frame_layout_content_register,
+        fragmentTransaction.replace(R.id.frame_layout_content_user_rating,
                 UserRatingFragment.newInstance(),
                 UserRatingFragment.class.getSimpleName());
         fragmentTransaction.commit();

@@ -1,8 +1,19 @@
 package com.sandbox.chat.ui.contract;
 
-public interface OrderCompleteContract {
-interface View {
+import android.content.Context;
 
-}
+public interface OrderCompleteContract {
+
+    interface View {
+        void onSelectRate(Context context);
+    }
+
+    interface Presenter {
+        //add function name here
+    }
+
+    interface onClickListener {
+
+    }
 }
 

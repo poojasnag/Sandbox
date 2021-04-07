@@ -123,33 +123,31 @@
 
     <Button
         android:id="@+id/order_status_complete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:text="@string/order_status_button_2"
+        android:textColor="@color/gmm_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/order_status_chat"
-        app:layout_constraintVertical_bias="0.0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorPrimaryDark"
-        android:text="@string/order_status_button_2"
-        tools:layout_editor_absoluteX="133dp"
-        tools:layout_editor_absoluteY="457dp" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/order_status_incomplete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:text="@string/order_status_button_3"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/order_status_bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/order_status_complete"
-        app:layout_constraintVertical_bias="0.0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorPrimaryDark"
-        android:text="@string/order_status_button_3"
-        tools:layout_editor_absoluteX="112dp"
-        tools:layout_editor_absoluteY="252dp" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/order_status_location_header"
