@@ -27,7 +27,7 @@ import com.sandbox.chat.models.Deliverer;
 import com.sandbox.chat.models.DelivererOffer;
 import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.ui.activities.CreateDeliveryActivity;
-import com.sandbox.chat.ui.activities.EaterySelectionMapActivity;
+
 import com.sandbox.chat.utils.MultiSpinner;
 
 import java.lang.reflect.Array;

@@ -30,7 +30,6 @@ import com.sandbox.chat.models.Status;
 import com.sandbox.chat.models.Transaction;
 import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
-import com.sandbox.chat.ui.activities.EaterySelectionMapActivity;
 import com.sandbox.chat.ui.activities.PendingOrdersActivity;
 import com.sandbox.chat.ui.activities.PlaceOrderActivity;
 import com.sandbox.chat.ui.contract.BnDContract;

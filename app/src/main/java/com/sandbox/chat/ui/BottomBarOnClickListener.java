@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.sandbox.chat.R;
 import com.sandbox.chat.ui.activities.ClosedOrderActivity;
-import com.sandbox.chat.ui.activities.EaterySelectionMapActivity;
+import com.sandbox.chat.ui.activities.MapsActivity;
 import com.sandbox.chat.ui.activities.PendingOrdersActivity;
 import com.sandbox.chat.ui.activities.SettingsActivity;
 import com.sandbox.chat.ui.activities.UserListingActivity;
@@ -67,7 +67,7 @@ public class BottomBarOnClickListener implements BottomNavigationView.OnNavigati
             return true;
         } else if ("Home".equals(title)) {
             intent = new Intent(prevIntent);
-            intent.setComponent(new ComponentName(context, EaterySelectionMapActivity.class));
+            intent.setComponent(new ComponentName(context, MapsActivity.class));
             context.startActivity(intent);
             return true;
         }
