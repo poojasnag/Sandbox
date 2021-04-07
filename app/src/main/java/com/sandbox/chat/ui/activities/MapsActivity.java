@@ -1,12 +1,15 @@
 package com.sandbox.chat.ui.activities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.app.Dialog;
 import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -14,9 +17,12 @@ import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -33,11 +39,15 @@ import com.google.maps.android.data.Feature;
 import com.google.maps.android.data.Layer;
 import com.google.maps.android.data.geojson.GeoJsonLayer;
 import com.google.maps.android.data.geojson.GeoJsonPolygonStyle;
+import com.sandbox.chat.adapters.UserListingPagerAdapter;
+import com.sandbox.chat.core.logout.LogoutContract;
+import com.sandbox.chat.core.logout.LogoutPresenter;
 import com.sandbox.chat.core.maps.MapsInteractor;
 import com.sandbox.chat.core.maps.MapsPresenter;
 import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.R;
+import com.sandbox.chat.utils.Constants;
 
 //import com.sandbox.chat.ui.fragments.MapsFragment;
 
@@ -48,15 +58,19 @@ import java.io.IOException;
 /**
  * Displays the eatery selection interface
  */
-public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback{
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, LogoutContract.View {
+
     private GoogleMap mMap;
     private GeoJsonLayer layer1;
     MapsPresenter c;
     public Intent i;
 
 
+    private LogoutPresenter mLogoutPresenter;
+
     FusedLocationProviderClient client;
     SupportMapFragment supportMapFragment;
+
 
     public Dialog getLocationDetails() {
         return locationDetails;
@@ -93,7 +107,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_user_listing, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
     protected void onCreate(Bundle savedInstanceState) {
+
+        mLogoutPresenter = new LogoutPresenter(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_eatery_selection_map);
         try {
@@ -155,7 +176,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         String ID = feature_id;
 
         Eatery e = MapsInteractor.findEatery(ID);
-        Log.e("mapsActivity", e.getEateryName());
         TextView txtclose;
         Button btnFollow;
         Dialog myDialog = getLocationDetails();
@@ -251,6 +271,49 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     public Intent getI() {
         return i;
+    }
+
+    //FOR LOGOUT BUTTON ON MAPS HOMEPAGE
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_logout:
+                logout();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    private void logout() {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.logout)
+                .setMessage(R.string.are_you_sure)
+                .setPositiveButton(R.string.logout, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        mLogoutPresenter.logout();
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .show();
+    }
+
+    @Override
+    public void onLogoutSuccess(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        LoginActivity.startIntent(this,
+                Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+    }
+
+    @Override
+    public void onLogoutFailure(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
 
