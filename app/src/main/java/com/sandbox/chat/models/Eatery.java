@@ -38,8 +38,9 @@ public class Eatery implements Serializable {
     private String eateryStreet;
     public Eatery(){}
     public Eatery(String eateryID, String eateryName, String eateryAddress ,String eateryStreet, String operatingTime) {
-        this.eateryID = eateryID;
+//        string;
         this.eateryName = eateryName;
+        this.eateryID = eateryID;
 
         this.eateryStreet = eateryStreet;
         this.eateryAddress = eateryAddress;
@@ -79,5 +80,8 @@ public class Eatery implements Serializable {
         return operatingTime;
     }
 
+    public void setEateryID(String eateryID) {
+        this.eateryID = eateryID;
+    }
 }
 
