@@ -60,8 +60,8 @@ public class DelivererOfferMgr {
         return query;
     }
     public static Query getDelivererOffer(String delivererOfferID){
-        CollectionReference transaction_db = fStore.collection(OFFER_TABLE);
-        Query query = transaction_db.whereEqualTo("delivererOfferID", delivererOfferID);
+        CollectionReference deliveryOffers_db = fStore.collection(OFFER_TABLE);
+        Query query = deliveryOffers_db.whereEqualTo("delivererOfferID", delivererOfferID);
         return query;
     }
 
