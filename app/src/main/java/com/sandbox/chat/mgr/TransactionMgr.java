@@ -32,6 +32,8 @@ public class TransactionMgr {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static void setData(Transaction transaction, Context context){
         Map<String, Object> offer = new HashMap<>();
+        offer.put("buyerName", transaction.getBuyerName() );
+        offer.put("delivererName", transaction.getDelivererName() );
         offer.put("buyerID", transaction.getBuyerID() );
         offer.put("delivererID", transaction.getBuyerID() );
         offer.put("delivererOfferID", transaction.getDelivererOfferID());

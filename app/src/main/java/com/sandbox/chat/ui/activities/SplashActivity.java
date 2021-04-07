@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.sandbox.chat.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.sandbox.chat.mgr.EateryMgr;
+import com.sandbox.chat.core.maps.MapsInteractor;
 
 import java.io.IOException;
 
@@ -22,14 +22,16 @@ public class SplashActivity extends AppCompatActivity {
     private static final int SPLASH_TIME_MS = 2000;
     private Handler mHandler;
     private Runnable mRunnable;
+    MapsInteractor mapsInteractor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+//        mapsInteractor = new MapsInteractor();
 
         try {
-            EateryMgr.initialize(this);
+            MapsInteractor.initialize(this);
         } catch (IOException e) {
             e.printStackTrace();
         }

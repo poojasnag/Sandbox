@@ -30,7 +30,6 @@ import com.sandbox.chat.models.Status;
 import com.sandbox.chat.models.Transaction;
 import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
-import com.sandbox.chat.ui.activities.EaterySelectionMapActivity;
 import com.sandbox.chat.ui.activities.PendingOrdersActivity;
 import com.sandbox.chat.ui.activities.PlaceOrderActivity;
 import com.sandbox.chat.ui.contract.BnDContract;
@@ -173,6 +172,8 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
         }
 
         String buyerID = ((User)i.getSerializableExtra("user")).getUid();
+        String buyerName = ((User)i.getSerializableExtra("user")).getEmail();
+        String delivererName = curDelivererOffer.getDeliverer().getEmail();
         String delivererOfferID = curDelivererOffer.getDelivererOfferID();
         String delivererID = curDelivererOffer.getDeliverer().getUid();
         String buyerLocation = selectedLocation;
@@ -182,7 +183,7 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
         Status buyerStatus = Status.PENDING;
 
         //TODO: Zi Heng, here's the transaction object from placeOrder.
-        Transaction t = new Transaction(buyerID, delivererOfferID, delivererID, buyerLocation, order, orderStatus, delivererStatus, buyerStatus);
+        Transaction t = new Transaction(buyerName, delivererName, buyerID, delivererOfferID, delivererID, buyerLocation, order, orderStatus, delivererStatus, buyerStatus);
         TransactionMgr.setData(t, context);
 
         Intent intent = new Intent(i);
