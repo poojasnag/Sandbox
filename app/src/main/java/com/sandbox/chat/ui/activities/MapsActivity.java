@@ -125,16 +125,25 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
-    public void selectLocation(View view) {
+    public void selectLocation(View view, Eatery eatery) {
         //TODO: Add the information of the location
         if (getI().getBooleanExtra("isBuyer", true)) {
             Intent intent = new Intent(getI());
             intent.setComponent(new ComponentName(view.getContext(), ChooseDelivererActivity.class));
+            if(intent.hasExtra("Eatery")) {
+                intent.removeExtra("Eatery");
+            }
+            intent.putExtra("Eatery", eatery);
             startActivity(intent);
+
 
         } else {
             Intent intent = new Intent(getI());
             intent.setComponent(new ComponentName(view.getContext(), CreateDeliveryActivity.class));
+            if(intent.hasExtra("Eatery")) {
+                intent.removeExtra("Eatery");
+            }
+            intent.putExtra("Eatery", eatery);
             startActivity(intent);
         }
     }
@@ -174,7 +183,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         btnFollow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectLocation(view);
+                selectLocation(view, e);
             }
         });
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
