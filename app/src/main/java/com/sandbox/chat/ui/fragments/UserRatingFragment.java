@@ -21,7 +21,7 @@ import com.sandbox.chat.R;
 import com.sandbox.chat.ui.contract.UserRatingContract;
 import com.sandbox.chat.ui.presenter.UserRatingPresenter;
 //import com.sandbox.chat.mgr.UserRatingMgr;
-import com.sandbox.chat.ui.activities.EaterySelectionMapActivity;
+import com.sandbox.chat.ui.activities.MapsActivity;
 import com.sandbox.chat.ui.activities.OrderCompleteActivity;
 
 /**
@@ -118,7 +118,7 @@ public class UserRatingFragment extends Fragment implements View.OnClickListener
 //        mUserRatingPresenter.submitRating(getActivity(), rating, comments);
         Toast.makeText(getContext(), "Rating submitted", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(i);
-        intent.setComponent(new ComponentName(context, EaterySelectionMapActivity.class));
+        intent.setComponent(new ComponentName(context, MapsActivity.class));
         startActivity(intent);
     }
 

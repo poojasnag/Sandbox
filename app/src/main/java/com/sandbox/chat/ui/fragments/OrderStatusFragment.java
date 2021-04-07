@@ -39,7 +39,7 @@ import com.sandbox.chat.models.Transaction;
 import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.ui.activities.ChatActivity;
-import com.sandbox.chat.ui.activities.EaterySelectionMapActivity;
+import com.sandbox.chat.ui.activities.MapsActivity;
 import com.sandbox.chat.ui.activities.OrderCompleteActivity;
 import com.sandbox.chat.ui.activities.OrderIncompleteActivity;
 import com.sandbox.chat.ui.activities.OrderStatusActivity;

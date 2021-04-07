@@ -102,4 +102,9 @@
     <string name="button_rate">Rate</string>
     <string name="submit_rating">Submit</string>
     <string name="rating_header">Rating</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_chats">Chats</string>
+    <string name="nav_pending">Pending</string>
+    <string name="nav_completed">Completed</string>
+    <string name="nav_settings">Settings</string>
 </resources>
