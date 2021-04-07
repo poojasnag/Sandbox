@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import com.sandbox.chat.R;
 import com.sandbox.chat.models.User;
-import com.sandbox.chat.ui.activities.EaterySelectionMapActivity;
+import com.sandbox.chat.ui.activities.MapsActivity;
 import com.sandbox.chat.ui.contract.BnDContract;
 import com.sandbox.chat.ui.presenter.BnDPresenter;
 
@@ -79,7 +79,7 @@ public class BnDFragment extends Fragment implements View.OnClickListener, BnDCo
     public void onDelivererSelect(Context context) {
         bndController = new BnDPresenter();
         mProgressDialog.dismiss();
-        Intent intent = new Intent(context, EaterySelectionMapActivity.class);
+        Intent intent = new Intent(context, MapsActivity.class);
         intent.putExtra("user", bndController.createDeliverer((User) getActivity().getIntent().getSerializableExtra("user")));
         Toast.makeText(getContext(), "You have selected DELIVERER", Toast.LENGTH_SHORT).show();
         startActivity(intent);
@@ -88,7 +88,7 @@ public class BnDFragment extends Fragment implements View.OnClickListener, BnDCo
     public void onBuyerSelect(Context context){
         bndController = new BnDPresenter();
         mProgressDialog.dismiss();
-        Intent intent = new Intent(context, EaterySelectionMapActivity.class);
+        Intent intent = new Intent(context, MapsActivity.class);
         assert(getActivity().getIntent().getSerializableExtra("user")!= null);
         intent.putExtra("user", bndController.createBuyer((User) getActivity().getIntent().getSerializableExtra("user")));
         Toast.makeText(getContext(), "You have selected BUYER", Toast.LENGTH_SHORT).show();
