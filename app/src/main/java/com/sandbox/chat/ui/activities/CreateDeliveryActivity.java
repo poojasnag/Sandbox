@@ -112,7 +112,7 @@ public class CreateDeliveryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(CreateDeliveryActivity.this, "create button clicked", Toast.LENGTH_SHORT).show();
-                
+
 //                String chosenLoc = deliveryLocSpinner.getSelectedItem().toString();  //TODO: Change to array
                 String deliveryFee = deliveryFeeText.getText().toString();
                 String cutoffDateTime = cutoff_picker. getText().toString();
@@ -173,4 +173,3 @@ public class CreateDeliveryActivity extends AppCompatActivity {
     }
 
 }
-

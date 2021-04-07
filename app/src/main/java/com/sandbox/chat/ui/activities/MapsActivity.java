@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.libraries.maps.CameraUpdateFactory;
@@ -29,12 +30,14 @@ import com.google.android.libraries.maps.SupportMapFragment;
 import com.google.android.libraries.maps.model.LatLng;
 import com.google.android.libraries.maps.model.MarkerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.maps.android.data.Feature;
 import com.google.maps.android.data.Layer;
 import com.google.maps.android.data.geojson.GeoJsonLayer;
 import com.google.maps.android.data.geojson.GeoJsonPolygonStyle;
 import com.sandbox.chat.core.maps.MapsInteractor;
 import com.sandbox.chat.core.maps.MapsPresenter;
+import com.sandbox.chat.mgr.DelivererOfferMgr;
 import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.R;
@@ -169,9 +172,24 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         TextView eateryName = myDialog.findViewById(R.id.eatery_name);
         TextView eateryLoc = myDialog.findViewById(R.id.eatery_addresss);
         TextView eateryTime = myDialog.findViewById(R.id.eatery_op_time);
+        TextView delivererCount = myDialog.findViewById(R.id.eatery_details_num_deliverers);
         eateryName.setText(e.getEateryName());
         eateryLoc.setText(e.getEateryAddress() + ", " + e.getEateryStreet());
         eateryTime.setText(e.getOperatingTime());
+        DelivererOfferMgr.getEateryDeliverers(e).get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            QuerySnapshot querySnapshot = task.getResult();
+                            Integer count = querySnapshot.size();
+                            delivererCount.setText(count.toString());
+                        }
+                        else {
+                            delivererCount.setText("0");
+                        }
+                    }
+                });
 
 
         txtclose.setOnClickListener(new View.OnClickListener() {
