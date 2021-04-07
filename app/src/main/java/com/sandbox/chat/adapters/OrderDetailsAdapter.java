@@ -103,18 +103,7 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {
                                 for (QueryDocumentSnapshot delivererOfferDoc : task.getResult()) {
-                                    UserMgr.getUserDocument(t.getDelivererID())
-                                            .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                            if (task.isSuccessful()) {
-                                                DocumentSnapshot document = task.getResult();
-                                                if (document.exists()) {
-                                                    ((OrderDetailsHolder) holder).button.setText(String.format("%s \t\t %s \nDeliver to: %s\n Eatery: %s\n%s", document.getString("email") , delivererOfferDoc.getString("etaTime"), t.getBuyerLocation(), ((Eatery)(i.getSerializableExtra("Eatery"))).getEateryName(), t.getOrderDetails() ));
-                                                }
-                                            }
-                                        }
-                                    });
+                                    ((OrderDetailsHolder) holder).button.setText(String.format("%s \t\t %s \nDeliver to: %s\n Eatery: %s\n%s", delivererOfferDoc.getString("delivererName") , delivererOfferDoc.getString("etaTime"), t.getBuyerLocation(), ((Eatery)(i.getSerializableExtra("Eatery"))).getEateryName(), t.getOrderDetails() ));
                                 }
                             }
                         }
@@ -151,3 +140,17 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return orders.size();
     }
 }
+
+
+//                             UserMgr.getUserDocument(t.getDelivererID())
+//                                            .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                                        @Override
+//                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                                            if (task.isSuccessful()) {
+//                                                DocumentSnapshot document = task.getResult();
+//                                                if (document.exists()) {
+//                                                    ((OrderDetailsHolder) holder).button.setText(String.format("%s \t\t %s \nDeliver to: %s\n Eatery: %s\n%s", document.getString("email") , delivererOfferDoc.getString("etaTime"), t.getBuyerLocation(), ((Eatery)(i.getSerializableExtra("Eatery"))).getEateryName(), t.getOrderDetails() ));
+//                                                }
+//                                            }
+//                                        }
+//                                    });

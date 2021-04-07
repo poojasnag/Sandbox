@@ -38,7 +38,7 @@ public class CreateDeliveryMgr {
         if (deliverer != null) {
             String email = deliverer.getEmail();
             String offerID = curTime + "-" + email;  //KEY: OfferID which is current time + uid (unique in every scenario)
-            DelivererOffer delivererOffer = new DelivererOffer(offerID, cutoffDateTime, etaDateTime, deliveryFee, locationsList, eatery, deliverer, curTime);
+            DelivererOffer delivererOffer = new DelivererOffer(offerID, deliverer.getEmail() ,cutoffDateTime, etaDateTime, deliveryFee, locationsList, eatery, deliverer, curTime);
 //            Toast.makeText(context, delivererOffer.getClass().getName(), Toast.LENGTH_SHORT).show();
             DelivererOfferMgr.setData(delivererOffer, context);
         }

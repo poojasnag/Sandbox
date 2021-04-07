@@ -80,13 +80,14 @@ public class OrderStatusFragment extends Fragment {
         location = view.findViewById(R.id.order_status_location_text);
 
         //TODO: This is potentially wrong
+
         if(i.getSerializableExtra("user") instanceof Buyer)
         {
-            partnerName.setText("Deliverer Name: " +cur.getDelivererID());
+            partnerName.setText("Deliverer Name: " +cur.getDelivererName());
         }
         else
         {
-            partnerName.setText("Buyer Name: " +cur.getBuyerID());
+            partnerName.setText("Buyer Name: " +cur.getBuyerName());
         }
         //TODO: Zi Heng how do I access the delivererOffer from inside Transactions
         Log.e("orderstatusFragment", ((Eatery) getActivity().getIntent().getSerializableExtra("Eatery")).getEateryName());
