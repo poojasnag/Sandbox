@@ -38,6 +38,7 @@ import com.google.maps.android.data.geojson.GeoJsonPolygonStyle;
 import com.sandbox.chat.core.maps.MapsInteractor;
 import com.sandbox.chat.core.maps.MapsPresenter;
 import com.sandbox.chat.mgr.DelivererOfferMgr;
+import com.sandbox.chat.models.Buyer;
 import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.R;
@@ -130,7 +131,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     public void selectLocation(View view, Eatery eatery) {
         //TODO: Add the information of the location
-        if (getI().getBooleanExtra("isBuyer", true)) {
+        if (getIntent().getSerializableExtra("user") instanceof Buyer) {
             Intent intent = new Intent(getI());
             intent.setComponent(new ComponentName(view.getContext(), ChooseDelivererActivity.class));
             if(intent.hasExtra("Eatery")) {
