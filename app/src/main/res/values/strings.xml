@@ -48,7 +48,7 @@
     <string name="order_status_button_1">Chat with users</string>
     <string name="order_status_button_2">Order complete</string>
     <string name="order_status_button_3">Order incomplete</string>
-    <string name="rating_header">Thank you for using the delivery app ! <br></br><br></br> How was your buyer or deliverer?</string>
+    <string name="rating_desc">How was your buyer or deliverer?</string>
     <string name="review_request_header">Any other comments? </string>
     <string name="review_request_body">Enter any comments here</string>
     <string-array name="hours">
@@ -100,4 +100,6 @@
     <string name="order_incomplete">Your order is INCOMPLETE...</string>
     <string name="order_complete_text">Thank you for using the Sandbox application for your orders.<br></br><br></br> Please give a rating for your buyer or deliverer.</string>
     <string name="button_rate">Rate</string>
+    <string name="rating_to_map">Back to main page</string>
+    <string name="rating_header">Rating</string>
 </resources>
