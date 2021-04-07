@@ -31,7 +31,7 @@ public class PlaceOrderActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), EaterySelectionMapActivity.class);
+                Intent intent = new Intent(view.getContext(), MapsActivity.class);
                 startActivity(intent);
             }
         });

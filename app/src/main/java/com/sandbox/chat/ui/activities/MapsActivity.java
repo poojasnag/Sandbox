@@ -1,17 +1,24 @@
 package com.sandbox.chat.ui.activities;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 import android.Manifest;
+import android.app.Dialog;
+import android.content.ComponentName;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.FragmentActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.libraries.maps.CameraUpdateFactory;
@@ -20,39 +27,91 @@ import com.google.android.libraries.maps.OnMapReadyCallback;
 import com.google.android.libraries.maps.SupportMapFragment;
 import com.google.android.libraries.maps.model.LatLng;
 import com.google.android.libraries.maps.model.MarkerOptions;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.maps.android.data.Feature;
+import com.google.maps.android.data.Layer;
 import com.google.maps.android.data.geojson.GeoJsonLayer;
 import com.google.maps.android.data.geojson.GeoJsonPolygonStyle;
+import com.sandbox.chat.core.maps.MapsInteractor;
+import com.sandbox.chat.core.maps.MapsPresenter;
+import com.sandbox.chat.models.Eatery;
+import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.R;
-
-import android.graphics.Color;
-
-//import com.google.maps.*;
-//import com.google.android.libraries.maps.GoogleMap;
+//import com.sandbox.chat.mgr.EaterySelectionMapMgr;
+//import com.sandbox.chat.ui.fragments.MapsFragment;
 
 import org.json.JSONException;
 
 import java.io.IOException;
 
 /**
- * Google map view with location markers of healthy eateries. Users can pick one of these eateries to order food from/ deliver food to
- * @author chua zi heng
+ * Displays the eatery selection interface
  */
-
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
-
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback{
+    //EaterySelectionMapMgr eaterySelectionMapController;
     private GoogleMap mMap;
     private GeoJsonLayer layer1;
+    MapsPresenter c;
+    public Intent i;
+
+
     FusedLocationProviderClient client;
     SupportMapFragment supportMapFragment;
 
+    public Dialog getLocationDetails() {
+        return locationDetails;
+    }
+
+    Dialog locationDetails;
+    /**
+     * Initialize the interface
+     * @param savedInstanceState If the activity is being re-initialized after previously being shut down then this Bundle contains the data it most recently supplied in onSaveInstanceState(Bundle)
+     */
     @Override
+
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+
+
+        //import geojson file into map
+        try {
+            GeoJsonLayer layer = new GeoJsonLayer(mMap, R.raw.raw, this);
+//            GeoJsonPolygonStyle polyStyle = layer.getDefaultPolygonStyle();
+//            polyStyle.setStrokeColor(Color.CYAN);
+//            polyStyle.setStrokeWidth(2);
+            layer.addLayerToMap();
+            layer.setOnFeatureClickListener(new Layer.OnFeatureClickListener() {
+                @Override
+                public void onFeatureClick(Feature feature) {
+                    System.out.println(feature.getProperty("Name"));
+                    showLocationDetails(feature.getProperty("Name"));
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_maps);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        setContentView(R.layout.activity_eatery_selection_map);
+        try {
+            MapsPresenter c = new MapsPresenter(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        final BottomNavigationView bot_bar = findViewById(R.id.eatery_selection_botnav);
+        bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.eatery_selection_map);
         mapFragment.getMapAsync(this);
+        locationDetails = new Dialog(this);
 
         //initialize fused location
         client = LocationServices.getFusedLocationProviderClient(this);
@@ -66,6 +125,62 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             //when permission denied, request permission
             ActivityCompat.requestPermissions(MapsActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
         }
+    }
+
+    public void selectLocation(View view) {
+        //TODO: Add the information of the location
+        if (getI().getBooleanExtra("isBuyer", true)) {
+            Intent intent = new Intent(getI());
+            intent.setComponent(new ComponentName(view.getContext(), ChooseDelivererActivity.class));
+            startActivity(intent);
+
+        } else {
+            Intent intent = new Intent(getI());
+            intent.setComponent(new ComponentName(view.getContext(), CreateDeliveryActivity.class));
+            startActivity(intent);
+        }
+    }
+
+    public void showLocationDetails(String feature_id)
+    {
+        //from EaterySelectionMapMgr.java
+
+        String ID = feature_id;
+
+        Eatery e = MapsInteractor.findEatery(ID);
+
+        TextView txtclose;
+        Button btnFollow;
+        Dialog myDialog = getLocationDetails();
+        myDialog.setContentView(R.layout.eatery_details);
+        txtclose =(TextView) myDialog.findViewById(R.id.txtclose);
+        txtclose.setText("X");
+        btnFollow = (Button) myDialog.findViewById(R.id.btnfollow);
+
+
+
+        TextView eateryName = myDialog.findViewById(R.id.eatery_name);
+        TextView eateryLoc = myDialog.findViewById(R.id.eatery_addresss);
+        TextView eateryTime = myDialog.findViewById(R.id.eatery_op_time);
+        eateryName.setText(e.getEateryName());
+        eateryLoc.setText(e.getEateryAddress() + ", " + e.getEateryStreet());
+        eateryTime.setText(e.getOperatingTime());
+
+
+        txtclose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.dismiss();
+            }
+        });
+        btnFollow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectLocation(view);
+            }
+        });
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialog.show();
     }
 
     private void getCurrentLocation() {
@@ -84,14 +199,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         task.addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
-                if (location != null) {
-                    supportMapFragment.getMapAsync(new OnMapReadyCallback() {
+                if (location != null | supportMapFragment != null) {
+                    SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                            .findFragmentById(R.id.eatery_selection_map);
+                    mapFragment.getMapAsync(new OnMapReadyCallback(){
+
                         @Override
                         public void onMapReady(GoogleMap googleMap) {
                             LatLng latlng = new LatLng(location.getLatitude(), location.getLongitude());
                             MarkerOptions options = new MarkerOptions().position(latlng).title("Current Location");
 
-                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng, 10));
+                            //googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng, 10));
+                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng, 18f));
 
                             googleMap.addMarker(options);
                         }
@@ -113,34 +232,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
+
     @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-
-
-
-        //open current location on map
-
-//        add individual markings
-//        LatLng jp = new LatLng(1.3399373652678745, 103.7067511545603);
-//        mMap.addMarker(new MarkerOptions().position(jp).title("Marker in JP"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(jp, 18f));
-
-        //import geojson file into map
-        try {
-            GeoJsonLayer layer = new GeoJsonLayer(mMap, R.raw.raw, this);
-            GeoJsonPolygonStyle polyStyle = layer.getDefaultPolygonStyle();
-            polyStyle.setStrokeColor(Color.CYAN);
-            polyStyle.setStrokeWidth(2);
-            layer.addLayerToMap();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-//        LatLng jp = new LatLng(1.3399373652678745, 103.7067511545603);
-//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(jp, 18f));
+    protected void onStart()
+    {
+        super.onStart();
+        i = getIntent();
     }
+
+
+
+    public Intent getI() {
+        return i;
+    }
+
+
 }

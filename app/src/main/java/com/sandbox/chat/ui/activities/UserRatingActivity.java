@@ -31,7 +31,7 @@ public class UserRatingActivity extends AppCompatActivity {
         sendRating.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), EaterySelectionMapActivity.class);
+                Intent intent = new Intent(view.getContext(), MapsActivity.class);
                 startActivity(intent);
             }
         });

@@ -4,7 +4,7 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.view.View;
 
-import com.sandbox.chat.ui.activities.EaterySelectionMapActivity;
+import com.sandbox.chat.ui.activities.MapsActivity;
 import com.sandbox.chat.ui.activities.UserRatingActivity;
 
 /**
@@ -27,7 +27,7 @@ public class UserRatingMgr {
      */
     public void submitRating(View view) {
         Intent intent = new Intent(userRatingActivity.getPrevIntent());
-        intent.setComponent(new ComponentName(view.getContext(), EaterySelectionMapActivity.class));
+        intent.setComponent(new ComponentName(view.getContext(), MapsActivity.class));
         userRatingActivity.startActivity(intent);
     }
 }

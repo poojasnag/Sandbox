@@ -38,7 +38,7 @@ public class Eatery implements Serializable {
     private String eateryStreet;
 
     public Eatery(String eateryID, String eateryName, String eateryAddress ,String eateryStreet, String operatingTime) {
-        this.eateryID = eateryID;
+//        string;
         this.eateryName = eateryName;
 
         this.eateryStreet = eateryStreet;
