@@ -18,8 +18,8 @@ import android.widget.RatingBar;
 import com.sandbox.chat.R;
 import com.sandbox.chat.core.userrating.UserRatingContract;
 import com.sandbox.chat.core.userrating.UserRatingPresenter;
-//import com.sandbox.chat.mgr.UserRatingMgr;
-import com.sandbox.chat.ui.activities.EaterySelectionMapActivity;
+import com.sandbox.chat.ui.activities.MapsActivity;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -106,7 +106,7 @@ public class UserRatingFragment extends Fragment implements View.OnClickListener
         String comments = mETxtComments.getText().toString();
         mUserRatingPresenter.submitRating(getActivity(), rating, comments);
         mProgressDialog.show();
-        Intent intent = new Intent(view.getContext(), EaterySelectionMapActivity.class);
+        Intent intent = new Intent(view.getContext(), MapsActivity.class);
         startActivity(intent);
     }
 

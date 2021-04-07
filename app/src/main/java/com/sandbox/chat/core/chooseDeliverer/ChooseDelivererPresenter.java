@@ -67,7 +67,7 @@ public class ChooseDelivererPresenter implements ChooseDelivererContract.Present
 
                                 Deliverer deliverer = new Deliverer(delivererMap.get("uid").toString(),delivererMap.get("email").toString(), (delivererMap.get("firebaseToken") == null) ? "null" : delivererMap.get("firebaseToken").toString(), deliveryFee.floatValue(), null);
 //                                Log.e("deliverer", deliverer.getUid());
-                                 delivererOffer = new DelivererOffer(document.getString("delivererOfferID"), document.getString("cutOffTime"), document.getString("etaTime"), document.getDouble("deliveryFee"), locationsList, eatery, deliverer, document.getString("timestamp"));
+                                 delivererOffer = new DelivererOffer(document.getString("delivererOfferID"), document.getString("delivererName"),document.getString("cutOffTime"), document.getString("etaTime"), document.getDouble("deliveryFee"), locationsList, eatery, deliverer, document.getString("timestamp"));
 //                                Log.e("delivereroffer",delivererOffer.toString());
                                 demo.add(delivererOffer);
 //                                demo.add(String.format("Name: %s \nRate:$%.2f\nLocations: %s", document.getString(KEY_NAME), document.getDouble(KEY_DELIVERYFEE), MultiSpinner.linkedListToString(locationsList)));
