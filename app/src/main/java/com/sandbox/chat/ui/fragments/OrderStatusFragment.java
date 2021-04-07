@@ -10,12 +10,22 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.sandbox.chat.R;
+import com.sandbox.chat.adapters.OrderDetailsAdapter;
+import com.sandbox.chat.mgr.DelivererOfferMgr;
+import com.sandbox.chat.mgr.UserMgr;
 import com.sandbox.chat.models.Buyer;
+import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.models.Transaction;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.ui.activities.OrderStatusActivity;
@@ -72,20 +82,19 @@ public class OrderStatusFragment extends Fragment {
         //TODO: This is potentially wrong
         if(i.getSerializableExtra("user") instanceof Buyer)
         {
-            partnerName.setText(cur.getDelivererID());
+            partnerName.setText("Deliverer Name: " +cur.getDelivererID());
         }
         else
         {
-            partnerName.setText(cur.getBuyerID());
+            partnerName.setText("Buyer Name: " +cur.getBuyerID());
         }
         //TODO: Zi Heng how do I access the delivererOffer from inside Transactions
-//        Log.e("orderstatusactivity", ((Eatery) getIntent().getSerializableExtra("Eatery")).getEateryName());
-        rate.setText("There is no rate in Transactions");
-        //How do I get a delivererOffer from its ID
-        eta.setText("There is also no ETA  in transactions");
-        location.setText(cur.getBuyerLocation());
-        eatery.setText("We also need a way to get the selected eatery from the transaction");
-        orderDetails.setText(cur.getOrderDetails());
+        Log.e("orderstatusFragment", ((Eatery) getActivity().getIntent().getSerializableExtra("Eatery")).getEateryName());
+
+        setDetails(cur);
+
+
+
     }
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -101,5 +110,24 @@ public class OrderStatusFragment extends Fragment {
         mProgressDialog.setIndeterminate(true);
 
 //        submitButton.setOnClickListener(this);
+    }
+    private void setDetails(Transaction cur){
+        DelivererOfferMgr.getDelivererOffer(cur.getDelivererOfferID()).get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                rate.setText("Delivery Fee: " + Double.toString(document.getDouble("deliveryFee")));
+                                //How do I get a delivererOffer from its ID
+                                eta.setText("ETA : " +document.getString("etaTime"));
+                                location.setText("Delivery Location: " +cur.getBuyerLocation());
+                                eatery.setText("Eatery: " +((Eatery) getActivity().getIntent().getSerializableExtra("Eatery")).getEateryName());
+                                orderDetails.setText("Order Details: " +cur.getOrderDetails());
+                            }
+                        }
+                    }
+
+                });
     }
 }
