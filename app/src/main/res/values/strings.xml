@@ -100,6 +100,6 @@
     <string name="order_incomplete">Your order is INCOMPLETE...</string>
     <string name="order_complete_text">Thank you for using the Sandbox application for your orders.<br></br><br></br> Please give a rating for your buyer or deliverer.</string>
     <string name="button_rate">Rate</string>
-    <string name="rating_to_map">Back to main page</string>
+    <string name="submit_rating">Submit</string>
     <string name="rating_header">Rating</string>
 </resources>

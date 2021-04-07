@@ -2,6 +2,7 @@ package com.sandbox.chat.ui.fragments;
 
 import android.app.ProgressDialog;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -14,12 +15,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.Toast;
 
 import com.sandbox.chat.R;
-import com.sandbox.chat.core.userrating.UserRatingContract;
-import com.sandbox.chat.core.userrating.UserRatingPresenter;
+import com.sandbox.chat.ui.contract.UserRatingContract;
+import com.sandbox.chat.ui.presenter.UserRatingPresenter;
 //import com.sandbox.chat.mgr.UserRatingMgr;
 import com.sandbox.chat.ui.activities.EaterySelectionMapActivity;
+import com.sandbox.chat.ui.activities.OrderCompleteActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,7 +32,7 @@ import com.sandbox.chat.ui.activities.EaterySelectionMapActivity;
 public class UserRatingFragment extends Fragment implements View.OnClickListener, UserRatingContract.View{
     private static final String TAG = UserRatingFragment.class.getSimpleName();
     private UserRatingPresenter mUserRatingPresenter;
-
+    Intent i;
     private RatingBar mRatingBar;
     private EditText mETxtComments;
     private Button mBtnSubmit;
@@ -39,9 +42,9 @@ public class UserRatingFragment extends Fragment implements View.OnClickListener
 //    UserRatingMgr userRatingController;
 
 
-    public UserRatingFragment() {
-        // Required empty public constructor
-    }
+//    public UserRatingFragment() {
+//        // Required empty public constructor
+//    }
 
     public static UserRatingFragment newInstance() {
         Bundle args = new Bundle();
@@ -50,6 +53,10 @@ public class UserRatingFragment extends Fragment implements View.OnClickListener
         return fragment;
     }
 
+    public void onStart()
+    {
+        super.onStart();
+    }
 //    @Override
 //    public void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
@@ -73,6 +80,7 @@ public class UserRatingFragment extends Fragment implements View.OnClickListener
         mRatingBar = (RatingBar) view.findViewById(R.id.user_rating_bar);
         mETxtComments = (EditText) view.findViewById(R.id.user_rating_comment_box);
         mBtnSubmit = (Button) view.findViewById(R.id.user_rating_submit);
+        i = getActivity().getIntent();
     }
     
     @Override
@@ -82,11 +90,13 @@ public class UserRatingFragment extends Fragment implements View.OnClickListener
     }
     
     private void init(){
-        mUserRatingPresenter = new UserRatingPresenter(this);
+//        mUserRatingPresenter = new UserRatingPresenter(this);
         mProgressDialog = new ProgressDialog(getActivity());
         mProgressDialog.setTitle(getString(R.string.loading));
         mProgressDialog.setMessage(getString(R.string.please_wait));
         mProgressDialog.setIndeterminate(true);
+        mBtnSubmit.setOnClickListener(this);
+
         mBtnSubmit.setOnClickListener(this);
     }
     
@@ -95,18 +105,20 @@ public class UserRatingFragment extends Fragment implements View.OnClickListener
         int viewId = view.getId();
         switch(viewId){
             case R.id.user_rating_submit:
-                onSubmitRating(view);
+                onSubmitSelect(view.getContext());
                 break;
         }
     }
     
-    private void onSubmitRating(View view){
+    public void onSubmitSelect(Context context){
 //        userRatingController = new UserRatingMgr(this);
-        int rating = 5;
-        String comments = mETxtComments.getText().toString();
-        mUserRatingPresenter.submitRating(getActivity(), rating, comments);
-        mProgressDialog.show();
-        Intent intent = new Intent(view.getContext(), EaterySelectionMapActivity.class);
+        mProgressDialog.dismiss();
+//        int rating = 5;
+//        String comments = mETxtComments.getText().toString();
+//        mUserRatingPresenter.submitRating(getActivity(), rating, comments);
+        Toast.makeText(getContext(), "Rating submitted", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(i);
+        intent.setComponent(new ComponentName(context, EaterySelectionMapActivity.class));
         startActivity(intent);
     }
 
