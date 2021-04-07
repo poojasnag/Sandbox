@@ -1,6 +1,7 @@
 package com.sandbox.chat.mgr;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.sandbox.chat.R;
 import com.sandbox.chat.models.Eatery;
@@ -25,12 +26,12 @@ public class EateryMgr {
 
     public static Eatery findEatery(String id)
     {
-
+        Log.e("beforeIf", id);
         for (int i = 0; i < eateries.size(); i++) {
 
             if(eateries.get(i).getEateryID().equals(id) == true)
             {
-
+                Log.e("insideIF", eateries.get(i).getEateryID());
                 return eateries.get(i);
             }
 
