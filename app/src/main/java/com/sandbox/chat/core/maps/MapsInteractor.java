@@ -1,37 +1,36 @@
-package com.sandbox.chat.mgr;
+package com.sandbox.chat.core.maps;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.sandbox.chat.R;
 import com.sandbox.chat.models.Eatery;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class EateryMgr {
+public class MapsInteractor implements MapsContract.Interactor {
+
     private static ArrayList<Eatery> eateries;
 
+    public MapsInteractor(ArrayList<Eatery> eateries){
+        this.eateries = eateries;
+    }
+    public MapsInteractor(){}
     public static Eatery findEatery(String id)
     {
-        Log.e("beforeIf", id);
+        Log.e("stringID", id);
+
         for (int i = 0; i < eateries.size(); i++) {
+            Log.e("spam", eateries.get(i).getEateryID());
 
             if(eateries.get(i).getEateryID().equals(id) == true)
             {
-                Log.e("insideIF", eateries.get(i).getEateryID());
+                Log.e("mapsInteractor", eateries.get(i).getEateryName());
                 return eateries.get(i);
             }
 
@@ -85,11 +84,12 @@ public class EateryMgr {
 
 
                     name = name_m.group(2);
-
+                    System.out.println(name);
+                    System.out.println(loc_id);
                     e = new Eatery(loc_id, name, loc_address, loc_street, "8:00-21:00");
                     eateries.add(e);
                     ID +=1;
-
+                    System.out.println("Record added");
 
                 }
                 cur = r.readLine();
@@ -104,6 +104,4 @@ public class EateryMgr {
 
         }
     }
-
 }
-
