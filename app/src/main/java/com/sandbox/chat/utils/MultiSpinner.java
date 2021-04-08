@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.util.AttributeSet;
 import android.widget.ArrayAdapter;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class MultiSpinner extends androidx.appcompat.widget.AppCompatSpinner implements
@@ -106,9 +107,9 @@ public class MultiSpinner extends androidx.appcompat.widget.AppCompatSpinner imp
     public String getItems(int index) {
         return items[index];
     }
-    public LinkedList<String> getAllSelected(boolean [] selected)
+    public ArrayList<String> getAllSelected(boolean [] selected)
     {
-        LinkedList<String> all = new LinkedList<String>();
+        ArrayList<String> all = new ArrayList<String>();
         for(int i=0; i < selected.length; i++)
         {
             if(selected[i])

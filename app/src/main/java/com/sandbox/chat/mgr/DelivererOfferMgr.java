@@ -21,7 +21,7 @@ import java.util.Map;
 
 public class DelivererOfferMgr {
     private static FirebaseFirestore fStore = FirebaseFirestore.getInstance();
-    private static String OFFER_TABLE = "delivererOffers";
+    private static String OFFER_TABLE = "delivererOffer";
     DelivererOfferMgr(){}
 
     public static void setData(DelivererOffer delivererOffer, Context context){
