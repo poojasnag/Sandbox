@@ -38,6 +38,14 @@ public class User implements Serializable {
         this.rating = rating;
     }
 
+    public boolean equals(Object o)
+    {
+        if(o instanceof User)
+        {
+            return uid == ((User) o).getUid();
+        }
+        return false;
+    }
     public String getEmail(){
         return this.email;
     }

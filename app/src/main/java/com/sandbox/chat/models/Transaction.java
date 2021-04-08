@@ -15,6 +15,7 @@ public class Transaction implements Serializable {
     /**
      * The delivery offer's ID
      */
+
     private String delivererOfferID;  // change from int to string
     /**
      * The deliverer's user ID
@@ -40,21 +41,45 @@ public class Transaction implements Serializable {
      * Overall status of the order
      */
     private Status orderStatus;
+    private String buyerName;
+    private String delivererName;
 
-
-    public Transaction(String buyerID, String delivererOfferID, String delivererID, String buyerLocation, String orderDetails) {
+    public Transaction (){}
+    public Transaction(String buyerName, String delivererName, String buyerID, String delivererOfferID, String delivererID, String buyerLocation, String orderDetails, Status orderStatus, Status delivererStatus, Status buyerStatus) {
+        this.buyerName = buyerName;
+        this.delivererName = delivererName;
         this.buyerID = buyerID;
         this.delivererOfferID = delivererOfferID;
         this.delivererID = delivererID;
         this.buyerLocation = buyerLocation;
         this.orderDetails = orderDetails;
+        this.orderStatus = orderStatus;
+        this.buyerStatus = buyerStatus;
+        this.delivererStatus = delivererStatus;
+
+    }
+
+    public String getBuyerName() {
+        return buyerName;
+    }
+
+    public void setBuyerName(String buyerName) {
+        this.buyerName = buyerName;
+    }
+
+    public String getDelivererName() {
+        return delivererName;
+    }
+
+    public void setDelivererName(String delivererName) {
+        this.delivererName = delivererName;
     }
 
     public String getBuyerID() {
         return buyerID;
     }
 
-    public void setBuyerID(String buyerID) {
+    public void setbuyerID(String buyerID) {
         this.buyerID = buyerID;
     }
 

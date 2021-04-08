@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.sandbox.chat.R;
 import com.sandbox.chat.core.chooseDeliverer.ChooseDelivererPresenter;
-import com.sandbox.chat.mgr.ChooseDelivererMgr;
 import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.ui.fragments.ChooseDelivererFragment;

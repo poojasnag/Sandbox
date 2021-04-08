@@ -13,7 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.sandbox.chat.R;
-import com.sandbox.chat.mgr.BnDMgr;
+//import com.sandbox.chat.mgr.BnDMgr;
 import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.fragments.BnDFragment;
 import com.sandbox.chat.ui.fragments.LoginFragment;
@@ -42,7 +42,6 @@ public class BnDActivity extends AppCompatActivity {
      * @param flags flags to pass to the Intent before starting the activity
      */
     public static void startActivity(Context context, User user, int flags) {
-
         Intent intent = new Intent(context, BnDActivity.class);
         intent.putExtra("user", user);
         intent.setFlags(flags);

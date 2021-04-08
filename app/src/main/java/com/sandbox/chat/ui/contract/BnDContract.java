@@ -9,7 +9,7 @@ public interface BnDContract {
         void onDelivererSelect(Context context);
     }
     interface Presenter {
-//        void addRoleToDB();
+//       //TODO: add the info of whether user is buyer or del to db?
     }
     interface onBnDListener {
         void onBuyerSuccess();

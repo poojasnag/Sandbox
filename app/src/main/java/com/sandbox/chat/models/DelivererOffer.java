@@ -1,8 +1,8 @@
 package com.sandbox.chat.models;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * Contains information about a delivery offer
@@ -39,6 +39,7 @@ public class DelivererOffer implements Serializable {
     private Deliverer deliverer;
 
     private String timestamp;
+    private String delivererName;
 //    /**
 //     * The status of the order
 //     * @deprecated
@@ -56,8 +57,10 @@ public class DelivererOffer implements Serializable {
      * @param deliverer The deliverer's information
 
      */
-    public DelivererOffer(String delivererOfferID, String cutOffTime, String etaTime, double deliveryFee, ArrayList<String> deliveryLocation, Eatery eatery, Deliverer deliverer, String timestamp) {
+
+    public DelivererOffer(String delivererOfferID, String delivererName ,String cutOffTime, String etaTime, double deliveryFee, ArrayList<String> deliveryLocation, Eatery eatery, Deliverer deliverer, String timestamp) {
         this.delivererOfferID = delivererOfferID;
+        this.delivererName = delivererName ;
         this.cutOffTime = cutOffTime;
         this.etaTime = etaTime;
         this.deliveryFee = deliveryFee;
@@ -103,7 +106,7 @@ public class DelivererOffer implements Serializable {
         return deliveryLocation;
     }
 
-    public void setDeliveryLocations(ArrayList<String> deliveryLocation) {
+    public void setDeliveryLocations(ArrayList<String>deliveryLocation) {
         this.deliveryLocation = deliveryLocation;
     }
 
@@ -129,5 +132,13 @@ public class DelivererOffer implements Serializable {
 
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public String getDelivererName() {
+        return delivererName;
+    }
+
+    public void setDelivererName(String delivererName) {
+        this.delivererName = delivererName;
     }
 }

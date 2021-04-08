@@ -23,6 +23,6 @@ public class PlaceOrderPresenter implements PlaceOrderContract.Presenter, PlaceO
 
     @Override
     public void onSubmitSuccess() {
-        mPlaceOrderView.onSubmitSelect(new PlaceOrderFragment().getContext());
+        mPlaceOrderView.onSubmitSelect(placeOrderActivity);
     }
 }

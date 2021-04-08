@@ -16,6 +16,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.sandbox.chat.mgr.PlaceOrderMgr;
+import com.sandbox.chat.models.DelivererOffer;
+import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.R;
@@ -33,8 +35,8 @@ import com.sandbox.chat.utils.MultiRadio;
  */
 public class PlaceOrderActivity extends AppCompatActivity {
     private PlaceOrderPresenter placeOrderController;
-    private MultiRadio locationList;
-    private Button submitButton;
+    //    private MultiRadio locationList;
+//    private Button submitButton;
     private Toolbar mToolbar;
 //    private String selectedLocation;
 
@@ -58,6 +60,7 @@ public class PlaceOrderActivity extends AppCompatActivity {
 
         Intent intent = new Intent(context, PlaceOrderActivity.class);
         intent.setFlags(flags);
+        Toast.makeText(context, ( (DelivererOffer) intent.getSerializableExtra("delivererOffer")).getClass().toString(), Toast.LENGTH_SHORT).show();
         context.startActivity(intent);
     }
 
@@ -70,7 +73,7 @@ public class PlaceOrderActivity extends AppCompatActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        placeOrderController = new PlaceOrderPresenter();
+        placeOrderController = new PlaceOrderPresenter(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_order);
         bindViews();
@@ -92,65 +95,7 @@ public class PlaceOrderActivity extends AppCompatActivity {
                 PlaceOrderFragment.class.getSimpleName());
         fragmentTransaction.commit();
     }
+
+
 }
-
-
-
-
-
-
-
-//    public void setSelectedLocation(String selectedLocation) {
-//        this.selectedLocation = selectedLocation;
-//    }
-
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_place_order);
-//        final BottomNavigationView bot_bar = findViewById(R.id.place_order_bottomNavigationView);
-//        bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
-//
-//        placeOrderController = new PlaceOrderPresenter(this);
-//
-//        submitButton = findViewById(R.id.place_order_submit);
-//        submitButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(view.getContext(), EaterySelectionMapActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-
-//        locationList = findViewById(R.id.spinner2);
-//        placeOrderController.setLocationList(locationList);
-        //get string array from source
-
-
-
-
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        submitButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                placeOrderController.submitOrder(view);
-//            }
-//        });
-//
-//    }
-
-//    public Intent getPrevIntent() {
-//        return getIntent();
-//    }
-//
-//    public Button getSubmitButton() {
-//        return submitButton;
-//    }
-//
-//    public String getSelectedLocation() {
-//        return selectedLocation;
-//    }
-
 
