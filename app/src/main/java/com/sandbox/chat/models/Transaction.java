@@ -43,9 +43,10 @@ public class Transaction implements Serializable {
     private Status orderStatus;
     private String buyerName;
     private String delivererName;
-
+    private String transactionID;
     public Transaction (){}
-    public Transaction(String buyerName, String delivererName, String buyerID, String delivererOfferID, String delivererID, String buyerLocation, String orderDetails, Status orderStatus, Status delivererStatus, Status buyerStatus) {
+    public Transaction(String transactionID, String buyerName, String delivererName, String buyerID, String delivererOfferID, String delivererID, String buyerLocation, String orderDetails, Status orderStatus, Status delivererStatus, Status buyerStatus) {
+        this.transactionID = transactionID;
         this.buyerName = buyerName;
         this.delivererName = delivererName;
         this.buyerID = buyerID;
@@ -137,6 +138,14 @@ public class Transaction implements Serializable {
 
     public void setOrderStatus(Status orderStatus) {
         this.orderStatus = orderStatus;
+    }
+
+    public String getTransactionID() {
+        return transactionID;
+    }
+
+    public void setTransactionID(String transactionID) {
+        this.transactionID = transactionID;
     }
 }
 
