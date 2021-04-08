@@ -14,6 +14,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.sandbox.chat.R;
+import com.sandbox.chat.mgr.TransactionMgr;
+import com.sandbox.chat.models.Buyer;
+import com.sandbox.chat.models.Status;
+import com.sandbox.chat.models.Transaction;
+import com.sandbox.chat.ui.activities.ChooseDelivererActivity;
+import com.sandbox.chat.ui.activities.CreateDeliveryActivity;
 import com.sandbox.chat.ui.activities.UserListingActivity;
 import com.sandbox.chat.ui.activities.UserRatingActivity;
 import com.sandbox.chat.ui.contract.BnDContract;
@@ -21,7 +27,7 @@ import com.sandbox.chat.ui.contract.OrderCompleteContract;
 import com.sandbox.chat.ui.presenter.BnDPresenter;
 import com.sandbox.chat.ui.presenter.OrderCompletePresenter;
 
-public class OrderCompleteFragment extends Fragment implements View.OnClickListener, OrderCompleteContract.View {
+public class OrderCompleteFragment extends Fragment implements View.OnClickListener { //, OrderCompleteContract.View
 
     private Button rate_button;
     private ProgressDialog mProgressDialog;
@@ -61,8 +67,10 @@ public class OrderCompleteFragment extends Fragment implements View.OnClickListe
         mProgressDialog.setTitle(getString(R.string.loading));
         mProgressDialog.setMessage(getString(R.string.please_wait));
         mProgressDialog.setIndeterminate(true);
-
         rate_button.setOnClickListener(this);
+//        mOrderCompletePresenter.updateOrderStatus();   //TODO:temporarily detatch from presenter
+
+        updateStatus(getContext());
     }
 
     @Override
@@ -82,4 +90,16 @@ public class OrderCompleteFragment extends Fragment implements View.OnClickListe
         intent.setComponent(new ComponentName(context, UserRatingActivity.class));
         startActivity(intent);
     }
+    public void updateStatus(Context context){
+        Transaction transaction = (Transaction) i.getSerializableExtra("Transaction");
+        if (i.getSerializableExtra("user") instanceof Buyer) {
+            TransactionMgr.updateRating(true, "buyerStatus", transaction.getTransactionID());
+            transaction.setBuyerStatus(Status.COMPLETE);
+        } else {
+            TransactionMgr.updateRating(true, "delivererStatus", transaction.getTransactionID());
+            transaction.setDelivererStatus(Status.COMPLETE);
+        }
+
+    }
+
 }

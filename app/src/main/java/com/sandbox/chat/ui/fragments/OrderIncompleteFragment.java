@@ -15,6 +15,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.sandbox.chat.R;
+import com.sandbox.chat.mgr.TransactionMgr;
+import com.sandbox.chat.models.Buyer;
+import com.sandbox.chat.models.Status;
+import com.sandbox.chat.models.Transaction;
 import com.sandbox.chat.ui.activities.UserRatingActivity;
 import com.sandbox.chat.ui.contract.OrderCompleteContract;
 import com.sandbox.chat.ui.contract.OrderIncompleteContract;
@@ -62,6 +66,7 @@ public class OrderIncompleteFragment extends Fragment implements View.OnClickLis
         mProgressDialog.setIndeterminate(true);
 
         rate_button.setOnClickListener(this);
+        updateStatus(getContext());
     }
 
     @Override
@@ -80,5 +85,16 @@ public class OrderIncompleteFragment extends Fragment implements View.OnClickLis
         Intent intent = new Intent(i);
         intent.setComponent(new ComponentName(context, UserRatingActivity.class));
         startActivity(intent);
+    }
+    public void updateStatus(Context context){
+        Transaction transaction = (Transaction) i.getSerializableExtra("Transaction");
+        if (i.getSerializableExtra("user") instanceof Buyer) {
+            TransactionMgr.updateRating(false, "buyerStatus", transaction.getTransactionID());
+            transaction.setBuyerStatus(Status.INCOMPLETE);
+        } else {
+            TransactionMgr.updateRating(false, "delivererStatus", transaction.getTransactionID());
+            transaction.setDelivererStatus(Status.INCOMPLETE);
+        }
+
     }
 }
