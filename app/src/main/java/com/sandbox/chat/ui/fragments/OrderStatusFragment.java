@@ -1,6 +1,9 @@
 package com.sandbox.chat.ui.fragments;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,23 +25,40 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.sandbox.chat.R;
+
+import com.sandbox.chat.core.chat.ChatContract;
+import com.sandbox.chat.core.chat.ChatPresenter;
+
 import com.sandbox.chat.adapters.OrderDetailsAdapter;
 import com.sandbox.chat.mgr.DelivererOfferMgr;
 import com.sandbox.chat.mgr.UserMgr;
+
 import com.sandbox.chat.models.Buyer;
 import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.models.Transaction;
+import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
+import com.sandbox.chat.ui.activities.ChatActivity;
+import com.sandbox.chat.ui.activities.MapsActivity;
+import com.sandbox.chat.ui.activities.OrderCompleteActivity;
+import com.sandbox.chat.ui.activities.OrderIncompleteActivity;
 import com.sandbox.chat.ui.activities.OrderStatusActivity;
+import com.sandbox.chat.ui.activities.PendingOrdersActivity;
 import com.sandbox.chat.ui.activities.PlaceOrderActivity;
+import com.sandbox.chat.ui.activities.UserListingActivity;
+import com.sandbox.chat.ui.contract.OrderStatusContract;
+import com.sandbox.chat.ui.contract.PendingOrdersContract;
+import com.sandbox.chat.ui.presenter.BnDPresenter;
 import com.sandbox.chat.ui.presenter.OrderStatusPresenter;
 import com.sandbox.chat.ui.presenter.PlaceOrderPresenter;
+import com.sandbox.chat.core.chat.ChatPresenter;
 
 
-public class OrderStatusFragment extends Fragment {
+public class OrderStatusFragment extends Fragment implements View.OnClickListener, OrderStatusContract.View  {
     private OrderStatusActivity orderStatusActivity;
     private OrderStatusPresenter orderStatusPresenter;
     private ProgressDialog mProgressDialog;
+    private ChatPresenter chatController;
     Intent i;
     private TextView partnerName;
     private TextView eta;
@@ -45,6 +66,7 @@ public class OrderStatusFragment extends Fragment {
     private TextView location;
     private TextView orderDetails;
     private Button eatery;
+    private Button chat_button, complete_button, incomplete_button;
 
     public static OrderStatusFragment newInstance() {
         Bundle args = new Bundle();
@@ -66,6 +88,9 @@ public class OrderStatusFragment extends Fragment {
     }
 
     private void bindViews(View view) {
+        chat_button = (Button) view.findViewById(R.id.order_status_chat);
+        complete_button = (Button) view.findViewById(R.id.order_status_complete);
+        incomplete_button = (Button) view.findViewById(R.id.order_status_incomplete);
         final BottomNavigationView bot_bar = view.findViewById(R.id.order_status_bottomNavigationView);
         bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
 
@@ -80,17 +105,17 @@ public class OrderStatusFragment extends Fragment {
         location = view.findViewById(R.id.order_status_location_text);
 
         //TODO: This is potentially wrong
+
         if(i.getSerializableExtra("user") instanceof Buyer)
         {
-            partnerName.setText("Deliverer Name: " +cur.getDelivererID());
+            partnerName.setText("Deliverer Name: " +cur.getDelivererName());
         }
         else
         {
-            partnerName.setText("Buyer Name: " +cur.getBuyerID());
+            partnerName.setText("Buyer Name: " +cur.getBuyerName());
         }
-        //TODO: Zi Heng how do I access the delivererOffer from inside Transactions
-        Log.e("orderstatusFragment", ((Eatery) getActivity().getIntent().getSerializableExtra("Eatery")).getEateryName());
 
+        Log.e("orderstatusFragment", ((Eatery) getActivity().getIntent().getSerializableExtra("Eatery")).getEateryName());
         setDetails(cur);
 
 
@@ -109,8 +134,54 @@ public class OrderStatusFragment extends Fragment {
         mProgressDialog.setMessage(getString(R.string.please_wait));
         mProgressDialog.setIndeterminate(true);
 
-//        submitButton.setOnClickListener(this);
+        chat_button.setOnClickListener(this);
+        complete_button.setOnClickListener(this);
+        incomplete_button.setOnClickListener(this);
     }
+
+
+//    @Override
+    public void onClick(View view) {
+        int viewId = view.getId();
+
+        switch (viewId) {
+            case R.id.order_status_chat:
+                onChatSelect(view.getContext());
+                break;
+            case R.id.order_status_complete:
+                onCompleteSelect(view.getContext());
+                break;
+            case R.id.order_status_incomplete:
+                onIncompleteSelect(view.getContext());
+                break;
+        }
+    }
+    public void onChatSelect(Context context) {
+        mProgressDialog.dismiss();
+        Toast.makeText(getContext(), "You have selected CHAT", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(i);
+        intent.setComponent(new ComponentName(context, UserListingActivity.class));
+        startActivity(intent);
+
+    }
+
+    public void onCompleteSelect(Context context) {
+        mProgressDialog.dismiss();
+        Toast.makeText(getContext(), "You have selected COMPLETE ORDER", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(i);
+        intent.setComponent(new ComponentName(context, OrderCompleteActivity.class));
+        startActivity(intent);
+    }
+
+    public void onIncompleteSelect(Context context) {
+        mProgressDialog.dismiss();
+        Toast.makeText(getContext(), "You have selected INCOMPLETE ORDER", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(i);
+        intent.setComponent(new ComponentName(context, OrderIncompleteActivity.class));
+        startActivity(intent);
+    }
+
+
     private void setDetails(Transaction cur){
         DelivererOfferMgr.getDelivererOffer(cur.getDelivererOfferID()).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -130,4 +201,5 @@ public class OrderStatusFragment extends Fragment {
 
                 });
     }
+
 }

@@ -38,6 +38,8 @@ import com.sandbox.chat.ui.presenter.BnDPresenter;
 import com.sandbox.chat.ui.presenter.PlaceOrderPresenter;
 import com.sandbox.chat.utils.MultiRadio;
 
+import java.time.Instant;
+
 public class PlaceOrderFragment extends Fragment implements View.OnClickListener, PlaceOrderContract.View{
     private PlaceOrderActivity placeOrderActivity;
     private Button submitButton;
@@ -172,6 +174,8 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
         }
 
         String buyerID = ((User)i.getSerializableExtra("user")).getUid();
+        String buyerName = ((User)i.getSerializableExtra("user")).getEmail();
+        String delivererName = curDelivererOffer.getDeliverer().getEmail();
         String delivererOfferID = curDelivererOffer.getDelivererOfferID();
         String delivererID = curDelivererOffer.getDeliverer().getUid();
         String buyerLocation = selectedLocation;
@@ -181,7 +185,11 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
         Status buyerStatus = Status.PENDING;
 
         //TODO: Zi Heng, here's the transaction object from placeOrder.
-        Transaction t = new Transaction(buyerID, delivererOfferID, delivererID, buyerLocation, order, orderStatus, delivererStatus, buyerStatus);
+        long unixTime = Instant.now().getEpochSecond();
+        String curTime = Long.toString(unixTime);
+
+        String transactionID = buyerID + '-' + delivererOfferID + '-' + curTime;
+        Transaction t = new Transaction(transactionID, buyerName, delivererName, buyerID, delivererOfferID, delivererID, buyerLocation, order, orderStatus, delivererStatus, buyerStatus);
         TransactionMgr.setData(t, context);
 
         Intent intent = new Intent(i);

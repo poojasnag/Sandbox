@@ -1,59 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.sandbox.chat.ui.activities.BnDActivity">
+    android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/bnd_header"
+        android:id="@+id/order_is_incomplete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/BnD_text"
+        android:gravity="center_horizontal"
+        android:text="@string/order_incomplete"
+        android:textColor="@color/blue_600"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.217" />
+        app:layout_constraintVertical_bias="0.216" />
 
-    <Button
-        android:id="@+id/bnd_button_buyer"
+    <TextView
+        android:id="@+id/pls_give_rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/buyer_button"
+        android:gravity="center_horizontal"
+        android:text="@string/order_complete_text"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.686" />
+        app:layout_constraintVertical_bias="0.559" />
 
     <Button
-        android:id="@+id/bnd_button_deliverer"
+        android:id="@+id/button_rate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:text="@string/deliverer_button"
+        android:text="@string/button_rate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.826" />
+        app:layout_constraintVertical_bias="0.718" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="183dp"
-        android:layout_height="375dp"
+        android:id="@+id/red_cross"
+        android:layout_width="139dp"
+        android:layout_height="139dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.425"
-        app:srcCompat="@drawable/avatarr"
+        app:layout_constraintVertical_bias="0.366"
+        app:srcCompat="@drawable/red_cross"
         tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

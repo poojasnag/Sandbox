@@ -42,7 +42,6 @@ public class BnDActivity extends AppCompatActivity {
      * @param flags flags to pass to the Intent before starting the activity
      */
     public static void startActivity(Context context, User user, int flags) {
-
         Intent intent = new Intent(context, BnDActivity.class);
         intent.putExtra("user", user);
         intent.setFlags(flags);
