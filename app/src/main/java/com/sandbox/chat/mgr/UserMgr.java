@@ -42,6 +42,8 @@ public class UserMgr {
         curUser.put("email", user.getEmail());
         curUser.put("rating", user.getRating());
         curUser.put("firebaseToken", user.getFirebaseToken());
+        curUser.put("ratingCount", user.getRatingCount());
+
         DocumentReference documentReference = fStore.collection(USER_TABLE).document(user.getUid());
         documentReference.set(curUser).addOnSuccessListener(new OnSuccessListener<Void>(){
             @Override
@@ -59,21 +61,42 @@ public class UserMgr {
     public static DocumentReference getUserDocument(String userID){
         return fStore.collection(USER_TABLE).document(userID);
     }
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public static float calculateRating(ArrayList<Integer> ratingArray){
-        int sum = 0;
-        if(!ratingArray.isEmpty()) {
-            for (int i=0;i<ratingArray.size();i++ ) {
-                sum +=   ratingArray.get(i);
-            }
-            return (float) sum / ratingArray.size();
-        }
-        return sum;
 
+
+    public static void updateRating(float newRating, String userID){
+        fStore.collection(USER_TABLE).document(userID).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    Log.e("usermgr", "usermgr");
+                    int prevRating = document.getLong("rating").intValue();
+                    int ratingCount = document.getLong("ratingCount").intValue();
+                    float updatedRating = (prevRating + newRating);
+                    Log.e("quickmath",  String.valueOf(prevRating) + " " + String.valueOf(newRating) + " " + String.valueOf(ratingCount + 1) );
+                    fStore.collection(USER_TABLE).document(userID).update("rating", updatedRating);
+                    fStore.collection(USER_TABLE).document(userID).update("ratingCount", ratingCount + 1);
+                    Log.e("newrating", String.valueOf(updatedRating) + " "+ String.valueOf(ratingCount + 1));
+                }
+            }
+        });
     }
 
-    public static void setRating(){
+    public static void calculateRating(String userID){
+        fStore.collection(USER_TABLE).document(userID).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            int compoundedRating = document.getLong("rating").intValue();
+                            int ratingCount = document.getLong("ratingCount").intValue();
+                            float rating = compoundedRating/ratingCount;
 
+                        }
+                    }
+                });
     }
 
 }

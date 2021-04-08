@@ -3,6 +3,8 @@ package com.sandbox.chat.ui.fragments;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import 	androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,11 +14,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.sandbox.chat.mgr.UserMgr;
+import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.activities.BnDActivity;
 import com.sandbox.chat.R;
 import com.sandbox.chat.core.login.LoginContract;
 import com.sandbox.chat.core.login.LoginPresenter;
 import com.sandbox.chat.ui.activities.RegisterActivity;
+import com.sandbox.chat.utils.Constants;
+import com.sandbox.chat.utils.SharedPrefUtil;
 
 
 public class LoginFragment extends Fragment implements View.OnClickListener, LoginContract.View {
@@ -104,8 +115,22 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Log
     public void onLoginSuccess(String message) {
         mProgressDialog.dismiss();
         Toast.makeText(getActivity(), "Logged in successfully", Toast.LENGTH_SHORT).show();
-        BnDActivity.startActivity(getActivity(), mLoginPresenter.findUser(getContext()),
-                Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK); // pass in
+
+        FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
+        UserMgr.getUserDocument(fUser.getUid())
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    User curUser =  new User(fUser.getUid() ,fUser.getEmail(), new SharedPrefUtil(getContext()).getString(Constants.ARG_FIREBASE_TOKEN), document.getLong("rating").intValue(),document.getLong("ratingCount").intValue());
+//                    UserMgr.setData(curUser, getContext());
+                    BnDActivity.startActivity(getActivity(), curUser,
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK); // pass in
+                }
+            }
+        });
+
     }
 
     @Override

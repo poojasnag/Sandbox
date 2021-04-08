@@ -26,7 +26,6 @@ public class MapsInteractor implements MapsContract.Interactor {
         Log.e("stringID", id);
 
         for (int i = 0; i < eateries.size(); i++) {
-            Log.e("spam", eateries.get(i).getEateryID());
 
             if(eateries.get(i).getEateryID().equals(id) == true)
             {

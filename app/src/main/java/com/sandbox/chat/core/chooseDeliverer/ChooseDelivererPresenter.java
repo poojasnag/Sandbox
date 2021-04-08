@@ -61,16 +61,12 @@ public class ChooseDelivererPresenter implements ChooseDelivererContract.Present
                             for (QueryDocumentSnapshot document : task.getResult()) {
 
                                 ArrayList<String> locationsList = (ArrayList<String>)document.get(KEY_LOCATION);
-                                Map delivererMap = ((Map) document.get("deliverer"));
-                                ArrayList<Integer> ratingArray = (ArrayList<Integer>) delivererMap.get("rating");
-                                Deliverer deliverer = new Deliverer(delivererMap.get("uid").toString(),delivererMap.get("email").toString(), (delivererMap.get("firebaseToken") == null) ? "null" : delivererMap.get("firebaseToken").toString(), ratingArray, null);
-//                                Log.e("deliverer", deliverer.getUid());
+                                Deliverer deliverer = new Deliverer(document.getString("delivererID") ,document.getString("email"),  (document.get("firebaseToken") == null) ? "null" : document.getString("firebaseToken"),   document.getLong("rating").intValue(), document.getLong("ratingCount").intValue(), null);
+
                                  delivererOffer = new DelivererOffer(document.getString("delivererOfferID"), document.getString("delivererName"),document.getString("cutOffTime"), document.getString("etaTime"), document.getDouble("deliveryFee"), locationsList, eatery, deliverer, document.getString("timestamp"));
-//                                Log.e("delivereroffer",delivererOffer.toString());
+
                                 demo.add(delivererOffer);
-//                                demo.add(String.format("Name: %s \nRate:$%.2f\nLocations: %s", document.getString(KEY_NAME), document.getDouble(KEY_DELIVERYFEE), MultiSpinner.linkedListToString(locationsList)));
                             }
-//                            Log.e("choosedelivererP", delivererOffer.getDeliverer().getEmail());
                             DelivererProfileAdapter adapter = new DelivererProfileAdapter(demo);
 
                             ordersList.setAdapter(adapter);

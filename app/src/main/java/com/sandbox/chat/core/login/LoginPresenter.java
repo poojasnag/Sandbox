@@ -4,8 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.sandbox.chat.mgr.UserMgr;
 import com.sandbox.chat.models.User;
 import com.sandbox.chat.utils.Constants;
@@ -42,18 +47,27 @@ public class LoginPresenter implements LoginContract.Presenter, LoginContract.On
         mLoginView.onLoginFailure(message);
     }
 
-    public static User findUser(Context context)
-    {
-        //TODO:Get the user
-        FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
-        //TODO testing rating
-        ArrayList<Integer> ratingArray = new ArrayList<Integer>();
-        ratingArray.add(2);
-        User curUser =  new User(fUser.getUid() ,fUser.getEmail(), new SharedPrefUtil(context).getString(Constants.ARG_FIREBASE_TOKEN), ratingArray);
-        Toast.makeText(context, "loginpre" + ratingArray.toString(),Toast.LENGTH_SHORT).show();
-        UserMgr.setData(curUser, context);
-        return curUser;
-
-    }
+//    public static User findUser(Context context)
+//    {
+//
+//        //TODO:Get the user
+//        FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
+//        //TODO testing rating
+//        UserMgr.getUserDocument(fUser.getUid())
+//                    .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                if (task.isSuccessful()) {
+//                    DocumentSnapshot document = task.getResult();
+//                    rating = document.get("rating");
+//                }
+//            }
+//        });
+//        User curUser =  new User(fUser.getUid() ,fUser.getEmail(), new SharedPrefUtil(context).getString(Constants.ARG_FIREBASE_TOKEN), 0, );
+//
+//        UserMgr.setData(curUser, context);
+//        return curUser;
+//
+//    }
 
 }

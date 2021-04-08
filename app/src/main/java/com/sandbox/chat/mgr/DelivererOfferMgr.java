@@ -26,18 +26,23 @@ public class DelivererOfferMgr {
     public DelivererOfferMgr(){}
 
     public static void setData(DelivererOffer delivererOffer, Context context){
-//        Map<String, Object> offer = new HashMap<>();
-//        Deliverer deliverer = delivererOffer.getDeliverer();
-//        offer.put("email",deliverer.getEmail() );
-//        offer.put("location", delivererOffer.getDeliveryLocation());
-//        offer.put("deliveryFee", delivererOffer.getDeliveryFee());
-//        offer.put("cutoffDateTime", delivererOffer.getCutOffTime());
-//        offer.put("etaDateTime", delivererOffer.getEtaTime());
-//        offer.put("timestamp", delivererOffer.getTimestamp());
-//        offer.put("eatery", delivererOffer.getEatery());
-//        offer.put("offer", delivererOffer);
+        Map<String, Object> offer = new HashMap<>();
+        Deliverer deliverer = delivererOffer.getDeliverer();
+        offer.put("email",deliverer.getEmail() );
+        offer.put("firebaseToken",deliverer.getFirebaseToken() );
+        offer.put("rating",deliverer.getRating());
+        offer.put("ratingCount",deliverer.getRatingCount());
+        offer.put("delivererID",deliverer.getUid());
+
+        offer.put("deliveryLocation", delivererOffer.getDeliveryLocation());
+        offer.put("deliveryFee", delivererOffer.getDeliveryFee());
+        offer.put("cutoffDateTime", delivererOffer.getCutOffTime());
+        offer.put("etaDateTime", delivererOffer.getEtaTime());
+        offer.put("timestamp", delivererOffer.getTimestamp());
+        offer.put("eatery", delivererOffer.getEatery());
+        offer.put("delivererOfferID", delivererOffer.getDelivererOfferID());
         DocumentReference documentReference = fStore.collection(OFFER_TABLE).document(delivererOffer.getDelivererOfferID());
-        documentReference.set(delivererOffer).addOnSuccessListener(new OnSuccessListener<Void>(){
+        documentReference.set(offer).addOnSuccessListener(new OnSuccessListener<Void>(){
             @Override
             public void onSuccess(Void aVoid){
                 Toast.makeText(context,"Test sent: " + delivererOffer.getEatery().getEateryName(), Toast.LENGTH_SHORT).show();

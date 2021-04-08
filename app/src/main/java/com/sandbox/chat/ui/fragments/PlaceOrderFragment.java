@@ -184,7 +184,6 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
         Status delivererStatus = Status.PENDING;
         Status buyerStatus = Status.PENDING;
 
-        //TODO: Zi Heng, here's the transaction object from placeOrder.
         long unixTime = Instant.now().getEpochSecond();
         String curTime = Long.toString(unixTime);
 
