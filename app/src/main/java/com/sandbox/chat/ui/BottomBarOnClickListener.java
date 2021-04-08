@@ -50,12 +50,12 @@ public class BottomBarOnClickListener implements BottomNavigationView.OnNavigati
             intent.setComponent(new ComponentName(context, UserListingActivity.class));
             context.startActivity(intent);
             return true;
-        } else if ("Pending orders".equals(title)) {
+        } else if ("Pending".equals(title)) {
             intent = new Intent(prevIntent);
             intent.setComponent(new ComponentName(context, PendingOrdersActivity.class));
             context.startActivity(intent);
             return true;
-        } else if ("Completed orders".equals(title)) {
+        } else if ("Completed".equals(title)) {
             intent = new Intent(prevIntent);
             intent.setComponent(new ComponentName(context, ClosedOrderActivity.class));
             context.startActivity(intent);
