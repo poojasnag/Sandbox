@@ -29,7 +29,7 @@ public class TransactionMgr {
     private static String TRANSACTION_TABLE = "transactions";
     public TransactionMgr(){}
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+
     public static void setData(Transaction transaction, Context context){
         Map<String, Object> offer = new HashMap<>();
         offer.put("buyerName", transaction.getBuyerName() );
@@ -43,16 +43,15 @@ public class TransactionMgr {
         offer.put("orderStatus", transaction.isOrderStatus().name());
         offer.put("delivererStatus", transaction.isDelivererStatus().name());
         offer.put("buyerStatus", transaction.isBuyerStatus().name());
-        long unixTime = Instant.now().getEpochSecond();
-        String curTime = Long.toString(unixTime);
+        offer.put("transactionID", transaction.getTransactionID());
 
 
-        String transactionID = transaction.getBuyerID() + '-' + transaction.getDelivererOfferID() + '-' + curTime;
-        DocumentReference documentReference = fStore.collection(TRANSACTION_TABLE).document(transactionID);
+//        String transactionID = transaction.getBuyerID() + '-' + transaction.getDelivererOfferID() + '-' + curTime;
+        DocumentReference documentReference = fStore.collection(TRANSACTION_TABLE).document(transaction.getTransactionID());
         documentReference.set(offer).addOnSuccessListener(new OnSuccessListener<Void>(){
             @Override
             public void onSuccess(Void aVoid){
-                Toast.makeText(context,"Data sent: " + transactionID, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"Data sent: " + transaction.getTransactionID(), Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -62,16 +61,30 @@ public class TransactionMgr {
         });
     }
     public static Query getTransactionHistory(String uid, Boolean isBuyer){
-        CollectionReference deliveryOffers_db = fStore.collection(TRANSACTION_TABLE);
+        CollectionReference transaction_db = fStore.collection(TRANSACTION_TABLE);
         Query query;
         if (isBuyer){
-            query = deliveryOffers_db.whereEqualTo("buyerID", uid).whereEqualTo("orderStatus", "PENDING");
+            query = transaction_db.whereEqualTo("buyerID", uid).whereEqualTo("orderStatus", "PENDING");
             Log.e("transactionmgr", query.toString());
         }
         else{
-            query = deliveryOffers_db.whereEqualTo("delivererID", uid).whereEqualTo("orderStatus", "PENDING");
+            query = transaction_db.whereEqualTo("delivererID", uid).whereEqualTo("orderStatus", "PENDING");
         }
         return query;
+    }
+    public static void updateRating(boolean isComplete, String whichRating, String transactionID){
+        CollectionReference transaction_db = fStore.collection(TRANSACTION_TABLE);
+        if (isComplete){
+            transaction_db.document(transactionID).update(whichRating, "COMPLETE");
+            Log.e("updateRating", whichRating);
+        }
+        else{
+            transaction_db.document(transactionID).update(whichRating, "INCOMPLETE");
+        }
+    }
+
+    public static void orderRating(){
+
     }
 
 }
