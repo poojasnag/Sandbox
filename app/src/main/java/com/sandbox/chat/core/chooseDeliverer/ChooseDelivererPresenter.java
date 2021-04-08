@@ -18,6 +18,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.sandbox.chat.adapters.DelivererProfileAdapter;
 import com.sandbox.chat.mgr.DelivererOfferMgr;
+import com.sandbox.chat.mgr.UserMgr;
 import com.sandbox.chat.models.Deliverer;
 import com.sandbox.chat.models.DelivererOffer;
 import com.sandbox.chat.models.Eatery;
@@ -58,14 +59,11 @@ public class ChooseDelivererPresenter implements ChooseDelivererContract.Present
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-//                                Log.e("deliverer", document.get("deliveryLocation").toString());
-                                // document.getId() document.getData()
-                                ArrayList<String> locationsList = (ArrayList<String>)document.get(KEY_LOCATION);
-//                                DelivererOffer delivererOffer = document.toObject(DelivererOffer.class);   //TODO: try to implement this instead of hardcore creating Deliverer and DelivererOffer objects
-                                Map delivererMap = ((Map) document.get("deliverer"));
-                                Number deliveryFee = (Number) delivererMap.get("rating");
 
-                                Deliverer deliverer = new Deliverer(delivererMap.get("uid").toString(),delivererMap.get("email").toString(), (delivererMap.get("firebaseToken") == null) ? "null" : delivererMap.get("firebaseToken").toString(), deliveryFee.floatValue(), null);
+                                ArrayList<String> locationsList = (ArrayList<String>)document.get(KEY_LOCATION);
+                                Map delivererMap = ((Map) document.get("deliverer"));
+                                ArrayList<Integer> ratingArray = (ArrayList<Integer>) delivererMap.get("rating");
+                                Deliverer deliverer = new Deliverer(delivererMap.get("uid").toString(),delivererMap.get("email").toString(), (delivererMap.get("firebaseToken") == null) ? "null" : delivererMap.get("firebaseToken").toString(), ratingArray, null);
 //                                Log.e("deliverer", deliverer.getUid());
                                  delivererOffer = new DelivererOffer(document.getString("delivererOfferID"), document.getString("delivererName"),document.getString("cutOffTime"), document.getString("etaTime"), document.getDouble("deliveryFee"), locationsList, eatery, deliverer, document.getString("timestamp"));
 //                                Log.e("delivereroffer",delivererOffer.toString());

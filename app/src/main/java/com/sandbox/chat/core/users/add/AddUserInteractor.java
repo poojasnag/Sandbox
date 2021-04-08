@@ -13,6 +13,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+
 /**
  * Sending new user data to the Firebase real-time database
  *
@@ -29,9 +31,11 @@ public class AddUserInteractor implements AddUserContract.Interactor {
     @Override
     public void addUserToDatabase(final Context context, FirebaseUser firebaseUser) {
         DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+        ArrayList<Integer> ratingArray = new ArrayList<Integer>();
+        ratingArray.add(2);
         User user = new User(firebaseUser.getUid(),
                 firebaseUser.getEmail(),
-                new SharedPrefUtil(context).getString(Constants.ARG_FIREBASE_TOKEN),0);
+                new SharedPrefUtil(context).getString(Constants.ARG_FIREBASE_TOKEN),ratingArray);
         database.child(Constants.ARG_USERS)
                 .child(firebaseUser.getUid())
                 .setValue(user)

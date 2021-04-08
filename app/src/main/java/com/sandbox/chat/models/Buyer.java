@@ -17,7 +17,7 @@ public class Buyer extends User implements Serializable {
     /**
      * Constructor for a buyer
      */
-    public Buyer(String uid, String email, String firebaseToken, float rating, LinkedList<Transaction> buyerOrderList) {
+    public Buyer(String uid, String email, String firebaseToken, ArrayList<Integer> rating, LinkedList<Transaction> buyerOrderList) {
         super(uid, email, firebaseToken, rating);
         this.buyerOrderList = buyerOrderList;
     }

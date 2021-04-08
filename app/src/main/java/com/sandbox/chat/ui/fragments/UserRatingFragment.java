@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -17,7 +18,13 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.sandbox.chat.R;
+import com.sandbox.chat.mgr.UserMgr;
+import com.sandbox.chat.models.Transaction;
+import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.contract.UserRatingContract;
 import com.sandbox.chat.ui.presenter.UserRatingPresenter;
 //import com.sandbox.chat.mgr.UserRatingMgr;
@@ -116,11 +123,27 @@ public class UserRatingFragment extends Fragment implements View.OnClickListener
 //        int rating = 5;
 //        String comments = mETxtComments.getText().toString();
 //        mUserRatingPresenter.submitRating(getActivity(), rating, comments);
-        Toast.makeText(getContext(), "Rating submitted", Toast.LENGTH_SHORT).show();
+        User user = (User) i.getSerializableExtra("user");
+//        UserMgr.getUserDocument(user.getUid())  //TODO
+//                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                if (task.isSuccessful()) {
+//                    DocumentSnapshot document = task.getResult();
+//                    document.get("rating");
+//                }
+//            }
+//        });
+
+        Toast.makeText(getContext(), "Rating submitted" + mRatingBar.getRating(), Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(i);
         intent.setComponent(new ComponentName(context, MapsActivity.class));
         startActivity(intent);
     }
+
+
+
+
 
 
 

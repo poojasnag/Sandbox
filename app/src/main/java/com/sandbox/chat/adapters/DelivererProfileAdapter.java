@@ -18,6 +18,7 @@ import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sandbox.chat.R;
+import com.sandbox.chat.mgr.UserMgr;
 import com.sandbox.chat.models.Deliverer;
 import com.sandbox.chat.models.DelivererOffer;
 import com.sandbox.chat.ui.activities.PlaceOrderActivity;
@@ -54,10 +55,7 @@ public class DelivererProfileAdapter extends RecyclerView.Adapter<RecyclerView.V
         }
     }
 
-    /**
-     * Loads the data to the adapter
-     * @param strings the list of deliverers
-     */
+
     public DelivererProfileAdapter(LinkedList<DelivererOffer> deliverers) {this.deliverers = deliverers;} //passed in delivereroffer object
 
 
@@ -91,7 +89,8 @@ public class DelivererProfileAdapter extends RecyclerView.Adapter<RecyclerView.V
         {
             DelivererOffer deliverer = deliverers.get(position);
             ((DelivererProfileHolder) holder).delivererProfile.setText(String.format("Name: %s \nRate:$%.2f\nLocations: %s", deliverer.getDeliverer().getEmail(), deliverer.getDeliveryFee(), String.join(", ", deliverer.getDeliveryLocation())));
-            ((DelivererProfileHolder) holder).rating.setRating((float) 4.2);
+            float rating = UserMgr.calculateRating(deliverer.getDeliverer().getRating());
+            ((DelivererProfileHolder) holder).rating.setRating(rating); //(float)4.2
             //TODO: replace rating
             ((DelivererProfileHolder) holder).parent.setOnClickListener(new View.OnClickListener() {
                 @Override

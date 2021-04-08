@@ -2,6 +2,7 @@ package com.sandbox.chat.core.login;
 
 import android.app.Activity;
 import android.content.Context;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -9,6 +10,8 @@ import com.sandbox.chat.mgr.UserMgr;
 import com.sandbox.chat.models.User;
 import com.sandbox.chat.utils.Constants;
 import com.sandbox.chat.utils.SharedPrefUtil;
+
+import java.util.ArrayList;
 
 /**
  * Presentation logic for user login
@@ -43,8 +46,11 @@ public class LoginPresenter implements LoginContract.Presenter, LoginContract.On
     {
         //TODO:Get the user
         FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
-
-        User curUser =  new User(fUser.getUid() ,fUser.getEmail(), new SharedPrefUtil(context).getString(Constants.ARG_FIREBASE_TOKEN), 0);
+        //TODO testing rating
+        ArrayList<Integer> ratingArray = new ArrayList<Integer>();
+        ratingArray.add(2);
+        User curUser =  new User(fUser.getUid() ,fUser.getEmail(), new SharedPrefUtil(context).getString(Constants.ARG_FIREBASE_TOKEN), ratingArray);
+        Toast.makeText(context, "loginpre" + ratingArray.toString(),Toast.LENGTH_SHORT).show();
         UserMgr.setData(curUser, context);
         return curUser;
 
