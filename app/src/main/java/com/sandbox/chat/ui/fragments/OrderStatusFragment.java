@@ -114,7 +114,7 @@ public class OrderStatusFragment extends Fragment implements View.OnClickListene
         {
             partnerName.setText("Buyer Name: " +cur.getBuyerName());
         }
-        //TODO: Zi Heng how do I access the delivererOffer from inside Transactions
+
         Log.e("orderstatusFragment", ((Eatery) getActivity().getIntent().getSerializableExtra("Eatery")).getEateryName());
         setDetails(cur);
 
