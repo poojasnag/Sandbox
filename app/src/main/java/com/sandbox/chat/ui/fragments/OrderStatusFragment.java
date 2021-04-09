@@ -35,6 +35,7 @@ import com.sandbox.chat.mgr.UserMgr;
 
 import com.sandbox.chat.models.Buyer;
 import com.sandbox.chat.models.Eatery;
+import com.sandbox.chat.models.Status;
 import com.sandbox.chat.models.Transaction;
 import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
@@ -103,6 +104,15 @@ public class OrderStatusFragment extends Fragment implements View.OnClickListene
         eta= view.findViewById(R.id.order_status_eta);
         orderDetails = view.findViewById(R.id.order_status_orders);
         location = view.findViewById(R.id.order_status_location_text);
+
+        Transaction transaction = (Transaction) i.getSerializableExtra("Transaction");
+        Log.e("orderstatus", transaction.isOrderStatus().toString());
+        if (transaction.isOrderStatus().equals(Status.COMPLETE)){
+            chat_button.setVisibility(View.INVISIBLE);
+            complete_button.setVisibility(View.INVISIBLE);
+            incomplete_button.setVisibility(View.INVISIBLE);
+        }
+
 
         //TODO: This is potentially wrong
 

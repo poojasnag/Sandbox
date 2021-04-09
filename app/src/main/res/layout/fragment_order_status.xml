@@ -80,31 +80,27 @@
 
     <TextView
         android:id="@+id/order_status_location_text"
+        android:layout_width="381dp"
+        android:layout_height="wrap_content"
+        android:text="@string/empty"
         app:layout_constraintBottom_toBottomOf="@+id/order_status_bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/order_status_eta"
-        app:layout_constraintVertical_bias="0.0"
-        android:layout_width="381dp"
-        android:layout_height="wrap_content"
-        android:text="@string/empty"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="131dp" />
+        app:layout_constraintVertical_bias="0.048" />
 
     <TextView
         android:id="@+id/order_status_orders"
-        app:layout_constraintBottom_toBottomOf="@+id/order_status_bottomNavigationView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/order_status_location_text"
-        app:layout_constraintVertical_bias="0.0"
         android:layout_width="381dp"
         android:layout_height="wrap_content"
         android:text="@string/empty"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="67dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/order_status_bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/order_status_location_text"
+        app:layout_constraintVertical_bias="0.048" />
 
     <Button
         android:id="@+id/order_status_chat"
