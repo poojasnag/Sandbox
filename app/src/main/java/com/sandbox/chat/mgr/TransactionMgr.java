@@ -80,6 +80,20 @@ public class TransactionMgr {
         }
         return query;
     }
+
+    public static Query getClosedOrders(String uid, Boolean isBuyer){
+        CollectionReference transaction_db = fStore.collection(TRANSACTION_TABLE);
+        Query query;
+        if (isBuyer){
+            query = transaction_db.whereEqualTo("buyerID", uid).whereEqualTo("orderStatus", "COMPLETE");
+            Log.e("transactionmgr", query.toString());
+        }
+        else{
+            Log.e("transactionMgr", isBuyer.toString() + " "+ uid);
+            query = transaction_db.whereEqualTo("delivererID", uid).whereEqualTo("orderStatus", "COMPLETE");
+        }
+        return query;
+    }
     public static void updateStatus(boolean isComplete, String whichStatus, String transactionID){
         CollectionReference transaction_db = fStore.collection(TRANSACTION_TABLE);
         if (isComplete){
