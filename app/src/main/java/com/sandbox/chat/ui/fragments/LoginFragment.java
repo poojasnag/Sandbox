@@ -115,21 +115,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Log
     public void onLoginSuccess(String message) {
         mProgressDialog.dismiss();
         Toast.makeText(getActivity(), "Logged in successfully", Toast.LENGTH_SHORT).show();
-
         FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
-        UserMgr.getUserDocument(fUser.getUid())
-                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    User curUser =  new User(fUser.getUid() ,fUser.getEmail(), new SharedPrefUtil(getContext()).getString(Constants.ARG_FIREBASE_TOKEN), document.getLong("rating").intValue(),document.getLong("ratingCount").intValue());
-//                    UserMgr.setData(curUser, getContext());
-                    BnDActivity.startActivity(getActivity(), curUser,
-                            Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK); // pass in
-                }
-            }
-        });
+        BnDActivity.startActivity(getActivity(), fUser,
+                Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 
     }
 

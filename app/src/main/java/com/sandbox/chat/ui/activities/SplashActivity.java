@@ -54,18 +54,7 @@ public class SplashActivity extends AppCompatActivity {
                 if (FirebaseAuth.getInstance().getCurrentUser() != null) {
                     // if logged in redirect the user to user listing activity
                     FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
-                    UserMgr.getUserDocument(fUser.getUid())
-                            .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                            if (task.isSuccessful()) {
-                                DocumentSnapshot document = task.getResult();
-                                User curUser =  new User(fUser.getUid() ,fUser.getEmail(), new SharedPrefUtil(getApplicationContext()).getString(Constants.ARG_FIREBASE_TOKEN),  document.getLong("rating").intValue() , document.getLong("ratingCount").intValue()); //(int) document.get("rating"),(int)document.get("ratingCount")
-                                BnDActivity.startActivity(SplashActivity.this, curUser);
-                            }
-                        }
-                    });
-
+                    BnDActivity.startActivity(SplashActivity.this, fUser);
 
                 } else {
                     // otherwise redirect the user to login activity
