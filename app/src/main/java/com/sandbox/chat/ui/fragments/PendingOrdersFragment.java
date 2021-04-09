@@ -102,6 +102,7 @@ public class PendingOrdersFragment extends Fragment implements PendingOrdersCont
     public void getOrders(User user, Boolean isBuyer, RecyclerView ordersList) { //TODO: only PENDING orders query
 
         LinkedList<Transaction> transactionList = new LinkedList<Transaction>();
+        Log.e("userpending", user.getUid());
         TransactionMgr.getTransactionHistory(user.getUid(), isBuyer)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -129,11 +130,11 @@ public class PendingOrdersFragment extends Fragment implements PendingOrdersCont
                     }
                 });
         if (isBuyer){
-            Buyer buyer = new Buyer (user.getUid(), user.getEmail(), user.getFirebaseToken(),user.getRating(), transactionList); //TODO: mq - send to intent?
+            Buyer buyer = new Buyer (user.getUid(), user.getEmail(), user.getFirebaseToken(),user.getRating(),user.getRatingCount(), transactionList); //TODO: mq - send to intent?
             Log.e("buyer", buyer.getEmail());
         }
         else{
-            Deliverer deliverer = new Deliverer (user.getUid(), user.getEmail(), user.getFirebaseToken(),user.getRating(), transactionList); //TODO: mq - send to intent?
+            Deliverer deliverer = new Deliverer (user.getUid(), user.getEmail(), user.getFirebaseToken(),user.getRating(), user.getRatingCount(),transactionList); //TODO: mq - send to intent?
             Log.e("buyer", deliverer.getEmail());
 
         }

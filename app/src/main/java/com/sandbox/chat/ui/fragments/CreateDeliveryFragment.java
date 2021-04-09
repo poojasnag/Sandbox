@@ -273,13 +273,13 @@ public class CreateDeliveryFragment extends Fragment implements View.OnClickList
     public Buyer createBuyer(User user)
     {
         //TODO: Call TransactionMgr to get all the transactions
-        return new Buyer(user.getUid(), user.getEmail(), user.getFirebaseToken(), user.getRating() , new LinkedList<Transaction>());
+        return new Buyer(user.getUid(), user.getEmail(), user.getFirebaseToken(), user.getRating() , user.getRatingCount(), new LinkedList<Transaction>());
     }
 
     public Deliverer createDeliverer(User user)
     {
         //TODO: Call TransactionMgr to get all the transactions
-        return new Deliverer(user.getUid(), user.getEmail(), user.getFirebaseToken(), user.getRating(), new LinkedList<Transaction>());
+        return new Deliverer(user.getUid(), user.getEmail(), user.getFirebaseToken(), user.getRating(), user.getRatingCount(),new LinkedList<Transaction>());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)

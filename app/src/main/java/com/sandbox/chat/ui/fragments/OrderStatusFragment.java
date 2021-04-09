@@ -190,8 +190,7 @@ public class OrderStatusFragment extends Fragment implements View.OnClickListene
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 rate.setText("Delivery Fee: " + Double.toString(document.getDouble("deliveryFee")));
-                                //How do I get a delivererOffer from its ID
-                                eta.setText("ETA : " +document.getString("etaTime"));
+                                eta.setText("ETA : " + document.getString("etaDateTime"));
                                 location.setText("Delivery Location: " +cur.getBuyerLocation());
                                 eatery.setText("Eatery: " +((Eatery) getActivity().getIntent().getSerializableExtra("Eatery")).getEateryName());
                                 orderDetails.setText("Order Details: " +cur.getOrderDetails());

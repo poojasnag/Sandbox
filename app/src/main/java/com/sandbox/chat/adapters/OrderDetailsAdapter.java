@@ -103,7 +103,7 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {
                                 for (QueryDocumentSnapshot delivererOfferDoc : task.getResult()) {
-                                    ((OrderDetailsHolder) holder).button.setText(String.format("%s \t\t %s \nDeliver to: %s\n Eatery: %s\n%s", delivererOfferDoc.getString("delivererName") , delivererOfferDoc.getString("etaTime"), t.getBuyerLocation(), ((Eatery)(i.getSerializableExtra("Eatery"))).getEateryName(), t.getOrderDetails() ));
+                                    ((OrderDetailsHolder) holder).button.setText(String.format("%s \t\t %s \nDeliver to: %s\n Eatery: %s\n%s", delivererOfferDoc.getString("email") , delivererOfferDoc.getString("etaDateTime"), t.getBuyerLocation(), ((Eatery)(i.getSerializableExtra("Eatery"))).getEateryName(), t.getOrderDetails() ));
                                 }
                             }
                         }

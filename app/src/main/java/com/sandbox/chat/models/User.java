@@ -1,6 +1,7 @@
 package com.sandbox.chat.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Stores the information of the users
@@ -20,7 +21,8 @@ public class User implements Serializable {
      */
 
     private String firebaseToken;
-    private float rating;
+    private int rating;
+    private int ratingCount;
 
     public User(){
 
@@ -31,11 +33,12 @@ public class User implements Serializable {
      * @param uid User ID
      * @param email Email
      */
-    public User(String uid, String email, String firebaseToken, float rating){
+    public User(String uid, String email, String firebaseToken, int rating, int ratingCount){
         this.firebaseToken = firebaseToken;
         this.uid = uid;
         this.email = email;
         this.rating = rating;
+        this.ratingCount = ratingCount;
     }
 
     public boolean equals(Object o)
@@ -62,11 +65,11 @@ public class User implements Serializable {
         this.uid = uid;
     }
 
-    public float getRating() {
+    public int getRating() {
         return rating;
     }
 
-    public void setRating(float rating) {
+    public void setRating(int rating) {
         this.rating = rating;
     }
 
@@ -76,6 +79,14 @@ public class User implements Serializable {
 
     public void setFirebaseToken(String firebaseToken) {
         this.firebaseToken = firebaseToken;
+    }
+
+    public int getRatingCount() {
+        return ratingCount;
+    }
+
+    public void setRatingCount(int ratingCount) {
+        this.ratingCount = ratingCount;
     }
 }
 

@@ -8,16 +8,24 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.sandbox.chat.R;
 //import com.sandbox.chat.mgr.BnDMgr;
+import com.sandbox.chat.mgr.UserMgr;
 import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.fragments.BnDFragment;
 import com.sandbox.chat.ui.fragments.LoginFragment;
 import com.sandbox.chat.ui.presenter.BnDPresenter;
+import com.sandbox.chat.utils.Constants;
+import com.sandbox.chat.utils.SharedPrefUtil;
 
 /**
  * Displays the Buyer and Deliverer selection interface
@@ -30,10 +38,21 @@ public class BnDActivity extends AppCompatActivity {
      * Displays the interface from another activity class
      * @param context the Context of the activity that called this method
      */
-    public static void startActivity(Context context, User user) {
-        Intent intent = new Intent(context, BnDActivity.class);
-        intent.putExtra("user", user);
-        context.startActivity(intent);
+    public static void startActivity(Context context, FirebaseUser fUser) {
+        UserMgr.getUserDocument(fUser.getUid())
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    User curUser =  new User(fUser.getUid() ,fUser.getEmail(), new SharedPrefUtil(context).getString(Constants.ARG_FIREBASE_TOKEN), document.getLong("rating").intValue(),document.getLong("ratingCount").intValue());
+                    Intent intent = new Intent(context, BnDActivity.class);
+                    intent.putExtra("user", curUser);
+                    context.startActivity(intent);
+                }
+            }
+        });
+
     }
 
     /**
@@ -41,11 +60,22 @@ public class BnDActivity extends AppCompatActivity {
      * @param context the Context of the activity that called this method
      * @param flags flags to pass to the Intent before starting the activity
      */
-    public static void startActivity(Context context, User user, int flags) {
-        Intent intent = new Intent(context, BnDActivity.class);
-        intent.putExtra("user", user);
-        intent.setFlags(flags);
-        context.startActivity(intent);
+    public static void startActivity(Context context, FirebaseUser fUser, int flags) {
+        UserMgr.getUserDocument(fUser.getUid())
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    User curUser =  new User(fUser.getUid() ,fUser.getEmail(), new SharedPrefUtil(context).getString(Constants.ARG_FIREBASE_TOKEN), document.getLong("rating").intValue(),document.getLong("ratingCount").intValue());
+                    Intent intent = new Intent(context, BnDActivity.class);
+                    intent.putExtra("user", curUser);
+                    intent.setFlags(flags);
+                    context.startActivity(intent);
+                }
+            }
+        });
+
     }
 
     /**
