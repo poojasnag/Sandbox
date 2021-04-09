@@ -92,6 +92,7 @@ public class CreateDeliveryFragment extends Fragment implements View.OnClickList
         eta_picker = (EditText) view.findViewById(R.id.eta_datetime);
         deliveryFeeText = (EditText) view.findViewById(R.id.create_delivery_fee);
         deliveryLocSpinner = (MultiSpinner) view.findViewById(R.id.create_delivery_select_location);
+        i = getActivity().getIntent();
     }
 
     // done
@@ -154,7 +155,9 @@ public class CreateDeliveryFragment extends Fragment implements View.OnClickList
 //                Toast.makeText(v.getContext(), getIntent().getSerializableExtra("user").getClass().getName(),Toast.LENGTH_SHORT).show();
 //                Eatery eatery = new Eatery("", "Koi","", "",  ""); // TODO: create real eatery
                 createDeliveryPresenter.onRecordData(selectedLocations, Double.parseDouble(deliveryFee), cutoffDateTime, etaDateTime, curEatery, v.getContext(), (Deliverer) getActivity().getIntent().getSerializableExtra("user"));
-
+                Intent intent = new Intent(i);
+                intent.setComponent(new ComponentName(getContext(),PendingOrdersActivity.class));
+                startActivity(intent);
             }
         });
 //        Toast.makeText(CreateDeliveryActivity.this, "text:" + chosenLoc, Toast.LENGTH_SHORT).show();
