@@ -89,10 +89,10 @@ public class OrderIncompleteFragment extends Fragment implements View.OnClickLis
     public void updateStatus(Context context){
         Transaction transaction = (Transaction) i.getSerializableExtra("Transaction");
         if (i.getSerializableExtra("user") instanceof Buyer) {
-            TransactionMgr.updateRating(false, "buyerStatus", transaction.getTransactionID());
+            TransactionMgr.updateStatus(false, "buyerStatus", transaction.getTransactionID());
             transaction.setBuyerStatus(Status.INCOMPLETE);
         } else {
-            TransactionMgr.updateRating(false, "delivererStatus", transaction.getTransactionID());
+            TransactionMgr.updateStatus(false, "delivererStatus", transaction.getTransactionID());
             transaction.setDelivererStatus(Status.INCOMPLETE);
         }
 

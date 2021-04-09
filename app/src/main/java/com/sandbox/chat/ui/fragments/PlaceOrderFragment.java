@@ -178,18 +178,18 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
         String delivererName = curDelivererOffer.getDeliverer().getEmail();
         String delivererOfferID = curDelivererOffer.getDelivererOfferID();
         String delivererID = curDelivererOffer.getDeliverer().getUid();
+        String eateryName = curDelivererOffer.getEatery().getEateryName();
         String buyerLocation = selectedLocation;
         String order = orderDetails.getText().toString();
         Status orderStatus = Status.PENDING;
         Status delivererStatus = Status.PENDING;
         Status buyerStatus = Status.PENDING;
 
-        //TODO: Zi Heng, here's the transaction object from placeOrder.
         long unixTime = Instant.now().getEpochSecond();
         String curTime = Long.toString(unixTime);
 
         String transactionID = buyerID + '-' + delivererOfferID + '-' + curTime;
-        Transaction t = new Transaction(transactionID, buyerName, delivererName, buyerID, delivererOfferID, delivererID, buyerLocation, order, orderStatus, delivererStatus, buyerStatus);
+        Transaction t = new Transaction(eateryName, transactionID, buyerName, delivererName, buyerID, delivererOfferID, delivererID, buyerLocation, order, orderStatus, delivererStatus, buyerStatus);
         TransactionMgr.setData(t, context);
 
         Intent intent = new Intent(i);

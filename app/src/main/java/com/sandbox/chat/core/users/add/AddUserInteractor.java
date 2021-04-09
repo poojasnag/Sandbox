@@ -4,6 +4,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import com.sandbox.chat.R;
+import com.sandbox.chat.mgr.UserMgr;
 import com.sandbox.chat.models.User;
 import com.sandbox.chat.utils.Constants;
 import com.sandbox.chat.utils.SharedPrefUtil;
@@ -31,11 +32,11 @@ public class AddUserInteractor implements AddUserContract.Interactor {
     @Override
     public void addUserToDatabase(final Context context, FirebaseUser firebaseUser) {
         DatabaseReference database = FirebaseDatabase.getInstance().getReference();
-        ArrayList<Integer> ratingArray = new ArrayList<Integer>();
-        ratingArray.add(2);
+
         User user = new User(firebaseUser.getUid(),
                 firebaseUser.getEmail(),
-                new SharedPrefUtil(context).getString(Constants.ARG_FIREBASE_TOKEN),ratingArray);
+                new SharedPrefUtil(context).getString(Constants.ARG_FIREBASE_TOKEN),0, 0);
+        UserMgr.setData(user, context);
         database.child(Constants.ARG_USERS)
                 .child(firebaseUser.getUid())
                 .setValue(user)

@@ -1,9 +1,16 @@
 package com.sandbox.chat.ui.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.sandbox.chat.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.sandbox.chat.core.maps.MapsInteractor;
@@ -12,6 +19,9 @@ import java.io.IOException;
 
 import com.sandbox.chat.core.login.LoginPresenter;
 import com.sandbox.chat.mgr.UserMgr;
+import com.sandbox.chat.models.User;
+import com.sandbox.chat.utils.Constants;
+import com.sandbox.chat.utils.SharedPrefUtil;
 
 /**
  * First screen when app is initialised, implements the splash UI
@@ -38,7 +48,9 @@ public class SplashActivity extends AppCompatActivity {
                 // check if user is already logged in or not
                 if (FirebaseAuth.getInstance().getCurrentUser() != null) {
                     // if logged in redirect the user to user listing activity
-                    BnDActivity.startActivity(SplashActivity.this, LoginPresenter.findUser(getApplicationContext()));
+                    FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
+                    BnDActivity.startActivity(SplashActivity.this, fUser);
+
                 } else {
                     // otherwise redirect the user to login activity
                     LoginActivity.startIntent(SplashActivity.this);

@@ -40,12 +40,12 @@ public class BnDPresenter implements BnDContract.Presenter, BnDContract.onBnDLis
     public static Buyer createBuyer(User user)
     {
         //TODO: Call TransactionMgr to get all the transactions
-        return new Buyer(user.getUid(), user.getEmail(), user.getFirebaseToken(), user.getRating() , new LinkedList<Transaction>());
+        return new Buyer(user.getUid(), user.getEmail(), user.getFirebaseToken(), user.getRating() ,user.getRatingCount(), new LinkedList<Transaction>());
     }
 
     public static Deliverer createDeliverer(User user)
     {
         //TODO: Call TransactionMgr to get all the transactions
-        return new Deliverer(user.getUid(), user.getEmail(), user.getFirebaseToken(), user.getRating(), new LinkedList<Transaction>());
+        return new Deliverer(user.getUid(), user.getEmail(), user.getFirebaseToken(), user.getRating(), user.getRatingCount(),new LinkedList<Transaction>());
     }
 }

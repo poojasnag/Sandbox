@@ -23,66 +23,51 @@ import com.sandbox.chat.R;
 import com.sandbox.chat.adapters.OrderDetailsAdapter;
 import com.sandbox.chat.mgr.TransactionMgr;
 import com.sandbox.chat.models.Buyer;
-import com.sandbox.chat.models.Deliverer;
-import com.sandbox.chat.models.DelivererOffer;
 import com.sandbox.chat.models.Status;
 import com.sandbox.chat.models.Transaction;
 import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
+import com.sandbox.chat.ui.activities.ClosedOrderActivity;
 import com.sandbox.chat.ui.activities.PendingOrdersActivity;
-import com.sandbox.chat.ui.activities.PlaceOrderActivity;
-import com.sandbox.chat.ui.contract.PendingOrdersContract;
+import com.sandbox.chat.ui.presenter.ClosedOrderPresenter;
 import com.sandbox.chat.ui.presenter.PendingOrdersPresenter;
-import com.sandbox.chat.ui.presenter.PlaceOrderPresenter;
 
 import java.util.LinkedList;
 
-public class PendingOrdersFragment extends Fragment implements PendingOrdersContract.View{
+public class ClosedOrderFragment extends Fragment {
     private Intent intent;
     private ProgressDialog mProgressDialog;
-//    private LinkedList<String> orders;
-//    private LinkedList<Transaction> transactionList;
-    private PendingOrdersActivity pendingOrdersActivity;
-    private PendingOrdersPresenter pendingOrdersPresenter;
+    private ClosedOrderActivity closedOrderActivity;
+    private ClosedOrderPresenter closedOrderPresenter;
 
-
-    public static PendingOrdersFragment newInstance() {
+    public static ClosedOrderFragment newInstance() {
         Bundle args = new Bundle();
-        PendingOrdersFragment fragment = new PendingOrdersFragment();
+        ClosedOrderFragment fragment = new ClosedOrderFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
     public void onStart() {
         super.onStart();
-
-
-//        orders = new LinkedList<String>();  //TODO: get transaction objects
-//        orders.add("xxyyzz \t\t 21 Jan 2021\nDeliver to: hall 7\n Eatery: koi, Pioneer\nMilk Tea with Pearl");
-//        OrderDetailsAdapter adapter = new OrderDetailsAdapter(orders);
-//        //TODO: pass the list of orders to this adapter
-//        ordersList.setAdapter(adapter);
-//        ordersList.setLayoutManager(new LinearLayoutManager(this));
     }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View fragmentView = inflater.inflate(R.layout.fragment_pending_orders, container, false);
+        View fragmentView = inflater.inflate(R.layout.fragment_closed_order, container, false);
         bindViews(fragmentView);
         return fragmentView;
     }
 
     private void bindViews(View view) {
-        RecyclerView ordersList = view.findViewById(R.id.order_list);
-        final BottomNavigationView bot_bar = view.findViewById(R.id.pending_orders_bottomNavigationView);
+        RecyclerView ordersList = view.findViewById(R.id.closed_order_list);
+        final BottomNavigationView bot_bar = view.findViewById(R.id.closed_order_bottomNavigationView);
         bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
         intent = getActivity().getIntent();
         if (intent.getSerializableExtra("user") instanceof Buyer){
-            getOrders((User)intent.getSerializableExtra("user"), true, ordersList);
+            getClosedOrders((User)intent.getSerializableExtra("user"), true, ordersList);
         }
         else{
-            getOrders((User)intent.getSerializableExtra("user"), false, ordersList);
+            getClosedOrders((User)intent.getSerializableExtra("user"), false, ordersList);
         }
     }
     @Override
@@ -91,35 +76,32 @@ public class PendingOrdersFragment extends Fragment implements PendingOrdersCont
         init();
     }
     private void init() {
-        pendingOrdersPresenter = new PendingOrdersPresenter((PendingOrdersActivity) getActivity());
-        pendingOrdersActivity = (PendingOrdersActivity) getActivity();
+        closedOrderPresenter = new ClosedOrderPresenter((ClosedOrderActivity) getActivity());
+        closedOrderActivity = (ClosedOrderActivity) getActivity();
         mProgressDialog = new ProgressDialog(getActivity());
         mProgressDialog.setTitle(getString(R.string.loading));
         mProgressDialog.setMessage(getString(R.string.please_wait));
         mProgressDialog.setIndeterminate(true);
     }
-
-    public void getOrders(User user, Boolean isBuyer, RecyclerView ordersList) { //TODO: only PENDING orders query
+    public void getClosedOrders(User user, Boolean isBuyer, RecyclerView ordersList) { //TODO: only PENDING orders query
 
         LinkedList<Transaction> transactionList = new LinkedList<Transaction>();
-        Log.e("userpending", user.getUid());
-        TransactionMgr.getTransactionHistory(user.getUid(), isBuyer)
+        TransactionMgr.getClosedOrders(user.getUid(), isBuyer)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.e("document", document.getString("orderDetails"));
                                 Transaction t = new Transaction(document.getString("eateryName"), document.getString("transactionID"), document.getString("buyerName"), document.getString("delivererName"), document.getString("buyerID"), document.getString("delivererOfferID"),
                                         document.getString("delivererID"), document.getString("buyerLocation"), document.getString("orderDetails"),
-                                        Status.valueOf(document.getString("orderStatus")), Status.valueOf(document.getString("delivererStatus")),Status.valueOf(document.getString("buyerStatus"))
+                                        Status.valueOf(document.getString("orderStatus")), Status.valueOf(document.getString("delivererStatus")), Status.valueOf(document.getString("buyerStatus"))
                                 );
-                                Log.e("pendingorderMgr", t.getBuyerID() + t.getOrderDetails() + t.isOrderStatus().toString());
+                                Log.e("closedordersfrag", t.getBuyerID() + t.getOrderDetails());
                                 transactionList.add(t);
 
                             }
-                            Log.e("fulltransactionlist", transactionList.toString());
+                            Log.e("closedorderslist", transactionList.toString());
                             OrderDetailsAdapter ordersAdapter = new OrderDetailsAdapter(transactionList);
 
                             ordersList.setAdapter(ordersAdapter);
@@ -129,17 +111,6 @@ public class PendingOrdersFragment extends Fragment implements PendingOrdersCont
                         }
                     }
                 });
-        if (isBuyer){
-            Buyer buyer = new Buyer (user.getUid(), user.getEmail(), user.getFirebaseToken(),user.getRating(),user.getRatingCount(), transactionList); //TODO: mq - send to intent?
-            Log.e("buyer", buyer.getEmail());
-        }
-        else{
-            Deliverer deliverer = new Deliverer (user.getUid(), user.getEmail(), user.getFirebaseToken(),user.getRating(), user.getRatingCount(),transactionList); //TODO: mq - send to intent?
-            Log.e("deliverer", deliverer.getEmail());
-
-        }
 
     }
-
-
 }

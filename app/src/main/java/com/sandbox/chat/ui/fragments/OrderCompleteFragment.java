@@ -4,6 +4,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,17 +87,19 @@ public class OrderCompleteFragment extends Fragment implements View.OnClickListe
     public void onSelectRate(Context context) {
         mProgressDialog.dismiss();
         Toast.makeText(getContext(), "You have selected RATE", Toast.LENGTH_SHORT).show();
+        Transaction transaction = (Transaction) i.getSerializableExtra("Transaction");
         Intent intent = new Intent(i);
+
         intent.setComponent(new ComponentName(context, UserRatingActivity.class));
         startActivity(intent);
     }
     public void updateStatus(Context context){
         Transaction transaction = (Transaction) i.getSerializableExtra("Transaction");
         if (i.getSerializableExtra("user") instanceof Buyer) {
-            TransactionMgr.updateRating(true, "buyerStatus", transaction.getTransactionID());
+            TransactionMgr.updateStatus(true, "buyerStatus", transaction.getTransactionID());
             transaction.setBuyerStatus(Status.COMPLETE);
         } else {
-            TransactionMgr.updateRating(true, "delivererStatus", transaction.getTransactionID());
+            TransactionMgr.updateStatus(true, "delivererStatus", transaction.getTransactionID());
             transaction.setDelivererStatus(Status.COMPLETE);
         }
 

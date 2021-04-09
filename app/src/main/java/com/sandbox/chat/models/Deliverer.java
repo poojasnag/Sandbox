@@ -12,8 +12,8 @@ public class Deliverer extends User implements Serializable {
     private static final long serialVersionUID = 985675434L;
     private LinkedList<Transaction> delivererOfferList;
 
-    public Deliverer(String uid, String email, String firebaseToken, ArrayList<Integer> rating, LinkedList<Transaction> delivererOfferList) {
-        super(uid, email, firebaseToken, rating);
+    public Deliverer(String uid, String email, String firebaseToken, int rating,int ratingCount, LinkedList<Transaction> delivererOfferList) {
+        super(uid, email, firebaseToken, rating, ratingCount);
         this.delivererOfferList = delivererOfferList;
     }
 
