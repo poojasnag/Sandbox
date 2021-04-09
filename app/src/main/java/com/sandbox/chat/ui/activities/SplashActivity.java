@@ -30,11 +30,6 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 //        mapsInteractor = new MapsInteractor();
 
-        try {
-            MapsInteractor.initialize(this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         mHandler = new Handler();
 
         mRunnable = new Runnable() {

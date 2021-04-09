@@ -21,10 +21,9 @@ public class MapsInteractor implements MapsContract.Interactor {
         this.eateries = eateries;
     }
     public MapsInteractor(){}
-    public static Eatery findEatery(String id)
+    public static Eatery findEatery(String id, Context c)
     {
         Log.e("stringID", id);
-
         for (int i = 0; i < eateries.size(); i++) {
             Log.e("spam", eateries.get(i).getEateryID());
 

@@ -86,8 +86,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
+        try {
+            MapsInteractor.initialize(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         //import geojson file into map
         try {
@@ -128,6 +133,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
+
+
         final BottomNavigationView bot_bar = findViewById(R.id.eatery_selection_botnav);
         bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
 
@@ -179,7 +187,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         String ID = feature_id;
 
-        Eatery e = MapsInteractor.findEatery(ID);
+        Eatery e = MapsInteractor.findEatery(ID, getApplicationContext());
         TextView txtclose;
         Button btnFollow;
         Dialog myDialog = getLocationDetails();
@@ -336,5 +344,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        finish();
+    }
 }
