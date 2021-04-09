@@ -13,11 +13,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.sandbox.chat.R;
 import com.sandbox.chat.core.registration.RegisterContract;
 import com.sandbox.chat.core.registration.RegisterPresenter;
 import com.sandbox.chat.core.users.add.AddUserContract;
 import com.sandbox.chat.core.users.add.AddUserPresenter;
+import com.sandbox.chat.ui.activities.BnDActivity;
 import com.sandbox.chat.ui.activities.UserListingActivity;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -111,7 +113,8 @@ public class RegisterFragment extends Fragment implements View.OnClickListener, 
     public void onAddUserSuccess(String message) {
         mProgressDialog.dismiss();
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
-        UserListingActivity.startActivity(getActivity(),
+        FirebaseUser fUser =  FirebaseAuth.getInstance().getCurrentUser();
+        BnDActivity.startActivity(getActivity(), fUser,
                 Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
     }
 
