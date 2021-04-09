@@ -111,7 +111,7 @@ public class PendingOrdersFragment extends Fragment implements PendingOrdersCont
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.e("document", document.getString("orderDetails"));
-                                Transaction t = new Transaction(document.getString("transactionID"), document.getString("buyerName"), document.getString("delivererName"), document.getString("buyerID"), document.getString("delivererOfferID"),
+                                Transaction t = new Transaction(document.getString("eateryName"), document.getString("transactionID"), document.getString("buyerName"), document.getString("delivererName"), document.getString("buyerID"), document.getString("delivererOfferID"),
                                         document.getString("delivererID"), document.getString("buyerLocation"), document.getString("orderDetails"),
                                         Status.valueOf(document.getString("orderStatus")), Status.valueOf(document.getString("delivererStatus")),Status.valueOf(document.getString("buyerStatus"))
                                 );
@@ -135,7 +135,7 @@ public class PendingOrdersFragment extends Fragment implements PendingOrdersCont
         }
         else{
             Deliverer deliverer = new Deliverer (user.getUid(), user.getEmail(), user.getFirebaseToken(),user.getRating(), user.getRatingCount(),transactionList); //TODO: mq - send to intent?
-            Log.e("buyer", deliverer.getEmail());
+            Log.e("deliverer", deliverer.getEmail());
 
         }
 

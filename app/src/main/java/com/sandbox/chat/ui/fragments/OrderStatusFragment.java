@@ -115,7 +115,7 @@ public class OrderStatusFragment extends Fragment implements View.OnClickListene
             partnerName.setText("Buyer Name: " +cur.getBuyerName());
         }
 
-        Log.e("orderstatusFragment", ((Eatery) getActivity().getIntent().getSerializableExtra("Eatery")).getEateryName());
+        Log.e("orderstatusFragment", cur.getEateryName());
         setDetails(cur);
 
 
@@ -192,7 +192,7 @@ public class OrderStatusFragment extends Fragment implements View.OnClickListene
                                 rate.setText("Delivery Fee: " + Double.toString(document.getDouble("deliveryFee")));
                                 eta.setText("ETA : " + document.getString("etaDateTime"));
                                 location.setText("Delivery Location: " +cur.getBuyerLocation());
-                                eatery.setText("Eatery: " +((Eatery) getActivity().getIntent().getSerializableExtra("Eatery")).getEateryName());
+                                eatery.setText("Eatery: " + cur.getEateryName());
                                 orderDetails.setText("Order Details: " +cur.getOrderDetails());
                             }
                         }
