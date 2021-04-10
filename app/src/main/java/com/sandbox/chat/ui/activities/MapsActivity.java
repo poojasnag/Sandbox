@@ -78,8 +78,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     FusedLocationProviderClient client;
     SupportMapFragment supportMapFragment;
-    private ProgressDialog mProgressDialog;
-    private MapsActivity mapsActivity;
+
 
     public Dialog getLocationDetails() {
         return locationDetails;
@@ -372,5 +371,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onLogoutFailure(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        finish();
     }
 }

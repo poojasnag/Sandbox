@@ -8,15 +8,22 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.sandbox.chat.adapters.OrderDetailsAdapter;
 import com.sandbox.chat.models.Buyer;
 import com.sandbox.chat.models.Deliverer;
+import com.sandbox.chat.models.Status;
 import com.sandbox.chat.models.Transaction;
 import com.sandbox.chat.models.User;
 
@@ -44,7 +51,7 @@ public class TransactionMgr {
         offer.put("delivererStatus", transaction.isDelivererStatus().name());
         offer.put("buyerStatus", transaction.isBuyerStatus().name());
         offer.put("transactionID", transaction.getTransactionID());
-
+        offer.put("eateryName", transaction.getEateryName());
 
 //        String transactionID = transaction.getBuyerID() + '-' + transaction.getDelivererOfferID() + '-' + curTime;
         DocumentReference documentReference = fStore.collection(TRANSACTION_TABLE).document(transaction.getTransactionID());
@@ -68,23 +75,69 @@ public class TransactionMgr {
             Log.e("transactionmgr", query.toString());
         }
         else{
+            Log.e("transactionMgr", isBuyer.toString() + " "+ uid);
             query = transaction_db.whereEqualTo("delivererID", uid).whereEqualTo("orderStatus", "PENDING");
         }
         return query;
     }
-    public static void updateRating(boolean isComplete, String whichRating, String transactionID){
+
+    public static Query getClosedOrders(String uid, Boolean isBuyer){
         CollectionReference transaction_db = fStore.collection(TRANSACTION_TABLE);
-        if (isComplete){
-            transaction_db.document(transactionID).update(whichRating, "COMPLETE");
-            Log.e("updateRating", whichRating);
+        Query query;
+        if (isBuyer){
+            query = transaction_db.whereEqualTo("buyerID", uid).whereEqualTo("orderStatus", "COMPLETE");
+            Log.e("transactionmgr", query.toString());
         }
         else{
-            transaction_db.document(transactionID).update(whichRating, "INCOMPLETE");
+            Log.e("transactionMgr", isBuyer.toString() + " "+ uid);
+            query = transaction_db.whereEqualTo("delivererID", uid).whereEqualTo("orderStatus", "COMPLETE");
+        }
+        return query;
+    }
+    public static void updateStatus(boolean isComplete, String whichStatus, String transactionID){
+        CollectionReference transaction_db = fStore.collection(TRANSACTION_TABLE);
+        if (isComplete){
+            transaction_db.document(transactionID).update(whichStatus, "COMPLETE");
+            checkOrderCompletion(transactionID);
+            Log.e("updateStatus", whichStatus);
+        }
+        else{
+            transaction_db.document(transactionID).update(whichStatus, "INCOMPLETE");
+            checkOrderCompletion(transactionID);
         }
     }
 
-    public static void orderRating(){
+    public static void checkOrderCompletion(String transactionID){
+        CollectionReference transaction_db = fStore.collection(TRANSACTION_TABLE);
+        transaction_db.whereEqualTo("buyerStatus", "COMPLETE").whereEqualTo("delivererStatus", "COMPLETE")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                fStore.collection(TRANSACTION_TABLE).document(document.getString("transactionID")).update("orderStatus", "COMPLETE");
 
+                            }
+
+                        }
+                    }
+                });
+
+        transaction_db.whereEqualTo("buyerStatus", "INCOMPLETE").whereEqualTo("delivererStatus", "INCOMPLETE")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                fStore.collection(TRANSACTION_TABLE).document(document.getString("transactionID")).update("orderStatus", "INCOMPLETE");
+
+                            }
+
+                        }
+                    }
+                });
     }
 
 }

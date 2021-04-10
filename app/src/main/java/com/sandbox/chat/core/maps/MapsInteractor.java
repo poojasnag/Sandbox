@@ -10,10 +10,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MapsInteractor implements MapsContract.Interactor {
+
+    public static ArrayList<Eatery> getEateries() {
+        return eateries;
+    }
 
     private static ArrayList<Eatery> eateries;
 
@@ -24,7 +29,6 @@ public class MapsInteractor implements MapsContract.Interactor {
     public static Eatery findEatery(String id)
     {
         Log.e("stringID", id);
-
         for (int i = 0; i < eateries.size(); i++) {
 
             if(eateries.get(i).getEateryID().equals(id) == true)
@@ -37,11 +41,17 @@ public class MapsInteractor implements MapsContract.Interactor {
         return new Eatery("0", "Unable to find eatery", "", "", "");
     }
 
-    public static void initialize(Context context) throws IOException {
+    public static void initialize(Context context){
+
+        if(eateries != null && eateries.size()!=0)
+        {
+            return;
+        }
 
         eateries = new ArrayList<Eatery>();
-        InputStream i = context.getAssets().open("healthier-eateries-kml.kml");
+
         try {
+            InputStream i = context.getAssets().open("healthier-eateries-kml.kml");
             BufferedReader r = new BufferedReader(new InputStreamReader(i));
 
             Pattern name_p = Pattern.compile("(<SimpleData name=\"NAME\">)(.*)(</SimpleData>)");
@@ -83,12 +93,10 @@ public class MapsInteractor implements MapsContract.Interactor {
 
 
                     name = name_m.group(2);
-                    System.out.println(name);
-                    System.out.println(loc_id);
                     e = new Eatery(loc_id, name, loc_address, loc_street, "8:00-21:00");
                     eateries.add(e);
                     ID +=1;
-                    System.out.println("Record added");
+
 
                 }
                 cur = r.readLine();
@@ -97,9 +105,9 @@ public class MapsInteractor implements MapsContract.Interactor {
 
 
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            eateries = new ArrayList<Eatery>();
 
         }
     }

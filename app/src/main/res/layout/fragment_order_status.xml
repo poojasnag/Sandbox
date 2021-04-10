@@ -9,7 +9,6 @@
     >
     <TextView
         android:id="@+id/order_status_header"
-        android:fontFamily="sans-serif-condensed-medium"
         style="@style/Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,7 +22,6 @@
     <TextView
         android:id="@+id/order_status_buyer_name"
         android:layout_width="0dp"
-        android:fontFamily="sans-serif-condensed-medium"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:text="@string/empty"
@@ -54,7 +52,6 @@
 
     <TextView
         android:id="@+id/order_status_rate"
-        android:fontFamily="sans-serif-condensed-medium"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -69,7 +66,6 @@
 
     <TextView
         android:id="@+id/order_status_eta"
-        android:fontFamily="sans-serif-condensed-medium"
         android:layout_width="381dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -90,7 +86,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/order_status_eta"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.048"
         android:layout_width="381dp"
         android:layout_height="wrap_content"
         android:text="@string/empty"
@@ -102,10 +98,10 @@
         android:fontFamily="sans-serif-condensed-medium"
         app:layout_constraintBottom_toBottomOf="@+id/order_status_bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/order_status_location_text"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.048"
         android:layout_width="381dp"
         android:layout_height="wrap_content"
         android:text="@string/empty"
@@ -113,8 +109,8 @@
         tools:layout_editor_absoluteY="67dp" />
 
     <Button
-        android:fontFamily="sans-serif-condensed-medium"
         android:id="@+id/order_status_chat"
+        android:fontFamily="sans-serif-condensed-medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/colorPrimaryDark"

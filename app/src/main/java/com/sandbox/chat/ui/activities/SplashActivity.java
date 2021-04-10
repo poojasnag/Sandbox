@@ -40,11 +40,6 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 //        mapsInteractor = new MapsInteractor();
 
-        try {
-            MapsInteractor.initialize(this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         mHandler = new Handler();
 
         mRunnable = new Runnable() {
@@ -60,13 +55,18 @@ public class SplashActivity extends AppCompatActivity {
                     // otherwise redirect the user to login activity
                     LoginActivity.startIntent(SplashActivity.this);
                 }
-                finish();
+
             }
         };
 
         mHandler.postDelayed(mRunnable, SPLASH_TIME_MS);
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
+    }
     /*@Override
     protected void onPause() {
         super.onPause();
