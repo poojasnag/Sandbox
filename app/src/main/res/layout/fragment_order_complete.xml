@@ -8,11 +8,13 @@
 
     <TextView
         android:id="@+id/order_is_complete"
+        style="@style/Text"
+        android:fontFamily="sans-serif-condensed-medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="@string/order_complete"
-        android:textColor="@color/blue_600"
+        android:textColor="@color/blue_800"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,7 +23,9 @@
         app:layout_constraintVertical_bias="0.216" />
 
     <TextView
-        android:id="@+id/pls_give_rating"
+        android:id="@+id/thank_you"
+        style="@style/Text"
+        android:fontFamily="sans-serif-condensed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
@@ -34,8 +38,25 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.559" />
 
+    <TextView
+        android:id="@+id/pls_give_rating2"
+        style="@style/Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:gravity="center_horizontal"
+        android:text="@string/pls_rate_text"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.602" />
+
     <Button
         android:id="@+id/button_rate"
+        style="@style/Text"
+        android:fontFamily="sans-serif-condensed-medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_rate"
@@ -44,7 +65,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.718" />
+        app:layout_constraintVertical_bias="0.693" />
 
     <ImageView
         android:id="@+id/green_tick"

@@ -7,6 +7,7 @@
 
     <EditText
         android:id="@+id/edit_text_email_id"
+        android:fontFamily="sans-serif-condensed-medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/email"
@@ -14,6 +15,7 @@
 
     <EditText
         android:id="@+id/edit_text_password"
+        android:fontFamily="sans-serif-condensed-medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/password"
@@ -29,6 +31,7 @@
 
         <Button
             android:id="@+id/button_register"
+            android:fontFamily="sans-serif-condensed-medium"
             style="?attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

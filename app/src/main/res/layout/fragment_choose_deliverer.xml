@@ -10,6 +10,8 @@
 
     <Button
         android:id="@+id/choose_deliverer_button"
+        style="@style/Text"
+        android:fontFamily="sans-serif-condensed-medium"
         android:layout_width="296dp"
         android:layout_height="51dp"
         android:layout_marginTop="104dp"
@@ -21,6 +23,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/choose_deliverer_list"
+        android:fontFamily="sans-serif-condensed-medium"
         android:layout_width="370dp"
         android:layout_height="489dp"
         app:layout_constraintBottom_toBottomOf="parent"

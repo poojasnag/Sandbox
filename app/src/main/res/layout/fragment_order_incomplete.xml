@@ -7,12 +7,29 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/pls_give_rating3"
+        style="@style/Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:gravity="center_horizontal"
+        android:text="@string/pls_rate_text"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.617" />
+
+    <TextView
         android:id="@+id/order_is_incomplete"
+        style="@style/Text"
+        android:fontFamily="sans-serif-condensed-medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="@string/order_incomplete"
-        android:textColor="@color/blue_600"
+        android:textColor="@color/blue_800"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,6 +39,7 @@
 
     <TextView
         android:id="@+id/pls_give_rating"
+        android:fontFamily="sans-serif-condensed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
@@ -36,6 +54,7 @@
 
     <Button
         android:id="@+id/button_rate"
+        android:fontFamily="sans-serif-condensed-medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_rate"

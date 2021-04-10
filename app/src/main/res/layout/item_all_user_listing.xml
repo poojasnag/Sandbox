@@ -14,6 +14,7 @@
 
     <TextView
         android:id="@+id/text_view_user_alphabet"
+        android:fontFamily="sans-serif-condensed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/circle_accent"
@@ -31,12 +32,13 @@
 
     <TextView
         android:id="@+id/text_view_username"
+        android:fontFamily="sans-serif-condensed-medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="1"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/grey_700"
+        android:textColor="@color/grey_800"
         tools:text="abcd@xyz.com" />
 
 

@@ -34,17 +34,31 @@
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
+    <Button
+        android:id="@+id/dummy_search"
+        android:layout_width="276dp"
+        android:layout_height="41dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="@string/search_btn"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </Button>
+
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/eatery_selection_map"
         android:name="com.google.android.libraries.maps.SupportMapFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="596dp"
+        android:layout_height="913dp"
         app:layout_constraintBottom_toTopOf="@+id/eatery_selection_botnav"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="1.0"
         tools:context=".ui.activities.MapsActivity">
 
     </androidx.fragment.app.FragmentContainerView>

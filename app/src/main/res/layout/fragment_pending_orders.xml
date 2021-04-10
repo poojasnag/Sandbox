@@ -26,6 +26,7 @@
 
     <TextView
         android:id="@+id/pending_orders_header"
+        android:fontFamily="sans-serif-condensed-medium"
         style="@style/Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,6 +40,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/order_list"
+        android:fontFamily="sans-serif-condensed-medium"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="180dp"

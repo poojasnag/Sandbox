@@ -9,17 +9,20 @@
 
     <TextView
         android:id="@+id/user_rating_title"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/rating_desc"
         android:textAlignment="center"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.272" />
-
+<!--add text: choose the number of stars-->
     <RatingBar
         android:id="@+id/user_rating_bar"
         android:layout_width="wrap_content"
@@ -36,10 +39,12 @@
 
     <EditText
         android:id="@+id/user_rating_comment_box"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="235dp"
+        android:layout_height="69dp"
         android:background="@android:drawable/dialog_holo_light_frame"
         android:ems="10"
+        android:fontFamily="sans-serif-condensed"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:padding="20dp"
         android:text="@string/review_request_body"
@@ -48,11 +53,11 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.542"
-        android:importantForAutofill="no" />
+        app:layout_constraintVertical_bias="0.542" />
 
     <TextView
         android:id="@+id/user_rating_comment_title"
+        android:fontFamily="sans-serif-condensed-medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/review_request_header"
@@ -63,19 +68,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.462" />
 
-    <Button
-        android:id="@+id/user_rating_submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/submit_rating"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.787" />
-
-<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
+    <!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
 <!--        android:id="@+id/user_rating_bottomNavigationView"-->
 <!--        style="@style/bottom_navigation_view"-->
 <!--        android:layout_width="wrap_content"-->
@@ -91,18 +84,31 @@
 <!--        app:layout_constraintVertical_bias="1.0"-->
 <!--        app:menu="@menu/bottom_navigation" />-->
 
-    <TextView
-        android:id="@+id/textView"
+    <Button
+        android:id="@+id/user_rating_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/rating_header"
-        android:textColor="@color/blue_600"
-        android:textSize="24sp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="@string/submit_rating"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.127" />
+        app:layout_constraintVertical_bias="0.724" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="@string/rating_header"
+        android:textColor="@color/blue_800"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.15" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
