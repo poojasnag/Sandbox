@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AppCompatActivity;
 import 	androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.sandbox.chat.R;
 
 import com.sandbox.chat.FirebaseChatMainApp;
@@ -35,6 +36,7 @@ public class ChatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+//        final BottomNavigationView bot_bar = findViewById(R.id.chat_bottomNavigationView);
         bindViews();
         init();
     }
