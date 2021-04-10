@@ -95,7 +95,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+
+        MapsInteractor.initialize(this);
 
 
         //import geojson file into map
