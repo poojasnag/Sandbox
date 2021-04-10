@@ -93,12 +93,10 @@ public class MapsInteractor implements MapsContract.Interactor {
 
 
                     name = name_m.group(2);
-                    System.out.println(name);
-                    System.out.println(loc_id);
                     e = new Eatery(loc_id, name, loc_address, loc_street, "8:00-21:00");
                     eateries.add(e);
                     ID +=1;
-                    System.out.println("Record added");
+
 
                 }
                 cur = r.readLine();

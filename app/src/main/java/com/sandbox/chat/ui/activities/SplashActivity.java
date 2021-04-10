@@ -55,13 +55,18 @@ public class SplashActivity extends AppCompatActivity {
                     // otherwise redirect the user to login activity
                     LoginActivity.startIntent(SplashActivity.this);
                 }
-                finish();
+
             }
         };
 
         mHandler.postDelayed(mRunnable, SPLASH_TIME_MS);
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
+    }
     /*@Override
     protected void onPause() {
         super.onPause();

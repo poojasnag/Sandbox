@@ -22,6 +22,7 @@ public class MapsInteractorTest {
         ArrayList<Eatery> eateries = MapsInteractor.getEateries();
         assertNotNull(eateries);
     }
+
     @Test
     public void firstEatery() {
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
@@ -44,6 +45,22 @@ public class MapsInteractorTest {
         assertThat("Orchard Road").isEqualTo(eateries.get(1809).getEateryStreet());
     }
 
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void initialize_upperBound()
+    {
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        MapsInteractor.initialize(appContext);
+        ArrayList<Eatery> eateries = MapsInteractor.getEateries();
+        eateries.get(1810);
+    }
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void initialize_lowerBound()
+    {
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        MapsInteractor.initialize(appContext);
+        ArrayList<Eatery> eateries = MapsInteractor.getEateries();
+        eateries.get(-1);
+    }
     @Test
     public void findEatery_correct()
     {
@@ -57,6 +74,6 @@ public class MapsInteractorTest {
     {
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         MapsInteractor.initialize(appContext);
-        assertThat("Unable to find eatery").isEqualTo(MapsInteractor.findEatery("This is not a real eatery").getEateryName());
+        assertThat("Unable to find eatery").isEqualTo(MapsInteractor.findEatery("kml_1811").getEateryName());
     }
 }

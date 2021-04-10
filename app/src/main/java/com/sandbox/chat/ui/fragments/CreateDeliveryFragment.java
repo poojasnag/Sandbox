@@ -92,7 +92,8 @@ public class CreateDeliveryFragment extends Fragment implements View.OnClickList
         eta_picker = (EditText) view.findViewById(R.id.eta_datetime);
         deliveryFeeText = (EditText) view.findViewById(R.id.create_delivery_fee);
         deliveryLocSpinner = (MultiSpinner) view.findViewById(R.id.create_delivery_select_location);
-        i = getActivity().getIntent();
+        createDeliveryActivity = (CreateDeliveryActivity) getActivity();
+        i = createDeliveryActivity.getIntent();
     }
 
     // done
@@ -144,8 +145,6 @@ public class CreateDeliveryFragment extends Fragment implements View.OnClickList
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "create button clicked", Toast.LENGTH_SHORT).show();
-
 //
                 String deliveryFee = deliveryFeeText.getText().toString();
                 String cutoffDateTime = cutoff_picker. getText().toString();
@@ -153,30 +152,17 @@ public class CreateDeliveryFragment extends Fragment implements View.OnClickList
                 Log.e("insideactivity", selectedLocations.toString());
                 if(deliveryFee.trim().equals("") || cutoffDateTime.trim().equals("") || etaDateTime.trim().equals("") || selectedLocations.size() ==0)
                 {
-                    Toast.makeText(createDeliveryActivity,"You have missing inputs", Toast.LENGTH_SHORT);
-                    if(deliveryFee.trim().equals(""))
-                    {
-                        Toast.makeText(createDeliveryActivity,"Please enter delivery fee", Toast.LENGTH_SHORT);
-                    }
-                    if(cutoffDateTime.trim().equals(""))
-                    {
-                        Toast.makeText(createDeliveryActivity,"Please enter cut-off time", Toast.LENGTH_SHORT);
-                    }
-                    if(etaDateTime.trim().equals(""))
-                    {
-                        Toast.makeText(createDeliveryActivity,"Please enter ETA", Toast.LENGTH_SHORT);
-                    }
-                    if(selectedLocations.size()==0)
-                    {
-                        Toast.makeText(createDeliveryActivity,"Please select at lease one destination", Toast.LENGTH_SHORT);
-                    }
-                    return;
+                    Toast.makeText(createDeliveryActivity,"You have missing inputs", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    createDeliveryPresenter.onRecordData(selectedLocations, Double.parseDouble(deliveryFee), cutoffDateTime, etaDateTime, curEatery, v.getContext(), (Deliverer) getActivity().getIntent().getSerializableExtra("user"));
+                    Toast.makeText(getActivity(), "Delivery offer submitted", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(i);
+                    intent.setComponent(new ComponentName(getContext(),PendingOrdersActivity.class));
+                    startActivity(intent);
                 }
 
-                createDeliveryPresenter.onRecordData(selectedLocations, Double.parseDouble(deliveryFee), cutoffDateTime, etaDateTime, curEatery, v.getContext(), (Deliverer) getActivity().getIntent().getSerializableExtra("user"));
-                Intent intent = new Intent(i);
-                intent.setComponent(new ComponentName(getContext(),PendingOrdersActivity.class));
-                startActivity(intent);
             }
         });
 //        Toast.makeText(CreateDeliveryActivity.this, "text:" + chosenLoc, Toast.LENGTH_SHORT).show();
