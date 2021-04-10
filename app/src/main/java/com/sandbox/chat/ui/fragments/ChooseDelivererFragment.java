@@ -107,6 +107,6 @@ public class ChooseDelivererFragment extends Fragment implements View.OnClickLis
 
     private void onChooseDeliverer(View view){
         // input
-        Toast.makeText(getContext(), "Deliverer Chosen", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), "Deliverer Chosen", Toast.LENGTH_SHORT).show();
     }
 }
