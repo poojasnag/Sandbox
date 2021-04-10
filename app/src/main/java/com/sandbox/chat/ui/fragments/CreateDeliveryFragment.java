@@ -146,14 +146,33 @@ public class CreateDeliveryFragment extends Fragment implements View.OnClickList
             public void onClick(View v) {
                 Toast.makeText(getActivity(), "create button clicked", Toast.LENGTH_SHORT).show();
 
-//                String chosenLoc = deliveryLocSpinner.getSelectedItem().toString();  //TODO: Change to array
+//
                 String deliveryFee = deliveryFeeText.getText().toString();
                 String cutoffDateTime = cutoff_picker. getText().toString();
                 String etaDateTime = eta_picker. getText().toString();
                 Log.e("insideactivity", selectedLocations.toString());
+                if(deliveryFee.trim().equals("") || cutoffDateTime.trim().equals("") || etaDateTime.trim().equals("") || selectedLocations.size() ==0)
+                {
+                    Toast.makeText(createDeliveryActivity,"You have missing inputs", Toast.LENGTH_SHORT);
+                    if(deliveryFee.trim().equals(""))
+                    {
+                        Toast.makeText(createDeliveryActivity,"Please enter delivery fee", Toast.LENGTH_SHORT);
+                    }
+                    if(cutoffDateTime.trim().equals(""))
+                    {
+                        Toast.makeText(createDeliveryActivity,"Please enter cut-off time", Toast.LENGTH_SHORT);
+                    }
+                    if(etaDateTime.trim().equals(""))
+                    {
+                        Toast.makeText(createDeliveryActivity,"Please enter ETA", Toast.LENGTH_SHORT);
+                    }
+                    if(selectedLocations.size()==0)
+                    {
+                        Toast.makeText(createDeliveryActivity,"Please select at lease one destination", Toast.LENGTH_SHORT);
+                    }
+                    return;
+                }
 
-//                Toast.makeText(v.getContext(), getIntent().getSerializableExtra("user").getClass().getName(),Toast.LENGTH_SHORT).show();
-//                Eatery eatery = new Eatery("", "Koi","", "",  ""); // TODO: create real eatery
                 createDeliveryPresenter.onRecordData(selectedLocations, Double.parseDouble(deliveryFee), cutoffDateTime, etaDateTime, curEatery, v.getContext(), (Deliverer) getActivity().getIntent().getSerializableExtra("user"));
                 Intent intent = new Intent(i);
                 intent.setComponent(new ComponentName(getContext(),PendingOrdersActivity.class));
@@ -179,7 +198,10 @@ public class CreateDeliveryFragment extends Fragment implements View.OnClickList
     }
 
     private void onSubmitDelivery(Context context) {
+
+
         createDeliveryPresenter = new CreateDeliveryPresenter(createDeliveryActivity);
+
         mProgressDialog.dismiss();
         Intent intent = new Intent(i);
 
@@ -308,6 +330,7 @@ public class CreateDeliveryFragment extends Fragment implements View.OnClickList
 
     @Override
     public void setDeliveryLocations(MultiSpinner deliveryLocSpinner) {
+
         selectedLocations = new ArrayList<String>();
         deliveryLocSpinner.setItems(getActivity().getResources().getStringArray(R.array.deliver_to) ,"Select locations" ,new MultiSpinner.MultiSpinnerListener() {
             @Override

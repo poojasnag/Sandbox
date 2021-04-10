@@ -88,11 +88,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
-        try {
-            MapsInteractor.initialize(this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        MapsInteractor.initialize(this);
+
 
         //import geojson file into map
         try {
@@ -187,7 +184,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         String ID = feature_id;
 
-        Eatery e = MapsInteractor.findEatery(ID, getApplicationContext());
+        Eatery e = MapsInteractor.findEatery(ID);
         TextView txtclose;
         Button btnFollow;
         Dialog myDialog = getLocationDetails();
