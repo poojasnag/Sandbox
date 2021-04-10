@@ -19,6 +19,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.activities.MapsActivity"></activity>
 
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -88,7 +89,8 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ui.activities.CreateDeliveryActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".ui.activities.FoodOpSelectionActivity" />
+        <activity android:name=".ui.activities.FoodOpSelectionActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ui.activities.BnDActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ui.activities.OrderCompleteActivity" android:theme="@style/AppTheme.NoActionBar"/>

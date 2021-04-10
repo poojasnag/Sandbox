@@ -4,22 +4,28 @@
 
     <item
         android:id="@+id/botnav_home"
+        android:fontFamily="sans-serif-condensed-medium"
         android:icon="@drawable/ic_baseline_home_24"
         android:title="@string/nav_home" />
     <item
         android:id="@+id/botnav_chat"
+        android:fontFamily="sans-serif-condensed-medium"
+
         android:icon="@drawable/ic_baseline_chat_bubble_24"
         android:title="@string/nav_chats" />
     <item
         android:id="@+id/botnav_pending"
+        android:fontFamily="sans-serif-condensed-medium"
         android:icon="@drawable/ic_baseline_pending_24"
         android:title="@string/nav_pending" />
     <item
         android:id="@+id/botnav_completed"
+        android:fontFamily="sans-serif-condensed-medium"
         android:icon="@drawable/ic_baseline_check_24"
         android:title="@string/nav_completed" />
     <item
         android:id="@+id/botnav_settings"
+        android:fontFamily="sans-serif-condensed-medium"
         android:icon="@drawable/ic_baseline_settings_24"
         android:title="@string/nav_settings" />
 </menu>

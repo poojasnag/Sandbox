@@ -8,6 +8,7 @@
 
     <TextView
         android:id="@+id/place_order_header"
+        android:fontFamily="sans-serif-condensed-medium"
         style="@style/Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,6 +22,7 @@
 
     <Button
         android:id="@+id/place_order_eatery_name"
+        android:fontFamily="sans-serif-condensed-medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="false"
@@ -35,6 +37,7 @@
 
     <TextView
         android:id="@+id/place_order_deliverer_name"
+        android:fontFamily="sans-serif-condensed-medium"
         android:layout_width="wrap_content"
         android:layout_height="17dp"
         android:layout_marginStart="40dp"
@@ -48,6 +51,7 @@
 
     <TextView
         android:id="@+id/place_order_rate"
+        android:fontFamily="sans-serif-condensed-medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -62,6 +66,7 @@
 
     <TextView
         android:id="@+id/place_order_location"
+        android:fontFamily="sans-serif-condensed-medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -76,6 +81,7 @@
 
     <TextView
         android:id="@+id/place_order_eta"
+        android:fontFamily="sans-serif-condensed-medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -90,6 +96,7 @@
 
     <TextView
         android:id="@+id/place_order"
+        android:fontFamily="sans-serif-condensed-medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -121,6 +128,7 @@
 
     <Button
         android:id="@+id/place_order_submit"
+        android:fontFamily="sans-serif-condensed-medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/submit"

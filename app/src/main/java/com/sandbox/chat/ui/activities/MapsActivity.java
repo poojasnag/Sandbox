@@ -1,6 +1,7 @@
 package com.sandbox.chat.ui.activities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -8,13 +9,16 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -62,7 +66,7 @@ import java.io.IOException;
 /**
  * Displays the eatery selection interface
  */
-public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, LogoutContract.View {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, LogoutContract.View, View.OnClickListener {
 
     private GoogleMap mMap;
     private GeoJsonLayer layer1;
@@ -81,6 +85,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     Dialog locationDetails;
+
+    public static void startActivity(Context context) {
+        Intent intent = new Intent(context, MapsActivity.class);
+        context.startActivity(intent);
+    }
 
     @Override
 
@@ -130,9 +139,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
-
-
         final BottomNavigationView bot_bar = findViewById(R.id.eatery_selection_botnav);
         bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
 
@@ -152,6 +158,24 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         else {
             //when permission denied, request permission
             ActivityCompat.requestPermissions(MapsActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void onClickSearch(Context context) {
+        Intent intent = new Intent(i);
+        intent.setComponent(new ComponentName(context, FoodOpSelectionActivity.class));
+        startActivity(intent);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public void onClick(View view) {
+        int viewId = view.getId();
+        switch(viewId) {
+            case R.id.dummy_search:
+                onClickSearch(this);
+                break;
         }
     }
 
@@ -290,6 +314,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     {
         super.onStart();
         i = getIntent();
+
+        Button dummySearchBtn = (Button) findViewById(R.id.dummy_search);
+
+        dummySearchBtn.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onClick(View v) {
+                onClickSearch(v.getContext());
+            }
+        });
     }
 
 

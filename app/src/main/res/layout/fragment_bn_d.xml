@@ -7,53 +7,78 @@
     tools:context="com.sandbox.chat.ui.activities.BnDActivity">
 
     <TextView
-        android:id="@+id/bnd_header"
+        android:id="@+id/bnd_sanbox"
+        style="@style/Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/BnD_text"
-        android:textSize="24sp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="SANDBOX"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.217" />
+        app:layout_constraintVertical_bias="0.049" />
 
-    <Button
-        android:id="@+id/bnd_button_buyer"
+    <TextView
+        android:id="@+id/sub_message_bnd"
+        style="@style/Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/buyer_button"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="Get healthier with Eateries that serve Healthier Food Options!"
+        android:textColor="@color/colorPrimary"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.686" />
+        app:layout_constraintVertical_bias="0.138" />
+
+    <TextView
+        android:id="@+id/bnd_header"
+        style="@style/Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed"
+        android:text="@string/BnD_text"
+        android:textColor="@color/grey_900"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.183" />
 
     <Button
         android:id="@+id/bnd_button_deliverer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/Text"
+        android:layout_width="192dp"
+        android:layout_height="190dp"
         android:layout_marginTop="44dp"
-        android:text="@string/deliverer_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.826" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="183dp"
-        android:layout_height="375dp"
+        android:background="@drawable/deliverer"
+        android:fontFamily="sans-serif-condensed-medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.425"
-        app:srcCompat="@drawable/avatarr"
-        tools:ignore="ContentDescription" />
+        app:layout_constraintVertical_bias="0.7" />
+
+    <Button
+        android:id="@+id/bnd_button_buyer"
+        style="@style/Text"
+        android:layout_width="180dp"
+        android:layout_height="190dp"
+        android:background="@drawable/buyer"
+        android:fontFamily="sans-serif-condensed-medium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.346" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

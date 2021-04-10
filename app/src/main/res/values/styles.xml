@@ -5,7 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorPrimaryDark</item>
         <item name="android:windowBackground">@color/white</item>
     </style>
 
@@ -15,7 +15,7 @@
     </style>
 
     <style name="AppTheme.NoActionBar.Splash">
-        <item name="android:windowBackground">@drawable/sandbox_logo</item>
+        <item name="android:windowBackground">@drawable/start</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
