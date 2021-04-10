@@ -84,9 +84,14 @@
     </string-array>
     <string name="title_activity_maps">Map</string>
     <string-array name="deliver_to">
-        <item>Hall 1</item>
         <item>North Spine</item>
+        <item>South Spine</item>
+        <item>Hall 1</item>
         <item>Hall 10</item>
+        <item>Hall 14</item>
+        <item>Crespion</item>
+        <item>North Hill</item>
+        <item>Tamarind</item>
     </string-array>
     <string name="submit">Submit</string>
     <string name="place_order_deliverer_name">Deliverer\'s name: </string>
