@@ -15,7 +15,7 @@
     </style>
 
     <style name="AppTheme.NoActionBar.Splash">
-        <item name="android:windowBackground">@drawable/sandbox_logo</item>
+        <item name="android:windowBackground">@drawable/start</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
