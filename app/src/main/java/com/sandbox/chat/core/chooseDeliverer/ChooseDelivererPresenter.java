@@ -59,9 +59,6 @@ public class ChooseDelivererPresenter implements ChooseDelivererContract.Present
      */
     public void getDeliverers(RecyclerView ordersList, Eatery eatery, Intent i) {
 
-
-        //TODO: change to actual deliverers
-
         LinkedList<DelivererOffer> demo = new LinkedList<DelivererOffer>();
         DelivererOfferMgr.getEateryDeliverers(eatery)
                 .get()
