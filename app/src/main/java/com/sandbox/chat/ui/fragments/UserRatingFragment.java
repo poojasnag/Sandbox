@@ -19,7 +19,7 @@ import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.sandbox.chat.R;
-import com.sandbox.chat.mgr.UserMgr;
+import com.sandbox.chat.interactors.UserInteractor;
 import com.sandbox.chat.models.Buyer;
 import com.sandbox.chat.models.Transaction;
 import com.sandbox.chat.core.userRating.UserRatingContract;
@@ -127,11 +127,11 @@ public class UserRatingFragment extends Fragment implements View.OnClickListener
 //        String comments = mETxtComments.getText().toString();
 //        mUserRatingPresenter.submitRating(getActivity(), rating, comments);
         if (i.getSerializableExtra("user") instanceof Buyer){
-            UserMgr.updateRating(mRatingBar.getRating(), transaction.getDelivererID()); //TODO
+            UserInteractor.updateRating(mRatingBar.getRating(), transaction.getDelivererID()); //TODO
             Log.e("otherparty", transaction.getDelivererID());
         }
         else{
-            UserMgr.updateRating(mRatingBar.getRating(), transaction.getBuyerID()); //TODO
+            UserInteractor.updateRating(mRatingBar.getRating(), transaction.getBuyerID()); //TODO
         }
         Toast.makeText(getContext(), "Rating submitted " + mRatingBar.getRating(), Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(i);

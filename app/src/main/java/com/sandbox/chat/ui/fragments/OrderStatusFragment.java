@@ -26,8 +26,7 @@ import com.sandbox.chat.R;
 
 import com.sandbox.chat.core.chat.ChatPresenter;
 
-import com.sandbox.chat.mgr.DelivererOfferMgr;
-
+import com.sandbox.chat.interactors.DelivererOfferInteractor;
 import com.sandbox.chat.models.Buyer;
 import com.sandbox.chat.models.Status;
 import com.sandbox.chat.models.Transaction;
@@ -197,7 +196,7 @@ public class OrderStatusFragment extends Fragment implements View.OnClickListene
 
 
     private void setDetails(Transaction cur){
-        DelivererOfferMgr.getDelivererOffer(cur.getDelivererOfferID()).get()
+        DelivererOfferInteractor.getDelivererOffer(cur.getDelivererOfferID()).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {

@@ -21,7 +21,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.sandbox.chat.R;
 import com.sandbox.chat.adapters.OrderDetailsAdapter;
-import com.sandbox.chat.mgr.TransactionMgr;
+import com.sandbox.chat.interactors.TransactionInteractor;
 import com.sandbox.chat.models.Buyer;
 import com.sandbox.chat.models.Deliverer;
 import com.sandbox.chat.models.Status;
@@ -111,7 +111,7 @@ public class PendingOrdersFragment extends Fragment implements PendingOrdersCont
 
         LinkedList<Transaction> transactionList = new LinkedList<Transaction>();
         Log.e("userpending", user.getUid());
-        TransactionMgr.getTransactionHistory(user.getUid(), isBuyer)
+        TransactionInteractor.getTransactionHistory(user.getUid(), isBuyer)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

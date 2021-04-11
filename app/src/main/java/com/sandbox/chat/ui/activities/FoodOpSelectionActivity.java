@@ -26,7 +26,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.sandbox.chat.core.maps.MapsInteractor;
-import com.sandbox.chat.mgr.DelivererOfferMgr;
+import com.sandbox.chat.interactors.DelivererOfferInteractor;
 import com.sandbox.chat.models.Buyer;
 import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
@@ -171,7 +171,7 @@ public class FoodOpSelectionActivity extends AppCompatActivity {
         eateryName.setText(e.getEateryName());
         eateryLoc.setText(e.getEateryAddress() + ", " + e.getEateryStreet());
         eateryTime.setText(e.getOperatingTime());
-        DelivererOfferMgr.getEateryDeliverers(e).get()
+        DelivererOfferInteractor.getEateryDeliverers(e).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override

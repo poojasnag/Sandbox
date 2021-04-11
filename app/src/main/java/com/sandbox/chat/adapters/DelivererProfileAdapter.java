@@ -5,7 +5,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,11 +20,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.sandbox.chat.R;
-import com.sandbox.chat.mgr.UserMgr;
-import com.sandbox.chat.models.Deliverer;
+import com.sandbox.chat.interactors.UserInteractor;
 import com.sandbox.chat.models.DelivererOffer;
 import com.sandbox.chat.ui.activities.PlaceOrderActivity;
-import com.sandbox.chat.utils.MultiSpinner;
 
 import java.util.LinkedList;
 
@@ -94,7 +91,7 @@ public class DelivererProfileAdapter extends RecyclerView.Adapter<RecyclerView.V
 
             DelivererOffer deliverer = deliverers.get(position);
             ((DelivererProfileHolder) holder).delivererProfile.setText(String.format("Name: %s \nRate:$%.2f\nLocations: %s", deliverer.getDeliverer().getEmail(), deliverer.getDeliveryFee(), String.join(", ", deliverer.getDeliveryLocation())));
-            UserMgr.getUserDocument(deliverer.getDeliverer().getUid()).get()
+            UserInteractor.getUserDocument(deliverer.getDeliverer().getUid()).get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {

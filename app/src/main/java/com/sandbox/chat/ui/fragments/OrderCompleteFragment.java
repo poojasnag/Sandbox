@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.sandbox.chat.R;
-import com.sandbox.chat.mgr.TransactionMgr;
+import com.sandbox.chat.interactors.TransactionInteractor;
 import com.sandbox.chat.models.Buyer;
 import com.sandbox.chat.models.Status;
 import com.sandbox.chat.models.Transaction;
@@ -102,10 +102,10 @@ public class OrderCompleteFragment extends Fragment implements View.OnClickListe
     public void updateStatus(Context context){
         Transaction transaction = (Transaction) i.getSerializableExtra("Transaction");
         if (i.getSerializableExtra("user") instanceof Buyer) {
-            TransactionMgr.updateStatus(true, "buyerStatus", transaction.getTransactionID());
+            TransactionInteractor.updateStatus(true, "buyerStatus", transaction.getTransactionID());
             transaction.setBuyerStatus(Status.COMPLETE);
         } else {
-            TransactionMgr.updateStatus(true, "delivererStatus", transaction.getTransactionID());
+            TransactionInteractor.updateStatus(true, "delivererStatus", transaction.getTransactionID());
             transaction.setDelivererStatus(Status.COMPLETE);
         }
 

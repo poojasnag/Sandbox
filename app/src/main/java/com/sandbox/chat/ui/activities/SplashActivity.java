@@ -1,27 +1,14 @@
 package com.sandbox.chat.ui.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.sandbox.chat.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.sandbox.chat.core.maps.MapsInteractor;
-
-import java.io.IOException;
-
-import com.sandbox.chat.core.login.LoginPresenter;
-import com.sandbox.chat.mgr.UserMgr;
-import com.sandbox.chat.models.User;
-import com.sandbox.chat.utils.Constants;
-import com.sandbox.chat.utils.SharedPrefUtil;
 
 /**
  * First screen when app is initialised, implements the splash UI

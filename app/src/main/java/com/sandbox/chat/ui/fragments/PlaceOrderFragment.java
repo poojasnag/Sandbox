@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +20,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.sandbox.chat.R;
-import com.sandbox.chat.mgr.TransactionMgr;
+import com.sandbox.chat.interactors.TransactionInteractor;
 import com.sandbox.chat.models.DelivererOffer;
 import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.models.Status;
@@ -209,7 +208,7 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
 
             String transactionID = buyerID + '-' + delivererOfferID + '-' + curTime;
             Transaction t = new Transaction(eateryName, transactionID, buyerName, delivererName, buyerID, delivererOfferID, delivererID, buyerLocation, order, orderStatus, delivererStatus, buyerStatus);
-            TransactionMgr.setData(t, context);
+            TransactionInteractor.setData(t, context);
 
             Intent intent = new Intent(i);
             intent.setComponent(new ComponentName(context, PendingOrdersActivity.class));

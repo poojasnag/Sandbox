@@ -4,12 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -45,22 +43,17 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.maps.android.data.Feature;
 import com.google.maps.android.data.Layer;
 import com.google.maps.android.data.geojson.GeoJsonLayer;
-import com.google.maps.android.data.geojson.GeoJsonPolygonStyle;
-import com.sandbox.chat.adapters.UserListingPagerAdapter;
 import com.sandbox.chat.core.logout.LogoutContract;
 import com.sandbox.chat.core.logout.LogoutPresenter;
 import com.sandbox.chat.core.maps.MapsInteractor;
 import com.sandbox.chat.core.maps.MapsPresenter;
 import com.sandbox.chat.core.settings.SettingsInteractor;
-import com.sandbox.chat.mgr.DelivererOfferMgr;
+import com.sandbox.chat.interactors.DelivererOfferInteractor;
 import com.sandbox.chat.models.Buyer;
-import com.sandbox.chat.models.Deliverer;
-import com.sandbox.chat.models.DelivererOffer;
 import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.R;
-import com.sandbox.chat.utils.Constants;
 
 //import com.sandbox.chat.ui.fragments.MapsFragment;
 
@@ -69,7 +62,6 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 /**
  * Displays the eatery selection interface
@@ -238,7 +230,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         eateryName.setText(e.getEateryName());
         eateryLoc.setText(e.getEateryAddress() + ", " + e.getEateryStreet());
         eateryTime.setText(e.getOperatingTime());
-        DelivererOfferMgr.getEateryDeliverers(e).get()
+        DelivererOfferInteractor.getEateryDeliverers(e).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override

@@ -1,36 +1,24 @@
-package com.sandbox.chat.mgr;
+package com.sandbox.chat.interactors;
 
 import android.content.Context;
-import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.sandbox.chat.adapters.OrderDetailsAdapter;
-import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.models.User;
-import com.sandbox.chat.ui.fragments.LoginFragment;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.OptionalDouble;
 
-public class UserMgr {
+public class UserInteractor {
     private static final String TAG = "getEmail";
     private static FirebaseFirestore fStore = FirebaseFirestore.getInstance();
     private static String USER_TABLE = "users";
