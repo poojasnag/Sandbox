@@ -1,6 +1,7 @@
 package com.sandbox.chat.models;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Contains information about an order between  2 users
@@ -60,6 +61,23 @@ public class Transaction implements Serializable {
         this.buyerStatus = buyerStatus;
         this.delivererStatus = delivererStatus;
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Transaction that = (Transaction) o;
+        return buyerID.equals(that.buyerID) &&
+                delivererOfferID.equals(that.delivererOfferID) &&
+                delivererID.equals(that.delivererID) &&
+
+                transactionID.equals(that.transactionID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(buyerID, delivererOfferID, delivererID, buyerLocation, orderDetails, buyerStatus, delivererStatus, orderStatus, buyerName, delivererName, transactionID, eateryName);
     }
 
     public String getEateryName() {

@@ -67,6 +67,7 @@ public class ChooseDelivererPresenter implements ChooseDelivererContract.Present
 
                                 demo.add(delivererOffer);
                             }
+                            
                             DelivererProfileAdapter adapter = new DelivererProfileAdapter(demo);
 
                             ordersList.setAdapter(adapter);

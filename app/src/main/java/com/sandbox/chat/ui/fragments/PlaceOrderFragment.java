@@ -137,8 +137,6 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
     }
 
     public void setLocationList(MultiRadio locationList) {
-
-
         String[] locations =  curDelivererOffer.getDeliveryLocation().toArray(new String[0]);
         locationList.setItems(locations, "Select location", new MultiRadio.MultiRadioListener() {
             @Override
@@ -166,15 +164,10 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void onSubmitSelect(Context context) {
         placeOrderPresenter = new PlaceOrderPresenter(placeOrderActivity);
-
+        Log.e("submitCheck", "Accessing onSubmitSelect");
         mProgressDialog.dismiss();
-        if(context == null)
-        {
-            Log.e("warning", "Empty context");
-        }
-
-        String buyerID = ((User)i.getSerializableExtra("user")).getUid();
-        String buyerName = ((User)i.getSerializableExtra("user")).getEmail();
+        String buyerID = ((User) i.getSerializableExtra("user")).getUid();
+        String buyerName = ((User) i.getSerializableExtra("user")).getEmail();
         String delivererName = curDelivererOffer.getDeliverer().getEmail();
         String delivererOfferID = curDelivererOffer.getDelivererOfferID();
         String delivererID = curDelivererOffer.getDeliverer().getUid();
@@ -185,19 +178,33 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
         Status delivererStatus = Status.PENDING;
         Status buyerStatus = Status.PENDING;
 
-        long unixTime = Instant.now().getEpochSecond();
-        String curTime = Long.toString(unixTime);
+        if(buyerLocation == null || buyerLocation == locationList.getDefaultText())
+        {
+            Toast.makeText(context, "Invalid order!\nA delivery location must be selected", Toast.LENGTH_SHORT).show();
+        }
+        else if(order.trim().equals(""))
+        {
+            Toast.makeText(context, "Invalid order!\nOrder details is empty", Toast.LENGTH_SHORT).show();
+        }
+        else if(order.length() > 5000)
+        {
+            Toast.makeText(context, "Invalid order!\nOrder is too long", Toast.LENGTH_SHORT).show();
+        }
 
-        String transactionID = buyerID + '-' + delivererOfferID + '-' + curTime;
-        Transaction t = new Transaction(eateryName, transactionID, buyerName, delivererName, buyerID, delivererOfferID, delivererID, buyerLocation, order, orderStatus, delivererStatus, buyerStatus);
-        TransactionMgr.setData(t, context);
+        else {
+            long unixTime = Instant.now().getEpochSecond();
+            String curTime = Long.toString(unixTime);
 
-        Intent intent = new Intent(i);
+            String transactionID = buyerID + '-' + delivererOfferID + '-' + curTime;
+            Transaction t = new Transaction(eateryName, transactionID, buyerName, delivererName, buyerID, delivererOfferID, delivererID, buyerLocation, order, orderStatus, delivererStatus, buyerStatus);
+            TransactionMgr.setData(t, context);
 
-        intent.setComponent(new ComponentName(context,PendingOrdersActivity.class));
-        Log.e("eaterycheck", ((Eatery)intent.getSerializableExtra("Eatery")).getEateryName());
-
-        startActivity(intent);
+            Intent intent = new Intent(i);
+            intent.setComponent(new ComponentName(context, PendingOrdersActivity.class));
+            Log.e("eaterycheck", ((Eatery) intent.getSerializableExtra("Eatery")).getEateryName());
+            Toast.makeText(context, "Order successfully placed", Toast.LENGTH_SHORT).show();
+            startActivity(intent);
+        }
     }
 
 //    public void onSubmitSelect() {

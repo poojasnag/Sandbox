@@ -25,6 +25,12 @@ public class RegisterInteractor implements RegisterContract.Interactor {
 
     @Override
     public void performFirebaseRegistration(Activity activity, final String email, String password) {
+        if(email.trim().equals("") || password.trim().equals(""))
+        {
+            mOnRegistrationListener.onFailure("Email or password cannot be empty");
+            return;
+        }
+
         FirebaseAuth.getInstance()
                 .createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {

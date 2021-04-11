@@ -89,9 +89,9 @@ public class RegisterFragment extends Fragment implements View.OnClickListener, 
     private void onRegister(View view) {
         String emailId = mETxtEmail.getText().toString();
         String password = mETxtPassword.getText().toString();
-
-        mRegisterPresenter.register(getActivity(), emailId, password);
         mProgressDialog.show();
+        mRegisterPresenter.register(getActivity(), emailId, password);
+
     }
 
     @Override
@@ -106,7 +106,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener, 
         mProgressDialog.dismiss();
         mProgressDialog.setMessage(getString(R.string.please_wait));
         Log.e(TAG, "onRegistrationFailure: " + message);
-        Toast.makeText(getActivity(), "Registration failed!+\n" + message, Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), "Registration failed!\n" + message, Toast.LENGTH_LONG).show();
     }
 
     @Override

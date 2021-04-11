@@ -20,6 +20,11 @@ public class MultiSpinner extends androidx.appcompat.widget.AppCompatSpinner imp
 
     private String[] items;
     private boolean[] selected;
+
+    public String getDefaultText() {
+        return defaultText;
+    }
+
     private String defaultText;
     private MultiSpinnerListener listener;
 

@@ -12,6 +12,11 @@ public class MultiRadio extends androidx.appcompat.widget.AppCompatSpinner imple
 
     private String[] items;
     private int selected;
+
+    public String getDefaultText() {
+        return defaultText;
+    }
+
     private String defaultText;
     private MultiRadioListener listener;
 
