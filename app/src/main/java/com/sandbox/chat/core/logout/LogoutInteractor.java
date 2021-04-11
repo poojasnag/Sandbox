@@ -15,6 +15,9 @@ public class LogoutInteractor implements LogoutContract.Interactor {
         mOnLogoutListener = onLogoutListener;
     }
 
+    /**
+     * Logs the user out of the application
+     */
     @Override
     public void performFirebaseLogout() {
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {

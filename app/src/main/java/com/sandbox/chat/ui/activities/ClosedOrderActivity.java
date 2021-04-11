@@ -39,11 +39,7 @@ public class ClosedOrderActivity extends AppCompatActivity {
         context.startActivity(intent);
     }
     @Override
-    /**
-     * Initialize the interface.
-     * Consisting of loading the corresponding layout file and binding the on-click listener to the navigation bar.
-     * @param savedInstanceState If the activity is being re-initialized after previously being shut down then this Bundle contains the data it most recently supplied in onSaveInstanceState(Bundle)
-     */
+
     protected void onCreate(Bundle savedInstanceState) {
         closedOrderPresenter = new ClosedOrderPresenter();
         super.onCreate(savedInstanceState);
@@ -51,10 +47,7 @@ public class ClosedOrderActivity extends AppCompatActivity {
         bindViews();
         init();
     }
-    /**
-     * Populates the list with information of the closed orders
-     * Called directly after onCreate(), and whenever the user navigates to this activity from another activity
-     */
+
 
     protected void bindViews()
     {

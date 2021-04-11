@@ -25,7 +25,9 @@ import com.sandbox.chat.mgr.FoodOpSelectionMgr;
 import com.sandbox.chat.models.Eatery;
 
 
-
+/**
+ * 
+ */
 public class FoodOpSelectionActivity extends AppCompatActivity {
 
     FoodOpSelectionMgr foodOpSelectionController;

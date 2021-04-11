@@ -29,7 +29,9 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.ArrayList;
 
 
-
+/**
+ * View holder for the ChatActivity
+ */
 public class ChatFragment extends Fragment implements ChatContract.View, TextView.OnEditorActionListener {
     private RecyclerView mRecyclerViewChat;
     private EditText mETxtMessage;
@@ -123,17 +125,28 @@ public class ChatFragment extends Fragment implements ChatContract.View, TextVie
                 receiverFirebaseToken);
     }
 
+    /**
+     * Displays a success message
+     */
     @Override
     public void onSendMessageSuccess() {
         mETxtMessage.setText("");
         Toast.makeText(getActivity(), "Message sent", Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * Displays an error message
+     * @param message The error encountered
+     */
     @Override
     public void onSendMessageFailure(String message) {
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * Updates the messages view when incoming messages are retrieved
+     * @param chat
+     */
     @Override
     public void onGetMessagesSuccess(Chat chat) {
         if (mChatRecyclerAdapter == null) {
@@ -144,6 +157,10 @@ public class ChatFragment extends Fragment implements ChatContract.View, TextVie
         mRecyclerViewChat.smoothScrollToPosition(mChatRecyclerAdapter.getItemCount() - 1);
     }
 
+    /**
+     * Displays an error message when incoming messages cannot be retrieved
+     * @param message
+     */
     @Override
     public void onGetMessagesFailure(String message) {
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();

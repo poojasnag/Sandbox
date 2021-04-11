@@ -75,12 +75,7 @@ public class CreateDeliveryActivity extends AppCompatActivity {
 
     // ok
 
-    /**
-     * Initialize the interface.
-     * Consisting of loading the corresponding layout file and binding the on-click listener to the navigation bar.
-     *
-     * @param savedInstanceState If the activity is being re-initialized after previously being shut down then this Bundle contains the data it most recently supplied in onSaveInstanceState(Bundle)
-     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

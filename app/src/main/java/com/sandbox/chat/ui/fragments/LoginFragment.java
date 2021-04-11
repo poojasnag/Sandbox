@@ -29,7 +29,9 @@ import com.sandbox.chat.ui.activities.RegisterActivity;
 import com.sandbox.chat.utils.Constants;
 import com.sandbox.chat.utils.SharedPrefUtil;
 
-
+/**
+ * View holder for LoginActivity
+ */
 public class LoginFragment extends Fragment implements View.OnClickListener, LoginContract.View {
     private LoginPresenter mLoginPresenter;
 
@@ -80,9 +82,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Log
         setDummyCredentials();
     }
 
+    /**
+     * Initializes default text for the text input fields
+     */
     private void setDummyCredentials() {
-        mETxtEmail.setText("chicken@gmail.com");
-        mETxtPassword.setText("friedchicken");
+        mETxtEmail.setText("Enter email");
+        mETxtPassword.setText("Enter password");
     }
 
     @Override
@@ -99,6 +104,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Log
         }
     }
 
+
     private void onLogin(View view) {
         String emailId = mETxtEmail.getText().toString();
         String password = mETxtPassword.getText().toString();
@@ -111,6 +117,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Log
         RegisterActivity.startActivity(getActivity());
     }
 
+    /**
+     * If login is successful, directs the user to the Buyer & Deliverer selection interface
+     * @param message Success message to display to the user
+     */
     @Override
     public void onLoginSuccess(String message) {
         mProgressDialog.dismiss();
@@ -121,6 +131,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Log
 
     }
 
+    /**
+     * If login is unsuccessful, shows detail about the error for the user
+     * @param message
+     */
     @Override
     public void onLoginFailure(String message) {
         mProgressDialog.dismiss();

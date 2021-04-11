@@ -12,6 +12,9 @@ import com.sandbox.chat.R;
 import com.sandbox.chat.ui.fragments.OrderCompleteFragment;
 import com.sandbox.chat.ui.fragments.OrderIncompleteFragment;
 
+/**
+ * After the user mark an order as complete, displays an order completion page and prompt the user to give a rating to the other user
+ */
 public class OrderIncompleteActivity extends AppCompatActivity {
     private Toolbar mToolbar;
 

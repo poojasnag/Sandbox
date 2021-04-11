@@ -14,18 +14,30 @@ import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Loads and retrieves data for eateries
+ */
 public class MapsInteractor implements MapsContract.Interactor {
 
     public static ArrayList<Eatery> getEateries() {
         return eateries;
     }
 
+    /**
+     * The list of eateries.
+     */
     private static ArrayList<Eatery> eateries;
 
     public MapsInteractor(ArrayList<Eatery> eateries){
         this.eateries = eateries;
     }
     public MapsInteractor(){}
+
+    /**
+     * Retrieves an eatery based on its ID
+     * @param id The ID of the target eatery
+     * @return An eatery with the target ID. Returns a default eatery if there are no eateries with the specified ID
+     */
     public static Eatery findEatery(String id)
     {
         Log.e("stringID", id);
@@ -41,6 +53,10 @@ public class MapsInteractor implements MapsContract.Interactor {
         return new Eatery("0", "Unable to find eatery", "", "", "");
     }
 
+    /**
+     * Initializes the list of eateries. Creates an empty list if the data file is not found.
+     * @param context The current activity
+     */
     public static void initialize(Context context){
 
         if(eateries != null && eateries.size()!=0)

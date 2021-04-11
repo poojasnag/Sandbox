@@ -48,6 +48,9 @@ import java.util.LinkedList;
 
 // TODO: check against activity code from previous master for the selected orders part
 
+/**
+ * View holder for CreateDeliveryActivity
+ */
 public class CreateDeliveryFragment extends Fragment implements View.OnClickListener, CreateDeliveryContract.View {
     private static final String TAG = CreateDeliveryFragment.class.getSimpleName();
 
@@ -145,25 +148,7 @@ public class CreateDeliveryFragment extends Fragment implements View.OnClickList
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
-//
-                String deliveryFee = deliveryFeeText.getText().toString();
-                String cutoffDateTime = cutoff_picker. getText().toString();
-                String etaDateTime = eta_picker. getText().toString();
-                Log.e("insideactivity", selectedLocations.toString());
-                if(createDeliveryPresenter.validateCreateDelivery(deliveryFee,etaDateTime, cutoffDateTime,selectedLocations))
-                {
-                    createDeliveryPresenter.onRecordData(selectedLocations, Double.parseDouble(deliveryFee), cutoffDateTime, etaDateTime, curEatery, v.getContext(), (Deliverer) getActivity().getIntent().getSerializableExtra("user"));
-                    Toast.makeText(getActivity(), "Delivery offer submitted", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(i);
-                    intent.setComponent(new ComponentName(getContext(),PendingOrdersActivity.class));
-                    startActivity(intent);
-
-                }
-                else
-                {
-                    Toast.makeText(createDeliveryActivity,"Invalid inputs", Toast.LENGTH_SHORT).show();
-                }
-
+                onCreateDeliveryOffer(v);
             }
         });
 //        Toast.makeText(CreateDeliveryActivity.this, "text:" + chosenLoc, Toast.LENGTH_SHORT).show();
@@ -171,6 +156,36 @@ public class CreateDeliveryFragment extends Fragment implements View.OnClickList
         //TODO: Pass selected location to header
         createDeliveryPresenter.onSetLocation(locationDisplay, prevIntent);
     }
+
+    /**
+     * Called when the user click on "Create" button
+     * Validates the inputs, then records the data to the database
+     * Shows an error message if the inputs are invalid
+     * @param v The "Create" button
+     */
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void onCreateDeliveryOffer(View v) {
+
+        String deliveryFee = deliveryFeeText.getText().toString();
+        String cutoffDateTime = cutoff_picker. getText().toString();
+        String etaDateTime = eta_picker. getText().toString();
+        Log.e("insideactivity", selectedLocations.toString());
+        if(createDeliveryPresenter.validateCreateDelivery(deliveryFee,etaDateTime, cutoffDateTime,selectedLocations))
+        {
+            createDeliveryPresenter.onRecordData(selectedLocations, Double.parseDouble(deliveryFee), cutoffDateTime, etaDateTime, curEatery, v.getContext(), (Deliverer) getActivity().getIntent().getSerializableExtra("user"));
+            Toast.makeText(getActivity(), "Delivery offer submitted", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(i);
+            intent.setComponent(new ComponentName(getContext(),PendingOrdersActivity.class));
+            startActivity(intent);
+
+        }
+        else
+        {
+            Toast.makeText(createDeliveryActivity,"Invalid inputs", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
 
     @RequiresApi(api=Build.VERSION_CODES.O)
     @Override
@@ -183,6 +198,7 @@ public class CreateDeliveryFragment extends Fragment implements View.OnClickList
                 break;
         }
     }
+
 
     private void onSubmitDelivery(Context context) {
 
@@ -296,6 +312,16 @@ public class CreateDeliveryFragment extends Fragment implements View.OnClickList
         return new Deliverer(user.getUid(), user.getEmail(), user.getFirebaseToken(), user.getRating(), user.getRatingCount(),new LinkedList<Transaction>());
     }
 
+    /**
+     * Records a new transaction to the database from the user's inputs
+     * @param locationsList A list of delivery destinations selected
+     * @param deliveryFee The delivery fee
+     * @param cutoffDateTime The cut-off time
+     * @param etaDateTime The estimated time of arrival
+     * @param eatery The selected eatery
+     * @param context An instance of CreateDeliveryActivity
+     * @param deliverer The current user
+     */
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void recordData(ArrayList<String> locationsList, double deliveryFee, String cutoffDateTime, String etaDateTime, Eatery eatery, Context context, Deliverer deliverer) {
@@ -311,12 +337,17 @@ public class CreateDeliveryFragment extends Fragment implements View.OnClickList
         }
     }
 
+
     @Override
     public void setLocation(Button b, Intent i) {
         Eatery e = (Eatery) i.getSerializableExtra("Eatery");
         b.setText(e.getEateryName());
     }
 
+    /**
+     * Initializes the list of possible delivery destinations
+     * @param deliveryLocSpinner The view containing the list
+     */
     @Override
     public void setDeliveryLocations(MultiSpinner deliveryLocSpinner) {
 

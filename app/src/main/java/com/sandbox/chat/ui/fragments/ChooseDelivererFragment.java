@@ -23,7 +23,10 @@ import com.sandbox.chat.core.users.add.AddUserPresenter;
 import com.sandbox.chat.mgr.ChooseDelivererMgr;
 import com.sandbox.chat.models.Eatery;
 
-
+/**
+ * View holder of ChooseDelivererActivity
+ *
+ */
 public class ChooseDelivererFragment extends Fragment implements View.OnClickListener, ChooseDelivererContract.View{
     private static final String FINAL = ChooseDelivererFragment.class.getSimpleName();
 

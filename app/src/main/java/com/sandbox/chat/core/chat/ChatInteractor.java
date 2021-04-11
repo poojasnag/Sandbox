@@ -40,6 +40,12 @@ public class ChatInteractor implements ChatContract.Interactor {
         this.mOnGetMessagesListener = onGetMessagesListener;
     }
 
+    /**
+     * Sends a message to the receiving user
+     * @param context The current activity
+     * @param chat  The message being sent
+     * @param receiverFirebaseToken The firebase token of the receiver
+     */
     @Override
     public void sendMessageToFirebaseUser(final Context context, final Chat chat, final String receiverFirebaseToken) {
         final String room_type_1 = chat.senderUid + "_" + chat.receiverUid;
@@ -92,6 +98,11 @@ public class ChatInteractor implements ChatContract.Interactor {
                 .send();
     }
 
+    /**
+     * Retrieves messages from a sender
+     * @param senderUid The user id of the sender
+     * @param receiverUid The receiver's user id
+     */
     @Override
     public void getMessageFromFirebaseUser(String senderUid, String receiverUid) {
         final String room_type_1 = senderUid + "_" + receiverUid;

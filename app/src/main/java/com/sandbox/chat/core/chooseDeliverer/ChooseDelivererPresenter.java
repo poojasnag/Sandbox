@@ -52,6 +52,11 @@ public class ChooseDelivererPresenter implements ChooseDelivererContract.Present
 
     // functions from contract - presenter
 
+    /**
+     * Retrieves the delivery offers from the database
+     * @param ordersList The RecyclerView which will contain the offers
+     * @param eatery The method will query all offers delivering from this eatery
+     */
     public void getDeliverers(RecyclerView ordersList, Eatery eatery) {
         //TODO: change to actual deliverers
 

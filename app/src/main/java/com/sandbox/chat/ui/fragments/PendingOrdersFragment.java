@@ -108,7 +108,7 @@ public class PendingOrdersFragment extends Fragment implements PendingOrdersCont
      * Initializes the list of pending orders
      * @param user The current user
      * @param isBuyer Whether the current user is a buyer or not
-     * @param ordersList The view containing the orders
+     * @param ordersList The RecyclerView containing the orders
      */
     public void getOrders(User user, Boolean isBuyer, RecyclerView ordersList) { //TODO: only PENDING orders query
 

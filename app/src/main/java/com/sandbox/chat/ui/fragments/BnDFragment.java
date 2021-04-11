@@ -19,6 +19,9 @@ import com.sandbox.chat.ui.activities.MapsActivity;
 import com.sandbox.chat.ui.contract.BnDContract;
 import com.sandbox.chat.ui.presenter.BnDPresenter;
 
+/**
+ * View holder for BnDActivity
+ */
 public class BnDFragment extends Fragment implements View.OnClickListener, BnDContract.View {
     private BnDPresenter mBnDPresenter;
     private Button buyer_button, deliverer_button;
@@ -76,6 +79,11 @@ public class BnDFragment extends Fragment implements View.OnClickListener, BnDCo
                 break;
         }
     }
+
+    /**
+     * Creates a Deliverer object from the current user
+     * @param context An instance of BnDActivity
+     */
     public void onDelivererSelect(Context context) {
         bndController = new BnDPresenter();
         mProgressDialog.dismiss();
@@ -84,7 +92,10 @@ public class BnDFragment extends Fragment implements View.OnClickListener, BnDCo
         Toast.makeText(getContext(), "You have selected DELIVERER", Toast.LENGTH_SHORT).show();
         startActivity(intent);
     }
-
+    /**
+     * Creates a Buyer object from the current user
+     * @param context An instance of BnDActivity
+     */
     public void onBuyerSelect(Context context){
         bndController = new BnDPresenter();
         mProgressDialog.dismiss();

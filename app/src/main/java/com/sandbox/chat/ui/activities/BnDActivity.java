@@ -34,10 +34,7 @@ import com.sandbox.chat.utils.SharedPrefUtil;
 public class BnDActivity extends AppCompatActivity {
     BnDPresenter bndController ;
     private Toolbar mToolbar;
-    /**
-     * Displays the interface from another activity class
-     * @param context the Context of the activity that called this method
-     */
+
     public static void startActivity(Context context, FirebaseUser fUser) {
         UserMgr.getUserDocument(fUser.getUid())
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -55,11 +52,7 @@ public class BnDActivity extends AppCompatActivity {
 
     }
 
-    /**
-     * Displays the interface from another activity class
-     * @param context the Context of the activity that called this method
-     * @param flags flags to pass to the Intent before starting the activity
-     */
+
     public static void startActivity(Context context, FirebaseUser fUser, int flags) {
         UserMgr.getUserDocument(fUser.getUid())
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -78,12 +71,7 @@ public class BnDActivity extends AppCompatActivity {
 
     }
 
-    /**
-     * Initialize the interface:
-     *  + loading the corresponding layout file
-     *  + Binding the on-click listener to the buttons.
-     * @param savedInstanceState If the activity is being re-initialized after previously being shut down then this Bundle contains the data it most recently supplied in onSaveInstanceState(Bundle)
-     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         bndController = new BnDPresenter();

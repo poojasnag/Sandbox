@@ -3,6 +3,7 @@ package com.sandbox.chat.mgr;
 /**
  * Manager class for SettingsActivity
  */
+@Deprecated
 public class SettingsMgr {
     public SettingsMgr() {
     }

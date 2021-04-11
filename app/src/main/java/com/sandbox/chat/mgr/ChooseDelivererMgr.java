@@ -26,7 +26,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import io.perfmark.Link;
-
+@Deprecated
 /**
  * Manager class for ChooseDelivererActivity
  */

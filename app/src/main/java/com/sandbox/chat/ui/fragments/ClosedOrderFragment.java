@@ -34,6 +34,9 @@ import com.sandbox.chat.ui.presenter.PendingOrdersPresenter;
 
 import java.util.LinkedList;
 
+/**
+ * View holder of ClosedOrderActivity
+ */
 public class ClosedOrderFragment extends Fragment {
     private Intent intent;
     private ProgressDialog mProgressDialog;
@@ -70,6 +73,7 @@ public class ClosedOrderFragment extends Fragment {
             getClosedOrders((User)intent.getSerializableExtra("user"), false, ordersList);
         }
     }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -83,6 +87,13 @@ public class ClosedOrderFragment extends Fragment {
         mProgressDialog.setMessage(getString(R.string.please_wait));
         mProgressDialog.setIndeterminate(true);
     }
+
+    /**
+     * Initializes the list of completed orders
+     * @param user
+     * @param isBuyer
+     * @param ordersList
+     */
     public void getClosedOrders(User user, Boolean isBuyer, RecyclerView ordersList) { //TODO: only PENDING orders query
 
         LinkedList<Transaction> transactionList = new LinkedList<Transaction>();

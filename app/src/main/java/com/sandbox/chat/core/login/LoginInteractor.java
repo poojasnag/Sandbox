@@ -25,6 +25,12 @@ public class LoginInteractor implements LoginContract.Interactor {
         this.mOnLoginListener = onLoginListener;
     }
 
+    /**
+     * Validates the user's credentials using Firebase authentication
+     * @param activity  The current activity
+     * @param email The email inputted by the user
+     * @param password The password inputted by the user
+     */
     @Override
     public void performFirebaseLogin(final Activity activity, final String email, String password) {
         FirebaseAuth.getInstance()

@@ -16,7 +16,7 @@ import com.sandbox.chat.ui.fragments.RegisterFragment;
 import com.sandbox.chat.ui.fragments.SettingsFragment;
 
 /**
- * Allows users to customise their App, such as changing the app font
+ * Allows users to customise their App, such as changing the map style
  *
  * @author chua zi heng
  */
@@ -27,11 +27,7 @@ public class SettingsActivity extends AppCompatActivity {
     private static int mapType;
     private Toolbar mToolbar;
 
-    /**
-     * Initialize the interface.
-     * Consisting of loading the corresponding layout file and binding the on-click listener to the navigation bar.
-     * @param savedInstanceState If the activity is being re-initialized after previously being shut down then this Bundle contains the data it most recently supplied in onSaveInstanceState(Bundle)
-     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -2,7 +2,7 @@ package com.sandbox.chat.mgr;
 
 import com.sandbox.chat.models.Status;
 import com.sandbox.chat.models.Transaction;
-
+@Deprecated
 /**
  * Manager class for OrderStatusActivity
  */

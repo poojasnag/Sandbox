@@ -6,6 +6,10 @@ import android.content.DialogInterface;
 import android.util.AttributeSet;
 import android.widget.ArrayAdapter;
 
+/**
+ * A modified radio button group, used for buyer to select a delivery destination
+ * @see com.sandbox.chat.ui.fragments.PlaceOrderFragment
+ */
 public class MultiRadio extends androidx.appcompat.widget.AppCompatSpinner implements
         DialogInterface.OnClickListener, DialogInterface.OnCancelListener {
 

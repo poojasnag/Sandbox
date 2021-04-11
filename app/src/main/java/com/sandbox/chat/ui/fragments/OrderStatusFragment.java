@@ -54,7 +54,9 @@ import com.sandbox.chat.ui.presenter.OrderStatusPresenter;
 import com.sandbox.chat.ui.presenter.PlaceOrderPresenter;
 import com.sandbox.chat.core.chat.ChatPresenter;
 
-
+/**
+ * View holder of OrderStatusActivity
+ */
 public class OrderStatusFragment extends Fragment implements View.OnClickListener, OrderStatusContract.View  {
     private OrderStatusActivity orderStatusActivity;
     private OrderStatusPresenter orderStatusPresenter;
@@ -166,15 +168,26 @@ public class OrderStatusFragment extends Fragment implements View.OnClickListene
                 break;
         }
     }
+
+    /**
+     * Called when the user selects "Chat with user"
+     * Redirects the user to the UserListingActivity, where the user may select another user to chat with
+     * @param context An instance of OrderStatusActivity
+     */
     public void onChatSelect(Context context) {
         mProgressDialog.dismiss();
         Toast.makeText(getContext(), "You have selected CHAT", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(i);
         intent.setComponent(new ComponentName(context, UserListingActivity.class));
         startActivity(intent);
-
     }
 
+    /**
+     * Called when the user clicks the "Order complete" button
+     * Shows an order completion screen
+     * @param context An instance of OrderStatusActivity
+     * @see OrderCompleteActivity
+     */
     public void onCompleteSelect(Context context) {
         mProgressDialog.dismiss();
         Toast.makeText(getContext(), "You have selected COMPLETE ORDER", Toast.LENGTH_SHORT).show();
@@ -183,6 +196,12 @@ public class OrderStatusFragment extends Fragment implements View.OnClickListene
         startActivity(intent);
     }
 
+    /**
+     * Called when the user clicks the "Order complete" button
+     * Shows an order incomplete screen
+     * @param context An instance of OrderStatusActivity
+     * @see OrderIncompleteActivity
+     */
     public void onIncompleteSelect(Context context) {
         mProgressDialog.dismiss();
         Toast.makeText(getContext(), "You have selected INCOMPLETE ORDER", Toast.LENGTH_SHORT).show();

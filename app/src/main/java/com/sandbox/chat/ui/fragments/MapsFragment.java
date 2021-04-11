@@ -1,4 +1,8 @@
-//package com.sandbox.chat.ui.fragments;
+
+package com.sandbox.chat.ui.fragments;
+
+import androidx.fragment.app.Fragment;
+
 //
 //import android.app.Dialog;
 //import android.content.ComponentName;
@@ -28,7 +32,8 @@
 //
 //import java.io.IOException;
 //
-//public class MapsFragment extends Fragment {
+@Deprecated
+public class MapsFragment extends Fragment {}
 //
 //
 //

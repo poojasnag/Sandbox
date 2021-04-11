@@ -29,6 +29,11 @@ public class AddUserInteractor implements AddUserContract.Interactor {
         this.mOnUserDatabaseListener = onUserDatabaseListener;
     }
 
+    /**
+     * Creates a new user on Firebase's database
+     * @param context The current activity
+     * @param firebaseUser An instance of a Firebase user
+     */
     @Override
     public void addUserToDatabase(final Context context, FirebaseUser firebaseUser) {
         DatabaseReference database = FirebaseDatabase.getInstance().getReference();

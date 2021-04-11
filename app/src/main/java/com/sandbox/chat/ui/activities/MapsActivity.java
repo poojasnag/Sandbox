@@ -98,8 +98,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         context.startActivity(intent);
     }
 
-    @Override
 
+    /**
+     * Initializes the map
+     */
+    @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMapType(SettingsInteractor.getMapType());
@@ -183,6 +186,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
+    /**
+     * Moves to the next activity.
+     * If the user is currently a buyer, move to ChooseDelivererActivity
+     * If the user is currently a deliverer, move to CreateDeliveryActivity
+     * @param view  An instance of MapsActivity
+     * @param eatery The selected eatery
+     */
     public void selectLocation(View view, Eatery eatery) {
         //TODO: Add the information of the location
         if (getIntent().getSerializableExtra("user") instanceof Buyer) {
@@ -206,6 +216,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
+    /**
+     * Displays a pop-up showing the location details
+     * @param feature_id The ID of the marker that the user selected
+     */
     public void showLocationDetails(String feature_id)
     {
         //from EaterySelectionMapMgr.java

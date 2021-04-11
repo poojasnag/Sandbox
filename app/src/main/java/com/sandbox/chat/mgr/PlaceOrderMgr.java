@@ -15,7 +15,7 @@ import com.sandbox.chat.ui.activities.PendingOrdersActivity;
 import com.sandbox.chat.ui.activities.PlaceOrderActivity;
 import com.sandbox.chat.utils.MultiRadio;
 
-
+@Deprecated
 /**
  * Manager class for PlaceOrderActivity
  */

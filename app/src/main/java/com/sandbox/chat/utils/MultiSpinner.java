@@ -13,6 +13,10 @@ import java.util.List;
 
 import io.perfmark.Link;
 
+/**
+ * A modified Spinner used to display locations for deliverers to choose from
+ * @see com.sandbox.chat.ui.fragments.CreateDeliveryFragment
+ */
 public class MultiSpinner extends androidx.appcompat.widget.AppCompatSpinner implements
         DialogInterface.OnMultiChoiceClickListener, DialogInterface.OnCancelListener {
 

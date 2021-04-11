@@ -4,9 +4,15 @@ import android.util.Log;
 
 import com.google.android.libraries.maps.GoogleMap;
 
+/**
+ * Stores and sends settings information
+ */
 public class SettingsInteractor {
-
+    /**
+     * The map type selected by the user
+     */
     private static int mapType;
+
 
     public static int getMapType()
     {

@@ -29,7 +29,10 @@ public class GetUsersInteractor implements GetUsersContract.Interactor {
         this.mOnGetAllUsersListener = onGetAllUsersListener;
     }
 
-
+    /**
+     *  Retrieves all users on the database, used to get all users available for chatting
+     * @see com.sandbox.chat.ui.activities.UserListingActivity
+     */
     @Override
     public void getAllUsersFromFirebase() {
         FirebaseDatabase.getInstance().getReference().child(Constants.ARG_USERS).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -54,6 +57,8 @@ public class GetUsersInteractor implements GetUsersContract.Interactor {
         });
     }
 
+
+    @Deprecated
     @Override
     public void getChatUsersFromFirebase() {
         /*FirebaseDatabase.getInstance().getReference().child(Constants.ARG_CHAT_ROOMS).addListenerForSingleValueEvent(new ValueEventListener() {

@@ -3,7 +3,7 @@ package com.sandbox.chat.mgr;
 import com.sandbox.chat.models.Transaction;
 
 import java.util.LinkedList;
-
+@Deprecated
 /**
  * Manager class for ClosedOrderActivity
  */

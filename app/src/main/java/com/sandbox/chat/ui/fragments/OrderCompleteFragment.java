@@ -28,6 +28,10 @@ import com.sandbox.chat.ui.contract.OrderCompleteContract;
 import com.sandbox.chat.ui.presenter.BnDPresenter;
 import com.sandbox.chat.ui.presenter.OrderCompletePresenter;
 
+/**
+ * View holder of OrderCompleteActivity
+ * @see com.sandbox.chat.ui.activities.OrderCompleteActivity
+ */
 public class OrderCompleteFragment extends Fragment implements View.OnClickListener { //, OrderCompleteContract.View
 
     private Button rate_button;
@@ -84,15 +88,24 @@ public class OrderCompleteFragment extends Fragment implements View.OnClickListe
         }
     }
 
+    /**
+     * Called when the user selects the "Rate" button
+     * Directs the user to the rating interface
+     * @param context An instance of OrderCompleteActivity
+     */
     public void onSelectRate(Context context) {
         mProgressDialog.dismiss();
         Toast.makeText(getContext(), "You have selected RATE", Toast.LENGTH_SHORT).show();
         Transaction transaction = (Transaction) i.getSerializableExtra("Transaction");
         Intent intent = new Intent(i);
-
         intent.setComponent(new ComponentName(context, UserRatingActivity.class));
         startActivity(intent);
     }
+
+    /**
+     * Updates the completion status on the database
+     * @param context An instance of the OrderCompleteActivity
+     */
     public void updateStatus(Context context){
         Transaction transaction = (Transaction) i.getSerializableExtra("Transaction");
         if (i.getSerializableExtra("user") instanceof Buyer) {

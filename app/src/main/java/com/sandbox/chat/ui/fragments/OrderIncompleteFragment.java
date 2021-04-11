@@ -25,6 +25,10 @@ import com.sandbox.chat.ui.contract.OrderIncompleteContract;
 import com.sandbox.chat.ui.presenter.OrderCompletePresenter;
 import com.sandbox.chat.ui.presenter.OrderIncompletePresenter;
 
+/**
+ * View holder for OrderIncomplete activity
+ * @see com.sandbox.chat.ui.activities.OrderCompleteActivity
+ */
 public class OrderIncompleteFragment extends Fragment implements View.OnClickListener, OrderIncompleteContract.View{
 
     private Button rate_button;
@@ -79,6 +83,11 @@ public class OrderIncompleteFragment extends Fragment implements View.OnClickLis
         }
     }
 
+    /**
+     * Called when the user clicks on "rate" button
+     * Directs the user to the rating interface
+     * @param context An instance of OrderIncompleteActivity
+     */
     public void onSelectRate(Context context) {
         mProgressDialog.dismiss();
         Toast.makeText(getContext(), "You have selected RATE", Toast.LENGTH_SHORT).show();
@@ -86,6 +95,11 @@ public class OrderIncompleteFragment extends Fragment implements View.OnClickLis
         intent.setComponent(new ComponentName(context, UserRatingActivity.class));
         startActivity(intent);
     }
+
+    /**
+     * Updates the completion status on the database
+     * @param context An instance of the OrderIncompleteActivity
+     */
     public void updateStatus(Context context){
         Transaction transaction = (Transaction) i.getSerializableExtra("Transaction");
         if (i.getSerializableExtra("user") instanceof Buyer) {

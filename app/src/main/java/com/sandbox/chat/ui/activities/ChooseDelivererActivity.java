@@ -68,10 +68,7 @@ public class ChooseDelivererActivity extends AppCompatActivity {
                 ChooseDelivererFragment.class.getSimpleName());
         fragmentTransaction.commit();
     }
-    /**
-     * Populates the list with deliverers' information
-     * Called directly after onCreate(), and whenever the user navigates to this activity from another activity
-     */
+
 //    @Override
 //    protected void onStart()
 //    {
