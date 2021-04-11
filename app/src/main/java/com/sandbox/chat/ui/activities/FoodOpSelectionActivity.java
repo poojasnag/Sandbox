@@ -90,11 +90,16 @@ public class FoodOpSelectionActivity extends AppCompatActivity {
         //TODO: Connect the drop-down list with menu from the stores
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.eatery_search_menu, menu);
-        MenuItem menuItem = menu.findItem(R.id.search_icon);
-        SearchView searchView = (SearchView) menuItem.getActionView();
+
+    private void init() {
+        final BottomNavigationView bot_bar = findViewById(R.id.food_op_bottomNavigationView);
+        bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
+        locationDetails = new Dialog(this);
+        eateryNames = MapsInteractor.getEateryNames();
+        eateryList = findViewById(R.id.food_op_eatery_list);
+        adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, eateryNames);
+        eateryList.setAdapter(adapter);
+        SearchView searchView = findViewById(R.id.food_op_search_bar);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -107,16 +112,6 @@ public class FoodOpSelectionActivity extends AppCompatActivity {
                 return true;
             }
         });
-        return true;
-    }
-    private void init() {
-        final BottomNavigationView bot_bar = findViewById(R.id.food_op_bottomNavigationView);
-        bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
-        locationDetails = new Dialog(this);
-        eateryNames = MapsInteractor.getEateryNames();
-        eateryList = findViewById(R.id.food_op_eatery_list);
-        adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, eateryNames);
-        eateryList.setAdapter(adapter);
         eateryList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
