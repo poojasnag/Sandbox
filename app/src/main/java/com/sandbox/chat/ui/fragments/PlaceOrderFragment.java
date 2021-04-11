@@ -117,7 +117,6 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
         mProgressDialog.setTitle(getString(R.string.loading));
         mProgressDialog.setMessage(getString(R.string.please_wait));
         mProgressDialog.setIndeterminate(true);
-
         submitButton.setOnClickListener(this);
     }
     @RequiresApi(api = Build.VERSION_CODES.O)
