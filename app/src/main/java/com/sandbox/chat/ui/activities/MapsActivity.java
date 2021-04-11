@@ -40,6 +40,7 @@ import com.google.android.libraries.maps.SupportMapFragment;
 import com.google.android.libraries.maps.model.LatLng;
 import com.google.android.libraries.maps.model.MarkerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.maps.android.data.Feature;
 import com.google.maps.android.data.Layer;
@@ -52,6 +53,8 @@ import com.sandbox.chat.core.maps.MapsInteractor;
 import com.sandbox.chat.core.maps.MapsPresenter;
 import com.sandbox.chat.mgr.DelivererOfferMgr;
 import com.sandbox.chat.models.Buyer;
+import com.sandbox.chat.models.Deliverer;
+import com.sandbox.chat.models.DelivererOffer;
 import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.R;
@@ -62,6 +65,9 @@ import com.sandbox.chat.utils.Constants;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 /**
  * Displays the eatery selection interface
@@ -228,12 +234,23 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         eateryTime.setText(e.getOperatingTime());
         DelivererOfferMgr.getEateryDeliverers(e).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             QuerySnapshot querySnapshot = task.getResult();
-                            Integer count = querySnapshot.size();
+                            Integer count = 0;
+                            LocalDateTime now = LocalDateTime.now();
+                            DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                LocalDateTime cutoffDT = LocalDateTime.parse(document.getString("cutoffDateTime"), f);
+                                if (!cutoffDT.isBefore(now)){
+                                    count++;
+                                }
+                            }
                             delivererCount.setText(count.toString());
+
+
                         }
                         else {
                             delivererCount.setText("0");

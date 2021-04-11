@@ -11,6 +11,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import static com.google.common.truth.Truth.assertThat;
+
+/*
+     Requirements:
+     0f <= deliveryFee <= 20
+     now < cutoff <= eta
+
+ */
 public class CreateDeliveryPresenterTest {
     CreateDeliveryPresenter createDeliveryPresenter;
     DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -149,10 +156,9 @@ public class CreateDeliveryPresenterTest {
     }
 
     //ETA BV and EC
-
     //Test 10
     @Test
-    public void invalid_eta_lower() {
+    public void invalid_before_now() {
         LocalDateTime cutoffDT = now.minusMinutes(2);
         LocalDateTime etaDT = now.minusMinutes(1);
         String cutoffString = cutoffDT.format(f);
@@ -165,7 +171,7 @@ public class CreateDeliveryPresenterTest {
     }
     //Test 11
     @Test
-    public void valid_eta_lower() {
+    public void invalid_on_now() {
         String cutoffString = now.format(f);
         String etaString = now.format(f);
         Log.e("now time", etaString);

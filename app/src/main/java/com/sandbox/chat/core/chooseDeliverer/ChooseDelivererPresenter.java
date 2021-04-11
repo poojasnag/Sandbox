@@ -2,11 +2,13 @@ package com.sandbox.chat.core.chooseDeliverer;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,6 +27,8 @@ import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.ui.activities.ChooseDelivererActivity;
 import com.sandbox.chat.utils.MultiSpinner;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -55,6 +59,7 @@ public class ChooseDelivererPresenter implements ChooseDelivererContract.Present
         DelivererOfferMgr.getEateryDeliverers(eatery)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
@@ -63,11 +68,21 @@ public class ChooseDelivererPresenter implements ChooseDelivererContract.Present
                                 ArrayList<String> locationsList = (ArrayList<String>)document.get(KEY_LOCATION);
                                 Deliverer deliverer = new Deliverer(document.getString("delivererID") ,document.getString("email"),  (document.get("firebaseToken") == null) ? "null" : document.getString("firebaseToken"),   document.getLong("rating").intValue(), document.getLong("ratingCount").intValue(), null);
 
-                                 delivererOffer = new DelivererOffer(document.getString("delivererOfferID"), document.getString("delivererName"),document.getString("cutOffTime"), document.getString("etaTime"), document.getDouble("deliveryFee"), locationsList, eatery, deliverer, document.getString("timestamp"));
+                                 delivererOffer = new DelivererOffer(document.getString("delivererOfferID"),document.getString("cutoffDateTime"), document.getString("etaDateTime"), document.getDouble("deliveryFee"), locationsList, eatery, deliverer, document.getString("timestamp"));
 
                                 demo.add(delivererOffer);
                             }
-                            
+                            Log.e("demoLL", demo.toString());
+                            for (DelivererOffer d : new LinkedList<>(demo)){
+                                DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                                LocalDateTime cutoffDT = LocalDateTime.parse(d.getCutOffTime(), f);
+                                LocalDateTime now = LocalDateTime.now();
+                                Log.e("checkDT", cutoffDT.toString()+ " " + now.toString());
+                                if (cutoffDT.isBefore(now)){
+                                    demo.remove(d);
+                                }
+                            }
+
                             DelivererProfileAdapter adapter = new DelivererProfileAdapter(demo);
 
                             ordersList.setAdapter(adapter);
@@ -76,7 +91,6 @@ public class ChooseDelivererPresenter implements ChooseDelivererContract.Present
                             Toast.makeText(chooseDelivererActivity, "Error getting documents", Toast.LENGTH_SHORT).show();
                         }
                     }
-
 
                 });
     }
