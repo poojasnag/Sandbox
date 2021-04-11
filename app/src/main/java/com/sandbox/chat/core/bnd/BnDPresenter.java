@@ -1,13 +1,9 @@
-package com.sandbox.chat.ui.presenter;
+package com.sandbox.chat.core.bnd;
 
-import com.sandbox.chat.core.login.LoginContract;
-import com.sandbox.chat.core.login.LoginInteractor;
 import com.sandbox.chat.models.Buyer;
 import com.sandbox.chat.models.Deliverer;
 import com.sandbox.chat.models.Transaction;
 import com.sandbox.chat.models.User;
-import com.sandbox.chat.ui.activities.BnDActivity;
-import com.sandbox.chat.ui.contract.BnDContract;
 import com.sandbox.chat.ui.fragments.BnDFragment;
 
 import java.util.LinkedList;

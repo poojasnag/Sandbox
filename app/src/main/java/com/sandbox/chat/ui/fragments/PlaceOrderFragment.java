@@ -1,6 +1,5 @@
 package com.sandbox.chat.ui.fragments;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
@@ -16,7 +15,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
@@ -32,10 +30,8 @@ import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.ui.activities.PendingOrdersActivity;
 import com.sandbox.chat.ui.activities.PlaceOrderActivity;
-import com.sandbox.chat.ui.contract.BnDContract;
-import com.sandbox.chat.ui.contract.PlaceOrderContract;
-import com.sandbox.chat.ui.presenter.BnDPresenter;
-import com.sandbox.chat.ui.presenter.PlaceOrderPresenter;
+import com.sandbox.chat.core.placeOrder.PlaceOrderContract;
+import com.sandbox.chat.core.placeOrder.PlaceOrderPresenter;
 import com.sandbox.chat.utils.MultiRadio;
 
 import java.time.Instant;

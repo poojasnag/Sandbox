@@ -4,7 +4,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,14 +18,8 @@ import com.sandbox.chat.mgr.TransactionMgr;
 import com.sandbox.chat.models.Buyer;
 import com.sandbox.chat.models.Status;
 import com.sandbox.chat.models.Transaction;
-import com.sandbox.chat.ui.activities.ChooseDelivererActivity;
-import com.sandbox.chat.ui.activities.CreateDeliveryActivity;
-import com.sandbox.chat.ui.activities.UserListingActivity;
 import com.sandbox.chat.ui.activities.UserRatingActivity;
-import com.sandbox.chat.ui.contract.BnDContract;
-import com.sandbox.chat.ui.contract.OrderCompleteContract;
-import com.sandbox.chat.ui.presenter.BnDPresenter;
-import com.sandbox.chat.ui.presenter.OrderCompletePresenter;
+import com.sandbox.chat.core.orderComplete.OrderCompletePresenter;
 
 /**
  * View holder of OrderCompleteActivity

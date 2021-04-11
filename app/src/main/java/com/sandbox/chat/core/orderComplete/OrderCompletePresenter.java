@@ -1,8 +1,8 @@
-package com.sandbox.chat.ui.presenter;
+package com.sandbox.chat.core.orderComplete;
 
 import com.sandbox.chat.ui.activities.OrderCompleteActivity;
 
-import com.sandbox.chat.ui.contract.OrderCompleteContract;
+import com.sandbox.chat.core.orderComplete.OrderCompleteContract;
 
 
 public class OrderCompletePresenter implements OrderCompleteContract.Presenter , OrderCompleteContract.onClickListener {

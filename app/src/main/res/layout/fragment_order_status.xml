@@ -13,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/order_status_header"
+        android:fontFamily="sans-serif-condensed-medium"
         app:layout_constraintBottom_toBottomOf="@+id/order_status_bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,14 +24,15 @@
         android:id="@+id/order_status_buyer_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center_horizontal"
         android:text="@string/empty"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.226" />
+        app:layout_constraintVertical_bias="0.223" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/order_status_bottomNavigationView"
@@ -54,7 +56,8 @@
         android:id="@+id/order_status_rate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:text="@string/empty"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -66,10 +69,11 @@
 
     <TextView
         android:id="@+id/order_status_eta"
-        android:layout_width="381dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center_horizontal"
         android:text="@string/empty"
         app:layout_constraintBottom_toBottomOf="@+id/order_status_bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -80,11 +84,11 @@
 
     <TextView
         android:id="@+id/order_status_location_text"
-        android:layout_width="381dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
+        android:layout_width="407dp"
+        android:layout_height="18dp"
         android:layout_marginTop="20dp"
-        android:fontFamily="sans-serif-condensed-medium"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center_horizontal"
         android:text="@string/empty"
         app:layout_constraintBottom_toBottomOf="@+id/order_status_bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -95,11 +99,11 @@
 
     <TextView
         android:id="@+id/order_status_orders"
-        android:layout_width="381dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
+        android:layout_width="412dp"
+        android:layout_height="20dp"
         android:layout_marginTop="20dp"
-        android:fontFamily="sans-serif-condensed-medium"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center_horizontal"
         android:text="@string/empty"
         app:layout_constraintBottom_toBottomOf="@+id/order_status_bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"

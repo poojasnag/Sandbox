@@ -1,6 +1,5 @@
 package com.sandbox.chat.ui.fragments;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
@@ -21,38 +20,24 @@ import androidx.fragment.app.Fragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.sandbox.chat.R;
 
-import com.sandbox.chat.core.chat.ChatContract;
 import com.sandbox.chat.core.chat.ChatPresenter;
 
-import com.sandbox.chat.adapters.OrderDetailsAdapter;
 import com.sandbox.chat.mgr.DelivererOfferMgr;
-import com.sandbox.chat.mgr.UserMgr;
 
 import com.sandbox.chat.models.Buyer;
-import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.models.Status;
 import com.sandbox.chat.models.Transaction;
-import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
-import com.sandbox.chat.ui.activities.ChatActivity;
-import com.sandbox.chat.ui.activities.MapsActivity;
 import com.sandbox.chat.ui.activities.OrderCompleteActivity;
 import com.sandbox.chat.ui.activities.OrderIncompleteActivity;
 import com.sandbox.chat.ui.activities.OrderStatusActivity;
-import com.sandbox.chat.ui.activities.PendingOrdersActivity;
-import com.sandbox.chat.ui.activities.PlaceOrderActivity;
 import com.sandbox.chat.ui.activities.UserListingActivity;
-import com.sandbox.chat.ui.contract.OrderStatusContract;
-import com.sandbox.chat.ui.contract.PendingOrdersContract;
-import com.sandbox.chat.ui.presenter.BnDPresenter;
-import com.sandbox.chat.ui.presenter.OrderStatusPresenter;
-import com.sandbox.chat.ui.presenter.PlaceOrderPresenter;
-import com.sandbox.chat.core.chat.ChatPresenter;
+import com.sandbox.chat.core.orderStatus.OrderStatusContract;
+import com.sandbox.chat.core.orderStatus.OrderStatusPresenter;
 
 /**
  * View holder of OrderStatusActivity

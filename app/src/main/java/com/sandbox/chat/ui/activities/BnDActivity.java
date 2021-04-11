@@ -4,9 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,8 +19,7 @@ import com.sandbox.chat.R;
 import com.sandbox.chat.mgr.UserMgr;
 import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.fragments.BnDFragment;
-import com.sandbox.chat.ui.fragments.LoginFragment;
-import com.sandbox.chat.ui.presenter.BnDPresenter;
+import com.sandbox.chat.core.bnd.BnDPresenter;
 import com.sandbox.chat.utils.Constants;
 import com.sandbox.chat.utils.SharedPrefUtil;
 

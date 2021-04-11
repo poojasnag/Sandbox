@@ -1,4 +1,4 @@
-package com.sandbox.chat.ui.presenter;
+package com.sandbox.chat.core.closedOrder;
 
 import com.sandbox.chat.ui.activities.ClosedOrderActivity;
 import com.sandbox.chat.ui.activities.PendingOrdersActivity;

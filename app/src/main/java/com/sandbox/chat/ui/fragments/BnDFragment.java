@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -16,8 +17,8 @@ import androidx.fragment.app.Fragment;
 import com.sandbox.chat.R;
 import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.activities.MapsActivity;
-import com.sandbox.chat.ui.contract.BnDContract;
-import com.sandbox.chat.ui.presenter.BnDPresenter;
+import com.sandbox.chat.core.bnd.BnDContract;
+import com.sandbox.chat.core.bnd.BnDPresenter;
 
 /**
  * View holder for BnDActivity
@@ -25,6 +26,7 @@ import com.sandbox.chat.ui.presenter.BnDPresenter;
 public class BnDFragment extends Fragment implements View.OnClickListener, BnDContract.View {
     private BnDPresenter mBnDPresenter;
     private Button buyer_button, deliverer_button;
+    private TextView welcome_text;
     private ProgressDialog mProgressDialog;
     BnDPresenter bndController ;
 
@@ -46,6 +48,7 @@ public class BnDFragment extends Fragment implements View.OnClickListener, BnDCo
     private void bindViews(View view) {
         buyer_button = (Button) view.findViewById(R.id.bnd_button_buyer);
         deliverer_button = (Button) view.findViewById(R.id.bnd_button_deliverer);
+        welcome_text = (TextView) view.findViewById(R.id.bnd_welcome);
     }
 
     @Override
@@ -55,13 +58,14 @@ public class BnDFragment extends Fragment implements View.OnClickListener, BnDCo
     }
 
     private void init() {
-        mBnDPresenter = new BnDPresenter((com.sandbox.chat.ui.contract.BnDContract.View) this);
+        mBnDPresenter = new BnDPresenter((BnDContract.View) this);
 
         mProgressDialog = new ProgressDialog(getActivity());
         mProgressDialog.setTitle(getString(R.string.loading));
         mProgressDialog.setMessage(getString(R.string.please_wait));
         mProgressDialog.setIndeterminate(true);
 
+        welcome_text.setText("Hello " + ((User) getActivity().getIntent().getSerializableExtra("user")).getEmail() + ",");
         buyer_button.setOnClickListener(this);
         deliverer_button.setOnClickListener(this);
     }

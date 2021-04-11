@@ -3,32 +3,15 @@ package com.sandbox.chat.ui.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 //import com.sandbox.chat.mgr.PendingOrdersMgr;
-import com.sandbox.chat.models.Buyer;
-import com.sandbox.chat.models.DelivererOffer;
-import com.sandbox.chat.models.Eatery;
-import com.sandbox.chat.models.Transaction;
-import com.sandbox.chat.models.User;
-import com.sandbox.chat.ui.BottomBarOnClickListener;
-import com.sandbox.chat.adapters.OrderDetailsAdapter;
 import com.sandbox.chat.R;
 import com.sandbox.chat.ui.fragments.PendingOrdersFragment;
-import com.sandbox.chat.ui.fragments.PlaceOrderFragment;
-import com.sandbox.chat.ui.presenter.PendingOrdersPresenter;
-
-import java.util.LinkedList;
-
-import io.perfmark.Link;
+import com.sandbox.chat.core.pendingOrders.PendingOrdersPresenter;
 
 /**
  * Allows buyers and deliverers to see the pending orders that are unique to them

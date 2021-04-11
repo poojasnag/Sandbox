@@ -1,8 +1,7 @@
-package com.sandbox.chat.ui.presenter;
+package com.sandbox.chat.core.placeOrder;
 
 import com.sandbox.chat.ui.activities.PlaceOrderActivity;
-import com.sandbox.chat.ui.contract.PlaceOrderContract;
-import com.sandbox.chat.ui.fragments.PlaceOrderFragment;
+import com.sandbox.chat.core.placeOrder.PlaceOrderContract;
 
 public class PlaceOrderPresenter implements PlaceOrderContract.Presenter, PlaceOrderContract.onPlaceOrderListener {
 

@@ -20,10 +20,8 @@ import com.sandbox.chat.models.Buyer;
 import com.sandbox.chat.models.Status;
 import com.sandbox.chat.models.Transaction;
 import com.sandbox.chat.ui.activities.UserRatingActivity;
-import com.sandbox.chat.ui.contract.OrderCompleteContract;
-import com.sandbox.chat.ui.contract.OrderIncompleteContract;
-import com.sandbox.chat.ui.presenter.OrderCompletePresenter;
-import com.sandbox.chat.ui.presenter.OrderIncompletePresenter;
+import com.sandbox.chat.core.orderIncomplete.OrderIncompleteContract;
+import com.sandbox.chat.core.orderIncomplete.OrderIncompletePresenter;
 
 /**
  * View holder for OrderIncomplete activity

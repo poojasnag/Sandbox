@@ -28,9 +28,7 @@ import com.sandbox.chat.models.Transaction;
 import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.ui.activities.ClosedOrderActivity;
-import com.sandbox.chat.ui.activities.PendingOrdersActivity;
-import com.sandbox.chat.ui.presenter.ClosedOrderPresenter;
-import com.sandbox.chat.ui.presenter.PendingOrdersPresenter;
+import com.sandbox.chat.core.closedOrder.ClosedOrderPresenter;
 
 import java.util.LinkedList;
 

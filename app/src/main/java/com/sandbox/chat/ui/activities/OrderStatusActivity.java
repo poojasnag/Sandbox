@@ -12,7 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.sandbox.chat.mgr.OrderStatusMgr;
 import com.sandbox.chat.R;
 import com.sandbox.chat.ui.fragments.OrderStatusFragment;
-import com.sandbox.chat.ui.presenter.OrderStatusPresenter;
+import com.sandbox.chat.core.orderStatus.OrderStatusPresenter;
 
 
 

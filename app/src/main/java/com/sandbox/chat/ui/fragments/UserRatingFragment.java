@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -19,19 +18,14 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.sandbox.chat.R;
 import com.sandbox.chat.mgr.UserMgr;
 import com.sandbox.chat.models.Buyer;
 import com.sandbox.chat.models.Transaction;
-import com.sandbox.chat.models.User;
-import com.sandbox.chat.ui.contract.UserRatingContract;
-import com.sandbox.chat.ui.presenter.UserRatingPresenter;
+import com.sandbox.chat.core.userRating.UserRatingContract;
+import com.sandbox.chat.core.userRating.UserRatingPresenter;
 //import com.sandbox.chat.mgr.UserRatingMgr;
 import com.sandbox.chat.ui.activities.MapsActivity;
-import com.sandbox.chat.ui.activities.OrderCompleteActivity;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -33,7 +33,10 @@
     <string name="fresh_config">Fresh Config</string>
     <string name="cause_crash">Cause Crash</string>
     <string name="banner_ad_unit_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="BnD_text">What would you like to do today? </string>
+    <string name="Hello">Hello</string>
+    <string name="bnd_sandbox">SANDBOX</string>
+    <string name="bnd_healthier_text">Get healthier with Eateries that serve Healthier Food Options!</string>
+    <string name="BnD_qn_text">What would you like to do today? </string>
     <string name="buyer_button">Buy Food</string>
     <string name="deliverer_button">Deliver Food</string>
     <string name="search_btn">Search Eateries</string>
