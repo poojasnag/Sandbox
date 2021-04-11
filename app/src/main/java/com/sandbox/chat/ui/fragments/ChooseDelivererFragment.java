@@ -57,7 +57,7 @@ public class ChooseDelivererFragment extends Fragment implements View.OnClickLis
         mRecyclerViewDelivererList = mRecyclerViewDelivererList.findViewById(R.id.choose_deliverer_list);
 
         mChooseDelivererPresenter.setLocation(mBtnChooseDeliverer, i);
-        mChooseDelivererPresenter.getDeliverers(mRecyclerViewDelivererList, curEatery);
+        mChooseDelivererPresenter.getDeliverers(mRecyclerViewDelivererList, curEatery, i);
     }
 
     // done

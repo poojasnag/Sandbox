@@ -30,6 +30,7 @@ public interface CreateDeliveryContract {
                           String etaDateTime, Eatery eatery, Context context, Deliverer deliverer);
         void onSetLocation(Button b, Intent i);
         void onSetDeliveryLocations(MultiSpinner deliveryLocSpinner);
+        boolean validateCreateDelivery(String deliveryFee, String etaDateTime, String cutoffDateTime, ArrayList<String> selectedLocations);
     }
 
     interface Interactor{
