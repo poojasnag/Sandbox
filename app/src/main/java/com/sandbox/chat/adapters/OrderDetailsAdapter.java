@@ -34,7 +34,8 @@ import com.sandbox.chat.ui.activities.PlaceOrderActivity;
 import java.util.LinkedList;
 
 /**
- * Populates lists of orders
+ * Adapter class for list of orders in PendingOrdersActivity and ClosedOrdersActivity
+ * @see androidx.recyclerview.widget.RecyclerView.Adapter
  */
 public class OrderDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 

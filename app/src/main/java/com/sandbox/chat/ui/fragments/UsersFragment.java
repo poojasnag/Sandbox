@@ -21,7 +21,9 @@ import com.sandbox.chat.utils.ItemClickSupport;
 
 import java.util.List;
 
-
+/**
+ * View container for UserListingActivity
+ */
 
 public class UsersFragment extends Fragment implements GetUsersContract.View, ItemClickSupport.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
     public static final String ARG_TYPE = "type";
@@ -82,6 +84,7 @@ public class UsersFragment extends Fragment implements GetUsersContract.View, It
     public void onRefresh() {
         getUsers();
     }
+
 
     private void getUsers() {
         if (TextUtils.equals(getArguments().getString(ARG_TYPE), TYPE_CHATS)) {

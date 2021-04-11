@@ -31,6 +31,7 @@ import java.util.LinkedList;
 
 /**
  * Populates the list of deliverers in ChooseDelivererActivity
+ * @see androidx.recyclerview.widget.RecyclerView.Adapter
  */
 public class DelivererProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 

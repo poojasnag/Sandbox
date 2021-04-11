@@ -74,12 +74,22 @@ public class UserListingActivity extends AppCompatActivity implements LogoutCont
         mLogoutPresenter = new LogoutPresenter(this);
     }
 
+    /**
+     * Initialize side menu on toolbar
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_user_listing, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
+    /**
+     * Binds functions to side menu items
+     * At the current state of the application, only the logout function is
+     * @see android.app.Activity
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -110,13 +120,23 @@ public class UserListingActivity extends AppCompatActivity implements LogoutCont
                 .show();
     }
 
+    /**
+     * When logout is successful, shows a success message and return the user to the login screen
+     * @param message  Success message
+     * @see LogoutPresenter
+     */
     @Override
     public void onLogoutSuccess(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         LoginActivity.startIntent(this,
                 Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
     }
-
+    /**
+     *
+     * When logout is unsuccessful, shows a failure message
+     * @param message  Success message
+     * @see LogoutPresenter
+     */
     @Override
     public void onLogoutFailure(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();

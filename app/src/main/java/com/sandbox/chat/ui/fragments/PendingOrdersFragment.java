@@ -37,6 +37,10 @@ import com.sandbox.chat.ui.presenter.PlaceOrderPresenter;
 
 import java.util.LinkedList;
 
+/**
+ * View containers for PendingOrdersActivity
+ * @see PendingOrdersActivity
+ */
 public class PendingOrdersFragment extends Fragment implements PendingOrdersContract.View{
     private Intent intent;
     private ProgressDialog mProgressDialog;
@@ -81,6 +85,7 @@ public class PendingOrdersFragment extends Fragment implements PendingOrdersCont
         if (intent.getSerializableExtra("user") instanceof Buyer){
             getOrders((User)intent.getSerializableExtra("user"), true, ordersList);
         }
+
         else{
             getOrders((User)intent.getSerializableExtra("user"), false, ordersList);
         }
@@ -99,6 +104,12 @@ public class PendingOrdersFragment extends Fragment implements PendingOrdersCont
         mProgressDialog.setIndeterminate(true);
     }
 
+    /**
+     * Initializes the list of pending orders
+     * @param user The current user
+     * @param isBuyer Whether the current user is a buyer or not
+     * @param ordersList The view containing the orders
+     */
     public void getOrders(User user, Boolean isBuyer, RecyclerView ordersList) { //TODO: only PENDING orders query
 
         LinkedList<Transaction> transactionList = new LinkedList<Transaction>();

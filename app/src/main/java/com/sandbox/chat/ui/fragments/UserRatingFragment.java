@@ -118,7 +118,12 @@ public class UserRatingFragment extends Fragment implements View.OnClickListener
                 break;
         }
     }
-    
+
+    /**
+     * Called when the user clicks on the submit button.
+     * Sends data to the database, and navigates to MapsActivity
+     * @param context The activity containing the fragment
+     */
     public void onSubmitSelect(Context context){
 //        userRatingController = new UserRatingMgr(this);
         mProgressDialog.dismiss();

@@ -14,7 +14,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.List;
 
 
-
+/**
+ * Adapter class for the chat interface
+ * @see androidx.recyclerview.widget.RecyclerView.Adapter
+ */
 public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int VIEW_TYPE_ME = 1;
     private static final int VIEW_TYPE_OTHER = 2;

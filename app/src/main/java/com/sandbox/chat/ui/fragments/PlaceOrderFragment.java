@@ -40,6 +40,9 @@ import com.sandbox.chat.utils.MultiRadio;
 
 import java.time.Instant;
 
+/**
+ * View container for PlaceOrderActivity
+ */
 public class PlaceOrderFragment extends Fragment implements View.OnClickListener, PlaceOrderContract.View{
     private PlaceOrderActivity placeOrderActivity;
     private Button submitButton;
@@ -135,6 +138,10 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
         this.selectedLocation = selectedLocation;
     }
 
+    /**
+     * Initialize possible delivery destinations
+     * @param locationList The radio buttons group used to display the locations
+     */
     public void setLocationList(MultiRadio locationList) {
         String[] locations =  curDelivererOffer.getDeliveryLocation().toArray(new String[0]);
         locationList.setItems(locations, "Select location", new MultiRadio.MultiRadioListener() {
@@ -145,10 +152,15 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
         });
     }
 
+    /**
+     * Set the content for text boxes inside the fragment
+     * @param delivererName TextView showing the deliverer's name
+     * @param deliveryRate TextView showing the delivery fee
+     * @param eta  TextView showing estimated time of arrival
+     * @param d The delivery offer that the buyer selected from the previous activity
+     */
     public void setDetails(TextView delivererName, TextView deliveryRate, TextView eta, DelivererOffer d)
     {
-        Log.e("email check", d.getDeliverer().getEmail());
-        Log.e("checkeatery", ((Eatery)getActivity().getIntent().getSerializableExtra("Eatery")).getEateryName());
         delivererName.setText("Deliverer: " + d.getDeliverer().getEmail());
         deliveryRate.setText("Rate: $" + d.getDeliveryFee());
         eta.setText("Estimated time of arrival: "+ d.getEtaTime());
@@ -159,6 +171,11 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
         b.setText(((Eatery)(i.getSerializableExtra("Eatery"))).getEateryName());
     }
 
+    /**
+     * Called when the user clicks on the submit button.
+     * Records the order to the database, and navigates the user to PendingOrdersActivity, where they can see the order that they created
+     * @param context
+     */
 //    @NonNull View view
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void onSubmitSelect(Context context) {

@@ -1,6 +1,7 @@
 package com.sandbox.chat.ui.fragments;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -22,6 +24,10 @@ import com.sandbox.chat.models.DelivererOffer;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.ui.activities.SettingsActivity;
 
+/**
+ * View container for settings activity
+ * @see SettingsActivity
+ */
 public class SettingsFragment extends Fragment implements View.OnClickListener{
 
     private Intent prevIntent;
@@ -74,7 +80,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener{
         mapTypeGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                Log.e("changeRadio", "Choice changed");
+                Toast.makeText(getActivity(), "Map choice changed\nClick \"Home\" to view changes", Toast.LENGTH_SHORT).show();
                 onChangeMapType(radioGroup.getCheckedRadioButtonId());
             }
         });
@@ -89,6 +95,11 @@ public class SettingsFragment extends Fragment implements View.OnClickListener{
         }
     }
 
+    /**
+     * Called when the user set or change the map type, record the changes
+     * @param checkedRadioButtonId ID of the radio button selected
+     * @see com.sandbox.chat.core.settings.SettingsInteractor
+     */
     public void onChangeMapType(int checkedRadioButtonId)
     {
         switch (checkedRadioButtonId) {
@@ -101,8 +112,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener{
             case R.id.maptype_3:
                 mSettingsPresenter.setMapType(GoogleMap.MAP_TYPE_HYBRID);
                 break;
-
-
         }
     }
 }
