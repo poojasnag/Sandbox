@@ -22,19 +22,11 @@ import com.sandbox.chat.ui.fragments.SettingsFragment;
  */
 public class SettingsActivity extends AppCompatActivity {
 
-
-    SettingsMgr settingsController;
-    private static int mapType;
     private Toolbar mToolbar;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_settings);
-        settingsController = new SettingsMgr();
-        settingsController.changeTextSize();
         init();
     }
 
@@ -45,7 +37,6 @@ public class SettingsActivity extends AppCompatActivity {
     private void init() {
         // set the toolbar
         setSupportActionBar(mToolbar);
-
         // set the settings screen fragment
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout_content_settings,

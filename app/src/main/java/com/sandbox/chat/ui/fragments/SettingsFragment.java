@@ -28,12 +28,11 @@ import com.sandbox.chat.ui.activities.SettingsActivity;
  * View container for settings activity
  * @see SettingsActivity
  */
-public class SettingsFragment extends Fragment implements View.OnClickListener{
+public class SettingsFragment extends Fragment{
 
     private Intent prevIntent;
     private SettingsActivity mSettingsActivity;
     private ProgressDialog mProgressDialog;
-    private Button logoutButton;
     private RadioGroup mapTypeGroup;
     private SettingsPresenter mSettingsPresenter;
 
@@ -66,7 +65,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener{
         mProgressDialog.setMessage(getString(R.string.please_wait));
         mProgressDialog.setIndeterminate(true);
 
-        logoutButton.setOnClickListener(this);
     }
 
     private void bindViews(View view) {
@@ -74,7 +72,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener{
         bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
 
         prevIntent = getActivity().getIntent();
-        logoutButton = view.findViewById(R.id.settings_logout);
+
         mapTypeGroup = view.findViewById(R.id.settings_maptype_options);
 
         mapTypeGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -87,13 +85,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener{
 //        placeOrderPresenter = new PlaceOrderPresenter(this);
     }
 
-    @Override
-    public void onClick(View view) {
-        switch(view.getId())
-        {
-
-        }
-    }
 
     /**
      * Called when the user set or change the map type, record the changes

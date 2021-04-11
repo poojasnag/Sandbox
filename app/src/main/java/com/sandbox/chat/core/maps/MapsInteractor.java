@@ -51,6 +51,13 @@ public class MapsInteractor implements MapsContract.Interactor {
         }
         return new Eatery("0", "Unable to find eatery", "", "", "");
     }
+
+    /**
+     * Retrieves an eatery based on its name
+     * @param name  The name of the eatery
+     * @param byName Set to true to find eatery by name. If set to false, this method finds eatery by ID instead.
+     * @return An eatery with the same name.
+     */
     public static Eatery findEatery(String name, boolean byName)
     {
         if(!byName)
@@ -67,6 +74,10 @@ public class MapsInteractor implements MapsContract.Interactor {
         return new Eatery("0", "Unable to find eatery", "", "", "");
     }
 
+    /**
+     * Return the names of all eateries
+     * @return  A linked list of names
+     */
     public static LinkedList<String> getEateryNames()
     {
         LinkedList<String> result = new LinkedList<String>();
@@ -75,6 +86,7 @@ public class MapsInteractor implements MapsContract.Interactor {
         }
         return result;
     }
+
 
 
     /**
