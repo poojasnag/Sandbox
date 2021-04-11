@@ -39,7 +39,7 @@ public class DelivererOffer implements Serializable {
     private Deliverer deliverer;
 
     private String timestamp;
-    private String delivererName;
+
 //    /**
 //     * The status of the order
 //     * @deprecated
@@ -58,9 +58,8 @@ public class DelivererOffer implements Serializable {
 
      */
 
-    public DelivererOffer(String delivererOfferID, String delivererName ,String cutOffTime, String etaTime, double deliveryFee, ArrayList<String> deliveryLocation, Eatery eatery, Deliverer deliverer, String timestamp) {
+    public DelivererOffer(String delivererOfferID,String cutOffTime, String etaTime, double deliveryFee, ArrayList<String> deliveryLocation, Eatery eatery, Deliverer deliverer, String timestamp) {
         this.delivererOfferID = delivererOfferID;
-        this.delivererName = delivererName ;
         this.cutOffTime = cutOffTime;
         this.etaTime = etaTime;
         this.deliveryFee = deliveryFee;
@@ -134,11 +133,4 @@ public class DelivererOffer implements Serializable {
         this.timestamp = timestamp;
     }
 
-    public String getDelivererName() {
-        return delivererName;
-    }
-
-    public void setDelivererName(String delivererName) {
-        this.delivererName = delivererName;
-    }
 }
