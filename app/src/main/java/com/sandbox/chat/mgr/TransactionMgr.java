@@ -58,7 +58,7 @@ public class TransactionMgr {
         documentReference.set(offer).addOnSuccessListener(new OnSuccessListener<Void>(){
             @Override
             public void onSuccess(Void aVoid){
-                Toast.makeText(context,"Data sent: " + transaction.getTransactionID(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"Data sent!", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -72,10 +72,10 @@ public class TransactionMgr {
         Query query;
         if (isBuyer){
             query = transaction_db.whereEqualTo("buyerID", uid).whereEqualTo("orderStatus", "PENDING");
-            Log.e("transactionmgr", query.toString());
+
         }
         else{
-            Log.e("transactionMgr", isBuyer.toString() + " "+ uid);
+
             query = transaction_db.whereEqualTo("delivererID", uid).whereEqualTo("orderStatus", "PENDING");
         }
         return query;
@@ -86,10 +86,10 @@ public class TransactionMgr {
         Query query;
         if (isBuyer){
             query = transaction_db.whereEqualTo("buyerID", uid).whereEqualTo("orderStatus", "COMPLETE");
-            Log.e("transactionmgr", query.toString());
+
         }
         else{
-            Log.e("transactionMgr", isBuyer.toString() + " "+ uid);
+
             query = transaction_db.whereEqualTo("delivererID", uid).whereEqualTo("orderStatus", "COMPLETE");
         }
         return query;
@@ -99,7 +99,6 @@ public class TransactionMgr {
         if (isComplete){
             transaction_db.document(transactionID).update(whichStatus, "COMPLETE");
             checkOrderCompletion(transactionID);
-            Log.e("updateStatus", whichStatus);
         }
         else{
             transaction_db.document(transactionID).update(whichStatus, "INCOMPLETE");

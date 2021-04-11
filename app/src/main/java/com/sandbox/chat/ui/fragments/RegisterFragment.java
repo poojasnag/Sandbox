@@ -105,7 +105,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener, 
     public void onRegistrationFailure(String message) {
         mProgressDialog.dismiss();
         mProgressDialog.setMessage(getString(R.string.please_wait));
-        Log.e(TAG, "onRegistrationFailure: " + message);
+
         Toast.makeText(getActivity(), "Registration failed!\n" + message, Toast.LENGTH_LONG).show();
     }
 

@@ -51,8 +51,8 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/eatery_selection_map"
         android:name="com.google.android.libraries.maps.SupportMapFragment"
-        android:layout_width="596dp"
-        android:layout_height="913dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/eatery_selection_botnav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"

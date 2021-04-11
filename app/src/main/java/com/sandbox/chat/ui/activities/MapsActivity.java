@@ -109,21 +109,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.setMapType(SettingsInteractor.getMapType());
 
         MapsInteractor.initialize(this);
-
-
         //import geojson file into map
         try {
             GeoJsonLayer layer = new GeoJsonLayer(mMap, R.raw.raw, this);
-//            GeoJsonPolygonStyle polyStyle = layer.getDefaultPolygonStyle();
-//            polyStyle.setStrokeColor(Color.CYAN);
-//            polyStyle.setStrokeWidth(2);
             layer.addLayerToMap();
             layer.setOnFeatureClickListener(new Layer.OnFeatureClickListener() {
                 @Override
                 public void onFeatureClick(Feature feature) {
-                    System.out.println(feature.getProperty("Name"));
-                    Log.e("getEateryNameJSON", feature.getProperty("Name"));
                     showLocationDetails(feature.getProperty("Name"));
+                    Log.e("selectedLocation",feature.getProperty("Name"));
                 }
             });
         } catch (IOException e) {
@@ -223,7 +217,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
      */
     public void showLocationDetails(String feature_id)
     {
-        //from EaterySelectionMapMgr.java
 
         String ID = feature_id;
 
@@ -258,7 +251,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 LocalDateTime cutoffDT = LocalDateTime.parse(document.getString("cutoffDateTime"), f);
                                 boolean delivererIsYou = ((User) i.getSerializableExtra("user")).getUid().equals(document.getString("delivererID")) ;
-                                Log.e("delivererIsYou", ((User) i.getSerializableExtra("user")).getUid() + " " + document.getString("delivererID"));
+
                                 if ((!cutoffDT.isBefore(now)) && !delivererIsYou){
                                     count++;
                                 }

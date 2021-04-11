@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.sandbox.chat.mgr.OrderStatusMgr;
 import com.sandbox.chat.R;
 import com.sandbox.chat.ui.fragments.OrderStatusFragment;
 import com.sandbox.chat.ui.presenter.OrderStatusPresenter;
@@ -22,7 +21,7 @@ import com.sandbox.chat.ui.presenter.OrderStatusPresenter;
  * @author chua zi heng
  */
 public class OrderStatusActivity extends AppCompatActivity {
-    OrderStatusMgr orderStatusController;
+
     private OrderStatusPresenter orderStatusPresenter;
 
     private Toolbar mToolbar;

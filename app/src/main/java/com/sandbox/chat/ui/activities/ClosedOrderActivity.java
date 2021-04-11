@@ -14,7 +14,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.adapters.OrderDetailsAdapter;
 import com.sandbox.chat.R;
-import com.sandbox.chat.mgr.ClosedOrderMgr;
+
 import com.sandbox.chat.ui.fragments.ClosedOrderFragment;
 import com.sandbox.chat.ui.fragments.OrderStatusFragment;
 import com.sandbox.chat.ui.presenter.ClosedOrderPresenter;
@@ -23,7 +23,6 @@ import com.sandbox.chat.ui.presenter.ClosedOrderPresenter;
  * Displays the interface for all finished orders
  */
 public class ClosedOrderActivity extends AppCompatActivity {
-    ClosedOrderMgr closedOrderController;
     ClosedOrderPresenter closedOrderPresenter;
     private Toolbar mToolbar;
     private Intent i;

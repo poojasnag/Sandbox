@@ -70,7 +70,6 @@ public class UserMgr {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
-                    Log.e("usermgr", "usermgr");
                     int prevRating = document.getLong("rating").intValue();
                     int ratingCount = document.getLong("ratingCount").intValue();
                     float updatedRating = (prevRating + newRating);

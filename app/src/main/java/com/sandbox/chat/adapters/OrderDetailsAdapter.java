@@ -79,7 +79,6 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
      */
     public OrderDetailsHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         // Create a new view, which defines the UI of the list item
-        //TODO: Retrieve all orders.
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.order_details, viewGroup, false);
 
@@ -124,7 +123,7 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         intent.removeExtra("Eatery");
                     }
                     intent.putExtra("Transaction", t);
-                    Log.e("Intent_check"," Here");
+
                     intent.setComponent(new ComponentName(cur, OrderStatusActivity.class));
                     cur.startActivity(intent);
                 }

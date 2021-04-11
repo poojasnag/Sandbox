@@ -3,29 +3,14 @@ package com.sandbox.chat.ui.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.sandbox.chat.mgr.PlaceOrderMgr;
-import com.sandbox.chat.models.DelivererOffer;
-import com.sandbox.chat.models.Eatery;
-import com.sandbox.chat.models.User;
-import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.R;
-import com.sandbox.chat.ui.fragments.BnDFragment;
 import com.sandbox.chat.ui.fragments.PlaceOrderFragment;
-import com.sandbox.chat.ui.presenter.BnDPresenter;
 import com.sandbox.chat.ui.presenter.PlaceOrderPresenter;
-import com.sandbox.chat.utils.MultiRadio;
 
 /**
  * Allows buyers to place their orders by providing order details
@@ -60,7 +45,6 @@ public class PlaceOrderActivity extends AppCompatActivity {
 
         Intent intent = new Intent(context, PlaceOrderActivity.class);
         intent.setFlags(flags);
-        Toast.makeText(context, ( (DelivererOffer) intent.getSerializableExtra("delivererOffer")).getClass().toString(), Toast.LENGTH_SHORT).show();
         context.startActivity(intent);
     }
 

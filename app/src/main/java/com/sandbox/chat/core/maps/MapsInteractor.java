@@ -45,7 +45,7 @@ public class MapsInteractor implements MapsContract.Interactor {
         for (int i = 0; i < eateries.size(); i++) {
             if(eateries.get(i).getEateryID().equals(id) == true)
             {
-                Log.e("mapsInteractor", eateries.get(i).getEateryName());
+
                 return eateries.get(i);
             }
         }
