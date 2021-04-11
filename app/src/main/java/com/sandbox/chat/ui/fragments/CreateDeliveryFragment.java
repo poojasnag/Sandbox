@@ -150,17 +150,18 @@ public class CreateDeliveryFragment extends Fragment implements View.OnClickList
                 String cutoffDateTime = cutoff_picker. getText().toString();
                 String etaDateTime = eta_picker. getText().toString();
                 Log.e("insideactivity", selectedLocations.toString());
-                if(deliveryFee.trim().equals("") || cutoffDateTime.trim().equals("") || etaDateTime.trim().equals("") || selectedLocations.size() ==0)
-                {
-                    Toast.makeText(createDeliveryActivity,"You have missing inputs", Toast.LENGTH_SHORT).show();
-                }
-                else
+                if(createDeliveryPresenter.validateCreateDelivery(deliveryFee,etaDateTime, cutoffDateTime,selectedLocations))
                 {
                     createDeliveryPresenter.onRecordData(selectedLocations, Double.parseDouble(deliveryFee), cutoffDateTime, etaDateTime, curEatery, v.getContext(), (Deliverer) getActivity().getIntent().getSerializableExtra("user"));
                     Toast.makeText(getActivity(), "Delivery offer submitted", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(i);
                     intent.setComponent(new ComponentName(getContext(),PendingOrdersActivity.class));
                     startActivity(intent);
+
+                }
+                else
+                {
+                    Toast.makeText(createDeliveryActivity,"Invalid inputs", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -195,6 +196,8 @@ public class CreateDeliveryFragment extends Fragment implements View.OnClickList
 //        Intent intent = new Intent(context, PendingOrdersActivity.class);
         getActivity().startActivity(intent);
     }
+
+
 
 
 //    @Override
@@ -324,6 +327,7 @@ public class CreateDeliveryFragment extends Fragment implements View.OnClickList
                 selectedLocations = deliveryLocSpinner.getAllSelected(selected);
             }
         });
+
     }
 
 

@@ -2,7 +2,11 @@ package com.sandbox.chat.core.createDelivery;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.util.Log;
 import android.widget.Button;
+
+import androidx.annotation.RequiresApi;
 
 import com.sandbox.chat.models.Deliverer;
 import com.sandbox.chat.models.Eatery;
@@ -11,7 +15,13 @@ import com.sandbox.chat.ui.activities.CreateDeliveryActivity;
 import com.sandbox.chat.ui.fragments.CreateDeliveryFragment;
 import com.sandbox.chat.utils.MultiSpinner;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class CreateDeliveryPresenter implements CreateDeliveryContract.Presenter {
     private CreateDeliveryContract.View mCreateDeliveryView; // ok
@@ -41,6 +51,27 @@ public class CreateDeliveryPresenter implements CreateDeliveryContract.Presenter
     @Override
     public void onRecordData(ArrayList<String> chosenLoc, double deliveryFee, String cutoffDateTime, String etaDateTime, Eatery eatery, Context context, Deliverer deliverer) {
         mCreateDeliveryView.recordData(chosenLoc, deliveryFee, cutoffDateTime, etaDateTime, eatery, context, deliverer);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public boolean validateCreateDelivery(String deliveryFee, String etaDateTime, String cutoffDateTime, ArrayList<String> selectedLocations){
+        boolean isCorrectTime = false;
+        boolean isCorrectFee = false;
+        boolean isEmpty = deliveryFee.trim().equals("") || cutoffDateTime.trim().equals("") || etaDateTime.trim().equals("") || selectedLocations.size() ==0;
+        Log.e("createactivitypresent", deliveryFee + etaDateTime + cutoffDateTime + " "+ String.valueOf(isEmpty));
+        if (!isEmpty) {
+            DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            LocalDateTime etaDT = LocalDateTime.parse(etaDateTime, f);
+            Log.e("localdatetime", etaDT.toString());
+            LocalDateTime cutoffDT = LocalDateTime.parse(cutoffDateTime, f);
+            LocalDateTime now = LocalDateTime.now();
+
+            isCorrectTime = !etaDT.isBefore(cutoffDT) && !cutoffDT.isBefore(now);
+
+            isCorrectFee = (0f <= Float.valueOf(deliveryFee)) && (Float.valueOf(deliveryFee) <= 20f);  //set deliveryfee to be between 0 and 20
+            Log.e("createactivitypresent", Float.valueOf(deliveryFee).toString() + " " + String.valueOf(isCorrectFee));
+        }
+        return  !isEmpty && isCorrectTime && isCorrectFee ;
     }
 
     @Override
