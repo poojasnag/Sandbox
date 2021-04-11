@@ -13,12 +13,17 @@ import java.util.ArrayList;
 import static com.google.common.truth.Truth.assertThat;
 public class CreateDeliveryPresenterTest {
     CreateDeliveryPresenter createDeliveryPresenter;
+    DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    LocalDateTime now = LocalDateTime.now();
 
     //Test 1
     @Test
     public void valid_createDelivery() {
-        String etaString = "2021-04-21 18:03";
-        String cutoffString = "2021-04-21 15:03";
+        LocalDateTime cutoffDT = now.plusMinutes(10);
+        String cutoffString = cutoffDT.format(f);
+        LocalDateTime etaDT = now.plusMinutes(20);
+        String etaString = etaDT.format(f);
+
         String delivererFee = "4";
         ArrayList<String> selectedLocs = new ArrayList<String>();
         selectedLocs.add("Hall 10");
@@ -30,8 +35,11 @@ public class CreateDeliveryPresenterTest {
     //Test 2
     @Test
     public void valid_delivererFee_lower() {
-        String etaString = "2021-04-21 18:03";
-        String cutoffString = "2021-04-21 15:03";
+        LocalDateTime cutoffDT = now.plusMinutes(10);
+        String cutoffString = cutoffDT.format(f);
+        LocalDateTime etaDT = now.plusMinutes(20);
+        String etaString = etaDT.format(f);
+
         String delivererFee = "0";
         ArrayList<String> selectedLocs = new ArrayList<String>();
         selectedLocs.add("Hall 10");
@@ -41,8 +49,11 @@ public class CreateDeliveryPresenterTest {
     //Test 3
     @Test
     public void valid_delivererFee_upper() {
-        String etaString = "2021-04-21 18:03";
-        String cutoffString = "2021-04-21 15:03";
+        LocalDateTime cutoffDT = now.plusMinutes(10);
+        String cutoffString = cutoffDT.format(f);
+        LocalDateTime etaDT = now.plusMinutes(20);
+        String etaString = etaDT.format(f);
+
         String delivererFee = "20";
         ArrayList<String> selectedLocs = new ArrayList<String>();
         selectedLocs.add("Hall 10");
@@ -52,8 +63,11 @@ public class CreateDeliveryPresenterTest {
     //Test 4
     @Test
     public void invalid_delivererFee_lower() {
-        String etaString = "2021-04-21 18:03";
-        String cutoffString = "2021-04-21 15:03";
+        LocalDateTime cutoffDT = now.plusMinutes(10);
+        String cutoffString = cutoffDT.format(f);
+        LocalDateTime etaDT = now.plusMinutes(20);
+        String etaString = etaDT.format(f);
+
         String delivererFee = "-1";
         ArrayList<String> selectedLocs = new ArrayList<String>();
         selectedLocs.add("Hall 10");
@@ -63,8 +77,11 @@ public class CreateDeliveryPresenterTest {
     //Test 5
     @Test
     public void invalid_delivererFee_upper() {
-        String etaString = "2021-04-21 18:03";
-        String cutoffString = "2021-04-21 15:03";
+        LocalDateTime cutoffDT = now.plusMinutes(10);
+        String cutoffString = cutoffDT.format(f);
+        LocalDateTime etaDT = now.plusMinutes(20);
+        String etaString = etaDT.format(f);
+
         String delivererFee = "21";
         ArrayList<String> selectedLocs = new ArrayList<String>();
         selectedLocs.add("Hall 10");
@@ -76,8 +93,10 @@ public class CreateDeliveryPresenterTest {
     //Test 6
     @Test
     public void valid_cutoff_upper() {
-        String cutoffString = "2021-04-21 18:03";
-        String etaString = "2021-04-21 18:03";
+        LocalDateTime cutoffDT = now.plusMinutes(20);
+        String cutoffString = cutoffDT.format(f);
+        LocalDateTime etaDT = now.plusMinutes(20);
+        String etaString = etaDT.format(f);
 
         String delivererFee = "4";
         ArrayList<String> selectedLocs = new ArrayList<String>();
@@ -88,8 +107,10 @@ public class CreateDeliveryPresenterTest {
     //Test 7
     @Test
     public void invalid_cutoff_upper() {
-        String cutoffString = "2021-04-21 18:04";
-        String etaString = "2021-04-21 18:03";
+        LocalDateTime cutoffDT = now.plusMinutes(21);
+        String cutoffString = cutoffDT.format(f);
+        LocalDateTime etaDT = now.plusMinutes(20);
+        String etaString = etaDT.format(f);
 
         String delivererFee = "4";
         ArrayList<String> selectedLocs = new ArrayList<String>();
@@ -101,12 +122,11 @@ public class CreateDeliveryPresenterTest {
     //Test 8
     @Test
     public void invalid_cutoff_lower() {
-        DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime now = LocalDateTime.now();
         LocalDateTime cutoffDT = now.minusMinutes(1);
         String cutoffString = cutoffDT.format(f);
         Log.e("cutoffbefnow", cutoffString);
-        String etaString = "2021-04-21 18:03";
+        LocalDateTime etaDT = now.plusMinutes(20);
+        String etaString = etaDT.format(f);
 
         String delivererFee = "4";
         ArrayList<String> selectedLocs = new ArrayList<String>();
@@ -116,27 +136,23 @@ public class CreateDeliveryPresenterTest {
     }
     //Test 9
     @Test
-    public void valid_cutoff_lower() {
-        DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime now = LocalDateTime.now();
+    public void invalid_cutoff_lowerbound() {
         String cutoffString = now.format(f);
-        String etaString = "2021-04-21 18:03";
+        LocalDateTime etaDT = now.plusMinutes(20);
+        String etaString = etaDT.format(f);
 
         String delivererFee = "4";
         ArrayList<String> selectedLocs = new ArrayList<String>();
         selectedLocs.add("Hall 10");
         createDeliveryPresenter = new CreateDeliveryPresenter();
-        assertThat(createDeliveryPresenter.validateCreateDelivery(delivererFee, etaString, cutoffString, selectedLocs)).isTrue();
+        assertThat(createDeliveryPresenter.validateCreateDelivery(delivererFee, etaString, cutoffString, selectedLocs)).isFalse();
     }
 
     //ETA BV and EC
 
-
     //Test 10
     @Test
     public void invalid_eta_lower() {
-        DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime now = LocalDateTime.now();
         LocalDateTime cutoffDT = now.minusMinutes(2);
         LocalDateTime etaDT = now.minusMinutes(1);
         String cutoffString = cutoffDT.format(f);
@@ -147,7 +163,30 @@ public class CreateDeliveryPresenterTest {
         createDeliveryPresenter = new CreateDeliveryPresenter();
         assertThat(createDeliveryPresenter.validateCreateDelivery(delivererFee, etaString, cutoffString, selectedLocs)).isFalse();
     }
+    //Test 11
+    @Test
+    public void valid_eta_lower() {
+        String cutoffString = now.format(f);
+        String etaString = now.format(f);
+        Log.e("now time", etaString);
+        String delivererFee = "4";
+        ArrayList<String> selectedLocs = new ArrayList<String>();
+        selectedLocs.add("Hall 10");
+        createDeliveryPresenter = new CreateDeliveryPresenter();
+        assertThat(createDeliveryPresenter.validateCreateDelivery(delivererFee, etaString, cutoffString, selectedLocs)).isFalse();
+    }
+    //Test 12
+    @Test
+    public void invalid_selectloc_empty() {
+        LocalDateTime cutoffDT = now.plusMinutes(10);
+        String cutoffString = cutoffDT.format(f);
+        LocalDateTime etaDT = now.plusMinutes(20);
+        String etaString = etaDT.format(f);
 
-
+        String delivererFee = "4";
+        ArrayList<String> selectedLocs = new ArrayList<String>();
+        createDeliveryPresenter = new CreateDeliveryPresenter();
+        assertThat(createDeliveryPresenter.validateCreateDelivery(delivererFee, etaString, cutoffString, selectedLocs)).isFalse();
+    }
 
 }

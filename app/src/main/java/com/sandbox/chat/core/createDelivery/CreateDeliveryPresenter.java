@@ -53,6 +53,8 @@ public class CreateDeliveryPresenter implements CreateDeliveryContract.Presenter
         mCreateDeliveryView.recordData(chosenLoc, deliveryFee, cutoffDateTime, etaDateTime, eatery, context, deliverer);
     }
 
+    // delivery fee between 0 and 20 (inclusive)
+    // now < cutoff <= eta
     @RequiresApi(api = Build.VERSION_CODES.O)
     public boolean validateCreateDelivery(String deliveryFee, String etaDateTime, String cutoffDateTime, ArrayList<String> selectedLocations){
         boolean isCorrectTime = false;
@@ -65,9 +67,7 @@ public class CreateDeliveryPresenter implements CreateDeliveryContract.Presenter
             Log.e("localdatetime", etaDT.toString());
             LocalDateTime cutoffDT = LocalDateTime.parse(cutoffDateTime, f);
             LocalDateTime now = LocalDateTime.now();
-
             isCorrectTime = !etaDT.isBefore(cutoffDT) && !cutoffDT.isBefore(now);
-
             isCorrectFee = (0f <= Float.valueOf(deliveryFee)) && (Float.valueOf(deliveryFee) <= 20f);  //set deliveryfee to be between 0 and 20
             Log.e("createactivitypresent", Float.valueOf(deliveryFee).toString() + " " + String.valueOf(isCorrectFee));
         }
