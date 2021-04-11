@@ -13,11 +13,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.sandbox.chat.R;
 import com.sandbox.chat.core.logout.LogoutContract;
 import com.sandbox.chat.core.logout.LogoutPresenter;
 import com.sandbox.chat.adapters.UserListingPagerAdapter;
+import com.sandbox.chat.ui.BottomBarOnClickListener;
+
 /**
  * Lists all users available
  *
@@ -45,6 +48,8 @@ public class UserListingActivity extends AppCompatActivity implements LogoutCont
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_listing);
+        final BottomNavigationView bot_bar = findViewById(R.id.chat_bottomNavigationView);
+        bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
         bindViews();
         init();
     }
