@@ -9,7 +9,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.sandbox.chat.R;
-import com.sandbox.chat.mgr.ClosedOrderMgr;
+
 import com.sandbox.chat.ui.fragments.ClosedOrderFragment;
 import com.sandbox.chat.core.closedOrder.ClosedOrderPresenter;
 
@@ -17,7 +17,6 @@ import com.sandbox.chat.core.closedOrder.ClosedOrderPresenter;
  * Displays the interface for all finished orders
  */
 public class ClosedOrderActivity extends AppCompatActivity {
-    ClosedOrderMgr closedOrderController;
     ClosedOrderPresenter closedOrderPresenter;
     private Toolbar mToolbar;
     private Intent i;

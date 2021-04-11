@@ -176,7 +176,7 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void onSubmitSelect(Context context) {
         placeOrderPresenter = new PlaceOrderPresenter(placeOrderActivity);
-        Log.e("submitCheck", "Accessing onSubmitSelect");
+
         mProgressDialog.dismiss();
         String buyerID = ((User) i.getSerializableExtra("user")).getUid();
         String buyerName = ((User) i.getSerializableExtra("user")).getEmail();
@@ -213,7 +213,7 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
 
             Intent intent = new Intent(i);
             intent.setComponent(new ComponentName(context, PendingOrdersActivity.class));
-            Log.e("eaterycheck", ((Eatery) intent.getSerializableExtra("Eatery")).getEateryName());
+
             Toast.makeText(context, "Order successfully placed", Toast.LENGTH_SHORT).show();
             startActivity(intent);
         }

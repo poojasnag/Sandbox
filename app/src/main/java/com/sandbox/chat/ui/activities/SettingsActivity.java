@@ -1,18 +1,12 @@
 package com.sandbox.chat.ui.activities;
 
 import android.os.Bundle;
-import android.widget.RadioGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.libraries.maps.GoogleMap;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.sandbox.chat.mgr.SettingsMgr;
-import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.R;
-import com.sandbox.chat.ui.fragments.RegisterFragment;
 import com.sandbox.chat.ui.fragments.SettingsFragment;
 
 /**

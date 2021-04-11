@@ -31,7 +31,7 @@ public class UserRatingActivity extends AppCompatActivity {
 
     public static void startActivity(Context context) {
         Intent intent = new Intent(context, UserRatingActivity.class);
-        Toast.makeText(context,"rating",Toast.LENGTH_SHORT).show();
+
         context.startActivity(intent);
     }
 

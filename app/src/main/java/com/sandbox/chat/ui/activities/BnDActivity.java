@@ -75,7 +75,7 @@ public class BnDActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bn_d);
         bindViews();
         init();
-        Log.d("ZIHENG", "we here");
+
     }
     private void bindViews() {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);

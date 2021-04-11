@@ -3,16 +3,16 @@ package com.sandbox.chat.ui.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.sandbox.chat.models.DelivererOffer;
 import com.sandbox.chat.R;
-import com.sandbox.chat.ui.fragments.PlaceOrderFragment;
 import com.sandbox.chat.core.placeOrder.PlaceOrderPresenter;
+import com.sandbox.chat.ui.fragments.PlaceOrderFragment;
+
 
 /**
  * Allows buyers to place their orders by providing order details
@@ -47,7 +47,6 @@ public class PlaceOrderActivity extends AppCompatActivity {
 
         Intent intent = new Intent(context, PlaceOrderActivity.class);
         intent.setFlags(flags);
-        Toast.makeText(context, ( (DelivererOffer) intent.getSerializableExtra("delivererOffer")).getClass().toString(), Toast.LENGTH_SHORT).show();
         context.startActivity(intent);
     }
 

@@ -125,7 +125,7 @@ public class DelivererProfileAdapter extends RecyclerView.Adapter<RecyclerView.V
                     }
                     intent.putExtra("delivererOffer", deliverer);
 
-                    Log.e("delivererpffer", deliverer.getDeliverer().getEmail());
+
                     intent.setComponent(new ComponentName(cur, PlaceOrderActivity.class));
                     cur.startActivity(intent);
 

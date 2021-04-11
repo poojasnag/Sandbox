@@ -8,18 +8,13 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -33,11 +28,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.sandbox.chat.core.maps.MapsInteractor;
 import com.sandbox.chat.mgr.DelivererOfferMgr;
 import com.sandbox.chat.models.Buyer;
-import com.sandbox.chat.models.DelivererOffer;
 import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.R;
-import com.sandbox.chat.mgr.FoodOpSelectionMgr;
 
 /**
  * Alternative method for users to pick an eatery through a spinner
@@ -116,7 +109,6 @@ public class FoodOpSelectionActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String name = adapterView.getItemAtPosition(i).toString();
-                Log.e("eateryName", name);
                 showLocationDetails(name);
             }
         });
@@ -192,7 +184,7 @@ public class FoodOpSelectionActivity extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 LocalDateTime cutoffDT = LocalDateTime.parse(document.getString("cutoffDateTime"), f);
                                 boolean delivererIsYou = ((User) i.getSerializableExtra("user")).getUid().equals(document.getString("delivererID")) ;
-                                Log.e("delivererIsYou", ((User) i.getSerializableExtra("user")).getUid() + " " + document.getString("delivererID"));
+
                                 if ((!cutoffDT.isBefore(now)) && !delivererIsYou){
                                     count++;
                                 }

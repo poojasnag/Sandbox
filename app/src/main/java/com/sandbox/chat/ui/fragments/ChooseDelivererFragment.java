@@ -15,12 +15,10 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.sandbox.chat.R;
-import com.sandbox.chat.adapters.DelivererProfileAdapter;
+
 import com.sandbox.chat.core.chooseDeliverer.ChooseDelivererContract;
 import com.sandbox.chat.core.chooseDeliverer.ChooseDelivererPresenter;
-import com.sandbox.chat.core.registration.RegisterPresenter;
-import com.sandbox.chat.core.users.add.AddUserPresenter;
-import com.sandbox.chat.mgr.ChooseDelivererMgr;
+
 import com.sandbox.chat.models.Eatery;
 
 /**
