@@ -50,6 +50,7 @@ import com.sandbox.chat.core.logout.LogoutContract;
 import com.sandbox.chat.core.logout.LogoutPresenter;
 import com.sandbox.chat.core.maps.MapsInteractor;
 import com.sandbox.chat.core.maps.MapsPresenter;
+import com.sandbox.chat.core.settings.SettingsInteractor;
 import com.sandbox.chat.mgr.DelivererOfferMgr;
 import com.sandbox.chat.models.Buyer;
 import com.sandbox.chat.models.Eatery;
@@ -95,7 +96,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        mMap.setMapType(SettingsInteractor.getMapType());
 
         MapsInteractor.initialize(this);
 
@@ -127,18 +128,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         getMenuInflater().inflate(R.menu.menu_user_listing, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
     protected void onCreate(Bundle savedInstanceState) {
 
         mLogoutPresenter = new LogoutPresenter(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_eatery_selection_map);
-        try {
+
             MapsPresenter c = new MapsPresenter(this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+
         final BottomNavigationView bot_bar = findViewById(R.id.eatery_selection_botnav);
         bot_bar.setOnNavigationItemSelectedListener(new BottomBarOnClickListener(bot_bar));
 

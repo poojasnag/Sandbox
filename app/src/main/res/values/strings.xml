@@ -114,4 +114,9 @@
     <string name="nav_pending">Pending</string>
     <string name="nav_completed">Completed</string>
     <string name="nav_settings">Settings</string>
+    <string name="maptype_normal">Normal</string>
+    <string name="maptype_satellite">Satellite</string>
+    <string name="maptype_hybrid">Hybrid</string>
+    <string name="maptype">Map type:</string>
+
 </resources>

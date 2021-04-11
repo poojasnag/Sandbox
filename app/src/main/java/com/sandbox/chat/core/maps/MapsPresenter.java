@@ -16,11 +16,11 @@ public class MapsPresenter implements MapsContract.Presenter, MapsContract.View{
     private MapsContract.View mView;
     private MapsInteractor eateryData;
 
-    public MapsPresenter(MapsActivity mMapsActivity) throws IOException, ClassNotFoundException {
+    public MapsPresenter(MapsActivity mMapsActivity)  {
         this.mMapsActivity = mMapsActivity;
     }
 
-    public MapsPresenter(MapsActivity mMapsActivity, ArrayList<Eatery> eateries) throws IOException, ClassNotFoundException {
+    public MapsPresenter(MapsActivity mMapsActivity, ArrayList<Eatery> eateries)  {
         this.mMapsActivity = mMapsActivity;
         this.eateryData = new MapsInteractor(eateries);
     }

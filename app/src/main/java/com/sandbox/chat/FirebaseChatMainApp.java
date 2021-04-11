@@ -2,7 +2,7 @@ package com.sandbox.chat;
 
 import android.app.Application;
 
-
+@Deprecated
 public class FirebaseChatMainApp extends Application {
     private static boolean sIsChatActivityOpen = false;
 
