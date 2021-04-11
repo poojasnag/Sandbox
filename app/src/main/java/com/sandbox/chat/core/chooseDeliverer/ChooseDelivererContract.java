@@ -19,7 +19,7 @@ public interface ChooseDelivererContract {
 //        void onRegistrationFailure(String message);
     }
     interface Presenter {
-        void getDeliverers(RecyclerView ordersList, Eatery eatery);
+        void getDeliverers(RecyclerView ordersList, Eatery eatery, Intent i);
         void setLocation(Button b, Intent i);
     }
     interface Interactor {

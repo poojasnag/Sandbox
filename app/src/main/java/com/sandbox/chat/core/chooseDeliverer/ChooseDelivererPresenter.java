@@ -24,6 +24,7 @@ import com.sandbox.chat.mgr.UserMgr;
 import com.sandbox.chat.models.Deliverer;
 import com.sandbox.chat.models.DelivererOffer;
 import com.sandbox.chat.models.Eatery;
+import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.activities.ChooseDelivererActivity;
 import com.sandbox.chat.utils.MultiSpinner;
 
@@ -51,13 +52,14 @@ public class ChooseDelivererPresenter implements ChooseDelivererContract.Present
     }
 
     // functions from contract - presenter
-
     /**
      * Retrieves the delivery offers from the database
      * @param ordersList The RecyclerView which will contain the offers
      * @param eatery The method will query all offers delivering from this eatery
      */
-    public void getDeliverers(RecyclerView ordersList, Eatery eatery) {
+    public void getDeliverers(RecyclerView ordersList, Eatery eatery, Intent i) {
+
+
         //TODO: change to actual deliverers
 
         LinkedList<DelivererOffer> demo = new LinkedList<DelivererOffer>();
@@ -67,25 +69,18 @@ public class ChooseDelivererPresenter implements ChooseDelivererContract.Present
                     @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                        LocalDateTime now = LocalDateTime.now();
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
 
                                 ArrayList<String> locationsList = (ArrayList<String>)document.get(KEY_LOCATION);
                                 Deliverer deliverer = new Deliverer(document.getString("delivererID") ,document.getString("email"),  (document.get("firebaseToken") == null) ? "null" : document.getString("firebaseToken"),   document.getLong("rating").intValue(), document.getLong("ratingCount").intValue(), null);
-
                                  delivererOffer = new DelivererOffer(document.getString("delivererOfferID"),document.getString("cutoffDateTime"), document.getString("etaDateTime"), document.getDouble("deliveryFee"), locationsList, eatery, deliverer, document.getString("timestamp"));
+                                boolean delivererIsYou = ((User) i.getSerializableExtra("user")).getUid().equals(document.getString("delivererID")) ;
 
-                                demo.add(delivererOffer);
-                            }
-                            Log.e("demoLL", demo.toString());
-                            for (DelivererOffer d : new LinkedList<>(demo)){
-                                DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-                                LocalDateTime cutoffDT = LocalDateTime.parse(d.getCutOffTime(), f);
-                                LocalDateTime now = LocalDateTime.now();
-                                Log.e("checkDT", cutoffDT.toString()+ " " + now.toString());
-                                if (cutoffDT.isBefore(now)){
-                                    demo.remove(d);
-                                }
+                                LocalDateTime cutoffDT = LocalDateTime.parse(delivererOffer.getCutOffTime(), f);
+                                if (!delivererIsYou && !cutoffDT.isBefore(now)) demo.add(delivererOffer);
                             }
 
                             DelivererProfileAdapter adapter = new DelivererProfileAdapter(demo);

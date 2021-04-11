@@ -57,6 +57,7 @@ import com.sandbox.chat.models.Buyer;
 import com.sandbox.chat.models.Deliverer;
 import com.sandbox.chat.models.DelivererOffer;
 import com.sandbox.chat.models.Eatery;
+import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.R;
 import com.sandbox.chat.utils.Constants;
@@ -256,7 +257,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                             DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 LocalDateTime cutoffDT = LocalDateTime.parse(document.getString("cutoffDateTime"), f);
-                                if (!cutoffDT.isBefore(now)){
+                                boolean delivererIsYou = ((User) i.getSerializableExtra("user")).getUid().equals(document.getString("delivererID")) ;
+                                Log.e("delivererIsYou", ((User) i.getSerializableExtra("user")).getUid() + " " + document.getString("delivererID"));
+                                if ((!cutoffDT.isBefore(now)) && !delivererIsYou){
                                     count++;
                                 }
                             }
@@ -311,11 +314,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         @Override
                         public void onMapReady(GoogleMap googleMap) {
 //                            LatLng latlng = new LatLng(location.getLatitude(), location.getLongitude());
-                            LatLng latlng = new LatLng(1.3450, 103.9832);
+                            LatLng latlng = new LatLng(1.3920, 103.9047);
                             MarkerOptions options = new MarkerOptions().position(latlng).title("Current Location");
 
                             //googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng, 10));
-                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng, 18f));
+                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng, 12f));
 
                             googleMap.addMarker(options);
                         }
