@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 
 /**
  * A modified radio button group, used for buyer to select a delivery destination
- * @see com.sandbox.chat.ui.fragments.PlaceOrderFragment
+ * See https://stackoverflow.com/questions/5015686/android-spinner-with-multiple-choice
  */
 public class MultiRadio extends androidx.appcompat.widget.AppCompatSpinner implements
         DialogInterface.OnClickListener, DialogInterface.OnCancelListener {
