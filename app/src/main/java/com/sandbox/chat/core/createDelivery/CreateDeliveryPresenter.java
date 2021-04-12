@@ -74,6 +74,38 @@ public class CreateDeliveryPresenter implements CreateDeliveryContract.Presenter
         return  !isEmpty && isCorrectTime && isCorrectFee ;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public String invalidateCreateDelivery(String deliveryFee, String etaDateTime, String cutoffDateTime, ArrayList<String> selectedLocations){
+        boolean isCorrectTime = false;
+        boolean isCorrectFee = false;
+        boolean isEmpty = deliveryFee.trim().equals("") || cutoffDateTime.trim().equals("") || etaDateTime.trim().equals("") || selectedLocations.size() ==0;
+        Log.e("createactivitypresent", deliveryFee + etaDateTime + cutoffDateTime + " "+ String.valueOf(isEmpty));
+        String message = null;
+        if (!isEmpty) {
+            DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            LocalDateTime etaDT = LocalDateTime.parse(etaDateTime, f);
+            Log.e("localdatetime", etaDT.toString());
+            LocalDateTime cutoffDT = LocalDateTime.parse(cutoffDateTime, f);
+            LocalDateTime now = LocalDateTime.now();
+            isCorrectTime = !etaDT.isBefore(cutoffDT) && !cutoffDT.isBefore(now);
+            isCorrectFee = (0f <= Float.valueOf(deliveryFee)) && (Float.valueOf(deliveryFee) <= 20f);  //set deliveryfee to be between 0 and 20
+            if(!isCorrectTime && (isCorrectFee)){
+                if(!etaDT.isBefore(cutoffDT) && cutoffDT.isBefore(now)){
+                    message = "Please enter cut-off after current time.";
+                }
+                else if(etaDT.isBefore(cutoffDT) && !cutoffDT.isBefore(now)){
+                     message = "Please enter an ETA after cut off time.";
+                }
+                else if(!isCorrectFee){
+                    message = "Please enter a delivery fee between $0 and $20";
+                }
+            }
+            Log.e("createactivitypresent", Float.valueOf(deliveryFee).toString() + " " + String.valueOf(isCorrectFee));
+        }
+        return message;
+    }
+
+
     @Override
     public void onSetLocation(Button b, Intent i) {
         mCreateDeliveryView.setLocation(b,i);
