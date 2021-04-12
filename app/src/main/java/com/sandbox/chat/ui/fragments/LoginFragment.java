@@ -78,8 +78,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Log
      * Initializes default text for the text input fields
      */
     private void setDummyCredentials() {
-        mETxtEmail.setText("Enter email");
-        mETxtPassword.setText("Enter password");
+        mETxtEmail.setText("test@test.com");
+        mETxtPassword.setText("test123");
     }
 
     @Override
