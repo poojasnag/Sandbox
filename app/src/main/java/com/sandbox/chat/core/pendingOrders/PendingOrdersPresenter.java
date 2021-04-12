@@ -1,9 +1,7 @@
-package com.sandbox.chat.ui.presenter;
+package com.sandbox.chat.core.pendingOrders;
 
 import com.sandbox.chat.ui.activities.PendingOrdersActivity;
-import com.sandbox.chat.ui.activities.PlaceOrderActivity;
-import com.sandbox.chat.ui.contract.PendingOrdersContract;
-import com.sandbox.chat.ui.contract.PlaceOrderContract;
+import com.sandbox.chat.core.pendingOrders.PendingOrdersContract;
 
 public class PendingOrdersPresenter implements PendingOrdersContract.Presenter, PendingOrdersContract.onPendingOrdersListener {
     private PendingOrdersActivity pendingOrdersActivity;

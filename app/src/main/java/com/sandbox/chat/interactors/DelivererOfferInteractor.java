@@ -1,4 +1,4 @@
-package com.sandbox.chat.mgr;
+package com.sandbox.chat.interactors;
 
 import android.content.Context;
 import android.widget.Toast;
@@ -14,16 +14,15 @@ import com.google.firebase.firestore.Query;
 import com.sandbox.chat.models.Deliverer;
 import com.sandbox.chat.models.DelivererOffer;
 import com.sandbox.chat.models.Eatery;
-import com.sandbox.chat.models.User;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class DelivererOfferMgr {
+public class DelivererOfferInteractor {
     private static FirebaseFirestore fStore = FirebaseFirestore.getInstance();
     private static String OFFER_TABLE = "delivererOffer";
     private static String TRANSACTION_TABLE = "transactions";
-    public DelivererOfferMgr(){}
+    public DelivererOfferInteractor(){}
 
     public static void setData(DelivererOffer delivererOffer, Context context){
         Map<String, Object> offer = new HashMap<>();

@@ -3,7 +3,6 @@ package com.sandbox.chat.ui.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -11,13 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.sandbox.chat.R;
 
 //import com.sandbox.chat.mgr.UserRatingMgr;
-import com.sandbox.chat.ui.contract.UserRatingContract;
-import com.sandbox.chat.ui.presenter.UserRatingPresenter;
-import com.sandbox.chat.ui.BottomBarOnClickListener;
+import com.sandbox.chat.core.userRating.UserRatingPresenter;
 import com.sandbox.chat.ui.fragments.UserRatingFragment;
 
 

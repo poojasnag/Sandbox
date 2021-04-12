@@ -1,54 +1,18 @@
 package com.sandbox.chat.ui.activities;
 
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.text.InputType;
-import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TimePicker;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.sandbox.chat.R;
-import com.sandbox.chat.core.createDelivery.CreateDeliveryContract;
-import com.sandbox.chat.core.createDelivery.CreateDeliveryPresenter;
 //import com.sandbox.chat.mgr.CreateDeliveryMgr;
-import com.sandbox.chat.mgr.DelivererOfferMgr;
-import com.sandbox.chat.models.Deliverer;
-import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
-import com.sandbox.chat.ui.fragments.ChooseDelivererFragment;
 import com.sandbox.chat.ui.fragments.CreateDeliveryFragment;
-import com.sandbox.chat.utils.MultiSpinner;
-
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
 
 /**
  * For deliverers, display the delivery offer creation interface
@@ -198,7 +162,7 @@ public class CreateDeliveryActivity extends AppCompatActivity {
 //import com.google.firebase.firestore.FirebaseFirestore;
 //import com.sandbox.chat.R;
 //import com.sandbox.chat.mgr.CreateDeliveryMgr;
-//import com.sandbox.chat.mgr.DelivererOfferMgr;
+//import com.sandbox.chat.mgr.DelivererOfferInteractor;
 //import com.sandbox.chat.models.Deliverer;
 //import com.sandbox.chat.models.Eatery;
 //import com.sandbox.chat.ui.BottomBarOnClickListener;

@@ -3,10 +3,6 @@ package com.sandbox.chat.ui.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,11 +15,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.sandbox.chat.R;
 //import com.sandbox.chat.mgr.BnDMgr;
-import com.sandbox.chat.mgr.UserMgr;
+import com.sandbox.chat.interactors.UserInteractor;
 import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.fragments.BnDFragment;
-import com.sandbox.chat.ui.fragments.LoginFragment;
-import com.sandbox.chat.ui.presenter.BnDPresenter;
+import com.sandbox.chat.core.bnd.BnDPresenter;
 import com.sandbox.chat.utils.Constants;
 import com.sandbox.chat.utils.SharedPrefUtil;
 
@@ -36,7 +31,7 @@ public class BnDActivity extends AppCompatActivity {
     private Toolbar mToolbar;
 
     public static void startActivity(Context context, FirebaseUser fUser) {
-        UserMgr.getUserDocument(fUser.getUid())
+        UserInteractor.getUserDocument(fUser.getUid())
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -54,7 +49,7 @@ public class BnDActivity extends AppCompatActivity {
 
 
     public static void startActivity(Context context, FirebaseUser fUser, int flags) {
-        UserMgr.getUserDocument(fUser.getUid())
+        UserInteractor.getUserDocument(fUser.getUid())
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {

@@ -4,13 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.sandbox.chat.R;
+import com.sandbox.chat.core.placeOrder.PlaceOrderPresenter;
 import com.sandbox.chat.ui.fragments.PlaceOrderFragment;
-import com.sandbox.chat.ui.presenter.PlaceOrderPresenter;
+
 
 /**
  * Allows buyers to place their orders by providing order details

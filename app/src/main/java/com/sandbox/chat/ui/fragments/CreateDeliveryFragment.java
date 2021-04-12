@@ -24,18 +24,16 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.sandbox.chat.R;
 import com.sandbox.chat.core.createDelivery.CreateDeliveryContract;
 import com.sandbox.chat.core.createDelivery.CreateDeliveryPresenter;
-import com.sandbox.chat.mgr.DelivererOfferMgr;
+import com.sandbox.chat.interactors.DelivererOfferInteractor;
 import com.sandbox.chat.models.Buyer;
 import com.sandbox.chat.models.Deliverer;
 import com.sandbox.chat.models.DelivererOffer;
 import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.models.Transaction;
 import com.sandbox.chat.models.User;
-import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.ui.activities.CreateDeliveryActivity;
 import com.sandbox.chat.ui.activities.PendingOrdersActivity;
 import com.sandbox.chat.utils.MultiSpinner;
@@ -302,13 +300,13 @@ public class CreateDeliveryFragment extends Fragment implements View.OnClickList
 
     public Buyer createBuyer(User user)
     {
-        //TODO: Call TransactionMgr to get all the transactions
+        //TODO: Call TransactionInteractor to get all the transactions
         return new Buyer(user.getUid(), user.getEmail(), user.getFirebaseToken(), user.getRating() , user.getRatingCount(), new LinkedList<Transaction>());
     }
 
     public Deliverer createDeliverer(User user)
     {
-        //TODO: Call TransactionMgr to get all the transactions
+        //TODO: Call TransactionInteractor to get all the transactions
         return new Deliverer(user.getUid(), user.getEmail(), user.getFirebaseToken(), user.getRating(), user.getRatingCount(),new LinkedList<Transaction>());
     }
 
@@ -333,7 +331,7 @@ public class CreateDeliveryFragment extends Fragment implements View.OnClickList
             String offerID = curTime + "-" + email;  //KEY: OfferID which is current time + uid (unique in every scenario)
             DelivererOffer delivererOffer = new DelivererOffer(offerID,cutoffDateTime, etaDateTime, deliveryFee, locationsList, eatery, deliverer, curTime);
 //            Toast.makeText(context, delivererOffer.getClass().getName(), Toast.LENGTH_SHORT).show();
-            DelivererOfferMgr.setData(delivererOffer, context);
+            DelivererOfferInteractor.setData(delivererOffer, context);
         }
     }
 

@@ -1,9 +1,7 @@
 package com.sandbox.chat.core.chooseDeliverer;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -13,27 +11,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.sandbox.chat.adapters.DelivererProfileAdapter;
-import com.sandbox.chat.mgr.DelivererOfferMgr;
-import com.sandbox.chat.mgr.UserMgr;
+import com.sandbox.chat.interactors.DelivererOfferInteractor;
 import com.sandbox.chat.models.Deliverer;
 import com.sandbox.chat.models.DelivererOffer;
 import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.activities.ChooseDelivererActivity;
-import com.sandbox.chat.utils.MultiSpinner;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 public class ChooseDelivererPresenter implements ChooseDelivererContract.Presenter {
     private ChooseDelivererContract.View mChooseDelivererView;
@@ -60,7 +52,7 @@ public class ChooseDelivererPresenter implements ChooseDelivererContract.Present
     public void getDeliverers(RecyclerView ordersList, Eatery eatery, Intent i) {
 
         LinkedList<DelivererOffer> demo = new LinkedList<DelivererOffer>();
-        DelivererOfferMgr.getEateryDeliverers(eatery)
+        DelivererOfferInteractor.getEateryDeliverers(eatery)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @RequiresApi(api = Build.VERSION_CODES.O)

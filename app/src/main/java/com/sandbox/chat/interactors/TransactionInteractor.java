@@ -1,14 +1,10 @@
 
-package com.sandbox.chat.mgr;
+package com.sandbox.chat.interactors;
 
 import android.content.Context;
-import android.os.Build;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -20,21 +16,15 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.sandbox.chat.adapters.OrderDetailsAdapter;
-import com.sandbox.chat.models.Buyer;
-import com.sandbox.chat.models.Deliverer;
-import com.sandbox.chat.models.Status;
 import com.sandbox.chat.models.Transaction;
-import com.sandbox.chat.models.User;
 
-import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TransactionMgr {
+public class TransactionInteractor {
     private static FirebaseFirestore fStore = FirebaseFirestore.getInstance();
     private static String TRANSACTION_TABLE = "transactions";
-    public TransactionMgr(){}
+    public TransactionInteractor(){}
 
 
     public static void setData(Transaction transaction, Context context){

@@ -21,16 +21,14 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.sandbox.chat.R;
 import com.sandbox.chat.adapters.OrderDetailsAdapter;
-import com.sandbox.chat.mgr.TransactionMgr;
+import com.sandbox.chat.interactors.TransactionInteractor;
 import com.sandbox.chat.models.Buyer;
 import com.sandbox.chat.models.Status;
 import com.sandbox.chat.models.Transaction;
 import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.ui.activities.ClosedOrderActivity;
-import com.sandbox.chat.ui.activities.PendingOrdersActivity;
-import com.sandbox.chat.ui.presenter.ClosedOrderPresenter;
-import com.sandbox.chat.ui.presenter.PendingOrdersPresenter;
+import com.sandbox.chat.core.closedOrder.ClosedOrderPresenter;
 
 import java.util.LinkedList;
 
@@ -97,7 +95,7 @@ public class ClosedOrderFragment extends Fragment {
     public void getClosedOrders(User user, Boolean isBuyer, RecyclerView ordersList) { //TODO: only PENDING orders query
 
         LinkedList<Transaction> transactionList = new LinkedList<Transaction>();
-        TransactionMgr.getClosedOrders(user.getUid(), isBuyer)
+        TransactionInteractor.getClosedOrders(user.getUid(), isBuyer)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

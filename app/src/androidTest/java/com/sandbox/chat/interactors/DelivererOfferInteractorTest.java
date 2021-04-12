@@ -1,4 +1,4 @@
-package com.sandbox.chat.mgr;
+package com.sandbox.chat.interactors;
 
 import android.content.Context;
 
@@ -10,22 +10,19 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.sandbox.chat.models.Eatery;
 
 import static com.google.common.truth.Truth.*;
 import org.junit.Test;
 
 import java.util.Map;
 
-import static org.junit.Assert.*;
-
-public class DelivererOfferMgrTest {
+public class DelivererOfferInteractorTest {
     Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
     @Test
     public void getDelivererOffer_valid()
     {
-        Query q = DelivererOfferMgr.getDelivererOffer("1617939828-test@test.com");
+        Query q = com.sandbox.chat.interactors.DelivererOfferInteractor.getDelivererOffer("1617939828-test@test.com");
         q.get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

@@ -1,22 +1,6 @@
 package com.sandbox.chat.core.login;
 
 import android.app.Activity;
-import android.content.Context;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.sandbox.chat.mgr.UserMgr;
-import com.sandbox.chat.models.User;
-import com.sandbox.chat.utils.Constants;
-import com.sandbox.chat.utils.SharedPrefUtil;
-
-import java.util.ArrayList;
 
 /**
  * Presentation logic for user login
@@ -53,7 +37,7 @@ public class LoginPresenter implements LoginContract.Presenter, LoginContract.On
 //        //TODO:Get the user
 //        FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
 //        //TODO testing rating
-//        UserMgr.getUserDocument(fUser.getUid())
+//        UserInteractor.getUserDocument(fUser.getUid())
 //                    .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
 //            @Override
 //            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -65,7 +49,7 @@ public class LoginPresenter implements LoginContract.Presenter, LoginContract.On
 //        });
 //        User curUser =  new User(fUser.getUid() ,fUser.getEmail(), new SharedPrefUtil(context).getString(Constants.ARG_FIREBASE_TOKEN), 0, );
 //
-//        UserMgr.setData(curUser, context);
+//        UserInteractor.setData(curUser, context);
 //        return curUser;
 //
 //    }

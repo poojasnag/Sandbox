@@ -7,17 +7,11 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.sandbox.chat.ui.BottomBarOnClickListener;
-import com.sandbox.chat.adapters.OrderDetailsAdapter;
 import com.sandbox.chat.R;
 
 import com.sandbox.chat.ui.fragments.ClosedOrderFragment;
-import com.sandbox.chat.ui.fragments.OrderStatusFragment;
-import com.sandbox.chat.ui.presenter.ClosedOrderPresenter;
+import com.sandbox.chat.core.closedOrder.ClosedOrderPresenter;
 
 /**
  * Displays the interface for all finished orders

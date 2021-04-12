@@ -1,13 +1,11 @@
 package com.sandbox.chat.ui.fragments;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,14 +14,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.sandbox.chat.R;
-import com.sandbox.chat.mgr.TransactionMgr;
+import com.sandbox.chat.interactors.TransactionInteractor;
 import com.sandbox.chat.models.DelivererOffer;
 import com.sandbox.chat.models.Eatery;
 import com.sandbox.chat.models.Status;
@@ -32,10 +29,8 @@ import com.sandbox.chat.models.User;
 import com.sandbox.chat.ui.BottomBarOnClickListener;
 import com.sandbox.chat.ui.activities.PendingOrdersActivity;
 import com.sandbox.chat.ui.activities.PlaceOrderActivity;
-import com.sandbox.chat.ui.contract.BnDContract;
-import com.sandbox.chat.ui.contract.PlaceOrderContract;
-import com.sandbox.chat.ui.presenter.BnDPresenter;
-import com.sandbox.chat.ui.presenter.PlaceOrderPresenter;
+import com.sandbox.chat.core.placeOrder.PlaceOrderContract;
+import com.sandbox.chat.core.placeOrder.PlaceOrderPresenter;
 import com.sandbox.chat.utils.MultiRadio;
 
 import java.time.Instant;
@@ -213,7 +208,7 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
 
             String transactionID = buyerID + '-' + delivererOfferID + '-' + curTime;
             Transaction t = new Transaction(eateryName, transactionID, buyerName, delivererName, buyerID, delivererOfferID, delivererID, buyerLocation, order, orderStatus, delivererStatus, buyerStatus);
-            TransactionMgr.setData(t, context);
+            TransactionInteractor.setData(t, context);
 
             Intent intent = new Intent(i);
             intent.setComponent(new ComponentName(context, PendingOrdersActivity.class));

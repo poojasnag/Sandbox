@@ -15,15 +15,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.sandbox.chat.R;
-import com.sandbox.chat.mgr.TransactionMgr;
+import com.sandbox.chat.interactors.TransactionInteractor;
 import com.sandbox.chat.models.Buyer;
 import com.sandbox.chat.models.Status;
 import com.sandbox.chat.models.Transaction;
 import com.sandbox.chat.ui.activities.UserRatingActivity;
-import com.sandbox.chat.ui.contract.OrderCompleteContract;
-import com.sandbox.chat.ui.contract.OrderIncompleteContract;
-import com.sandbox.chat.ui.presenter.OrderCompletePresenter;
-import com.sandbox.chat.ui.presenter.OrderIncompletePresenter;
+import com.sandbox.chat.core.orderIncomplete.OrderIncompleteContract;
+import com.sandbox.chat.core.orderIncomplete.OrderIncompletePresenter;
 
 /**
  * View holder for OrderIncomplete activity
@@ -103,10 +101,10 @@ public class OrderIncompleteFragment extends Fragment implements View.OnClickLis
     public void updateStatus(Context context){
         Transaction transaction = (Transaction) i.getSerializableExtra("Transaction");
         if (i.getSerializableExtra("user") instanceof Buyer) {
-            TransactionMgr.updateStatus(false, "buyerStatus", transaction.getTransactionID());
+            TransactionInteractor.updateStatus(false, "buyerStatus", transaction.getTransactionID());
             transaction.setBuyerStatus(Status.INCOMPLETE);
         } else {
-            TransactionMgr.updateStatus(false, "delivererStatus", transaction.getTransactionID());
+            TransactionInteractor.updateStatus(false, "delivererStatus", transaction.getTransactionID());
             transaction.setDelivererStatus(Status.INCOMPLETE);
         }
 

@@ -1,8 +1,7 @@
-package com.sandbox.chat.ui.presenter;
+package com.sandbox.chat.core.orderStatus;
 
 import com.sandbox.chat.ui.activities.OrderStatusActivity;
-import com.sandbox.chat.ui.contract.OrderStatusContract;
-import com.sandbox.chat.ui.contract.PlaceOrderContract;
+import com.sandbox.chat.core.orderStatus.OrderStatusContract;
 
 public class OrderStatusPresenter {
     private OrderStatusActivity orderStatusActivity;

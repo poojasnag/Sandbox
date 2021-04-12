@@ -1,4 +1,4 @@
-package com.sandbox.chat.ui.contract;
+package com.sandbox.chat.core.pendingOrders;
 
 import androidx.recyclerview.widget.RecyclerView;
 

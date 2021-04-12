@@ -3,17 +3,13 @@ package com.sandbox.chat.ui.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.sandbox.chat.R;
-import com.sandbox.chat.models.User;
-import com.sandbox.chat.ui.fragments.BnDFragment;
 import com.sandbox.chat.ui.fragments.OrderCompleteFragment;
-import com.sandbox.chat.ui.presenter.BnDPresenter;
 
 /**
  * After the user mark an order as complete, displays an order completion page and prompt the user to give a rating to the other user
