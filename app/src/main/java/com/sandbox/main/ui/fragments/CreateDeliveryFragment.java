@@ -39,6 +39,8 @@ import com.sandbox.main.utils.MultiSpinner;
 
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.LinkedList;
@@ -177,6 +179,10 @@ public class CreateDeliveryFragment extends Fragment implements View.OnClickList
             intent.setComponent(new ComponentName(getContext(),PendingOrdersActivity.class));
             startActivity(intent);
 
+        }
+        else if (createDeliveryPresenter.invalidateCreateDelivery(deliveryFee,etaDateTime, cutoffDateTime,selectedLocations)!=null){
+            String message = createDeliveryPresenter.invalidateCreateDelivery(deliveryFee,etaDateTime, cutoffDateTime,selectedLocations);
+            Toast.makeText(createDeliveryActivity,message, Toast.LENGTH_SHORT).show();
         }
         else
         {
