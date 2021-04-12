@@ -153,7 +153,7 @@
         app:layout_constraintVertical_bias="1.0"
         app:menu="@menu/bottom_navigation" />
 
-    <com.sandbox.chat.utils.MultiRadio
+    <com.sandbox.main.utils.MultiRadio
         android:id="@+id/spinner2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

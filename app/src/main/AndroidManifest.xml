@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.sandbox.chat">
+    package="com.sandbox.main">
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -11,13 +10,13 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:name=".FirebaseChatMainApp"
+        android:name="com.sandbox.main.FirebaseChatMainApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activities.MapsActivity"></activity>
+        <activity android:name="com.sandbox.main.ui.activities.MapsActivity"></activity>
 
 
         <!--
@@ -36,7 +35,7 @@
 <!--            android:name=".ui.activities.MapsActivity"-->
 <!--            android:label="@string/title_activity_maps" />-->
         <activity
-            android:name=".ui.activities.SplashActivity"
+            android:name="com.sandbox.main.ui.activities.SplashActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar.Splash">
             <intent-filter>
@@ -46,55 +45,55 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activities.LoginActivity"
+            android:name="com.sandbox.main.ui.activities.LoginActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.activities.RegisterActivity"
+            android:name="com.sandbox.main.ui.activities.RegisterActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.activities.UserListingActivity"
+            android:name="com.sandbox.main.ui.activities.UserListingActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.activities.ChatActivity"
+            android:name="com.sandbox.main.ui.activities.ChatActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <service android:name=".fcm.MyFirebaseMessagingService">
+        <service android:name="com.sandbox.main.fcm.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <service android:name=".fcm.MyFirebaseInstanceIDService">
+        <service android:name="com.sandbox.main.fcm.MyFirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
 
-        <activity android:name=".ui.activities.SettingsActivity"
+        <activity android:name="com.sandbox.main.ui.activities.SettingsActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".ui.activities.ClosedOrderActivity"
+        <activity android:name="com.sandbox.main.ui.activities.ClosedOrderActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".ui.activities.PlaceOrderActivity"
+        <activity android:name="com.sandbox.main.ui.activities.PlaceOrderActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".ui.activities.ChooseDelivererActivity"
+        <activity android:name="com.sandbox.main.ui.activities.ChooseDelivererActivity"
             android:theme = "@style/AppTheme.NoActionBar"/>
-        <activity android:name=".ui.activities.UserRatingActivity"
+        <activity android:name="com.sandbox.main.ui.activities.UserRatingActivity"
             android:theme = "@style/AppTheme.NoActionBar"/>
-        <activity android:name=".ui.activities.OrderStatusActivity"
+        <activity android:name="com.sandbox.main.ui.activities.OrderStatusActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".ui.activities.PendingOrdersActivity"
+        <activity android:name="com.sandbox.main.ui.activities.PendingOrdersActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".ui.activities.CreateDeliveryActivity"
+        <activity android:name="com.sandbox.main.ui.activities.CreateDeliveryActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".ui.activities.FoodOpSelectionActivity"
+        <activity android:name="com.sandbox.main.ui.activities.FoodOpSelectionActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".ui.activities.BnDActivity"
+        <activity android:name="com.sandbox.main.ui.activities.BnDActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".ui.activities.OrderCompleteActivity" android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".ui.activities.OrderIncompleteActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.sandbox.main.ui.activities.OrderCompleteActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.sandbox.main.ui.activities.OrderIncompleteActivity" android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

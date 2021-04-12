@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sandbox.chat.ui.activities.BnDActivity">
+    tools:context="com.sandbox.main.ui.activities.BnDActivity">
 
     <TextView
         android:id="@+id/bnd_sandbox"

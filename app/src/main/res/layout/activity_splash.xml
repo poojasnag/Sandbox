@@ -4,5 +4,5 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.sandbox.chat.ui.activities.SplashActivity">
+    tools:context="com.sandbox.main.ui.activities.SplashActivity">
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
