@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sandbox.chat.ui.activities.CreateDeliveryActivity">
+    tools:context="com.sandbox.main.ui.activities.CreateDeliveryActivity">
 
 
     <Button
@@ -126,7 +126,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.341" />
 
-    <com.sandbox.chat.utils.MultiSpinner
+    <com.sandbox.main.utils.MultiSpinner
         android:id="@+id/create_delivery_select_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

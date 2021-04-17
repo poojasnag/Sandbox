@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.sandbox.chat.ui.activities.ClosedOrderActivity">
+    tools:context="com.sandbox.main.ui.activities.ClosedOrderActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
