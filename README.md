@@ -36,9 +36,11 @@ Run JUnit test on delivery creation at ```/androidTest/java/com.sandbox.chat/cor
 
 </p>
 <h4> Buyer place order </h4>
+<p>
 <img src='screenshots/choosedel.png' width="200">
 <img src='screenshots/placeorder.png' width="200">
 <img src='screenshots/pendingorder.png' width="200">
+</p>
 <p>
 <img src='screenshots/chat.png' width="200">
 <img src='screenshots/rate.png' width="200">
