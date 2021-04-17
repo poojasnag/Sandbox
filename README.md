@@ -24,4 +24,24 @@ Android Lollipop (API Level 21)
 Run JUnit test on delivery creation at ```/androidTest/java/com.sandbox.chat/core/createDelivery/CreateDeliveryPresenterTest.java ```
 
 ## Screenshots
+<p>
+<img src='screenshots/splash.png' width="200">
+<img src="screenshots/bnd.png" width="200">
+<img src='screenshots/maps.png' width="200">
+</p>
+<h4> Create Delivery </h4>
+<p>
+<img src="screenshots/tangteahse.png" width="200">
+<img src='screenshots/createdel.png' width="200">
 
+</p>
+<h4> Buyer place order </h4>
+<p>
+<img src='screenshots/choosedel.png' width="200">
+<img src='screenshots/placeorder.png' width="200">
+<img src='screenshots/pendingorder.png' width="200">
+</p>
+<p>
+<img src='screenshots/chat.png' width="200">
+<img src='screenshots/rate.png' width="200">
+</p>
