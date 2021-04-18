@@ -21,7 +21,7 @@ Android Lollipop (API Level 21)
 
 ## Testing
 
-Run JUnit test on delivery creation at ```/androidTest/java/com.sandbox.chat/core/createDelivery/CreateDeliveryPresenterTest.java ```
+Run JUnit test on delivery creation at ```/androidTest/java/com.sandbox.main/core/createDelivery/CreateDeliveryPresenterTest.java ```
 
 ## Screenshots
 <p>
